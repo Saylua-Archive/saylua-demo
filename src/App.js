@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {encounters, randomEncounters} from './encounters'
-import {chooseWeighted, check, randInt} from './encounterFuncs'
+import {chooseWeighted, check, randInt} from './utils'
 
 
 class App extends Component {
@@ -25,7 +25,8 @@ class App extends Component {
         key={this.state.encounter.choices[i].choiceText}
         desc={this.state.encounter.choices[i].choiceText}
         onClick={() => {
-          this.setState(chooseWeighted(this.state.encounter.choices[i].outcomes)(this.state))
+          let outcomeFunction = chooseWeighted(this.state.encounter.choices[i].outcomes);
+          this.setState(outcomeFunction(this.state));
         }}
         parentState={this.state}
       />);
