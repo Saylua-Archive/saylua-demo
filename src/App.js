@@ -1,7 +1,9 @@
+"use strict";
+
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {encounters, randomEncounters} from './encounters'
+import {encounters, randomEncounters, Companion} from './encounters'
 import {chooseWeighted, check, randInt} from './utils'
 
 
@@ -13,29 +15,53 @@ class App extends Component {
       coins: 0,
       joy: 15,
       steps: 10,
-      companion: new Companion("Tori", randInt(10), randInt(10), randInt(10)),
+      activeCompanion: new Companion("Tori", "chirling", randInt(10), randInt(10), randInt(10)),
+      companions: [],
       encounter: encounters.start,
+      randomEncounters: randomEncounters,
     };
   }
 
   render() {
     let choiceButtons = [];
+    let miniPets = [];
+    for (let i = 0; i < this.state.companions.length; i++) {
+      miniPets.push(<MiniPet
+        companion={this.state.companions[i]}
+        onClick={
+          () => {this.setState({activeCompanion: this.state.companions[i]})}
+        }
+      />);
+    }
+    if (this.state.encounter.requirementCheck && this.state.encounter.requirementCheck(this.state)) {
+      this.setState({encounter: chooseWeighted(randomEncounters)});
+    }
     for (let i = 0; i < this.state.encounter.choices.length; i++) {
       choiceButtons.push(<ChoiceButton
         key={this.state.encounter.choices[i].choiceText}
         desc={this.state.encounter.choices[i].choiceText}
         onClick={() => {
-          let outcomeFunction = chooseWeighted(this.state.encounter.choices[i].outcomes);
+          let outcome = chooseWeighted(this.state.encounter.choices[i].outcomes);
+          let outcomeFunction = outcome.result;
           this.setState(outcomeFunction(this.state));
+          this.setState({resultText: outcome.text});
         }}
-        parentState={this.state}
       />);
     }
-    if (this.state.steps <= 0 && this.state.encounter != this.encounters.end) {
-      this.setState({encounter: this.encounters.end});
+    if (this.state.steps <= 0 && this.state.encounter != encounters.end) {
+      this.setState({encounter: encounters.end});
+    }
+    let mainText = this.state.encounter.mainText;
+    if (typeof mainText === 'function') {
+      mainText = mainText(this.state);
+    }
+    let resultText = this.state.resultText;
+    if (typeof resultText === 'function') {
+      resultText = resultText(this.state);
     }
     return(
-      <div>
+      <div className="adventure">
+      <div className="testLair">{miniPets}</div>
       <h2>The Peaceful Plains</h2>
       <StatBox
         stats={[
@@ -44,12 +70,19 @@ class App extends Component {
         ["Joy", this.state.joy],
         ["Steps", this.state.steps],
       ]}/>
-      <img src="pets/chirling/common.png"/>
-      <p className="mainText" id="scene-desc">{this.state.encounter.mainText}</p>
+      <img className="mainImage" src={"pets/" + this.state.activeCompanion.species + "/common.png"}/>
+      <p className="adventureText" id="result-desc">{resultText}</p>
+      <p className="adventureText" id="scene-desc">{mainText}</p>
       {choiceButtons}
       </div>
     )
   }
+}
+
+function MiniPet(props) {
+  return (
+    <img className="miniPet" src={"pets/" + props.companion.species + "/common.png"} onClick={props.onClick}/>
+  );
 }
 
 function ChoiceButton(props) {
@@ -70,23 +103,6 @@ function StatBox(props) {
     {dStats}
     </div>
   )
-}
-
-function Encounter(mainText, choices) {
-  this.mainText = mainText;
-  this.choices = choices;
-}
-
-function Choice(choiceText, outcomes) {
-  this.choiceText = choiceText;
-  this.outcomes = outcomes;
-}
-
-function Companion(name, str, spd, cha) {
-  this.name = name;
-  this.str = str;
-  this.spd = spd;
-  this.cha = cha;
 }
 
 export default App;

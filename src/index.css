@@ -33,9 +33,15 @@ h2 {
   padding: 0px 5px;
 }
 
-.mainText {
+.adventure {
   text-align: center;
   margin: auto;
+  line-height: 150%;
+}
+
+.mainImage {
+  margin: auto;
+  text-align: center;
 }
 
 .expedition {
@@ -53,4 +59,14 @@ h2 {
 
 .choice:hover {
   background-color: silver;
+}
+
+.miniPet {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.miniPet:hover {
+  background-color: rgba(255, 255, 255, 0.5);
 }
