@@ -8,6 +8,20 @@ function Encounter(mainText, choices, weight, requirementCheck) {
   this.choices = choices;
   this.weight = weight;
   this.requirementCheck = requirementCheck;
+  this.generateMainText = function (state) {
+    if (typeof this.mainText === 'function') {
+      return this.mainText(state);
+    } else {
+      return this.mainText;
+    }
+  }
+  this.generateMainText = function (state) {
+    if (typeof this.mainText === 'function') {
+      return this.mainText(state);
+    } else {
+      return this.mainText;
+    }
+  };
 }
 
 function Choice(choiceText, outcomes) {
@@ -19,6 +33,13 @@ function Outcome(result, text, weight) {
   this.result = result;
   this.text = text;
   this.weight = weight;
+  this.generateResultText = function (state) {
+    if (typeof this.text === 'function') {
+      return this.text(state);
+    } else {
+      return this.text;
+    }
+  };
 }
 
 function Companion(name, species, str, spd, cha) {

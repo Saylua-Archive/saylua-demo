@@ -26,12 +26,13 @@ class App extends Component {
     let choiceButtons = [];
     let miniPets = [];
     for (let i = 0; i < this.state.companions.length; i++) {
-      miniPets.push(<MiniPet
-        companion={this.state.companions[i]}
-        onClick={
-          () => {this.setState({activeCompanion: this.state.companions[i]})}
-        }
-      />);
+      miniPets.push(
+        <MiniPet
+          companion={this.state.companions[i]}
+          onClick={
+            () => {this.setState({activeCompanion: this.state.companions[i]})}
+          }
+        />);
     }
     if (this.state.encounter.requirementCheck && this.state.encounter.requirementCheck(this.state)) {
       this.setState({encounter: chooseWeighted(randomEncounters)});
@@ -44,36 +45,30 @@ class App extends Component {
           let outcome = chooseWeighted(this.state.encounter.choices[i].outcomes);
           let outcomeFunction = outcome.result;
           this.setState(outcomeFunction(this.state));
-          this.setState({resultText: outcome.text});
+          this.setState({resultText: outcome.generateResultText(this.state)});
         }}
       />);
     }
     if (this.state.steps <= 0 && this.state.encounter != encounters.end) {
       this.setState({encounter: encounters.end});
     }
-    let mainText = this.state.encounter.mainText;
-    if (typeof mainText === 'function') {
-      mainText = mainText(this.state);
-    }
+    let mainText = this.state.encounter.generateMainText(this.state);
     let resultText = this.state.resultText;
-    if (typeof resultText === 'function') {
-      resultText = resultText(this.state);
-    }
     return(
       <div className="adventure">
-      <div className="testLair">{miniPets}</div>
-      <h2>The Peaceful Plains</h2>
-      <StatBox
-        stats={[
-        ["Energy", this.state.energy],
-        ["Coins", this.state.coins],
-        ["Joy", this.state.joy],
-        ["Steps", this.state.steps],
-      ]}/>
-      <img className="mainImage" src={"pets/" + this.state.activeCompanion.species + "/common.png"}/>
-      <p className="adventureText" id="result-desc">{resultText}</p>
-      <p className="adventureText" id="scene-desc">{mainText}</p>
-      {choiceButtons}
+        <div className="testLair">{miniPets}</div>
+        <h2>The Peaceful Plains</h2>
+        <StatBox
+          stats={[
+          ["Energy", this.state.energy],
+          ["Coins", this.state.coins],
+          ["Joy", this.state.joy],
+          ["Steps", this.state.steps],
+        ]}/>
+        <img className="mainImage" src={"pets/" + this.state.activeCompanion.species + "/common.png"}/>
+        <p className="adventureText" id="result-desc">{resultText}</p>
+        <p className="adventureText" id="scene-desc">{mainText}</p>
+        {choiceButtons}
       </div>
     )
   }
