@@ -78,13 +78,6 @@ var encounters = {
     ],
     3
   ),
-  dropCoins: new Encounter("You dropped some coins!",
-    [
-      new Choice("Oops!", [
-        new Outcome(addCoins(-10), "You resolve to keep a closer watch on your coins."),
-      ]),
-    ],
-  ),
   singAlong: new Encounter((state) => {
           return "A chirling sings in the distance. " + state.activeCompanion.name + " wants to sing along."
         },
@@ -130,6 +123,6 @@ var encounters = {
   ),
 }
 
-var randomEncounters = [encounters.boxi, encounters.findCoins, encounters.dropCoins, encounters.fountain, encounters.singAlong];
+var randomEncounters = [encounters.boxi, encounters.findCoins, encounters.fountain, encounters.singAlong];
 
 export {encounters, randomEncounters, Companion};
