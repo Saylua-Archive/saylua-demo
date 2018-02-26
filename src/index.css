@@ -5,7 +5,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url("./backgrounds/sayleus.jpg") no-repeat center center fixed;
+  background: url("backgrounds/sayleus.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -33,13 +33,19 @@ h2 {
   padding: 0px 5px;
 }
 
-.mainText {
+.adventure {
   text-align: center;
   margin: auto;
+  line-height: 150%;
+}
+
+.mainImage {
+  margin: auto;
+  text-align: center;
 }
 
 .expedition {
-  background-image: url("./backgrounds/sayleus.jpg");
+  background-image: url("backgrounds/sayleus.jpg");
 }
 
 .choice {
@@ -53,4 +59,14 @@ h2 {
 
 .choice:hover {
   background-color: silver;
+}
+
+.miniPet {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.miniPet:hover {
+  background-color: rgba(255, 255, 255, 0.5);
 }

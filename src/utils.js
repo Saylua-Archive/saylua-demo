@@ -1,3 +1,5 @@
+"use strict";
+
 // Return a random integer from 1 to max, inclusive
 function randInt(max) {
   return Math.floor((Math.random() * max) + 1);
