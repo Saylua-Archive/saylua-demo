@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom';
 
 import './Navbar.css';
 
-import Dropdown from './Dropdown';
-import Searchbar from './Searchbar';
-
-import { dropdownContent } from './DropdownContent';
-
 export default class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -23,17 +18,14 @@ export default class Navbar extends Component {
             <div className="sidebar-filler"></div>
             <div className="navbar-block">
               <Link to="/" className="navbar-link" title="Home">
-                <i className="fa fa-fw fa-home" aria-hidden="true"></i>
+                <i className="fas fa-fw fa-home" aria-hidden="true"></i>
               </Link>
             </div>
-            {
-              dropdownContent.map((menu, i) => {
-                return <Dropdown key={ i.toString() } icon={ menu.icon }
-                  name={ menu.name } content={ menu.content } />
-              })
-            }
-
-            <Searchbar />
+            <div className="navbar-block">
+              <Link to="/" className="navbar-link" title="Your Den">
+                <div>Adventure</div>
+              </Link>
+            </div>
 
           </div>
         </div>

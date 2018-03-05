@@ -58,7 +58,7 @@
   justify-content: center;
 }
 
-a.navbar-link {
+a.navbar-link, a.navbar-link:visited {
   font-family: $headerFont;
   font-size: 1.7rem;
   display: flex;

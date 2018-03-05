@@ -24,7 +24,7 @@ export default class Footer extends Component {
     let date = moment();
     return (
       <span>
-        <i className="fa fa-clock-o" aria-hidden="true"></i>
+        <i className="far fa-clock" aria-hidden="true"></i>
         { ' ' + date.format('ddd, MMM DD, Y hh:mm:ss A') + ' SMT' }
       </span>
     );

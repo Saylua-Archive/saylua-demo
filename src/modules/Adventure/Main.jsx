@@ -64,7 +64,7 @@ class Adventure extends Component {
           ["Joy", this.state.joy],
           ["Steps", this.state.steps],
         ]}/>
-        <img className="mainImage" src={"pets/" + this.state.activeCompanion.species + "/common.png"}/>
+        <img className="mainImage" src={"/img/pets/" + this.state.activeCompanion.species + "/common.png"}/>
         <p className="adventureText" id="result-desc">{resultText}</p>
         <p className="adventureText" id="scene-desc">{mainText}</p>
         {choiceButtons}
@@ -75,7 +75,7 @@ class Adventure extends Component {
 
 function MiniPet(props) {
   return (
-    <img className="miniPet" src={"pets/" + props.companion.species + "/common.png"} onClick={props.onClick}/>
+    <img className="miniPet" src={"/img/pets/" + props.companion.species + "/common.png"} onClick={props.onClick}/>
   );
 }
 

@@ -15,7 +15,6 @@ export default class SayluaView extends Component {
     super(props);
   }
 
-
   fixNavbar() {
     let top = document.getElementById('header').offsetHeight;
     if (document.body.scrollTop > top ||
@@ -30,7 +29,6 @@ export default class SayluaView extends Component {
     let content = this.props.children;
     let title = this.props.title;
     let fullTitle = 'Saylua - ' + (title ? title : 'Adoptable Fantasy Pets');
-
     return (
       <DocumentTitle id="saylua" title={ fullTitle }>
         <div id="saylua">

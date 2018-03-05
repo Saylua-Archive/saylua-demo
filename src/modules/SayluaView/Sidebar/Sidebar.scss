@@ -8,35 +8,6 @@
   flex-shrink: 1;
 }
 
-.sidebar-login-form {
-  table.form-table, form, tbody {
-    width: 100%;
-    display: block;
-  }
-
-  table.form-table {
-    text-align: center;
-
-    tr {
-      display: flex;
-      flex-direction: column;
-    }
-
-    td {
-      width: 100%;
-      padding: 0.1em 0.8rem;
-      text-align: center;
-    }
-  }
-
-  h3 {
-    border-color: var(--neutralDarkColor);
-    margin-bottom: 0;
-    text-align: center;
-    border-bottom-style: dotted;
-  }
-}
-
 // The sidebar becomes horizontal at this width.
 @media (max-width: 800px) {
   .sidebar {
