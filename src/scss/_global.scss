@@ -1,0 +1,116 @@
+@import 'scss/assets/variables';
+
+
+* {
+  box-sizing: border-box;
+  transition: background 0.5s ease-in-out, border 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+html {
+  font-size: 62.5%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  word-wrap: break-word;
+}
+
+body {
+  background-color: var(--mainBgColor);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+  line-height: 150%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: $black;
+
+  align-items: center;
+}
+
+img {
+  max-width: 100%;
+  border: 0;
+}
+
+ul {
+  margin: 0;
+}
+
+ul li {
+  margin: 0;
+}
+
+h1 {
+  color: var(--mainDarkColor);
+  font-family: $headerFont;
+  font-size: 2.6rem;
+  font-weight: bold;
+  line-height: 100%;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 0.5em;
+  padding: 0.5em 0 0.25em 0;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+h2, h3, h4, th.h3, .h3, th.h2, .h2 {
+  border-color: var(--neutralDarkColor);
+  font-family: $headerFont;
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 130%;
+  width: 100%;
+  padding: 0.25em 0.8rem;
+  text-align: left;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  background: none;
+}
+
+h3, h3, th.h3, .h3 {
+  font-size: 1.8rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+  line-height: 120%;
+}
+
+p, pre {
+  display: block;
+  margin: 1em 0;
+  padding: 0;
+}
+
+table {
+  td, th {
+    padding: 0.25em 0.8rem;
+  }
+}
+
+a, a:visited,
+.link {
+  color: var(--accentColor);
+  display: inline;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background: none;
+}
+
+a:hover, button.link-button:hover, .link:hover {
+  text-decoration: underline;
+}
+
+#root {
+  width: 100%;
+  min-height: 100%;
+}
