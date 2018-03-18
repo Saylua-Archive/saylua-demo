@@ -4,18 +4,31 @@ import React, { Component } from 'react';
 import {encounters, randomEncounters, Companion} from './encounters';
 import {chooseWeighted, check, randInt} from 'utils';
 import './Adventure.css';
+import SayluaView from '../SayluaView';
+import { connect } from 'react-redux';
+import { adopt, accompany, addCoins } from '../../store';
 
+const mapStateToProps = ({ coins, activeCompanion, companions }) =>
+    ({ coins, activeCompanion, companions });
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    adopt: (companion) => {
+      dispatch(adopt(companion));
+    },
+    accompany: (companion) => {
+      dispatch(accompany(companion));
+    },
+    addCoins: (count) => {
+      dispatch(addCoins(count));
+    },
+  }
+}
 
 class Adventure extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      energy: 100,
-      coins: 0,
-      joy: 15,
-      steps: 10,
-      activeCompanion: new Companion("Tori", "chirling", randInt(10), randInt(10), randInt(10)),
-      companions: [],
       encounter: encounters.start,
       randomEncounters: randomEncounters,
     };
@@ -23,16 +36,6 @@ class Adventure extends Component {
 
   render() {
     let choiceButtons = [];
-    let miniPets = [];
-    for (let i = 0; i < this.state.companions.length; i++) {
-      miniPets.push(
-        <MiniPet
-          companion={this.state.companions[i]}
-          onClick={
-            () => {this.setState({activeCompanion: this.state.companions[i]})}
-          }
-        />);
-    }
     if (this.state.encounter.requirementCheck && this.state.encounter.requirementCheck(this.state)) {
       this.setState({encounter: chooseWeighted(randomEncounters)});
     }
@@ -43,7 +46,7 @@ class Adventure extends Component {
         onClick={() => {
           let outcome = chooseWeighted(this.state.encounter.choices[i].outcomes);
           let outcomeFunction = outcome.result;
-          this.setState(outcomeFunction(this.state));
+          this.props.addCoins(10); // TODO: Replace this with proper outcome function
           this.setState({resultText: outcome.generateResultText(this.state)});
         }}
       />);
@@ -54,29 +57,16 @@ class Adventure extends Component {
     let mainText = this.state.encounter.generateMainText(this.state);
     let resultText = this.state.resultText;
     return(
-      <div className="adventure">
-        <div className="testLair">{miniPets}</div>
-        <h2>The Peaceful Plains</h2>
-        <StatBox
-          stats={[
-          ["Energy", this.state.energy],
-          ["Coins", this.state.coins],
-          ["Joy", this.state.joy],
-          ["Steps", this.state.steps],
-        ]}/>
-        <img className="mainImage" src={"/img/pets/" + this.state.activeCompanion.species + "/common.png"}/>
-        <p className="adventureText" id="result-desc">{resultText}</p>
-        <p className="adventureText" id="scene-desc">{mainText}</p>
-        {choiceButtons}
-      </div>
+      <SayluaView>
+        <div className="adventure">
+          <h2>The Peaceful Plains</h2>
+          <p className="adventureText" id="result-desc">{resultText}</p>
+          <p className="adventureText" id="scene-desc">{mainText}</p>
+          {choiceButtons}
+        </div>
+      </SayluaView>
     )
   }
-}
-
-function MiniPet(props) {
-  return (
-    <img className="miniPet" src={"/img/pets/" + props.companion.species + "/common.png"} onClick={props.onClick}/>
-  );
 }
 
 function ChoiceButton(props) {
@@ -87,16 +77,7 @@ function ChoiceButton(props) {
   );
 }
 
-function StatBox(props) {
-  let dStats = [];
-  for (let i = 0; i < props.stats.length; i++) {
-    dStats.push(<div className='stat' key={props.stats[i][0]}>{props.stats[i][0] + ": " + props.stats[i][1]}</div>);
-  }
-  return (
-    <div className="statBox">
-    {dStats}
-    </div>
-  )
-}
-
-export default Adventure;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Adventure);

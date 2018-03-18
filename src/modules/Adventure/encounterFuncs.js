@@ -11,23 +11,6 @@ function addCoins(n) {
   };
 }
 
-function addJoy(n) {
-  return (state) => {
-    let newState = next(state);
-    newState.joy = state.joy + n;
-    return newState;
-  };
-}
-
-function addCJ(coins, joy) {
-  return (state) => {
-    let newState = next(state);
-    newState.coins = state.coins + coins;
-    newState.joy = state.joy + joy;
-    return newState;
-  };
-}
-
 function next(state) {
     let newState = {};
     newState.steps = state.steps - 1;
@@ -47,9 +30,9 @@ function adopt(companion) {
   return (state) => {
     let newState = next(state);
     newState.activeCompanion = companion;
-    newState.companions = state.companions.concat(companion);
+    newState.companions = state.companions ? state.companions.concat(companion) : [companion];
     return newState;
   };
 }
 
-export {addCoins, addJoy, next, addCJ, setActive, adopt};
+export {addCoins, next, setActive, adopt};

@@ -1,3 +1,5 @@
+"use strict";
+
 import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
@@ -22,8 +24,8 @@ export default class Navbar extends Component {
               </Link>
             </div>
             <div className="navbar-block">
-              <Link to="/" className="navbar-link" title="Your Den">
-                <div>Adventure</div>
+              <Link to="/den" className="navbar-link" title="Your Den">
+                <div>Your Den</div>
               </Link>
             </div>
 

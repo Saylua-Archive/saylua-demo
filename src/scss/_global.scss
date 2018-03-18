@@ -3,7 +3,7 @@
 
 * {
   box-sizing: border-box;
-  transition: background 0.5s ease-in-out, border 0.5s ease-in-out, color 0.5s ease-in-out;
+  transition: background 0.5s ease-in-out, border 0.5s ease-in-out;
 }
 
 html {
@@ -28,6 +28,7 @@ body {
   margin: 0;
   padding: 0;
   color: $black;
+  transition: color 0.5s ease-in-out;
 
   align-items: center;
 }
@@ -108,6 +109,15 @@ a, a:visited,
 
 a:hover, button.link-button:hover, .link:hover {
   text-decoration: underline;
+}
+
+a, i {
+  transition: color 0.5s ease-in-out;
+}
+
+a i:hover {
+  color: var(--mainColor);
+  text-decoration: none;
 }
 
 #root {
