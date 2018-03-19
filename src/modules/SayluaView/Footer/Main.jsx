@@ -1,3 +1,5 @@
+"use strict";
+
 import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
@@ -36,15 +38,19 @@ export default class Footer extends Component {
               <a href="https://www.facebook.com/officialsaylua/" target="_blank" rel="noopener">
                 <i className="fab fa-fw fa-facebook" aria-hidden="true"></i>
               </a>
+              { separator }
               <a href="https://twitter.com/officialsaylua" target="_blank" rel="noopener">
                 <i className="fab fa-fw fa-twitter" aria-hidden="true"></i>
               </a>
+              { separator }
               <a href="http://saylua.tumblr.com/" target="_blank" rel="noopener">
                 <i className="fab fa-fw fa-tumblr" aria-hidden="true"></i>
               </a>
+              { separator }
               <a href="https://www.reddit.com/r/saylua" target="_blank" rel="noopener">
                 <i className="fab fa-fw fa-reddit" aria-hidden="true"></i>
               </a>
+              { separator }
               <a href="https://discord.gg/CPet6aq" target="_blank" rel="noopener">
                 <i className="fab fa-fw fa-discord" aria-hidden="true"></i>
               </a>

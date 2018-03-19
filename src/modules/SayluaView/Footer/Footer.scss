@@ -1,6 +1,5 @@
 @import 'scss/assets/variables';
 
-
 @import 'scss/assets/layout/sizes';
 
 footer {
@@ -22,11 +21,6 @@ footer {
 
     i {
       font-size: 2rem;
-
-      &:hover {
-        color: var(--mainColor);
-        text-decoration: none;
-      }
     }
   }
 
