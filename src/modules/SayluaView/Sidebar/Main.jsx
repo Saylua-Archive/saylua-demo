@@ -1,12 +1,18 @@
+"use strict";
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { pluralize } from 'utils';
 
 import './Sidebar.css';
 
+const mapStateToProps = ({ coins, activeCompanion }) =>
+    ({ coins, activeCompanion });
+const mapDispatchToProps = {};
 
-export default class Sidebar extends Component {
+class Sidebar extends Component {
   constructor(props) {
     super(props);
   }
@@ -15,11 +21,15 @@ export default class Sidebar extends Component {
     return (
       <div id="sidebar" className="sidebar">
         <div id="user-info-section" className="sidebar-section">
+          <img className="petView" src={ this.props.activeCompanion ?
+            "/img/pets/" + this.props.activeCompanion.species + "/common.png" :
+            ""
+          }/>
           <p>You are <Link to="/user/tiff/">Tiff</Link></p>
-          <p>Your companion is <Link to="/companion/">Companion Name</Link></p>
+          <p>Your companion is <Link to="/companion/">{ this.props.activeCompanion ? this.props.activeCompanion.name : "" }</Link></p>
           <p>
             <img src="/img/icons/weather_clouds.png" />
-            <Link to="/bank/"> { pluralize(5, 'Cloud Coin') } </Link>
+            <Link to="/bank/"> { pluralize(this.props.coins, 'Coin') } </Link>
           </p>
           <p>
             <img src="/img/icons/star_1.png" />
@@ -30,3 +40,8 @@ export default class Sidebar extends Component {
     );
   }
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Sidebar);
