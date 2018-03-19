@@ -1,6 +1,6 @@
 "use strict";
 
-import {chooseWeighted, check, randInt} from 'utils';
+import { chooseWeighted, check, randInt } from 'utils';
 import { adopt, accompany, addCoins } from '../../store';
 import { store } from '../../index';
 

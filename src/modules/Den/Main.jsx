@@ -27,7 +27,7 @@ class Den extends Component {
       denPets.push(<DenPet
           companion={this.props.companions[i]}
           onClick={() => {
-              this.props.accompany(this.props.companions[i])
+              this.props.accompany(this.props.companions[i]);
             }
           }
         />)

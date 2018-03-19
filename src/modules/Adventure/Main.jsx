@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import {encounters, randomEncounters, Companion} from './encounters';
-import {chooseWeighted, check, randInt} from 'utils';
+import { chooseWeighted, check, randInt } from 'utils';
 import './Adventure.css';
 import SayluaView from '../SayluaView';
 import { connect } from 'react-redux';
@@ -46,7 +46,7 @@ class Adventure extends Component {
     return(
       <SayluaView>
         <div className="adventure">
-          <h2>The Peaceful Plains</h2>
+          <h2>Gardenia Plains</h2>
           <p className="adventureText" id="result-desc">{resultText}</p>
           <p className="adventureText" id="scene-desc">{mainText}</p>
           {choiceButtons}
