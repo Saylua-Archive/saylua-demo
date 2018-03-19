@@ -1,14 +1,12 @@
 "use strict";
 
-import {chooseWeighted, check, randInt} from 'utils'
+import {chooseWeighted, check, randInt} from 'utils';
+import { adopt, accompany, addCoins } from '../../store';
+import { store } from '../../index';
 
 
-function addCoins(n) {
-  return (state) => {
-    let newState = next(state);
-    newState.coins = state.coins + n;
-    return newState;
-  };
+function addCoinsFunc(n) {
+  return () => store.dispatch(addCoins(n));
 }
 
 function next(state) {
@@ -18,21 +16,12 @@ function next(state) {
     return newState;
 }
 
-function setActive(companion) {
-  return (state) => {
-    let newState = next(state);
-    newState.activeCompanion = companion;
-    return newState;
-  };
+function accompanyFunc(companion) {
+  return () => store.dispatch(accompany(companion));
 }
 
-function adopt(companion) {
-  return (state) => {
-    let newState = next(state);
-    newState.activeCompanion = companion;
-    newState.companions = state.companions ? state.companions.concat(companion) : [companion];
-    return newState;
-  };
+function adoptFunc(companion) {
+  return () => store.dispatch(adopt(companion));
 }
 
-export {addCoins, next, setActive, adopt};
+export {addCoinsFunc, next, adoptFunc, accompanyFunc};

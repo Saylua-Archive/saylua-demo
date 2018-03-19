@@ -6,22 +6,16 @@ import {chooseWeighted, check, randInt} from 'utils';
 import './Adventure.css';
 import SayluaView from '../SayluaView';
 import { connect } from 'react-redux';
-import { adopt, accompany, addCoins } from '../../store';
+import { adopt, accompany, addCoins, setEncounter } from '../../store';
 
-const mapStateToProps = ({ coins, activeCompanion, companions }) =>
-    ({ coins, activeCompanion, companions });
+const mapStateToProps = ({ coins, activeCompanion, companions, encounter }) =>
+    ({ coins, activeCompanion, companions, encounter });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    adopt: (companion) => {
-      dispatch(adopt(companion));
-    },
-    accompany: (companion) => {
-      dispatch(accompany(companion));
-    },
-    addCoins: (count) => {
-      dispatch(addCoins(count));
-    },
+    setEncounter: (encounter) => {
+      dispatch(setEncounter(encounter))
+    }
   }
 }
 
@@ -29,32 +23,25 @@ class Adventure extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      encounter: encounters.start,
       randomEncounters: randomEncounters,
     };
   }
 
   render() {
     let choiceButtons = [];
-    if (this.state.encounter.requirementCheck && this.state.encounter.requirementCheck(this.state)) {
-      this.setState({encounter: chooseWeighted(randomEncounters)});
-    }
-    for (let i = 0; i < this.state.encounter.choices.length; i++) {
+    for (let i = 0; i < this.props.encounter.choices.length; i++) {
       choiceButtons.push(<ChoiceButton
-        key={this.state.encounter.choices[i].choiceText}
-        desc={this.state.encounter.choices[i].choiceText}
+        key={this.props.encounter.choices[i].choiceText}
+        desc={this.props.encounter.choices[i].choiceText}
         onClick={() => {
-          let outcome = chooseWeighted(this.state.encounter.choices[i].outcomes);
-          let outcomeFunction = outcome.result;
-          this.props.addCoins(10); // TODO: Replace this with proper outcome function
-          this.setState({resultText: outcome.generateResultText(this.state)});
+          let outcome = chooseWeighted(this.props.encounter.choices[i].outcomes);
+          outcome.result();
+          this.setState({resultText: outcome.generateResultText(this.props)});
+          this.props.setEncounter(chooseWeighted(randomEncounters));
         }}
       />);
     }
-    if (this.state.steps <= 0 && this.state.encounter != encounters.end) {
-      this.setState({encounter: encounters.end});
-    }
-    let mainText = this.state.encounter.generateMainText(this.state);
+    let mainText = this.props.encounter.generateMainText(this.props);
     let resultText = this.state.resultText;
     return(
       <SayluaView>

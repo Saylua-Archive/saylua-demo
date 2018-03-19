@@ -1,7 +1,6 @@
 "use strict";
 
-import { next } from './encounterFuncs'
-import { addCoins, setActive, adopt } from '../../store'
+import { next, addCoinsFunc, accompanyFunc, adoptFunc } from './encounterFuncs'
 import { chooseWeighted, check, randInt } from 'utils'
 
 function Encounter(mainText, choices, weight, requirementCheck) {
@@ -64,7 +63,7 @@ var encounters = {
       for (let i = 0; i < stockCompanions.length; i++) {
         compChoices.push(
           new Choice(stockCompanions[i].name + " the " + stockCompanions[i].species, [
-            new Outcome(adopt(stockCompanions[i]), stockCompanions[i].name + " joins you on your journey."),
+            new Outcome(adoptFunc(stockCompanions[i]), stockCompanions[i].name + " joins you on your journey."),
           ])
         )
       }
@@ -74,7 +73,7 @@ var encounters = {
   findCoins: new Encounter("You found some coins!",
     [
       new Choice("Money!", [
-        new Outcome(addCoins(10), "You carefully put the coins into your bag."),
+        new Outcome(addCoinsFunc(10), "You carefully put the coins into your bag."),
       ]),
     ],
     3
@@ -84,10 +83,10 @@ var encounters = {
         },
     [
       new Choice("Sure!", [
-        new Outcome(adopt(new Companion("Boxi", "loxi", randInt(10), randInt(10), randInt(10))), "Boxi joins your party."),
+        new Outcome(adoptFunc(new Companion("Boxi", "loxi", randInt(10), randInt(10), randInt(10))), "Boxi joins your party."),
       ]),
       new Choice("Sorry Boxi...", [
-        new Outcome(addCoins(1), "Boxi smiles. \"It was nice meeting you! Good luck on your journey!\""),
+        new Outcome(addCoinsFunc(1), "Boxi smiles and hands you a coin. \"It was nice meeting you! Good luck on your journey!\""),
       ]),
     ],
   ),

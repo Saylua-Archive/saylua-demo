@@ -12,6 +12,7 @@ import { randInt } from './utils/Main';
 export const ACCOMPANY = 'ACCOMPANY';
 export const ADD_COINS = 'ADD_COINS';
 export const ADOPT = 'ADOPT';
+export const SET_ENCOUNTER = 'SET_ENCOUNTER';
 
  
 /*
@@ -30,16 +31,16 @@ export function adopt(companion) {
   return { type: ADOPT, companion }
 }
 
+export function setEncounter(encounter) {
+  return { type: SET_ENCOUNTER, encounter }
+}
+
 /*
  * reducers
  */
 
 const initialState = {
-  companions: [
-    new Companion("Tori", "chirling", randInt(10), randInt(10), randInt(10)),
-    new Companion("Wulfo", "arko", randInt(10), randInt(10), randInt(10)),
-    new Companion("Golp", "gorbin", randInt(10), randInt(10), randInt(10)),
-  ],
+  companions: [],
   activeCompanion: null,
   coins: 0,
   encounter: encounters.start,
@@ -58,6 +59,10 @@ export function sayluaApp(state = initialState, action) {
     case ADOPT:
       return Object.assign({}, state, {
         companions: state.companions.concat(action.companion),
+      });
+    case SET_ENCOUNTER:
+      return Object.assign({}, state, {
+        encounter: action.encounter,
       });
     default:
       return state;

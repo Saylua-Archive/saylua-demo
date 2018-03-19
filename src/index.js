@@ -13,7 +13,7 @@ import Adventure from './modules/Adventure';
 import Den from './modules/Den';
 import 'scss/saylua.css';
  
-let store = createStore(sayluaApp);
+export let store = createStore(sayluaApp);
 
 const Root = () => (
   <Provider store={store}>
