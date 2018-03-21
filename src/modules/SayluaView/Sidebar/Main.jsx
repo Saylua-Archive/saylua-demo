@@ -1,5 +1,3 @@
-"use strict";
-
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -13,10 +11,6 @@ const mapStateToProps = ({ coins, activeCompanion }) =>
 const mapDispatchToProps = {};
 
 class Sidebar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div id="sidebar" className="sidebar">

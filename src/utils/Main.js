@@ -1,5 +1,3 @@
-"use strict";
-
 import moment from 'moment';
 
 // Return a random integer from 1 to max, inclusive
@@ -35,7 +33,7 @@ export function pluralize(count, singular_noun, plural_noun) {
   if (!plural_noun) {
     plural_noun = singular_noun + 's';
   }
-  if (count == 1) {
+  if (count === 1) {
     return formatNumber(count) + ' ' + singular_noun;
   }
   return formatNumber(count) + ' ' + plural_noun;

@@ -1,5 +1,3 @@
-"use strict";
-
 import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
@@ -7,10 +5,6 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 export default class Navbar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let loggedIn = false;
     return (
