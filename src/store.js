@@ -1,5 +1,3 @@
-"use strict";
-
 import { combineReducers, createStore } from 'redux';
 import { Companion, encounters } from './modules/Adventure/encounters';
 import { randInt } from './utils/Main';
@@ -39,11 +37,12 @@ export function setEncounter(encounter) {
  * reducers
  */
 
-const initialState = {
+export const initialState = {
   companions: [],
   activeCompanion: null,
   coins: 0,
-  encounter: encounters.start,
+  encounterId: 'start',
+  encounterSeed: 0,
 }
 
 export function sayluaApp(state = initialState, action) {
@@ -62,7 +61,8 @@ export function sayluaApp(state = initialState, action) {
       });
     case SET_ENCOUNTER:
       return Object.assign({}, state, {
-        encounter: action.encounter,
+        encounterSeed: action.encounter.seed,
+        encounterId: action.encounter.id,
       });
     default:
       return state;

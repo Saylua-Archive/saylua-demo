@@ -1,14 +1,9 @@
-"use strict";
-
 import React, { Component } from 'react';
 
 import moment from 'moment';
 
 // The main Saylua layout component.
 export default class Footer extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.timer = setInterval(() => {

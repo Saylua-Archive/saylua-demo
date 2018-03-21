@@ -1,5 +1,3 @@
-"use strict";
-
 import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
 
@@ -13,9 +11,6 @@ import Sidebar from './Sidebar';
 
 // The main Saylua layout component.
 export default class SayluaView extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   fixNavbar() {
     let top = document.getElementById('header').offsetHeight;
