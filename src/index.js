@@ -11,10 +11,10 @@ import Adventure from './modules/Adventure';
 import Den from './modules/Den';
 import 'scss/saylua.css';
 
-const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : initialState;
+const persistedState = localStorage.getItem('sayluaState') ? JSON.parse(localStorage.getItem('sayluaState')) : initialState;
 export let store = createStore(sayluaApp, persistedState);
 store.subscribe(() => {
-  localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+  localStorage.setItem('sayluaState', JSON.stringify(store.getState()));
 });
 
 const Root = () => (
