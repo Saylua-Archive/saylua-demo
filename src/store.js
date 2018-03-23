@@ -11,6 +11,8 @@ export const ACCOMPANY = 'ACCOMPANY';
 export const ADD_COINS = 'ADD_COINS';
 export const ADOPT = 'ADOPT';
 export const SET_ENCOUNTER = 'SET_ENCOUNTER';
+export const CLEAR_STATE = 'CLEAR_STATE';
+export const SET_THEME = 'SET_THEME';
 
  
 /*
@@ -18,19 +20,27 @@ export const SET_ENCOUNTER = 'SET_ENCOUNTER';
  */
  
 export function addCoins(count) {
-  return { type: ADD_COINS, count }
+  return { type: ADD_COINS, count };
 }
  
 export function accompany(companion) {
-  return { type: ACCOMPANY, companion }
+  return { type: ACCOMPANY, companion };
 }
 
 export function adopt(companion) {
-  return { type: ADOPT, companion }
+  return { type: ADOPT, companion };
 }
 
 export function setEncounter(encounter) {
-  return { type: SET_ENCOUNTER, encounter }
+  return { type: SET_ENCOUNTER, encounter };
+}
+
+export function clearState() {
+  return { type: CLEAR_STATE };
+}
+
+export function setTheme(theme) {
+  return { type: SET_THEME, theme };
 }
 
 /*
@@ -43,6 +53,7 @@ export const initialState = {
   coins: 0,
   encounterId: 'start',
   encounterSeed: 0,
+  theme: 'day',
 }
 
 export function sayluaApp(state = initialState, action) {
@@ -63,6 +74,12 @@ export function sayluaApp(state = initialState, action) {
       return Object.assign({}, state, {
         encounterSeed: action.encounter.seed,
         encounterId: action.encounter.id,
+      });
+    case CLEAR_STATE:
+      return Object.assign({}, state, initialState);
+    case SET_THEME:
+      return Object.assign({}, state, {
+        theme: action.theme,
       });
     default:
       return state;

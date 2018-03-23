@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import moment from 'moment';
 
-// The main Saylua layout component.
 export default class Footer extends Component {
 
   componentDidMount() {
