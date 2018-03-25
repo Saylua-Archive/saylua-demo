@@ -1,9 +1,8 @@
-"use strict";
-
 import { next, addCoinsFunc, accompanyFunc, adoptFunc } from './encounterFuncs'
 import { chooseWeighted, check, randInt } from 'utils'
 
-function Encounter(mainText, choices, weight, requirementCheck) {
+function Encounter(id, mainText, choices, weight, requirementCheck) {
+  this.id = id;
   this.mainText = mainText;
   this.choices = choices;
   this.weight = weight;
@@ -50,14 +49,14 @@ function Companion(name, species, str, spd, cha) {
   this.cha = cha;
 }
 
-var stockCompanions = [
+const stockCompanions = [
   new Companion("Tori", "chirling", randInt(10), randInt(10), randInt(10)),
   new Companion("Wulfo", "arko", randInt(10), randInt(10), randInt(10)),
   new Companion("Golp", "gorbin", randInt(10), randInt(10), randInt(10)),
 ];
 
-var encounters = {
-  start: new Encounter("Choose your companion!",
+const encountersArray = [
+  new Encounter("start", "Choose your companion!",
     (() => {
       let compChoices = [];
       for (let i = 0; i < stockCompanions.length; i++) {
@@ -70,7 +69,7 @@ var encounters = {
       return compChoices;
     })()
   ),
-  findCoins: new Encounter("You found some coins!",
+  new Encounter("findCoins", "You found some coins!",
     [
       new Choice("Money!", [
         new Outcome(addCoinsFunc(10), "You carefully put the coins into your bag."),
@@ -78,7 +77,7 @@ var encounters = {
     ],
     3
   ),
-  boxi: new Encounter((state) => {
+  new Encounter("boxi", (state) => {
           return "You hear a snarling, suddenly a loxi appears! \"Hey, I'm Boxi the loxi! Mind if I join you?\""
         },
     [
@@ -90,8 +89,13 @@ var encounters = {
       ]),
     ],
   ),
-  end: new Encounter("You've completed your journey!", []
+  new Encounter("end", "You've completed your journey!", []
   ),
+];
+
+let encounters = {};
+for (let i = 0; i < encountersArray.length; i++) {
+  encounters[encountersArray[i].id] = encountersArray[i];
 }
 
 var randomEncounters = [encounters.boxi, encounters.findCoins];

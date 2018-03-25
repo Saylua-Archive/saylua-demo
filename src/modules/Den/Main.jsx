@@ -1,5 +1,3 @@
-"use strict";
-
 import React, { Component } from 'react';
 import './Den.css';
 import SayluaView from '../SayluaView';
@@ -17,10 +15,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class Den extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let denPets = [];
     for (let i = 0; i < this.props.companions.length; i++) {

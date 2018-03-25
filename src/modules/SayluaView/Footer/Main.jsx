@@ -1,29 +1,39 @@
-"use strict";
-
 import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './Footer.css';
 
+import { clearState, setTheme } from '../../../store';
+
 import Clock from './Clock';
 
-// The main Saylua layout component.
-export default class Footer extends Component {
+const mapStateToProps = ({ theme }) => ({ theme });
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clearState: () => {
+      dispatch(clearState());
+    },
+    setTheme: (theme) => {
+      dispatch(setTheme(theme));
+    }
+  }
+}
+
+class Footer extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      darkTheme: false,
-    };
+   super(props);
   }
 
-  toggleTheme(isDark) {
-    this.setState({darkTheme: isDark});
+  componentDidMount() {
+    document.body.classList.toggle("theme-luaria", this.props.theme === 'night');
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (this.state.darkTheme !== nextState.darkTheme) {
-      document.body.classList.toggle("theme-luaria", nextState.darkTheme);
+    if (this.props.theme !== nextProps.theme) {
+      document.body.classList.toggle("theme-luaria", nextProps.theme === 'night');
     }
   }
 
@@ -35,23 +45,23 @@ export default class Footer extends Component {
         <div className="footer-content">
           <p>
             <span id="social-icons">
-              <a href="https://www.facebook.com/officialsaylua/" target="_blank" rel="noopener">
+              <a href="https://www.facebook.com/officialsaylua/" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-fw fa-facebook" aria-hidden="true"></i>
               </a>
               { separator }
-              <a href="https://twitter.com/officialsaylua" target="_blank" rel="noopener">
+              <a href="https://twitter.com/officialsaylua" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-fw fa-twitter" aria-hidden="true"></i>
               </a>
               { separator }
-              <a href="http://saylua.tumblr.com/" target="_blank" rel="noopener">
+              <a href="http://saylua.tumblr.com/" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-fw fa-tumblr" aria-hidden="true"></i>
               </a>
               { separator }
-              <a href="https://www.reddit.com/r/saylua" target="_blank" rel="noopener">
+              <a href="https://www.reddit.com/r/saylua" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-fw fa-reddit" aria-hidden="true"></i>
               </a>
               { separator }
-              <a href="https://discord.gg/CPet6aq" target="_blank" rel="noopener">
+              <a href="https://discord.gg/CPet6aq" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-fw fa-discord" aria-hidden="true"></i>
               </a>
             </span>
@@ -59,17 +69,32 @@ export default class Footer extends Component {
           <Clock />
           { separator }
           <a>
-            <i className="far fa-fw fa-sun" aria-hidden="true" onClick={this.toggleTheme.bind(this, false)}></i>
+            <i className="far fa-fw fa-sun" aria-hidden="true" onClick={() => this.props.setTheme('day')}></i>
           </a>
           { separator }
           <a>
-            <i className="far fa-fw fa-moon" aria-hidden="true" onClick={this.toggleTheme.bind(this, true)}></i>
+            <i className="far fa-fw fa-moon" aria-hidden="true" onClick={() => this.props.setTheme('night')}></i>
           </a>
           <p>
             &copy; 2018 <Link to="/">Saylua</Link>
           </p>
+          <button className="Button" onClick={
+            () => {
+              let clearState = window.confirm("Are you sure you want to clear the state? This will reset Saylua and delete your progress!");
+              if (clearState) {
+                this.props.clearState();
+              }
+            }
+          }>
+            Clear State
+          </button>
         </div>
       </footer>
     );
   }
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Footer);

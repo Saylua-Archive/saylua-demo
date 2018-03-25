@@ -1,5 +1,3 @@
-"use strict";
-
 import { combineReducers, createStore } from 'redux';
 import { Companion, encounters } from './modules/Adventure/encounters';
 import { randInt } from './utils/Main';
@@ -13,6 +11,8 @@ export const ACCOMPANY = 'ACCOMPANY';
 export const ADD_COINS = 'ADD_COINS';
 export const ADOPT = 'ADOPT';
 export const SET_ENCOUNTER = 'SET_ENCOUNTER';
+export const CLEAR_STATE = 'CLEAR_STATE';
+export const SET_THEME = 'SET_THEME';
 
  
 /*
@@ -20,30 +20,40 @@ export const SET_ENCOUNTER = 'SET_ENCOUNTER';
  */
  
 export function addCoins(count) {
-  return { type: ADD_COINS, count }
+  return { type: ADD_COINS, count };
 }
  
 export function accompany(companion) {
-  return { type: ACCOMPANY, companion }
+  return { type: ACCOMPANY, companion };
 }
 
 export function adopt(companion) {
-  return { type: ADOPT, companion }
+  return { type: ADOPT, companion };
 }
 
 export function setEncounter(encounter) {
-  return { type: SET_ENCOUNTER, encounter }
+  return { type: SET_ENCOUNTER, encounter };
+}
+
+export function clearState() {
+  return { type: CLEAR_STATE };
+}
+
+export function setTheme(theme) {
+  return { type: SET_THEME, theme };
 }
 
 /*
  * reducers
  */
 
-const initialState = {
+export const initialState = {
   companions: [],
   activeCompanion: null,
   coins: 0,
-  encounter: encounters.start,
+  encounterId: 'start',
+  encounterSeed: 0,
+  theme: 'day',
 }
 
 export function sayluaApp(state = initialState, action) {
@@ -62,7 +72,14 @@ export function sayluaApp(state = initialState, action) {
       });
     case SET_ENCOUNTER:
       return Object.assign({}, state, {
-        encounter: action.encounter,
+        encounterSeed: action.encounter.seed,
+        encounterId: action.encounter.id,
+      });
+    case CLEAR_STATE:
+      return Object.assign({}, state, initialState);
+    case SET_THEME:
+      return Object.assign({}, state, {
+        theme: action.theme,
       });
     default:
       return state;

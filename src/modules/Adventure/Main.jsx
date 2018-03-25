@@ -1,5 +1,3 @@
-"use strict";
-
 import React, { Component } from 'react';
 import {encounters, randomEncounters, Companion} from './encounters';
 import { chooseWeighted, check, randInt } from 'utils';
@@ -8,13 +6,13 @@ import SayluaView from '../SayluaView';
 import { connect } from 'react-redux';
 import { adopt, accompany, addCoins, setEncounter } from '../../store';
 
-const mapStateToProps = ({ coins, activeCompanion, companions, encounter }) =>
-    ({ coins, activeCompanion, companions, encounter });
+const mapStateToProps = ({ coins, activeCompanion, companions, encounterSeed, encounterId }) =>
+    ({ coins, activeCompanion, companions, encounterSeed, encounterId });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setEncounter: (encounter) => {
-      dispatch(setEncounter(encounter))
+      dispatch(setEncounter(encounter));
     }
   }
 }
@@ -29,19 +27,20 @@ class Adventure extends Component {
 
   render() {
     let choiceButtons = [];
-    for (let i = 0; i < this.props.encounter.choices.length; i++) {
+    let encounter = encounters[this.props.encounterId];
+    for (let i = 0; i < encounter.choices.length; i++) {
       choiceButtons.push(<ChoiceButton
-        key={this.props.encounter.choices[i].choiceText}
-        desc={this.props.encounter.choices[i].choiceText}
+        key={encounter.choices[i].choiceText}
+        desc={encounter.choices[i].choiceText}
         onClick={() => {
-          let outcome = chooseWeighted(this.props.encounter.choices[i].outcomes);
+          let outcome = chooseWeighted(encounter.choices[i].outcomes);
           outcome.result();
           this.setState({resultText: outcome.generateResultText(this.props)});
           this.props.setEncounter(chooseWeighted(randomEncounters));
         }}
       />);
     }
-    let mainText = this.props.encounter.generateMainText(this.props);
+    let mainText = encounter.generateMainText(this.state);
     let resultText = this.state.resultText;
     return(
       <SayluaView>
