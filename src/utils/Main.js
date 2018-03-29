@@ -58,3 +58,19 @@ export function formatNumber(n) {
 export function capitalizeFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export function sRandom(seed) {
+  let x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
+// max exclusive, optional min inclusive
+export function sRandomInt(seed, max, min) {
+  seed = seed || 0;
+  min = min || 0;
+  return min + Math.floor(sRandom(seed) * (max - min));
+}
+
+export function seedChoice(seed, choices) {
+    return choices[sRandomInt(seed, choices.length)];
+}

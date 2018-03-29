@@ -23,19 +23,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class Footer extends Component {
-  constructor(props) {
-   super(props);
-  }
-
-  componentDidMount() {
-    document.body.classList.toggle("theme-luaria", this.props.theme === 'night');
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (this.props.theme !== nextProps.theme) {
-      document.body.classList.toggle("theme-luaria", nextProps.theme === 'night');
-    }
-  }
 
   render() {
     let separator = ' \u2022 ';

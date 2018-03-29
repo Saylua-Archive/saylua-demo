@@ -16,7 +16,7 @@ class Sidebar extends Component {
       <div id="sidebar" className="sidebar">
         <div id="user-info-section" className="sidebar-section">
           <img className="petView" src={ this.props.activeCompanion ?
-            "/img/pets/" + this.props.activeCompanion.species + "/common.png" :
+            "/img/pets/" + this.props.activeCompanion.species + "/" + this.props.activeCompanion.coloration + ".png" :
             ""
           }/>
           <p>You are <Link to="/user/tiff/">Tiff</Link></p>

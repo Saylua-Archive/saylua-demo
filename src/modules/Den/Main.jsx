@@ -38,7 +38,7 @@ class Den extends Component {
 function DenPet(props) {
   return (
     <div onClick={props.onClick}>
-      <img className="denPet" src={"/img/pets/" + props.companion.species + "/common.png"} />
+      <img className="denPet" src={"/img/pets/" + props.companion.species + "/" + props.companion.coloration + ".png"} />
       <div>{props.companion.name}</div>
     </div>
   );

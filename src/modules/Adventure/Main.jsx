@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {encounters, randomEncounters, Companion} from './encounters';
+import {encounters, randomEncounters, Companion} from './encounters/Main.js';
 import { chooseWeighted, check, randInt } from 'utils';
 import './Adventure.css';
 import SayluaView from '../SayluaView';
@@ -12,6 +12,7 @@ const mapStateToProps = ({ coins, activeCompanion, companions, encounterSeed, en
 const mapDispatchToProps = (dispatch) => {
   return {
     setEncounter: (encounter) => {
+      encounter.seed = Math.floor(Math.random() * 10000000000);
       dispatch(setEncounter(encounter));
     }
   }
@@ -27,26 +28,40 @@ class Adventure extends Component {
 
   render() {
     let choiceButtons = [];
+    let encounterImgs = [];
     let encounter = encounters[this.props.encounterId];
-    for (let i = 0; i < encounter.choices.length; i++) {
+    let seed = this.props.encounterSeed;
+    encounter.seed = seed;
+    encounter.state = this.props;
+    let choices = encounter.choices;
+    let encounterImg = encounter.img;
+    for (let i = 0; i < choices.length; i++) {
       choiceButtons.push(<ChoiceButton
-        key={encounter.choices[i].choiceText}
-        desc={encounter.choices[i].choiceText}
+        key={choices[i].text}
+        desc={choices[i].text}
         onClick={() => {
-          let outcome = chooseWeighted(encounter.choices[i].outcomes);
-          outcome.result();
-          this.setState({resultText: outcome.generateResultText(this.props)});
+          choices[i].outcome();
           this.props.setEncounter(chooseWeighted(randomEncounters));
         }}
       />);
     }
-    let mainText = encounter.generateMainText(this.state);
+    if (typeof encounter.img === 'string') {
+      encounterImgs.push(<img src={encounter.img}
+      />);
+    } else if (Array.isArray(encounter.img)) {
+      for (let i = 0; i < encounter.img.length; i++) {
+        encounterImgs.push(<img src={encounter.img[i]}
+        />);
+      }
+    }
+    let mainText = encounter.mainText;
     let resultText = this.state.resultText;
     return(
       <SayluaView>
         <div className="adventure">
           <h2>Gardenia Plains</h2>
           <p className="adventureText" id="result-desc">{resultText}</p>
+          <div className="imageArea">{encounterImgs}</div>
           <p className="adventureText" id="scene-desc">{mainText}</p>
           {choiceButtons}
         </div>

@@ -13,9 +13,18 @@ import 'scss/saylua.css';
 
 const persistedState = localStorage.getItem('sayluaState') ? JSON.parse(localStorage.getItem('sayluaState')) : initialState;
 export let store = createStore(sayluaApp, persistedState);
+
+let currentTheme;
 store.subscribe(() => {
-  localStorage.setItem('sayluaState', JSON.stringify(store.getState()));
+  let previousTheme = currentTheme;
+  let currentStore = store.getState();
+  if (currentStore.theme !== previousTheme) {
+    document.body.classList.toggle("theme-luaria", currentStore.theme === 'night');
+  }
+  localStorage.setItem('sayluaState', JSON.stringify(currentStore));
 });
+
+document.body.classList.toggle("theme-luaria", store.getState().theme === 'night');
 
 const Root = () => (
   <Provider store={store}>
