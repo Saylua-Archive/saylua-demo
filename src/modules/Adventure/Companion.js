@@ -9,12 +9,13 @@ export default function Companion(name, species, coloration, hp, energy, lvl) {
 
 export const species = [
   ['arko', ['albino', 'common', 'melanistic', 'piebald']],
-  ['chirling', ['albino', 'common', 'melanistic']],
-  ['eydrun', ['albino', 'common', 'melanistic']],
-  ['fleuran', ['albino', 'common', 'melanistic']],
-  ['gam', ['albino', 'common', 'melanistic']],
-  ['gorbin', ['albino', 'common', 'melanistic']],
-  ['loxi', ['albino', 'common', 'melanistic']],
-  ['nibian', ['albino', 'common', 'melanistic']],
-  ['vela', ['albino', 'common', 'melanistic']],
+  ['chirling', ['albino', 'common', 'melanistic', 'piebald']],
+  ['eydrun', ['albino', 'common', 'melanistic', 'piebald']],
+  ['fleuran', ['albino', 'common', 'melanistic', 'piebald']],
+  ['gam', ['albino', 'common', 'melanistic', 'piebald']],
+  ['gorbin', ['albino', 'common', 'melanistic', 'piebald']],
+  ['loxi', ['albino', 'common', 'melanistic', 'piebald']],
+  ['nibian', ['albino', 'common', 'melanistic', 'piebald']],
+  ['senrix', ['albino', 'common', 'melanistic', 'piebald']],
+  ['vela', ['albino', 'common', 'melanistic', 'piebald']],
 ];
