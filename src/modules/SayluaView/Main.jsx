@@ -11,9 +11,8 @@ import Sidebar from './Sidebar';
 
 // The main Saylua layout component.
 export default class SayluaView extends Component {
-
   fixNavbar() {
-    let top = document.getElementById('header').offsetHeight;
+    const top = document.getElementById('header').offsetHeight;
     if (document.body.scrollTop > top ||
       document.documentElement.scrollTop > top) {
       document.getElementById('navbar').classList.add('navbar-fixed');
@@ -23,11 +22,11 @@ export default class SayluaView extends Component {
   }
 
   render() {
-    let content = this.props.children;
-    let title = this.props.title;
-    let fullTitle = 'Saylua - ' + (title ? title : 'Adoptable Fantasy Pets');
+    const content = this.props.children;
+    const title = this.props.title;
+    const fullTitle = 'Saylua - ' + (title || 'Adoptable Fantasy Pets');
     return (
-      <DocumentTitle id="saylua" title={ fullTitle }>
+      <DocumentTitle id="saylua" title={fullTitle}>
         <div id="saylua">
           <Header />
           <Navbar />

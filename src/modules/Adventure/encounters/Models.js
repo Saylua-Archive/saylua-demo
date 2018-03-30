@@ -1,4 +1,27 @@
-import { chooseWeighted, check, randInt } from 'utils';
+import { chooseWeighted } from 'utils';
+
+export class Choice {
+  constructor(text, outcomes, seed, state) {
+    this._text = text;
+    this._outcomes = outcomes || [() => {}];
+    this._seed = seed;
+    this._state = state;
+  }
+  get text() {
+    if (typeof this._text === 'function') {
+      return this._text(this._seed);
+    } else {
+      return this._text;
+    }
+  }
+  get outcome() {
+    if (typeof this._outcomes === 'function') {
+      return this._outcomes;
+    } else {
+      return chooseWeighted(this._outcomes);
+    }
+  }
+}
 
 export class Encounter {
   constructor(id, props, seed) {
@@ -41,28 +64,5 @@ export class Encounter {
   }
   get requirement() {
     return false;
-  }
-}
-
-export class Choice {
-  constructor(text, outcomes, seed, state) {
-    this._text = text;
-    this._outcomes = outcomes || [() => {}];
-    this._seed = seed;
-    this._state = state;
-  }
-  get text() {
-    if (typeof this._text === 'function') {
-      return this._text(this._seed);
-    } else {
-      return this._text;
-    }
-  }
-  get outcome() {
-    if (typeof this._outcomes === 'function') {
-      return this._outcomes;
-    } else {
-      return chooseWeighted(this._outcomes);
-    }
   }
 }
