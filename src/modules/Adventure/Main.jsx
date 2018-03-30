@@ -1,63 +1,81 @@
 import React, { Component } from 'react';
-import {encounters, randomEncounters, Companion} from './encounters';
-import { chooseWeighted, check, randInt } from 'utils';
+import { chooseWeighted } from 'utils';
+import { connect } from 'react-redux';
+import { encounters, randomEncounters } from './encounters/Main';
 import './Adventure.css';
 import SayluaView from '../SayluaView';
-import { connect } from 'react-redux';
-import { adopt, accompany, addCoins, setEncounter } from '../../store';
+import { setEncounter } from '../../store';
 
-const mapStateToProps = ({ coins, activeCompanion, companions, encounterSeed, encounterId }) =>
-    ({ coins, activeCompanion, companions, encounterSeed, encounterId });
+const mapStateToProps = ({
+  coins, activeCompanion, companions, encounterSeed, encounterId,
+}) =>
+  ({
+    coins, activeCompanion, companions, encounterSeed, encounterId,
+  });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setEncounter: (encounter) => {
+      encounter.seed = Math.floor(Math.random() * 10000000000);
       dispatch(setEncounter(encounter));
-    }
-  }
-}
+    },
+  };
+};
 
 class Adventure extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      randomEncounters: randomEncounters,
-    };
-  }
-
   render() {
-    let choiceButtons = [];
-    let encounter = encounters[this.props.encounterId];
-    for (let i = 0; i < encounter.choices.length; i++) {
+    const choiceButtons = [];
+    const encounterImgs = [];
+    const encounter = encounters[this.props.encounterId];
+    const seed = this.props.encounterSeed;
+    encounter.seed = seed;
+    encounter.state = this.props;
+    const choices = encounter.choices;
+    for (let i = 0; i < choices.length; i++) {
       choiceButtons.push(<ChoiceButton
-        key={encounter.choices[i].choiceText}
-        desc={encounter.choices[i].choiceText}
+        key={choices[i].text}
+        desc={choices[i].text}
         onClick={() => {
-          let outcome = chooseWeighted(encounter.choices[i].outcomes);
-          outcome.result();
-          this.setState({resultText: outcome.generateResultText(this.props)});
+          choices[i].outcome();
           this.props.setEncounter(chooseWeighted(randomEncounters));
         }}
       />);
     }
-    let mainText = encounter.generateMainText(this.state);
-    let resultText = this.state.resultText;
-    return(
+    if (typeof encounter.img === 'string') {
+      encounterImgs.push(<img
+        src={encounter.img}
+        alt="Encounter"
+      />);
+    } else if (Array.isArray(encounter.img)) {
+      for (let i = 0; i < encounter.img.length; i++) {
+        encounterImgs.push(<img
+          src={encounter.img[i]}
+          alt="Encounter"
+        />);
+      }
+    }
+    const mainText = encounter.mainText;
+    return (
       <SayluaView>
         <div className="adventure">
           <h2>Gardenia Plains</h2>
-          <p className="adventureText" id="result-desc">{resultText}</p>
+          <div className="imageArea">{encounterImgs}</div>
           <p className="adventureText" id="scene-desc">{mainText}</p>
           {choiceButtons}
         </div>
       </SayluaView>
-    )
+    );
   }
 }
 
 function ChoiceButton(props) {
   return (
-    <div className="choice" onClick={props.onClick}>
+    <div
+      className="choice"
+      role="button"
+      tabIndex={0}
+      onClick={props.onClick}
+    >
       {props.desc}
     </div>
   );
@@ -65,5 +83,5 @@ function ChoiceButton(props) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Adventure);

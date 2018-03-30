@@ -7,36 +7,26 @@ export function randInt(max) {
 
 export function chooseWeighted(options) {
   let total = 0;
-  for (var i = 0; i < options.length; i++) {
+  for (let i = 0; i < options.length; i++) {
     total += options[i].weight || 1;
   }
   let target = Math.floor((Math.random() * total) + 1);
   let index = 0;
   target -= options[0].weight || 1;
   while (target > 0) {
-    index++;
+    index += 1;
     target -= options[index].weight || 1;
   }
   return options[index].value || options[index];
 }
 
-export function check(dice, check) {
-  return randInt(dice) >= check;
+export function check(dice, goal) {
+  return randInt(dice) >= goal;
 }
 
 export function canonize(name) {
   name = name.replace(/(\s|\W)+/, '_');
   return name.toLowerCase();
-}
-
-export function pluralize(count, singular_noun, plural_noun) {
-  if (!plural_noun) {
-    plural_noun = singular_noun + 's';
-  }
-  if (count === 1) {
-    return formatNumber(count) + ' ' + singular_noun;
-  }
-  return formatNumber(count) + ' ' + plural_noun;
 }
 
 export function datetime(time) {
@@ -57,4 +47,30 @@ export function formatNumber(n) {
 // http://stackoverflow.com/questions/1026069/capitalize-the-first-letter-of-string-in-javascript
 export function capitalizeFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export function pluralize(count, singularNoun, pluralNoun) {
+  if (!pluralNoun) {
+    pluralNoun = singularNoun + 's';
+  }
+  if (count === 1) {
+    return formatNumber(count) + ' ' + singularNoun;
+  }
+  return formatNumber(count) + ' ' + pluralNoun;
+}
+
+export function sRandom(seed) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
+// max exclusive, optional min inclusive
+export function sRandomInt(seed, max, min) {
+  seed = seed || 0;
+  min = min || 0;
+  return min + Math.floor(sRandom(seed) * (max - min));
+}
+
+export function seedChoice(seed, choices) {
+  return choices[sRandomInt(seed, choices.length)];
 }

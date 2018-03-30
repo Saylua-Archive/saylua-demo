@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import moment from 'moment';
 
 export default class Footer extends Component {
-
   componentDidMount() {
     this.timer = setInterval(() => {
       this.forceUpdate();
@@ -17,10 +16,10 @@ export default class Footer extends Component {
   }
 
   render() {
-    let date = moment();
+    const date = moment();
     return (
       <span>
-        <i className="far fa-clock" aria-hidden="true"></i>
+        <i className="far fa-clock" aria-hidden="true" />
         { ' ' + date.format('ddd, MMM DD, Y hh:mm:ss A') + ' SMT' }
       </span>
     );

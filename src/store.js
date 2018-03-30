@@ -1,12 +1,6 @@
-import { combineReducers, createStore } from 'redux';
-import { Companion, encounters } from './modules/Adventure/encounters';
-import { randInt } from './utils/Main';
-
-
 /*
  * action types
  */
- 
 export const ACCOMPANY = 'ACCOMPANY';
 export const ADD_COINS = 'ADD_COINS';
 export const ADOPT = 'ADOPT';
@@ -14,15 +8,13 @@ export const SET_ENCOUNTER = 'SET_ENCOUNTER';
 export const CLEAR_STATE = 'CLEAR_STATE';
 export const SET_THEME = 'SET_THEME';
 
- 
 /*
  * action creators
  */
- 
 export function addCoins(count) {
   return { type: ADD_COINS, count };
 }
- 
+
 export function accompany(companion) {
   return { type: ACCOMPANY, companion };
 }
@@ -54,7 +46,7 @@ export const initialState = {
   encounterId: 'start',
   encounterSeed: 0,
   theme: 'day',
-}
+};
 
 export function sayluaApp(state = initialState, action) {
   switch (action.type) {

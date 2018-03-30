@@ -10,21 +10,21 @@ const mapDispatchToProps = (dispatch) => {
   return {
     accompany: (companion) => {
       dispatch(accompany(companion));
-    }
-  }
-}
+    },
+  };
+};
 
 class Den extends Component {
   render() {
-    let denPets = [];
+    const denPets = [];
     for (let i = 0; i < this.props.companions.length; i++) {
       denPets.push(<DenPet
-          companion={this.props.companions[i]}
-          onClick={() => {
-              this.props.accompany(this.props.companions[i]);
-            }
+        companion={this.props.companions[i]}
+        onClick={() => {
+          this.props.accompany(this.props.companions[i]);
           }
-        />)
+        }
+      />);
     }
     return (
       <SayluaView>
@@ -37,8 +37,16 @@ class Den extends Component {
 
 function DenPet(props) {
   return (
-    <div onClick={props.onClick}>
-      <img className="denPet" src={"/img/pets/" + props.companion.species + "/common.png"} />
+    <div
+      onClick={props.onClick}
+      role="button"
+      tabIndex={0}
+    >
+      <img
+        className="denPet"
+        alt={props.companion.name}
+        src={("/img/pets/" + props.companion.species + "/" + props.companion.coloration + ".png")}
+      />
       <div>{props.companion.name}</div>
     </div>
   );
@@ -46,5 +54,5 @@ function DenPet(props) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Den);
