@@ -61,6 +61,7 @@ export function sayluaApp(state = initialState, action) {
     case ADOPT:
       return Object.assign({}, state, {
         companions: state.companions.concat(action.companion),
+        activeCompanion: state.activeCompanion || action.companion,
       });
     case SET_ENCOUNTER:
       return Object.assign({}, state, {
