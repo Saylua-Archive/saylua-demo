@@ -1,5 +1,18 @@
 import { chooseWeighted } from 'utils';
 
+export class Outcome {
+  constructor(func, nextID) {
+    this._func = func;
+    this._nextID = nextID;
+  }
+  get func() {
+    return this._func;
+  }
+  get nextID() {
+    return this._nextID;
+  }
+}
+
 export class Choice {
   constructor(text, outcomes, seed, state) {
     this._text = text;
@@ -15,10 +28,14 @@ export class Choice {
     }
   }
   get outcome() {
-    if (typeof this._outcomes === 'function') {
+    if (typeof this._outcomes === 'object') {
       return this._outcomes;
-    } else {
+    } else if (typeof this._outcomes === 'function') {
+      return new Outcome(this._outcomes);
+    } else if (typeof this._outcomes[0] === 'object') {
       return chooseWeighted(this._outcomes);
+    } else {
+      return new Outcome(chooseWeighted(this._outcomes));
     }
   }
 }

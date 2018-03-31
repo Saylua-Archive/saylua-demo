@@ -1,17 +1,10 @@
-import { chooseWeighted, sRandomInt, seedChoice } from 'utils';
+import { sRandomInt, seedChoice } from 'utils';
 import { adopt, accompany, addCoins } from '../../store';
 import { store } from '../../index';
 import Companion, { species } from './Companion';
 
 export function addCoinsFunc(n) {
   return () => store.dispatch(addCoins(n));
-}
-
-export function next(state) {
-  const newState = {};
-  newState.steps = state.steps - 1;
-  newState.encounter = chooseWeighted(state.randomEncounters);
-  return newState;
 }
 
 export function accompanyFunc(companion) {
