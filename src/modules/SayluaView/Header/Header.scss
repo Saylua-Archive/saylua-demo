@@ -21,11 +21,15 @@
   flex-grow: 1;
   flex-shrink: 0;
 
-  filter: drop-shadow(0px 1px 2px hsla(0, 0%, 0%, 0.3));
 
   img {
-    transition: 0.5s filter ease-in-out, 0.5s -webkit-filter ease-in-out;
+    transition: 0.5s filter ease-in-out, 0.2s transform linear;
     height: 4rem;
+    filter: drop-shadow(0px 1px 2px hsla(0, 0%, 0%, 0.3));
+  }
+
+  &:active img {
+    transform: translateY(3px);
   }
 
   &:hover img {

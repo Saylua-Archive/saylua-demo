@@ -18,7 +18,12 @@ export default class Navbar extends Component {
             </div>
             <div className="navbar-block">
               <Link to="/den" className="navbar-link" title="Your Den">
-                <div>Your Den</div>
+                Your Den
+              </Link>
+            </div>
+            <div className="navbar-block">
+              <Link to="/arcade/bloxi" className="navbar-link" title="Arcade">
+                Arcade
               </Link>
             </div>
 
