@@ -15,8 +15,8 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setEncounter: (encounter) => {
-      encounter.seed = Math.floor(Math.random() * 10000000000);
+    setEncounter: (encounter, seed) => {
+      encounter.seed = seed || Math.floor(Math.random() * 10000000000);
       dispatch(setEncounter(encounter));
     },
   };
@@ -32,12 +32,17 @@ class Adventure extends Component {
     encounter.state = this.props;
     const choices = encounter.choices;
     for (let i = 0; i < choices.length; i++) {
+      const outcomeFunc = typeof (choices[i].outcome.func) === "function" ? choices[i].outcome.func : () => {};
       choiceButtons.push(<ChoiceButton
         key={choices[i].text}
         desc={choices[i].text}
         onClick={() => {
-          choices[i].outcome();
-          this.props.setEncounter(chooseWeighted(randomEncounters));
+          outcomeFunc();
+          if (choices[i].outcome.nextID) {
+            this.props.setEncounter(encounters[choices[i].outcome.nextID], seed);
+          } else {
+            this.props.setEncounter(chooseWeighted(randomEncounters));
+          }
         }}
       />);
     }
