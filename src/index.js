@@ -9,6 +9,8 @@ import { sayluaApp, initialState } from './store';
 
 import Adventure from './modules/Adventure';
 import Den from './modules/Den';
+import Bloxi from './modules/Arcade/Bloxi';
+
 import 'scss/saylua.css';
 
 const persistedState = localStorage.getItem('sayluaState') ?
@@ -31,6 +33,7 @@ const Root = () => (
     <BrowserRouter>
       <Switch>
         <Route path="/den" component={Den} />
+        <Route path="/arcade/bloxi" component={Bloxi} />
         <Route path="*" component={Adventure} />
       </Switch>
     </BrowserRouter>
