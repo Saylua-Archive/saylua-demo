@@ -23,13 +23,14 @@ export default class CompCash extends Encounter {
   }
   get choices() {
     const newComp = randomCompanion(this._seed);
-    const choices = [new Choice("Sorry, " + newComp.name + " maybe another time.", () => {})];
+    const choices = [];
     if (this._state.coins >= sRandomInt(this._seed + 1, 100, 2000)) {
       choices.push(new Choice("Welcome aboard, " + newComp.name + "!", () => {
         addCoinsFunc(sRandomInt(this._seed + 1, 100, 2000) * -1)();
         adoptFunc(newComp)();
       }));
     }
+    choices.push(new Choice("Sorry, " + newComp.name + " maybe another time.", () => {}));
     return choices;
   }
 }

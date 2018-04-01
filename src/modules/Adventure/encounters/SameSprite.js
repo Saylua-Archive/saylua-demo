@@ -15,13 +15,14 @@ export class SameSprite extends Encounter {
   }
   get choices() {
     const newComp = randomCompanion(this._seed);
-    const choices = [new Choice("Leave them alone.", () => {})];
+    const choices = [];
     if (this._state.activeCompanion && this._state.activeCompanion.species === newComp.species) {
       choices.push(new Choice(
         "There is! Let " + this._state.activeCompanion.name + " go play with them!",
         new Outcome(adoptFunc(newComp), "sameSpriteEnd"),
       ));
     }
+    choices.push(new Choice("Leave them alone.", () => {}));
     return choices;
   }
 }
