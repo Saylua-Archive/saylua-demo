@@ -21,10 +21,12 @@ footer {
 
     i {
       font-size: 2rem;
+      transition: none;
     }
   }
 
-  .social-icons a:hover {
+  a i:hover {
     text-decoration: none;
+    color: var(--mainColor);
   }
 }

@@ -4,67 +4,48 @@
 
 
 :root {
-  --accentSoftColor: $accentSoftColor;
   --accentColor: $accentColor;
-
+  --accentSoftColor: $accentSoftColor;
+  --bgTextColor: $black;
   --errorColor: $errorColor;
   --errorLightColor: $errorLightColor;
-
-  --highlightSoftColor: $highlightSoftColor;
   --highlightColor: $highlightColor;
   --highlightDarkColor: $highlightDarkColor;
-
+  --highlightSoftColor: $highlightSoftColor;
   --mainBgColor: $mainBgColor;
-
-  --neutralColor: $neutralColor;
-  --neutralDarkColor: $neutralDarkColor;
-
-  --mainSoftestColor: $mainSoftestColor;
-  --mainSofterColor: $mainSofterColor;
-  --mainSoftColor: $mainSoftColor;
   --mainColor: $mainColor;
   --mainDarkColor: $mainDarkColor;
   --mainDarkerColor: $mainDarkerColor;
-}
-
-.header {
-  background-image: url('/img/backgrounds/sayleus.jpg');
-  background-position: 0 80%;
+  --mainSoftColor: $mainSoftColor;
+  --mainSofterColor: $mainSofterColor;
+  --mainSoftestColor: $mainSoftestColor;
+  --mainTextColor: $black;
+  --neutralColor: $neutralColor;
+  --neutralDarkColor: $neutralDarkColor;
 }
 
 .theme-luaria {
+  --bgTextColor: $white;
   --mainBgColor: hsl(220, 15%, 15%);
-
-  --neutralColor: hsl(218, 40%, 90%);
-  --neutralDarkColor: hsl(218, 40%, 70%);
-
-  --mainSoftestColor: hsl(228, 40%, 90%);
-  --mainSofterColor: hsl(228, 42%, 80%);
-  --mainSoftColor: hsl(228, 50%, 35%);
   --mainColor: hsl(228, 50%, 30%);
   --mainDarkColor: hsl(228, 50%, 25%);
   --mainDarkerColor: hsl(228, 50%, 20%);
-
-  .sidebar, footer {
-    color: $white;
-  }
-
-  .header {
-    background-image: url('/img/backgrounds/luaria.jpg');
-    background-position: 0 40%;
-  }
+  --mainSoftColor: hsl(228, 50%, 35%);
+  --mainSofterColor: hsl(228, 42%, 80%);
+  --mainSoftestColor: hsl(228, 40%, 90%);
+  --neutralColor: hsl(218, 40%, 90%);
+  --neutralDarkColor: hsl(218, 40%, 70%);
 }
 
 .theme-admin {
-  --neutralColor: hsl(0, 0%, 87%);
-  --neutralDarkColor: hsl(0, 0%, 77%);
-
-  --mainSoftestColor: hsl(195, 10%, 90%);
-  --mainSofterColor: hsl(189, 7%, 81%);
-  --mainSoftColor: hsl(185, 3%, 25%);
   --mainColor: hsl(180, 2%, 22%);
   --mainDarkColor: hsl(0, 0%, 13%);
   --mainDarkerColor: hsl(0, 0%, 0%);
+  --mainSoftColor: hsl(185, 3%, 25%);
+  --mainSofterColor: hsl(189, 7%, 81%);
+  --mainSoftestColor: hsl(195, 10%, 90%);
+  --neutralColor: hsl(0, 0%, 87%);
+  --neutralDarkColor: hsl(0, 0%, 77%);
 
   .header {
     filter: grayscale(50%);
