@@ -1,5 +1,5 @@
 import { Encounter } from './Models';
-import Companion from '../Companion';
+import Companion from 'models/Companion';
 
 import FindCoins from './FindCoins';
 import Start from './Start';
