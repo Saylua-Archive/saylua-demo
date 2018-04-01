@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import './Den.css';
-import SayluaView from '../SayluaView';
-import { accompany } from '../../store';
 import { connect } from 'react-redux';
+
+import Companion from 'models/Companion';
+import { accompany } from '../../store';
+import SayluaView from '../SayluaView';
+
+import './Den.css';
 
 const mapStateToProps = ({ companions }) => ({ companions });
 
@@ -36,18 +39,19 @@ class Den extends Component {
 }
 
 function DenPet(props) {
+  const companion = new Companion(props.companion);
   return (
     <div
       onClick={props.onClick}
       role="button"
       tabIndex={0}
+      className="den-pet"
     >
       <img
-        className="denPet"
-        alt={props.companion.name}
-        src={("/img/pets/" + props.companion.species + "/" + props.companion.coloration + ".png")}
+        alt={companion.name}
+        src={companion.imageUrl()}
       />
-      <div>{props.companion.name}</div>
+      <div>{companion.name} the {companion.coat} {companion.species}</div>
     </div>
   );
 }

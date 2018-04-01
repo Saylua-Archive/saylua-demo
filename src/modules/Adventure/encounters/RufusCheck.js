@@ -1,4 +1,4 @@
-import { addCoinsFunc, petImage, randomCompanion } from '../encounterFuncs';
+import { addCoinsFunc, randomCompanion } from '../encounterFuncs';
 import { Encounter, Choice, Outcome } from './Models';
 import { seedChoice } from 'utils';
 
@@ -50,7 +50,7 @@ export class RufusCheckEnd extends Encounter {
   }
   get img() {
     const newComp = randomCompanion(this._seed);
-    return [petImage(newComp), '/img/npcs/rufus-scippio.png'];
+    return [newComp.imageUrl(), '/img/npcs/rufus-scippio.png'];
   }
   get choices() {
     return [new Choice("Thanks!", new Outcome(addCoinsFunc(1000)))];
