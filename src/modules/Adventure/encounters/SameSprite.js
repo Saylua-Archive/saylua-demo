@@ -1,4 +1,4 @@
-import { adoptFunc, petImage, randomCompanion } from '../encounterFuncs';
+import { adoptFunc, randomCompanion } from '../encounterFuncs';
 import { Encounter, Choice, Outcome } from './Models';
 
 
@@ -9,10 +9,12 @@ export class SameSprite extends Encounter {
     text += newComp.species + " around to play with them.";
     return text;
   }
+
   get img() {
     const newComp = randomCompanion(this._seed);
-    return petImage(newComp);
+    return newComp.imageUrl();
   }
+
   get choices() {
     const newComp = randomCompanion(this._seed);
     const choices = [];
@@ -34,10 +36,12 @@ export class SameSpriteEnd extends Encounter {
     text += "Of course you say yes! They move right into your den.";
     return text;
   }
+
   get img() {
     const newComp = randomCompanion(this._seed);
-    return petImage(newComp);
+    return newComp.imageUrl();
   }
+
   get choices() {
     const newComp = randomCompanion(this._seed);
     const choices = [new Choice("Welcome home, " + newComp.name + ".", () => {})];
