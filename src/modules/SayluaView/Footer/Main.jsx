@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import './Footer.css';
-
-import { clearState, setTheme } from '../../../store';
+import { clearState } from '../../../store';
 
 import Clock from './Clock';
+
+import './Footer.css';
 
 const mapStateToProps = ({ theme }) => ({ theme });
 
@@ -15,9 +15,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     clearState: () => {
       dispatch(clearState());
-    },
-    setTheme: (theme) => {
-      dispatch(setTheme(theme));
     },
   };
 };
@@ -53,14 +50,6 @@ class Footer extends Component {
             </span>
           </p>
           <Clock />
-          { separator }
-          <a>
-            <i className="far fa-fw fa-sun" aria-hidden="true" onClick={() => this.props.setTheme('day')} />
-          </a>
-          { separator }
-          <a>
-            <i className="far fa-fw fa-moon" aria-hidden="true" onClick={() => this.props.setTheme('night')} />
-          </a>
           <p>
             &copy; 2018 <Link to="/">Saylua</Link>
           </p>

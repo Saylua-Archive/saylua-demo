@@ -21,16 +21,17 @@ export default class BlocksInterface extends Component {
   }
 
   handleKeydown(event) {
-    if (!event) return;
+    if (!event || !this.props.model || !this.props.model.keyState) return;
     const tag = event.target.tagName.toLowerCase();
     //  Make sure keys can still be inputted if a form is focused.
     if (tag === 'input' || tag === 'textarea') return;
+
     this.props.model.keyState[event.keyCode || event.which] = true;
     event.preventDefault();
   }
 
   handleKeyup(event) {
-    if (!event) return;
+    if (!event || !this.props.model || !this.props.model.keyState) return;
     const tag = event.target.tagName.toLowerCase();
     //  Make sure keys can still be inputted if a form is focused.
     if (tag === 'input' || tag === 'textarea') return;

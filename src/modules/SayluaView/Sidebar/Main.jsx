@@ -24,11 +24,7 @@ class Sidebar extends Component {
           />
           <p>You are <Link to="/user/tiff/">Tiff</Link></p>
           <p>
-            Your companion is
-            <Link to="/companion/">{ this.props.activeCompanion ?
-              " " + this.props.activeCompanion.name :
-              "" }
-            </Link>
+            Your companion is <Link to="/companion/">{this.props.activeCompanion.name}</Link>
           </p>
           <p>
             <img src="/img/icons/weather_clouds.png" alt="coins" />
