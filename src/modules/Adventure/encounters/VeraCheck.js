@@ -1,6 +1,8 @@
-import { addCoinsFunc, petImage } from '../encounterFuncs';
+import { addCoinsFunc } from '../encounterFuncs';
 import { Encounter, Choice, Outcome } from './Models';
 import { seedChoice } from 'utils';
+
+import Companion from 'models/Companion';
 
 
 export class VeraCheck extends Encounter {
@@ -35,8 +37,8 @@ export class VeraCheckEnd extends Encounter {
     + "! Here, have this reward for all your hard work! I know you'll spend it wisely!\"");
   }
   get img() {
-    const targetComp = seedChoice(this._seed, this._state.companions);
-    return [petImage(targetComp), '/img/npcs/vera-everly.png'];
+    const targetComp = new Companion(seedChoice(this._seed, this._state.companions));
+    return [targetComp.imageUrl(), '/img/npcs/vera-everly.png'];
   }
   get choices() {
     return [new Choice("Thank you!", new Outcome(addCoinsFunc(300)))];
