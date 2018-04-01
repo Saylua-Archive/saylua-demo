@@ -26,7 +26,6 @@ export default class Navbar extends Component {
                 Arcade
               </Link>
             </div>
-
           </div>
         </div>
       </div>

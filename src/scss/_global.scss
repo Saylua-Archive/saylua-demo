@@ -3,7 +3,6 @@
 
 * {
   box-sizing: border-box;
-  transition: background 0.5s ease-in-out, border 0.5s ease-in-out;
 }
 
 html {
@@ -16,7 +15,6 @@ html {
 }
 
 body {
-  background-color: var(--mainBgColor);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.6rem;
   line-height: 150%;
@@ -27,8 +25,9 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  color: $black;
-  transition: color 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
+  color: var(--bgTextColor);
+  background-color: var(--mainBgColor);
 
   align-items: center;
 }
@@ -38,17 +37,12 @@ img {
   border: 0;
 }
 
-ul {
-  margin: 0;
-}
-
-ul li {
+ul, ul li {
   margin: 0;
 }
 
 h1 {
-  color: var(--mainDarkColor);
-  font-family: $headerFont;
+  font-family: 'Lato', sans-serif;
   font-size: 2.6rem;
   font-weight: bold;
   line-height: 100%;
@@ -58,17 +52,18 @@ h1 {
   padding: 0.5em 0 0.25em 0;
   text-align: center;
   letter-spacing: 1px;
+  color: var(--mainDarkColor);
 }
 
 h2, h3, h4, th.h3, .h3, th.h2, .h2 {
-  border-color: var(--neutralDarkColor);
-  font-family: $headerFont;
+  font-family: 'Lato', sans-serif;
   font-size: 2rem;
   font-weight: normal;
   line-height: 130%;
   width: 100%;
   padding: 0.25em 0.8rem;
   text-align: left;
+  border-color: var(--neutralDarkColor);
   border-bottom-width: 1px;
   border-bottom-style: solid;
   background: none;
@@ -97,12 +92,12 @@ table {
 
 a, a:visited,
 .link {
-  color: var(--accentColor);
   display: inline;
   margin: 0;
   padding: 0;
   cursor: pointer;
   text-decoration: none;
+  color: var(--accentColor);
   border: none;
   background: none;
 }
@@ -111,13 +106,8 @@ a:hover, button.link-button:hover, .link:hover {
   text-decoration: underline;
 }
 
-a, i {
-  transition: color 0.5s ease-in-out;
-}
-
-a i:hover {
-  color: var(--mainColor);
-  text-decoration: none;
+a, i, button, [role="button"], #navbar-container * {
+  transition: color 0.5s ease-in-out, background 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 
 #root {

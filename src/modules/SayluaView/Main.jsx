@@ -11,8 +11,20 @@ import Sidebar from './Sidebar';
 
 // The main Saylua layout component.
 export default class SayluaView extends Component {
+  componentDidMount() {
+    this.fixNavbar();
+    window.addEventListener('scroll', this.fixNavbar);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.fixNavbar);
+  }
+
   fixNavbar() {
-    const top = document.getElementById('header').offsetHeight;
+    const header = document.getElementById('header');
+    if (!header) return;
+
+    const top = header.offsetHeight;
     if (document.body.scrollTop > top ||
       document.documentElement.scrollTop > top) {
       document.getElementById('navbar').classList.add('navbar-fixed');
