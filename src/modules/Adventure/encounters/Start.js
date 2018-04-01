@@ -1,31 +1,31 @@
-import { adoptFunc, petImage, randomCompanion } from '../encounterFuncs';
+import { adoptFunc, randomCompanion } from '../encounterFuncs';
 import { Encounter, Choice } from './Models';
 
 export default class Start extends Encounter {
   get mainText() {
     return "Choose your starting companion!";
   }
+
   get img() {
-    const startingCompanions = [
-      randomCompanion(this._seed),
-      randomCompanion(this._seed + 1),
-      randomCompanion(this._seed + 2),
-    ];
-    return [petImage(startingCompanions[0]), petImage(startingCompanions[1]), petImage(startingCompanions[2])];
+    return this._starters.map(s => s.imageUrl());
   }
+
   get choices() {
-    const startingCompanions = [
+    return [
+      new Choice(this._starters[0].name + " the "
+        + this._starters[0].species, adoptFunc(this._starters[0])),
+      new Choice(this._starters[1].name + " the "
+        + this._starters[1].species, adoptFunc(this._starters[1])),
+      new Choice(this._starters[2].name + " the "
+        + this._starters[2].species, adoptFunc(this._starters[2])),
+    ];
+  }
+
+  get _starters() {
+    return [
       randomCompanion(this._seed),
       randomCompanion(this._seed + 1),
       randomCompanion(this._seed + 2),
-    ];
-    return [
-      new Choice(startingCompanions[0].name + " the "
-        + startingCompanions[0].species, adoptFunc(startingCompanions[0])),
-      new Choice(startingCompanions[1].name + " the "
-        + startingCompanions[1].species, adoptFunc(startingCompanions[1])),
-      new Choice(startingCompanions[2].name + " the "
-        + startingCompanions[2].species, adoptFunc(startingCompanions[2])),
     ];
   }
 }

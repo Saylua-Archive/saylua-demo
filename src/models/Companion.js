@@ -1,10 +1,28 @@
-export default function Companion(name, species, coloration, hp, energy, lvl) {
-  this.name = name;
-  this.species = species;
-  this.coloration = coloration;
-  this.hp = hp;
-  this.energy = energy;
-  this.lvl = lvl;
+export default class Companion {
+  constructor(args) {
+    args = Object.assign({}, args);
+    this.name = args.name;
+    this.species = args.species;
+    this.coat = args.coat;
+    this.hp = args.hp;
+    this.energy = args.energy;
+    this.level = args.level;
+  }
+
+  imageUrl() {
+    return `/img/pets/${this.species}/${this.coat}.png`;
+  }
+
+  serialize() {
+    return {
+      name: this.name,
+      species: this.species,
+      coat: this.coat,
+      hp: this.hp,
+      energy: this.energy,
+      level: this.level,
+    };
+  }
 }
 
 export const species = [
