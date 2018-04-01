@@ -10,15 +10,13 @@
   margin: auto;
   padding: 0;
   text-align: center;
-  background: url('../../backgrounds/sayleus.jpg') no-repeat center center;
-  background-size: cover;
-
   align-items: center;
 
   h2 {
     font-size: 2rem;
     margin: auto;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     text-align: center;
   }
 
@@ -39,7 +37,9 @@
     width: 100%;
     min-width: 100%;
     height: 30%;
-    min-height: 30%;
+    min-height: 300px;
+    background: url('../../backgrounds/sayleus.jpg') no-repeat center bottom;
+    background-size: cover;
   }
 
   .imageArea img {
