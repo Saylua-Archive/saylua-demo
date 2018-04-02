@@ -1,7 +1,9 @@
 import { sRandomInt, seedChoice } from 'utils';
 import { adopt, accompany, addCoins } from '../../store';
 import { store } from '../../index';
-import Companion, { species } from 'models/Companion';
+import Companion from 'models/Companion';
+
+import { speciesList } from 'models/SpriteSpecies';
 
 export function addCoinsFunc(n) {
   return () => store.dispatch(addCoins(n));
@@ -23,12 +25,12 @@ export function randomName(seed) {
 /* eslint-enable */
 
 export function randomCompanion(seed) {
-  const compSpecies = seedChoice(seed, species);
-  const compColoration = seedChoice(seed + 1, compSpecies[1]);
+  const compSpecies = seedChoice(seed, speciesList);
+  const compCoat = seedChoice(seed + 1, compSpecies.coats);
   return new Companion({
     name: randomName(seed + 2),
-    species: compSpecies[0],
-    coat: compColoration,
+    species: compSpecies.canonName,
+    coat: compCoat,
     hp: sRandomInt(seed + 3, 11),
     energy: sRandomInt(seed + 4, 11),
     level: sRandomInt(seed + 5, 11),
