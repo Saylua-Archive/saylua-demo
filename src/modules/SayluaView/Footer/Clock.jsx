@@ -20,7 +20,7 @@ export default class Footer extends Component {
     return (
       <span>
         <i className="far fa-clock" aria-hidden="true" />
-        { ' ' + date.format('ddd, MMM DD, Y hh:mm:ss A') + ' SMT' }
+        { ` ${date.format('ddd, MMM DD, Y hh:mm:ss A')} SMT` }
       </span>
     );
   }
