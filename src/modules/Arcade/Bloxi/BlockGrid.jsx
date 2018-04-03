@@ -7,7 +7,7 @@ export default class BlockGrid extends Component {
     const rows = model.rows().map((col) => {
       return (
         <tr>{col.map((num) => {
-          return <td className={"grid-square-" + num} />;
+          return <td className={`grid-square-${num}`} />;
         })}
         </tr>
       );

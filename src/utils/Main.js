@@ -31,12 +31,12 @@ export function canonize(name) {
 
 export function datetime(time) {
   time = moment(time);
-  return time.format('MMM DD, Y hh:mm A') + ' SMT';
+  return `${time.format('MMM DD, Y hh:mm A')} SMT`;
 }
 
 export function expandedRelativeTime(time) {
   time = moment(time);
-  return datetime(time) + ` (${time.fromNow()})`;
+  return `${datetime(time)} (${time.fromNow()})`;
 }
 
 // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
@@ -51,12 +51,12 @@ export function capitalizeFirst(string) {
 
 export function pluralize(count, singularNoun, pluralNoun) {
   if (!pluralNoun) {
-    pluralNoun = singularNoun + 's';
+    pluralNoun = `${singularNoun}s`;
   }
   if (count === 1) {
-    return formatNumber(count) + ' ' + singularNoun;
+    return `${formatNumber(count)} ${singularNoun}`;
   }
-  return formatNumber(count) + ' ' + pluralNoun;
+  return `${formatNumber(count)} ${pluralNoun}`;
 }
 
 export function sRandom(seed) {
