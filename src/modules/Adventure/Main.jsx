@@ -44,8 +44,8 @@ class Adventure extends Component {
         }
       };
       choiceButtons.push(<ChoiceButton
-        key={index + ". " + choices[i].text}
-        desc={index + ". " + choices[i].text}
+        key={`${index}. ${choices[i].text}`}
+        desc={`${index}. ${choices[i].text}`}
         onClick={interact}
         index={index}
       />);
@@ -82,7 +82,7 @@ class ChoiceButton extends Component {
     Mousetrap.bind(this.props.index, this.props.onClick);
   }
   componentWillUnmount() {
-    Mousetrap.unbind(this.props.index, this.props.onClick);
+    Mousetrap.unbind(this.props.index);
   }
   render() {
     return (

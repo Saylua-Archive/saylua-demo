@@ -26,7 +26,6 @@
     "jsx-a11y/anchor-is-valid": 0,
     "react/prop-types": 0,
     "import/no-unresolved": 0,
-    "prefer-template": 0,
     "no-underscore-dangle": 0,
     "import/extensions": 0,
     "import/first": 0,
