@@ -30,7 +30,7 @@ export default class CompCash extends Encounter {
         adoptFunc(newComp)();
       }));
     }
-    choices.push(new Choice("Sorry, " + newComp.name + " maybe another time.", () => {}));
+    choices.push(new Choice("Sorry " + newComp.name + ", maybe another time.", () => {}));
     return choices;
   }
 }

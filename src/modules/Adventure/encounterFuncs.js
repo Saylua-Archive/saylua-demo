@@ -24,11 +24,11 @@ export function randomName(seed) {
 
 export function randomCompanion(seed) {
   const compSpecies = seedChoice(seed, species);
-  const compColoration = seedChoice(seed + 1, compSpecies[1]);
+  const compCoat = seedChoice(seed + 1, compSpecies[1]);
   return new Companion({
     name: randomName(seed + 2),
     species: compSpecies[0],
-    coat: compColoration,
+    coat: compCoat,
     hp: sRandomInt(seed + 3, 11),
     energy: sRandomInt(seed + 4, 11),
     level: sRandomInt(seed + 5, 11),

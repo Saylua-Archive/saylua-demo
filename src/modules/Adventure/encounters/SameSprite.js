@@ -6,7 +6,7 @@ export class SameSprite extends Encounter {
   get mainText() {
     const newComp = randomCompanion(this._seed);
     let text = "Up ahead, you see a lonely looking " + newComp.species + ". If only there was another ";
-    text += newComp.species + " around to play with them.";
+    text += newComp.species + " around to play with them...";
     return text;
   }
 
