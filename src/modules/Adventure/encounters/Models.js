@@ -1,4 +1,5 @@
 import { chooseWeighted } from 'utils';
+import { randomContinue } from '../encounterFuncs';
 
 export class Outcome {
   constructor(func, nextID) {
@@ -66,7 +67,7 @@ export class Encounter {
   }
   get mainText() {
     if (!this._props || !this._props.mainText) {
-      return "Nothing much happens." + this._seed;
+      return "Nothing much happens.";
     } else if (typeof this._props.mainText === 'function') {
       return this._mainText(this._seed);
     } else {
@@ -74,7 +75,7 @@ export class Encounter {
     }
   }
   get choices() {
-    return [new Choice("Ok")];
+    return [new Choice(randomContinue(this._seed))];
   }
   get image() {
     return null;

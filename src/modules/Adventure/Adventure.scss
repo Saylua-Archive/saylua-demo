@@ -10,25 +10,31 @@
   margin: auto;
   padding: 0;
   text-align: center;
-  background: url('../../backgrounds/sayleus.jpg') no-repeat center center;
-  background-size: cover;
-
   align-items: center;
 
   h2 {
     font-size: 2rem;
     margin: auto;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     text-align: center;
   }
 
   .choice {
-    font-size: 1.5rem;
-    margin: 0.5rem;
-    padding: 0.3rem;
+    font-size: 2.2rem;
+    margin: 0.7rem;
+    padding: 0.5rem;
     cursor: pointer;
     text-align: center;
     background-color: white;
+    border: 2px double;
+    width: 100%;
+  }
+
+  .adventureText {
+    text-align: left;
+    padding: 0 1rem;
+    min-height: 5rem;
   }
 
   .choice:hover {
@@ -39,11 +45,17 @@
     width: 100%;
     min-width: 100%;
     height: 30%;
-    min-height: 30%;
+    min-height: 325px;
+    background: url('../../backgrounds/sayleus.jpg') no-repeat center bottom;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
   }
 
   .imageArea img {
     width: 30%;
-    height: 30%;
+    height: 100%;
   }
 }

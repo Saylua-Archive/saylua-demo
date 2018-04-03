@@ -36,3 +36,17 @@ export function randomCompanion(seed) {
     level: sRandomInt(seed + 5, 11),
   });
 }
+
+export function randomContinue(seed) {
+  const continues = ["Keep going",
+    "Continue",
+    "Continue traveling",
+    "Keep exploring",
+    "Ok",
+    "Okay",
+    "Got it",
+    "Cool",
+    "Cool beans",
+    "Nice"];
+  return seedChoice(seed, continues);
+}
