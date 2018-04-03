@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import Adventure from './modules/Adventure';
 import Den from './modules/Den';
 import Bloxi from './modules/Arcade/Bloxi';
+import SpriteProfile from './modules/SpriteProfile';
 
 import SpeciesGuide from './modules/SpeciesGuide';
 
@@ -18,6 +19,7 @@ export function Root(props) {
           <Route path="/den" component={Den} />
           <Route path="/arcade/bloxi" component={Bloxi} />
           <Route path="/species" component={SpeciesGuide} />
+          <Route path="/sprite/:soulName" component={SpriteProfile} />
           <Route path="*" component={Adventure} />
         </Switch>
       </BrowserRouter>

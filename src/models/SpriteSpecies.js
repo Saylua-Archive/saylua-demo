@@ -29,7 +29,7 @@ export default class SpriteSpecies {
   }
 
   imageUrl(coat) {
-    return `/img/pets/${this.canonName}/${coat || this.canonicalCoat}.png`;
+    return `/img/sprites/${this.canonName}/${coat || this.canonicalCoat}.png`;
   }
 
   url(coat) {

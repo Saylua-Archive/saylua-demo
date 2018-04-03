@@ -10,26 +10,29 @@ import './Sidebar.css';
 const mapStateToProps = ({ coins, activeCompanion }) =>
   ({
     coins,
-    activeCompanion: new Companion(activeCompanion),
+    activeCompanion,
   });
 const mapDispatchToProps = {};
 
 class Sidebar extends Component {
   render() {
+    const companion = this.props.activeCompanion ? new Companion(this.props.activeCompanion) : null;
     return (
       <div id="sidebar" className="sidebar">
         <div id="user-info-section" className="sidebar-section">
-          <img
-            className="petView"
-            alt={this.props.activeCompanion ? this.props.activeCompanion.name : ""}
-            src={this.props.activeCompanion ?
-            this.props.activeCompanion.imageUrl() :
-            ""}
-          />
+          {companion &&
+            <Link to={companion.url()}>
+              <img
+                className="petView"
+                alt={companion.name}
+                src={companion.imageUrl()}
+              />
+            </Link>
+          }
           <p>You are <Link to="/user/tiff/">Tiff</Link></p>
-          {this.props.activeCompanion&&
+          {companion &&
             <p>
-              Your companion is <Link to="/companion/">{this.props.activeCompanion.name}</Link>
+              Your companion is <Link to={companion.url()}>{companion.name}</Link>
             </p>
           }
           <p>
