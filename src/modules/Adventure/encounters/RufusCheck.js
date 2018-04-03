@@ -12,7 +12,7 @@ export class RufusCheck extends Encounter {
       ". \"Hello there! You're just the person I wanted to see! I've got a new " +
       experiment +
       " I've been working on and I was wondering if you could help me test it. " +
-      "It's specially made for the discerning " + newComp.coloration + " " + newComp.species +
+      "It's specially made for the discerning " + newComp.coat + " " + newComp.species +
       ". Do you happen to know any sprites who'd like to give it a try? I'll make it worth your while...\"";
     return text;
   }
@@ -24,7 +24,7 @@ export class RufusCheck extends Encounter {
     const choices = [];
     if (this._state.activeCompanion
       && this._state.activeCompanion.species === newComp.species
-      && this._state.activeCompanion.coloration === newComp.coloration) {
+      && this._state.activeCompanion.coat === newComp.coat) {
       choices.push(new Choice(
         "I'm sure " + this._state.activeCompanion.name + " would love to give it a try!",
         new Outcome(() => {}, "rufusCheckEnd"),

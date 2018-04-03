@@ -5,6 +5,7 @@ import { encounters, randomEncounters } from './encounters/Main';
 import './Adventure.css';
 import SayluaView from '../SayluaView';
 import { setEncounter } from '../../store';
+import * as Mousetrap from 'mousetrap';
 
 const mapStateToProps = ({
   coins, activeCompanion, companions, encounterSeed, encounterId,
@@ -33,17 +34,20 @@ class Adventure extends Component {
     const choices = encounter.choices;
     for (let i = 0; i < choices.length; i++) {
       const outcomeFunc = typeof (choices[i].outcome.func) === "function" ? choices[i].outcome.func : () => {};
+      const index = String(i + 1);
+      const interact = () => {
+        outcomeFunc();
+        if (choices[i].outcome.nextID) {
+          this.props.setEncounter(encounters[choices[i].outcome.nextID], seed);
+        } else {
+          this.props.setEncounter(chooseWeighted(randomEncounters));
+        }
+      };
       choiceButtons.push(<ChoiceButton
-        key={choices[i].text}
-        desc={choices[i].text}
-        onClick={() => {
-          outcomeFunc();
-          if (choices[i].outcome.nextID) {
-            this.props.setEncounter(encounters[choices[i].outcome.nextID], seed);
-          } else {
-            this.props.setEncounter(chooseWeighted(randomEncounters));
-          }
-        }}
+        key={index + ". " + choices[i].text}
+        desc={index + ". " + choices[i].text}
+        onClick={interact}
+        index={index}
       />);
     }
     if (typeof encounter.img === 'string') {
@@ -73,17 +77,30 @@ class Adventure extends Component {
   }
 }
 
-function ChoiceButton(props) {
-  return (
-    <div
-      className="choice"
-      role="button"
-      tabIndex={0}
-      onClick={props.onClick}
-    >
-      {props.desc}
-    </div>
-  );
+class ChoiceButton extends Component {
+  componentDidMount() {
+    Mousetrap.bind(this.props.index, this.props.onClick);
+  }
+  componentWillUnmount() {
+    Mousetrap.unbind(this.props.index, this.props.onClick);
+  }
+  render() {
+    return (
+      <div
+        className="choice"
+        role="button"
+        tabIndex={0}
+        onClick={this.props.onClick}
+        onKeyPress={(event) => {
+          if (event.key === 'Enter') {
+            this.props.onClick();
+          }
+        }}
+      >
+        {this.props.desc}
+      </div>
+    );
+  }
 }
 
 export default connect(
