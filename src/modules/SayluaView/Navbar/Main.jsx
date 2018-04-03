@@ -26,6 +26,11 @@ export default class Navbar extends Component {
                 Arcade
               </Link>
             </div>
+            <div className="navbar-block">
+              <Link to="/species" className="navbar-link" title="Species Guide">
+                Species Guide
+              </Link>
+            </div>
           </div>
         </div>
       </div>

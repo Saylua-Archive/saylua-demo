@@ -38,7 +38,7 @@ export default class SayluaView extends Component {
     const title = this.props.title;
     const fullTitle = 'Saylua - ' + (title || 'Adoptable Fantasy Pets');
     return (
-      <DocumentTitle id="saylua" title={fullTitle}>
+      <DocumentTitle title={fullTitle}>
         <div id="saylua">
           <Header />
           <Navbar />
