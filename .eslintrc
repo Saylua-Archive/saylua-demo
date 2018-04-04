@@ -36,5 +36,6 @@
     "import/prefer-default-export": 0,
     "react/jsx-no-bind": 0,
     "react/no-multi-comp": 0,
+    "react/no-danger": 0,
   }
 }

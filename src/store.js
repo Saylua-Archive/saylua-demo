@@ -44,7 +44,7 @@ export const initialState = {
   activeCompanion: null,
   coins: 0,
   encounterId: 'start',
-  encounterSeed: 0,
+  encounterSeed: Date.now(),
   theme: 'day',
 };
 
