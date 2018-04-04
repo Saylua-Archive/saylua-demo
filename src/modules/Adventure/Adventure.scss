@@ -21,18 +21,19 @@
   }
 
   .choice {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin: 0.7rem;
-    padding: 0.5rem;
+    padding: .5rem 1.5rem;
     cursor: pointer;
     text-align: center;
     background-color: white;
     border: 2px double;
-    width: 100%;
+    width: 50%;
+    text-align: left;
   }
 
   .adventureText {
-    text-align: left;
+    text-align: center;
     padding: 0 1rem;
     min-height: 5rem;
   }
@@ -44,8 +45,7 @@
   .imageArea {
     width: 100%;
     min-width: 100%;
-    height: 30%;
-    min-height: 325px;
+    height: 325px;
     background: url('../../backgrounds/sayleus.jpg') no-repeat center bottom;
     background-size: cover;
     display: flex;
@@ -56,6 +56,5 @@
 
   .imageArea img {
     width: 30%;
-    height: 100%;
   }
 }

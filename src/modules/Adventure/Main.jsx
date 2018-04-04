@@ -6,6 +6,7 @@ import './Adventure.css';
 import SayluaView from '../SayluaView';
 import { setEncounter } from '../../store';
 import * as Mousetrap from 'mousetrap';
+import marked from 'marked';
 
 const mapStateToProps = ({
   coins, activeCompanion, companions, encounterSeed, encounterId,
@@ -24,6 +25,11 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class Adventure extends Component {
+  rawMarkup(text) {
+    const rawMarkup = marked(text, { sanitize: true });
+    return { __html: rawMarkup };
+  }
+
   render() {
     const choiceButtons = [];
     const encounterImgs = [];
@@ -69,7 +75,7 @@ class Adventure extends Component {
         <div className="adventure">
           <h2>Gardenia Plains</h2>
           <div className="imageArea">{encounterImgs}</div>
-          <p className="adventureText" id="scene-desc">{mainText}</p>
+          <p className="adventureText" id="scene-desc" dangerouslySetInnerHTML={this.rawMarkup(mainText)} />
           {choiceButtons}
         </div>
       </SayluaView>
