@@ -8,8 +8,8 @@ import Companion from 'models/Companion';
 export class VeraCheck extends Encounter {
   get mainText() {
     const targetComp = seedChoice(this._seed, this._state.companions);
-    const text = `Vera Everly is sitting on a stump beside the path.
-    "I was hoping you'd come by! I wanted to check in and see how ${targetComp.name} is doing. May I see them?"`;
+    const text = `"I was hoping you'd come by!
+    I wanted to check in and see how ${targetComp.name} is doing. May I see them?"`;
     return text;
   }
   get img() {
