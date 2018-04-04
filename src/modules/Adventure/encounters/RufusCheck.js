@@ -7,10 +7,9 @@ export class RufusCheck extends Encounter {
   get mainText() {
     const newComp = randomCompanion(this._seed);
     const experiment = seedChoice(this._seed + 1, ["hat", "treat", "toy"]);
-    const text = `Rufus Scippio jogs up behind you carrying an oddly shaped ${
-      experiment}. "Hello there! You're just the person I wanted to see! I've got a new ${
-      experiment} I've been working on and I was wondering if you could help me test it.
-      It's specially made for the discerning ${newComp.coat} ${newComp.species}.
+    const text = `"Hello there! You're just the person I wanted to see!"
+
+"I've got a new ${experiment}, specially made for the discerning ${newComp.coat} ${newComp.species}.
       Do you happen to know any sprites who'd like to give it a try? I'll make it worth your while..."`;
     return text;
   }
