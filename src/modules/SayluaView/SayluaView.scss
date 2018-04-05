@@ -28,12 +28,11 @@
 
 .main-body-content {
   padding: 0.5em 0.8rem 1em 0.8rem;
-  background-color: $white;
+  background-color: var(--contentBgColor);
 
   flex-grow: 1;
   flex-shrink: 0;
 }
-
 
 // .sidebar-filler is not my favorite, but it's a simple way to make sure things
 // align nicely with (or without) the sidebar without having to make too many hacks.
