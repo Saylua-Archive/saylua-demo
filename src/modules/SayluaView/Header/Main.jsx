@@ -31,7 +31,7 @@ class Header extends Component {
     this.props.setTheme(theme);
     setTimeout(() => {
       this.state.themeChangeDisabled = false;
-    }, 1000);
+    }, 700);
   }
 
   render() {
