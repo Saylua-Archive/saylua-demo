@@ -55,6 +55,10 @@ h1 {
   color: var(--mainDarkColor);
 }
 
+.theme-luaria h1 {
+  color: var(--mainSofterColor);
+}
+
 h2, h3, h4, th.h3, .h3, th.h2, .h2 {
   font-family: 'Lato', sans-serif;
   font-size: 2rem;
@@ -106,8 +110,12 @@ a:hover, button.link-button:hover, .link:hover {
   text-decoration: underline;
 }
 
-a, i, button, [role="button"], #navbar-container * {
+a, i, button, [role="button"], #navbar-container *, h1, h2 {
   transition: color 0.5s ease-in-out, background 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.main-body-content {
+  transition: background 0.5s ease-in-out;
 }
 
 #root {
