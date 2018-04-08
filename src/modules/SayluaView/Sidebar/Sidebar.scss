@@ -1,11 +1,27 @@
-@import 'scss/assets/variables';
-
+@import '../assets/sizes';
 
 .sidebar-section {
   max-width: 40rem;
 
   flex-grow: 1;
   flex-shrink: 1;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1em 1.6rem;
+
+  align-items: center;
+}
+
+.sidebar.sidebar-fixed {
+  position: fixed;
+  overflow-y: scroll;
+  width: inherit;
+  height: 100%;
+  margin-top: -$headerHeight;
 }
 
 // The sidebar becomes horizontal at this width.
@@ -21,50 +37,9 @@
     .sidebar-section {
       max-width: 70%;
     }
+  }
 
-    // The pet and human avatar view has to become landscape.
-    .pet-avatar-view {
-      position: static;
-      display: flex;
-      flex-direction: row;
-      padding: 1em 0.8rem;
-
-      .avatar-view {
-        position: relative;
-        display: block;
-        width: 50%;
-        margin: 0;
-        padding: 0;
-
-        flex-grow: 0;
-        flex-shrink: 0;
-
-        &:after {
-          content: '';
-          display: block;
-          margin: 0;
-          padding: 0;
-          padding-bottom: 100%;
-        }
-
-        a {
-          position: absolute;
-          display: block;
-          overflow: hidden;
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-      .active-pet-view {
-        position: static;
-        width: 50%;
-        margin: 0;
-        padding: 0;
-
-        flex-grow: 0;
-        flex-shrink: 0;
-      }
-    }
+  .sidebar {
+    display: none;
   }
 }

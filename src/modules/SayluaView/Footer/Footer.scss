@@ -1,6 +1,4 @@
-@import 'scss/assets/variables';
-
-@import 'scss/assets/layout/sizes';
+@import '../assets/sizes';
 
 footer {
   @extend %content-width;

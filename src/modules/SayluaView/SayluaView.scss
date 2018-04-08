@@ -1,6 +1,4 @@
-@import 'scss/assets/variables';
-
-@import 'scss/assets/layout/sizes';
+@import './assets/sizes';
 
 .main-body {
   @extend %content-width;
@@ -36,14 +34,10 @@
 
 // .sidebar-filler is not my favorite, but it's a simple way to make sure things
 // align nicely with (or without) the sidebar without having to make too many hacks.
-.sidebar,
+.sidebar-container,
 .sidebar-filler {
-  display: flex;
-  flex-direction: column;
   width: 20%;
-  padding: 1em 1.6rem;
 
-  align-items: center;
   flex-grow: 0;
   flex-shrink: 0;
 }
@@ -62,13 +56,6 @@
   }
 
   .sidebar-filler {
-    display: none;
-  }
-}
-
-.hide-sidebar {
-  .sidebar-filler,
-  .sidebar {
     display: none;
   }
 }
