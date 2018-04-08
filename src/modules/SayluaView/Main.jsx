@@ -11,16 +11,23 @@ import Sidebar from './Sidebar';
 
 // The main Saylua layout component.
 export default class SayluaView extends Component {
+  constructor(props) {
+    super(props);
+    this.fixNavbarAndSidebar = this.fixNavbarAndSidebar.bind(this);
+  }
+
   componentDidMount() {
-    this.fixNavbar();
-    window.addEventListener('scroll', this.fixNavbar);
+    this.fixNavbarAndSidebar();
+    window.addEventListener('scroll', this.fixNavbarAndSidebar);
+    window.addEventListener('resize', this.adjustSidebarWidth);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.fixNavbar);
+    window.removeEventListener('scroll', this.fixNavbarAndSidebar);
+    window.removeEventListener('resize', this.adjustSidebarWidth);
   }
 
-  fixNavbar() {
+  fixNavbarAndSidebar() {
     const header = document.getElementById('header');
     if (!header) return;
 
@@ -28,9 +35,17 @@ export default class SayluaView extends Component {
     if (document.body.scrollTop > top ||
       document.documentElement.scrollTop > top) {
       document.getElementById('navbar').classList.add('navbar-fixed');
+      document.getElementById('sidebar').classList.add('sidebar-fixed');
+      this.adjustSidebarWidth();
     } else {
       document.getElementById('navbar').classList.remove('navbar-fixed');
+      document.getElementById('sidebar').classList.remove('sidebar-fixed');
     }
+  }
+
+  adjustSidebarWidth() {
+    const parentWidth = document.getElementById('sidebar-container').offsetWidth;
+    document.getElementById('sidebar').style.width = `${parentWidth}px`;
   }
 
   render() {
@@ -44,7 +59,9 @@ export default class SayluaView extends Component {
           <Navbar />
 
           <div id="main-body" className="main-body">
-            <Sidebar />
+            <div id="sidebar-container" className="sidebar-container">
+              <Sidebar />
+            </div>
             <div id="main-body-column" className="main-body-column">
               <div id="main-body-content" className="main-body-content">
                 { content }
