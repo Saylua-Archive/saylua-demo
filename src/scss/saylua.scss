@@ -1,34 +1,32 @@
-@import 'scss/assets/variables';
-
 @import 'global';
 
 
 :root {
-  --accentColor: $accentColor;
-  --accentSoftColor: $accentSoftColor;
+  --accentColor: hsl(4, 72%, 62%);
+  --accentSoftColor: hsl(4, 65%, 88%);
 
-  --errorColor: $errorColor;
-  --errorLightColor: $errorLightColor;
-  --highlightColor: $highlightColor;
-  --highlightDarkColor: $highlightDarkColor;
-  --highlightSoftColor: $highlightSoftColor;
+  --errorColor: hsl(348, 100%, 50%);
+  --errorLightColor: hsl(0, 100%, 90%);
+  --highlightColor: hsl(45, 75%, 85%);
+  --highlightDarkColor: hsl(45, 52%, 73%);
+  --highlightSoftColor: hsl(45, 100%, 92%);
 
-  --mainBgColor: $mainBgColor;
-  --bgTextColor: $black;
+  --mainBgColor: hsl(171, 14%, 85%);
+  --bgTextColor: hsl(0, 0%, 13%);
 
-  --contentBgColor: $contentBgColor;
-  --mainTextColor: $black;
+  --contentBgColor: hsl(171, 14%, 90%);
+  --mainTextColor: hsl(0, 0%, 13%);
 
-  --emphasisBgColor: $white;
+  --emphasisBgColor: hsl(0, 0%, 100%);
 
-  --mainColor: $mainColor;
-  --mainDarkColor: $mainDarkColor;
-  --mainDarkerColor: $mainDarkerColor;
-  --mainSoftColor: $mainSoftColor;
-  --mainSofterColor: $mainSofterColor;
-  --mainSoftestColor: $mainSoftestColor;
-  --neutralColor: $neutralColor;
-  --neutralDarkColor: $neutralDarkColor;
+  --mainColor: hsl(171, 82%, 42%);
+  --mainDarkColor: hsl(172, 86%, 36%);
+  --mainDarkerColor: hsl(172, 87%, 31%);
+  --mainSoftColor: hsl(171, 81%, 44%);
+  --mainSofterColor: hsl(171, 60%, 88%);
+  --mainSoftestColor: hsl(171, 55%, 94%);
+  --neutralColor: hsl(177, 41%, 91%);
+  --neutralDarkColor: hsl(174, 36%, 69%);
 }
 
 .theme-luaria {

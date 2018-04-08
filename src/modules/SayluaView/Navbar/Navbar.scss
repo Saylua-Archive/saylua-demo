@@ -1,10 +1,8 @@
-@import 'scss/assets/variables';
+@import '../assets/sizes';
 
-
-@import 'scss/assets/layout/sizes';
 
 // This is used to prevent the navbar from leaving an empty space in the layout
-// when it's positioning changes.
+// when its positioning changes.
 .navbar-container {
   width: 100%;
   height: $navHeight;
@@ -23,7 +21,6 @@
   align-items: stretch;
   justify-content: center;
 
-  box-shadow: 0 1px 2px $neutralDarkColor;
   box-shadow: 0 1px 2px var(--neutralDarkColor);
 }
 
@@ -39,12 +36,6 @@
 
   align-items: stretch;
   justify-content: flex-start;
-}
-
-.navbar.navbar-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
 }
 
 .navbar-block {
@@ -63,7 +54,7 @@ a.navbar-link, a.navbar-link:visited {
   font-size: 1.7rem;
   display: flex;
   padding: 0 1rem;
-  color: $white;
+  color: hsl(0, 0%, 100%);
 
   text-shadow: 1px 1px 2px hsla(0, 0%, 0%, 0.15);
 
@@ -98,7 +89,7 @@ a.navbar-link, a.navbar-link:visited {
   margin-left: -0.7rem;
   padding: 0 0.3rem;
   text-align: center;
-  color: $white;
+  color: hsl(0, 0%, 100%);
   border-radius: 5px;
 }
 
@@ -117,9 +108,11 @@ a.navbar-link, a.navbar-link:visited {
 }
 
 // Prevent the navbar from being sticky on mobile because that's annoying.
-@media (max-height: 500px) {
+@media (min-height: 500px) {
   .navbar.navbar-fixed {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
   }
 }
 
