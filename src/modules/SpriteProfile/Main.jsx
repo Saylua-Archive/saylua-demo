@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Companion from 'models/Companion';
-import SayluaView from 'modules/SayluaView';
+import SayluaView from 'components/SayluaView';
 
 import './SpriteProfile.css';
 

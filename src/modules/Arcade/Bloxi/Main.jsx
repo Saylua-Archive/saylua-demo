@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import SayluaView from 'modules/SayluaView';
+import SayluaView from 'components/SayluaView';
 
 import BlocksInterface from './BlocksInterface';
 import GameState from './GameState';

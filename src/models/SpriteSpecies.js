@@ -1,12 +1,19 @@
 import gaussian from 'gaussian';
 
+export const REGIONS = {
+  UNIVERSAL: 'Universal',
+  LUARIAN: 'Luarian',
+  SAYLIAN: 'Saylian',
+  DAWNISH: 'Dawnish',
+};
+
 export default class SpriteSpecies {
   constructor() {
     this.name = 'Sprite';
     this.canonName = 'sprite';
-
     this.plural = 'Sprites';
 
+    this.region = REGIONS.UNIVERSAL;
     this.canonicalCoat = 'common';
     this.description = 'I am an invisible sprite.';
 
@@ -45,6 +52,7 @@ export class Arko extends SpriteSpecies {
     this.canonName = 'arko';
     this.plural = 'Arkos';
 
+    this.region = REGIONS.UNIVERSAL;
     this.canonicalCoat = 'common';
     this.description = `Arkos are pensive companions who are usually quite
       loyal to their human guardians. They don't bite, but they do have a
@@ -71,6 +79,7 @@ export class Chirling extends SpriteSpecies {
     this.canonName = 'chirling';
     this.plural = 'Chirlings';
 
+    this.region = REGIONS.UNIVERSAL;
     this.canonicalCoat = 'common';
     this.description = `Chirlings are highly energetic sprites who can
       frequently be heard chirping across the forest. New guardians often find
@@ -97,6 +106,7 @@ export class Nibian extends SpriteSpecies {
     this.canonName = 'nibian';
     this.plural = 'Nibians';
 
+    this.region = REGIONS.UNIVERSAL;
     this.canonicalCoat = 'common';
     this.description = `Nibians are easygoing and cheerful critters who love to
       play in water and explore the land. Playing with a Nibian is a rewarding
@@ -123,6 +133,7 @@ export class Gam extends SpriteSpecies {
     this.canonName = 'gam';
     this.plural = 'Gams';
 
+    this.region = REGIONS.UNIVERSAL;
     this.canonicalCoat = 'common';
     this.description = `Gams are hardy creatures who can be seen frolicking
       across many regions in Saylua.`;
@@ -148,6 +159,7 @@ export class Senrix extends SpriteSpecies {
     this.canonName = 'senrix';
     this.plural = 'Senrices';
 
+    this.region = REGIONS.UNIVERSAL;
     this.canonicalCoat = 'piebald';
     this.description = `Senrices are cunning creatures who can live in a
       surprising number of different regions.`;
@@ -173,6 +185,7 @@ export class Fleuran extends SpriteSpecies {
     this.canonName = 'fleuran';
     this.plural = 'Fleurans';
 
+    this.region = REGIONS.SAYLIAN;
     this.canonicalCoat = 'common';
     this.description = `Fleurans are found across Sayleus, in all sorts of
       bodies of water. These flowery fish have photosynthetic wens and fins,
@@ -199,6 +212,7 @@ export class Vela extends SpriteSpecies {
     this.canonName = 'vela';
     this.plural = 'Vela';
 
+    this.region = REGIONS.SAYLIAN;
     this.canonicalCoat = 'saylian';
     this.description = `The Vela is an elusive Saylian creature which
       gathers clouds and mist on its body to protect itself from the sun's
@@ -225,6 +239,7 @@ export class Eydrun extends SpriteSpecies {
     this.canonName = 'eydrun';
     this.plural = 'Eydruns';
 
+    this.region = REGIONS.LUARIAN;
     this.canonicalCoat = 'common';
     this.description = `In the deep dark of the Luarian woods, Eydruns lurk
       silently, watching all who pass by. These quiet hunters use their many
@@ -252,6 +267,7 @@ export class Gorbin extends SpriteSpecies {
     this.canonName = 'gorbin';
     this.plural = 'Gorbins';
 
+    this.region = REGIONS.LUARIAN;
     this.canonicalCoat = 'melanistic';
     this.description = `Gorbins generally live in the cold, deep oceans of
       Luaria, keeping warm with their blubbery skin. However, wild Gorbins
@@ -279,6 +295,7 @@ export class Loxi extends SpriteSpecies {
     this.canonName = 'loxi';
     this.plural = 'Loxis';
 
+    this.region = REGIONS.DAWNISH;
     this.canonicalCoat = 'albino';
     this.description = `Loxis are fierce wild creatures found in the Dawnlands.
       They are known for being highly territorial and have a tendency to only
@@ -314,4 +331,28 @@ export const speciesList = [
   new Loxi(),
 ];
 
-export const speciesIndex = speciesList.reduce((acc, v) => Object.assign(acc, { [v.canonName]: v }), {});
+export const speciesIndexCanonName = speciesList.reduce((acc, v) => {
+  return Object.assign(acc, { [v.canonName]: v });
+}, {});
+
+export const speciesIndexRegion = speciesList.reduce((acc, v) => {
+  let regionSpecies = acc[v.region] || [];
+  regionSpecies = regionSpecies.concat([v]);
+
+  return Object.assign(acc, { [v.region]: regionSpecies });
+}, {});
+
+
+SpriteSpecies.byCanonName = (canonName) => {
+  if (!(canonName in speciesIndexCanonName)) return null;
+  return speciesIndexCanonName[canonName];
+};
+
+SpriteSpecies.byRegion = (region) => {
+  if (!(region in speciesIndexRegion)) return null;
+  return speciesIndexRegion[region];
+};
+
+SpriteSpecies.regionList = () => {
+  return Object.values(REGIONS);
+};
