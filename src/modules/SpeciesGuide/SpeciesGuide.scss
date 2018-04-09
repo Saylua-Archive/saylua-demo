@@ -1,11 +1,107 @@
-.sprite-species {
-  width: 20%;
+$speciesListImgSize: 22rem;
+
+.region-section {
+  display: flex;
   float: left;
-  text-align: center;
-  padding: 1em 1.6rem;
+  flex-direction: row;
+  width: 100%;
+
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  h2 {
+    i {
+      padding-right: 0.4rem;
+      color: var(--neutralDarkColor);
+    }
+
+    small {
+      font-size: 1.4rem;
+      float: right;
+      padding-left: 0.4rem;
+      color: var(--softTextColor);
+    }
+  }
+
+  .sprite-species {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 1.6rem;
+    text-align: center;
+
+    align-items: center;
+
+    .species-image-wrapper {
+      display: flex;
+      width: $speciesListImgSize;
+      height: $speciesListImgSize;
+
+      align-items: center;
+      justify-content: center;
+
+      img {
+        z-index: 2;
+      }
+    }
+
+    .species-image-wrapper::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      display: block;
+      width: ($speciesListImgSize * 0.9);
+      height: ($speciesListImgSize * 0.9);
+      transition: background 0.7s ease-in-out;
+      border-radius: 50%;
+      background: var(--mainBgColor);
+    }
+  }
+
+  .sprite-species:hover {
+    .species-image-wrapper::before {
+      background: var(--emphasisBgColor);
+    }
+  }
 }
 
-.species-view-image {
-  float: left;
-  padding: 1em 1.6rem;
+.species-view-info {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  .species-view-image {
+    max-width: 100%;
+    padding: 1em 1.6rem;
+    text-align: center;
+
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}
+
+.coat-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  .coat-grid-item {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0.5em 1.6rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .species-view-info {
+    flex-direction: column;
+  }
 }
