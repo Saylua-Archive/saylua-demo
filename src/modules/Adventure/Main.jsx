@@ -3,7 +3,7 @@ import { chooseWeighted } from 'utils';
 import { connect } from 'react-redux';
 import { encounters, randomEncounters } from './encounters/Main';
 import './Adventure.css';
-import SayluaView from '../SayluaView';
+import SayluaView from 'components/SayluaView';
 import { setEncounter } from '../../store';
 import * as Mousetrap from 'mousetrap';
 import marked from 'marked';
