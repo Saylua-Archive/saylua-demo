@@ -11,7 +11,7 @@ import SpriteProfile from './modules/SpriteProfile';
 
 import SpeciesGuide from './modules/SpeciesGuide';
 
-export function Root(props) {
+export default function (props) {
   return (
     <Provider store={props.store}>
       <BrowserRouter>
