@@ -1,0 +1,45 @@
+@import '../assets/sizes';
+
+.sidebar-section {
+  max-width: 40rem;
+
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1em 1.6rem;
+
+  align-items: center;
+}
+
+.sidebar.sidebar-fixed {
+  position: fixed;
+  overflow-y: scroll;
+  width: inherit;
+  height: 100%;
+  margin-top: -$headerHeight;
+}
+
+// The sidebar becomes horizontal at this width.
+@media (max-width: 800px) {
+  .sidebar {
+    flex-direction: row;
+    width: 100%;
+    padding: 1rem 1%;
+
+    align-items: center;
+    justify-content: center;
+
+    .sidebar-section {
+      max-width: 70%;
+    }
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
