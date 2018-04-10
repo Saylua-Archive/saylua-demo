@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Companion from 'models/Companion';
 import { accompany } from '../../store';
-import SayluaView from '../SayluaView';
+import SayluaView from 'components/SayluaView';
 
 import './Den.css';
 

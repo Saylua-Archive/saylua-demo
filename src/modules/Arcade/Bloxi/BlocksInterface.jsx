@@ -53,7 +53,13 @@ export default class BlocksInterface extends Component {
           <span className="blocks-big-text">Game Over</span>
           <span>Score: { game.score }</span>
           <span className="blocks-small-text">{ prizeText }</span>
-          <span className="blocks-click-text" onClick={game.start.bind(game)} role="button" tabIndex="0">Try again?</span>
+          <span
+            className="blocks-click-text"
+            onClick={game.start.bind(game)}
+            role="button"
+            tabIndex="0"
+          >Try again?
+          </span>
         </div>
       );
     } else if (game.paused) {
@@ -61,7 +67,13 @@ export default class BlocksInterface extends Component {
       overlay = (
         <div className="blocks-overlay">
           <span className="blocks-big-text">Paused</span>
-          <span className="blocks-click-text" onClick={game.pause.bind(game)} role="button" tabIndex="0">Resume Playing</span>
+          <span
+            className="blocks-click-text"
+            onClick={game.pause.bind(game)}
+            role="button"
+            tabIndex="0"
+          >Resume Playing
+          </span>
         </div>
       );
     } else if (!game.isRunning()) {

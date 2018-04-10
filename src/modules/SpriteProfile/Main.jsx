@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Companion from 'models/Companion';
-import SayluaView from 'modules/SayluaView';
+import SayluaView from 'components/SayluaView';
+import NotFound from 'modules/Error/NotFound';
 
 import './SpriteProfile.css';
 
@@ -20,13 +21,13 @@ class SpriteProfile extends Component {
     let companion = this.props.companions.find(c => (c.soulName === soulName));
 
     if (!companion) {
-      return <div>404</div>;
+      return <NotFound />;
     } else {
       companion = new Companion(companion);
     }
 
     return (
-      <SayluaView>
+      <SayluaView title={`${companion.name}'s Profile`}>
         <h1>{companion.name} the {companion.epithet} {companion.coat} {companion.species}</h1>
         <div id="pet-room">
           <div className="pet-room-background" style={{ backgroundImage: 'url(/img/backgrounds/luaria.jpg)' }} />
