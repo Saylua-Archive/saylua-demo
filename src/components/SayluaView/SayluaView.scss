@@ -1,0 +1,61 @@
+@import './assets/sizes';
+
+.main-body {
+  @extend %content-width;
+  display: flex;
+  flex-direction: row;
+  min-height: 400px;
+  padding: 1em 0;
+
+  align-items: flex-start;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.main-body-column {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5em;
+  color: var(--mainTextColor);
+
+  align-items: stretch;
+  flex-grow: 1;
+  flex-shrink: 1;
+  justify-content: flex-start;
+}
+
+.main-body-content {
+  padding: 0.5em 0.8rem 1em 0.8rem;
+  background-color: var(--contentBgColor);
+
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+// .sidebar-filler is not my favorite, but it's a simple way to make sure things
+// align nicely with (or without) the sidebar without having to make too many hacks.
+.sidebar-container,
+.sidebar-filler {
+  width: 20%;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+// The sidebar becomes a hamburger.
+@media (max-width: 800px) {
+  html {
+    font-size: 50%;
+  }
+
+  .main-body {
+    flex-direction: column;
+
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .sidebar-filler {
+    display: none;
+  }
+}

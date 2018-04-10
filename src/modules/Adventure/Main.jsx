@@ -4,8 +4,13 @@ import { connect } from 'react-redux';
 import { encounters, randomEncounters } from './encounters/Main';
 import Areas from './Areas';
 import './Adventure.css';
+<<<<<<< HEAD
 import SayluaView from '../SayluaView';
 import { setEncounter, setArea, setSteps } from '../../store';
+=======
+import SayluaView from 'components/SayluaView';
+import { setEncounter } from '../../store';
+>>>>>>> 9bd0016c9c7c3ea0df03fac52a76641d2b4baea5
 import * as Mousetrap from 'mousetrap';
 import marked from 'marked';
 

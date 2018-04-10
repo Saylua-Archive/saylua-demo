@@ -1,0 +1,22 @@
+.breadcrumbs {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1em;
+
+  a.breadcrumbs-link {
+    display: inline-block;
+    margin: 0.25em 0.4rem;
+    padding: 0.25em 0.8rem;
+    border: 1px solid;
+    border-radius: 1.6rem;
+    background: var(--contentBgColor);
+
+    &.breadcrumbs-active {
+      background: var(--neutralColor);
+    }
+
+    &:hover {
+      background: var(--emphasisBgColor);
+    }
+  }
+}

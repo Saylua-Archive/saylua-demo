@@ -41,7 +41,7 @@ export function expandedRelativeTime(time) {
 
 // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 export function formatNumber(n) {
-  return n.toLocaleString('en-IN');
+  return n.toLocaleString('en-US');
 }
 
 // http://stackoverflow.com/questions/1026069/capitalize-the-first-letter-of-string-in-javascript

@@ -5,7 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore } from 'redux';
 import { sayluaApp, initialState } from './store';
 
-import { Root } from './Root';
+import Root from './Root';
 
 import 'scss/saylua.css';
 
