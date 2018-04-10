@@ -59,9 +59,7 @@ export default class SayluaView extends Component {
           <Navbar />
 
           <div id="main-body" className="main-body">
-            <div id="sidebar-container" className="sidebar-container">
-              <Sidebar />
-            </div>
+            <Sidebar />
             <div id="main-body-column" className="main-body-column">
               <div id="main-body-content" className="main-body-content">
                 { content }

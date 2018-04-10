@@ -7,6 +7,10 @@
   flex-shrink: 1;
 }
 
+.sidebar-container, .sidebar {
+  min-height: 500px;
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -16,12 +20,14 @@
   align-items: center;
 }
 
-.sidebar.sidebar-fixed {
-  position: fixed;
-  overflow-y: scroll;
-  width: inherit;
-  height: 100%;
-  margin-top: -$headerHeight;
+@media (min-height: 600px) {
+  .sidebar.sidebar-fixed {
+    position: fixed;
+    overflow-y: scroll;
+    width: inherit;
+    max-height: 100%;
+    margin-top: -$headerHeight;
+  }
 }
 
 // The sidebar becomes horizontal at this width.

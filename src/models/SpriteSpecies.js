@@ -9,6 +9,8 @@ export const REGIONS = {
 
 export default class SpriteSpecies {
   constructor() {
+    this.id = 0;
+
     this.name = 'Sprite';
     this.canonName = 'sprite';
     this.plural = 'Sprites';
@@ -48,12 +50,14 @@ export class Arko extends SpriteSpecies {
   constructor() {
     super();
 
+    this.id = 1;
+
     this.name = 'Arko';
     this.canonName = 'arko';
     this.plural = 'Arkos';
 
     this.region = REGIONS.UNIVERSAL;
-    this.canonicalCoat = 'common';
+    this.canonicalCoat = 'luarian';
     this.description = `Arkos are pensive companions who are usually quite
       loyal to their human guardians. They don't bite, but they do have a
       tendency to be mouthy when showing their affection.`;
@@ -67,7 +71,7 @@ export class Arko extends SpriteSpecies {
     this.weightMean = 50;
     this.weightVariance = 5;
 
-    this.coats = ['albino', 'common', 'melanistic', 'piebald'];
+    this.coats = ['albino', 'luarian', 'melanistic', 'piebald', 'saylian'];
   }
 }
 
@@ -75,12 +79,14 @@ export class Chirling extends SpriteSpecies {
   constructor() {
     super();
 
+    this.id = 2;
+
     this.name = 'Chirling';
     this.canonName = 'chirling';
     this.plural = 'Chirlings';
 
     this.region = REGIONS.UNIVERSAL;
-    this.canonicalCoat = 'common';
+    this.canonicalCoat = 'saylian';
     this.description = `Chirlings are highly energetic sprites who can
       frequently be heard chirping across the forest. New guardians often find
       themselves overwhelmed with attention when caring for a Chirling.`;
@@ -94,7 +100,7 @@ export class Chirling extends SpriteSpecies {
     this.sizeMean = 20;
     this.sizeVariance = 5;
 
-    this.coats = ['albino', 'common', 'melanistic', 'piebald'];
+    this.coats = ['albino', 'luarian', 'melanistic', 'piebald', 'saylian'];
   }
 }
 
@@ -102,12 +108,14 @@ export class Nibian extends SpriteSpecies {
   constructor() {
     super();
 
+    this.id = 3;
+
     this.name = 'Nibian';
     this.canonName = 'nibian';
     this.plural = 'Nibians';
 
     this.region = REGIONS.UNIVERSAL;
-    this.canonicalCoat = 'common';
+    this.canonicalCoat = 'saylian';
     this.description = `Nibians are easygoing and cheerful critters who love to
       play in water and explore the land. Playing with a Nibian is a rewarding
       experience for those who aren't afraid of getting splashed frequently.`;
@@ -121,13 +129,15 @@ export class Nibian extends SpriteSpecies {
     this.sizeMean = 40;
     this.sizeVariance = 5;
 
-    this.coats = ['albino', 'common', 'melanistic', 'piebald'];
+    this.coats = ['albino', 'luarian', 'melanistic', 'piebald', 'saylian'];
   }
 }
 
 export class Gam extends SpriteSpecies {
   constructor() {
     super();
+
+    this.id = 4;
 
     this.name = 'Gam';
     this.canonName = 'gam';
@@ -147,13 +157,15 @@ export class Gam extends SpriteSpecies {
     this.sizeMean = 100;
     this.sizeVariance = 20;
 
-    this.coats = ['albino', 'common', 'melanistic', 'piebald'];
+    this.coats = ['albino', 'common', 'luarian', 'melanistic', 'piebald', 'saylian'];
   }
 }
 
 export class Senrix extends SpriteSpecies {
   constructor() {
     super();
+
+    this.id = 5;
 
     this.name = 'Senrix';
     this.canonName = 'senrix';
@@ -173,7 +185,7 @@ export class Senrix extends SpriteSpecies {
     this.sizeMean = 50;
     this.sizeVariance = 10;
 
-    this.coats = ['albino', 'common', 'melanistic', 'piebald'];
+    this.coats = ['albino', 'earthen', 'melanistic', 'piebald'];
   }
 }
 
@@ -181,12 +193,14 @@ export class Fleuran extends SpriteSpecies {
   constructor() {
     super();
 
+    this.id = 6;
+
     this.name = 'Fleuran';
     this.canonName = 'fleuran';
     this.plural = 'Fleurans';
 
     this.region = REGIONS.SAYLIAN;
-    this.canonicalCoat = 'common';
+    this.canonicalCoat = 'calico';
     this.description = `Fleurans are found across Sayleus, in all sorts of
       bodies of water. These flowery fish have photosynthetic wens and fins,
       which allow them to absorb energy from the sun's constant rays.`;
@@ -200,13 +214,15 @@ export class Fleuran extends SpriteSpecies {
     this.sizeMean = 80;
     this.sizeVariance = 20;
 
-    this.coats = ['albino', 'common', 'melanistic', 'piebald', 'saylian'];
+    this.coats = ['albino', 'calico', 'luarian', 'melanistic', 'piebald', 'saylian'];
   }
 }
 
 export class Vela extends SpriteSpecies {
   constructor() {
     super();
+
+    this.id = 7;
 
     this.name = 'Vela';
     this.canonName = 'vela';
@@ -227,7 +243,7 @@ export class Vela extends SpriteSpecies {
     this.sizeMean = 35;
     this.sizeVariance = 10;
 
-    this.coats = ['albino', 'common', 'melanistic', 'piebald', 'saylian'];
+    this.coats = ['albino', 'dawnish', 'luarian', 'melanistic', 'piebald', 'saylian'];
   }
 }
 
@@ -235,12 +251,14 @@ export class Eydrun extends SpriteSpecies {
   constructor() {
     super();
 
+    this.id = 8;
+
     this.name = 'Eydrun';
     this.canonName = 'eydrun';
     this.plural = 'Eydruns';
 
     this.region = REGIONS.LUARIAN;
-    this.canonicalCoat = 'common';
+    this.canonicalCoat = 'luarian';
     this.description = `In the deep dark of the Luarian woods, Eydruns lurk
       silently, watching all who pass by. These quiet hunters use their many
       eyes to look in all directions while standing perfectly still in the
@@ -255,13 +273,15 @@ export class Eydrun extends SpriteSpecies {
     this.sizeMean = 150;
     this.sizeVariance = 20;
 
-    this.coats = ['albino', 'common', 'melanistic', 'piebald', 'saylian'];
+    this.coats = ['albino', 'luarian', 'melanistic', 'piebald', 'saylian'];
   }
 }
 
 export class Gorbin extends SpriteSpecies {
   constructor() {
     super();
+
+    this.id = 9;
 
     this.name = 'Gorbin';
     this.canonName = 'gorbin';
@@ -283,13 +303,15 @@ export class Gorbin extends SpriteSpecies {
     this.sizeMean = 200;
     this.sizeVariance = 50;
 
-    this.coats = ['albino', 'common', 'melanistic', 'piebald', 'saylian'];
+    this.coats = ['albino', 'luarian', 'melanistic', 'piebald', 'saylian'];
   }
 }
 
 export class Loxi extends SpriteSpecies {
   constructor() {
     super();
+
+    this.id = 10;
 
     this.name = 'Loxi';
     this.canonName = 'loxi';
@@ -310,7 +332,7 @@ export class Loxi extends SpriteSpecies {
     this.sizeMean = 100;
     this.sizeVariance = 10;
 
-    this.coats = ['albino', 'common', 'melanistic', 'piebald', 'saylian'];
+    this.coats = ['albino', 'melanistic', 'piebald', 'saylian'];
   }
 }
 
