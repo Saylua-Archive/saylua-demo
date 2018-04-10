@@ -1,5 +1,31 @@
 $speciesListImgSize: 22rem;
 
+.species-next-link,
+.species-prev-link {
+  display: flex;
+  align-items: center;
+  width: 15rem;
+  justify-content: center;
+  font-size: 2rem;
+  img {
+    width: 5rem;
+    height: 5rem;
+    margin: 0.25em 0.8rem;
+  }
+
+  &:hover {
+    background-color: var(--neutralColor);
+  }
+}
+
+.species-prev-link {
+  float: left;
+}
+
+.species-next-link {
+  float: right;
+}
+
 .region-section {
   display: flex;
   float: left;
@@ -62,46 +88,5 @@ $speciesListImgSize: 22rem;
     .species-image-wrapper::before {
       background: var(--emphasisBgColor);
     }
-  }
-}
-
-.species-view-info {
-  display: flex;
-  flex-direction: row;
-
-  justify-content: space-between;
-
-  .species-view-image {
-    max-width: 100%;
-    padding: 1em 1.6rem;
-    text-align: center;
-
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
-}
-
-.coat-grid {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-
-  .coat-grid-item {
-    width: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0.5em 1.6rem;
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
-}
-
-@media (max-width: 800px) {
-  .species-view-info {
-    flex-direction: column;
   }
 }

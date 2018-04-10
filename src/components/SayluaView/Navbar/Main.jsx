@@ -27,8 +27,8 @@ export default class Navbar extends Component {
               </Link>
             </div>
             <div className="navbar-block">
-              <Link to="/species" className="navbar-link" title="Species Guide">
-                Species Guide
+              <Link to="/museum" className="navbar-link" title="Museum of Saylua">
+                Museum
               </Link>
             </div>
           </div>
