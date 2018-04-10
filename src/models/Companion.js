@@ -11,8 +11,12 @@ export default class Companion {
 
     this.species = args.species;
     this.coat = args.coat;
-    this.hp = args.hp;
-    this.energy = args.energy;
+    this.maxHealth = args.maxHealth || args.health;
+    this.maxStamina = args.maxStamina || args.stamina;
+    this.maxFocus = args.maxFocus || args.focus;
+    this.health = args.health;
+    this.stamina = args.stamina;
+    this.focus = args.focus;
     this.level = args.level;
   }
 

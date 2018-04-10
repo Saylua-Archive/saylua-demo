@@ -8,6 +8,35 @@
   flex-shrink: 1;
 }
 
+
+
+.bar-back {
+  position: relative;
+  height: 2.5rem;
+  background-color: var(--contentBgColor);
+  margin-top: .5rem;
+}
+
+.bar-back div {
+  position: absolute;
+  height: 100%;
+  padding-left: 4px;
+  line-height: 2.5rem;
+  color: var(--mainTextColor);
+}
+
+.bar-health-color {
+  background-color: var(--healthColor);
+}
+
+.bar-stamina-color {
+  background-color: var(--staminaColor);
+}
+
+.bar-focus-color {
+  background-color: var(--focusColor);
+}
+
 // The sidebar becomes horizontal at this width.
 @media (max-width: 800px) {
   .sidebar {

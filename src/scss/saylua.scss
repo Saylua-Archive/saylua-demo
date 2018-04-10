@@ -29,6 +29,10 @@
   --mainSoftestColor: $mainSoftestColor;
   --neutralColor: $neutralColor;
   --neutralDarkColor: $neutralDarkColor;
+
+  --healthColor: hsl(4, 72%, 62%);
+  --staminaColor: hsl(228, 72%, 62%);
+  --focusColor: hsl(55, 72%, 62%);
 }
 
 .theme-luaria {
@@ -47,6 +51,10 @@
   --mainSoftestColor: hsl(228, 40%, 90%);
   --neutralColor: hsl(218, 40%, 90%);
   --neutralDarkColor: hsl(218, 40%, 70%);
+
+  --healthColor: hsl(4, 72%, 32%);
+  --staminaColor: hsl(228, 72%, 32%);
+  --focusColor: hsl(55, 72%, 32%);
 }
 
 .theme-admin {
