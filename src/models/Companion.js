@@ -1,16 +1,24 @@
+import SpriteCoat from 'models/SpriteCoat';
+import SpriteSpecies from 'models/SpriteSpecies';
+
 export default class Companion {
   constructor(args) {
-    args = Object.assign({}, args);
+    args = Object.assign({
+      epithet: 'Mighty',
+      description: 'The bestest.',
+      bondingDay: (new Date()),
+      favoriteThings: [],
+    }, args);
     this.name = args.name;
     this.soulName = args.soulName || this.name.toLowerCase();
 
-    this.epithet = args.epithet || 'Mighty';
-    this.description = args.description || 'The bestest.';
-    this.bondingDay = args.bondingDay || (new Date());
-    this.favoriteThings = args.favoriteThings || [];
+    this.epithet = args.epithet;
+    this.description = args.description;
+    this.bondingDay = args.bondingDay;
+    this.favoriteThings = args.favoriteThings;
 
-    this.species = args.species;
-    this.coat = args.coat;
+    this.speciesId = args.speciesId || args.species.id;
+    this.coatId = args.coatId;
     this.maxHealth = args.maxHealth || args.health;
     this.maxStamina = args.maxStamina || args.stamina;
     this.maxFocus = args.maxFocus || args.focus;
@@ -20,8 +28,24 @@ export default class Companion {
     this.level = args.level;
   }
 
+  get species() {
+    return SpriteSpecies.fromId(this.speciesId);
+  }
+
+  get coat() {
+    return SpriteCoat.fromId(this.coatId);
+  }
+
+  coatName() {
+    return this.coat.fullName();
+  }
+
+  fullName() {
+    return `${this.name} the ${this.epithet} ${this.coatName()}`;
+  }
+
   imageUrl() {
-    return `/img/sprites/${this.species}/${this.coat}.png`;
+    return this.coat.imageUrl();
   }
 
   url() {
@@ -36,8 +60,8 @@ export default class Companion {
       description: this.description,
       bondingDay: this.bondingDay,
       favoriteThings: this.favoriteThings,
-      species: this.species,
-      coat: this.coat,
+      speciesId: this.speciesId,
+      coatId: this.coatId,
       hp: this.hp,
       energy: this.energy,
       level: this.level,
