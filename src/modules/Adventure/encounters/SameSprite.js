@@ -12,7 +12,7 @@ export class SameSprite extends Encounter {
 
   get img() {
     const newComp = randomCompanion(this._seed);
-    return newComp.imageUrl();
+    return { url: newComp.imageUrl(), tiny: true };
   }
 
   get choices() {
@@ -39,7 +39,7 @@ export class SameSpriteEnd extends Encounter {
 
   get img() {
     const newComp = randomCompanion(this._seed);
-    return newComp.imageUrl();
+    return { url: newComp.imageUrl(), tiny: true };
   }
 
   get choices() {
