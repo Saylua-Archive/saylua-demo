@@ -7,6 +7,9 @@ export const ADOPT = 'ADOPT';
 export const SET_ENCOUNTER = 'SET_ENCOUNTER';
 export const CLEAR_STATE = 'CLEAR_STATE';
 export const SET_THEME = 'SET_THEME';
+export const SET_AREA = 'SET_AREA';
+export const SET_STEPS = 'SET_STEPS';
+export const UPDATE_CONDITION = 'UPDATE_CONDITION';
 
 /*
  * action creators
@@ -35,6 +38,18 @@ export function setTheme(theme) {
   return { type: SET_THEME, theme };
 }
 
+export function setArea(area) {
+  return { type: SET_AREA, area };
+}
+
+export function setSteps(steps) {
+  return { type: SET_STEPS, steps };
+}
+
+export function updateCondition(condition) {
+  return { type: UPDATE_CONDITION, condition };
+}
+
 /*
  * reducers
  */
@@ -44,6 +59,8 @@ export const initialState = {
   activeCompanion: null,
   coins: 0,
   encounterId: 'start',
+  area: null,
+  steps: 100,
   encounterSeed: Date.now(),
   theme: 'day',
 };
@@ -74,6 +91,23 @@ export function sayluaApp(state = initialState, action) {
       return Object.assign({}, state, {
         theme: action.theme,
       });
+    case SET_AREA:
+      return Object.assign({}, state, {
+        area: action.area,
+      });
+    case SET_STEPS:
+      return Object.assign({}, state, {
+        steps: action.steps,
+      });
+    case UPDATE_CONDITION: {
+      const newComp = Object.assign({}, state.activeCompanion);
+      newComp.health += (action.condition && action.condition.health) || 0;
+      newComp.stamina += (action.condition && action.condition.stamina) || 0;
+      newComp.focus += (action.condition && action.condition.focus) || 0;
+      return Object.assign({}, state, {
+        activeCompanion: newComp,
+      });
+    }
     default:
       return state;
   }
