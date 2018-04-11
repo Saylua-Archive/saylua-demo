@@ -53,7 +53,7 @@ class Adventure extends Component {
       this.props.setArea(Areas.Wanderlin);
       this.props.setSteps(100);
     } else if (this.props.steps < 1 && this.props.area.title === Areas.Wanderlin.title) {
-      this.props.setArea(Areas.Corvinwood);
+      this.props.setArea(Areas.Korvinwood);
       this.props.setSteps(100);
     }
     const choices = encounter.choices;
