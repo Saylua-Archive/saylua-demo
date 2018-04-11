@@ -20,7 +20,7 @@ import {
   SaylianFleuran, SaylianVela, SaylianEydrun, SaylianGorbin, SaylianLoxi,
 } from './SaylianCoat';
 import { DawnishVela } from './DawnishCoat';
-import { EarthenSenrix } from './EarthenCoat';
+import { EarthenArko, EarthenSenrix } from './EarthenCoat';
 import { CalicoFleuran } from './CalicoCoat';
 
 const coatList = [
@@ -34,16 +34,14 @@ const coatList = [
   new PiebaldSenrix(), new PiebaldFleuran(), new PiebaldVela(), new PiebaldEydrun(),
   new PiebaldGorbin(), new PiebaldLoxi(),
   new LuarianArko(), new LuarianChirling(), new LuarianNibian(), new LuarianGam(),
-  // new LuarianSenrix(),
-  new LuarianFleuran(), new LuarianVela(), new LuarianEydrun(),
-  new LuarianGorbin(),
-  // new LuarianLoxi(),
+  new LuarianSenrix(), new LuarianFleuran(), new LuarianVela(), new LuarianEydrun(),
+  new LuarianGorbin(), new LuarianLoxi(),
   new SaylianArko(), new SaylianChirling(), new SaylianNibian(), new SaylianGam(),
   // new SaylianSenrix(),
   new SaylianFleuran(), new SaylianVela(), new SaylianEydrun(),
   new SaylianGorbin(), new SaylianLoxi(),
   new DawnishVela(),
-  new EarthenSenrix(),
+  new EarthenArko(), new EarthenSenrix(),
   new CalicoFleuran(),
 ];
 

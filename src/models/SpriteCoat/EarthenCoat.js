@@ -1,6 +1,6 @@
 import SpriteCoat, { CoatType } from './Main';
 
-import { Senrix } from 'models/SpriteSpecies';
+import { Arko, Senrix } from 'models/SpriteSpecies';
 
 
 export class EarthenCoat extends CoatType {
@@ -8,6 +8,14 @@ export class EarthenCoat extends CoatType {
     super();
     this.name = 'Earthen';
     this.canonName = 'earthen';
+  }
+}
+
+export class EarthenArko extends SpriteCoat {
+  constructor() {
+    super();
+    this.coat = new EarthenCoat();
+    this.species = new Arko();
   }
 }
 
