@@ -28,7 +28,7 @@ class SpriteProfile extends Component {
 
     return (
       <SayluaView title={`${companion.name}'s Profile`}>
-        <h1>{companion.name} the {companion.epithet} {companion.coat} {companion.species}</h1>
+        <h1>{companion.fullName()}</h1>
         <div id="pet-room">
           <div className="pet-room-background" style={{ backgroundImage: 'url(/img/backgrounds/luaria.jpg)' }} />
           <div className="pet" id="pet-image-container">
@@ -64,11 +64,11 @@ class SpriteProfile extends Component {
                 </tr>
                 <tr>
                   <td>Species</td>
-                  <td>{ companion.species }</td>
+                  <td>{ companion.species.name }</td>
                 </tr>
                 <tr>
                   <td>Coat</td>
-                  <td>{ companion.coat }</td>
+                  <td>{ companion.coat.name }</td>
                 </tr>
                 <tr>
                   <td>Bonding Day</td>
