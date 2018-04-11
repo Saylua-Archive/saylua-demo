@@ -6,7 +6,6 @@ export class Area {
   }
 }
 
-
 const Gardenia = new Area({
   title: "The Gardenia Plains",
   background: "sayleus",
