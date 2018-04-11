@@ -51,7 +51,7 @@ function DenPet(props) {
         alt={companion.name}
         src={companion.imageUrl()}
       />
-      <div>{companion.name} the {companion.coat} {companion.species}</div>
+      <div>{companion.fullName()}</div>
     </div>
   );
 }

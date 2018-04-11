@@ -11,7 +11,7 @@ import './SpeciesView.css';
 export default class SpeciesView extends Component {
   render() {
     const speciesParam = this.props.match.params.species.toLowerCase();
-    const species = SpriteSpecies.byCanonName(speciesParam);
+    const species = SpriteSpecies.fromCanonName(speciesParam);
     if (!species) {
       return <NotFound />;
     }
@@ -60,10 +60,10 @@ export default class SpeciesView extends Component {
         <div style={{ width: '100%', float: 'left' }}>
           <h2>Discovered {species.name} Coats</h2>
           <div className="coat-grid">
-            { species.coats.map(coat => (
-              <Link to={`/coats?coat=${coat}`} className="coat-grid-item">
-                <img src={species.imageUrl(coat)} alt={species.name} />
-                { coat } { species.name }
+            { species.coats().map(coat => (
+              <Link to={`/coats?coat=${coat.variant.canonName}`} className="coat-grid-item">
+                <img src={coat.imageUrl()} alt={coat.fullName()} />
+                { coat.fullName() }
               </Link>
             ))}
           </div>

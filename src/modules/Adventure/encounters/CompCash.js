@@ -7,7 +7,7 @@ export default class CompCash extends Encounter {
     const newComp = randomCompanion(this._seed);
     if (this._state.activeCompanion) {
       return (`${this._state.activeCompanion.name} is exploring the area around the trail.
-        Suddenly, out bursts a wild ${newComp.species}!
+        Suddenly, out bursts a wild ${newComp.coatName()}!
         You can tell by the look on their face that they'd love to join you, but that they'll need ${
         sRandomInt(this._seed + 1, 100, 2000)} coins in order to do so.`);
     } else {
