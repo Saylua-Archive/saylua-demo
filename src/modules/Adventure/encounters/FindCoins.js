@@ -1,4 +1,4 @@
-import { addCoinsFunc } from '../encounterFuncs';
+import { addCoinsFunc, updateConditionFunc } from '../encounterFuncs';
 import { Encounter, Choice } from './Models';
 import { sRandomInt } from 'utils';
 
@@ -15,7 +15,7 @@ export default class FindCoins extends Encounter {
   get choices() {
     return [
       new Choice("Take them", addCoinsFunc(sRandomInt(this._seed, 100)), this._seed),
-      new Choice("Leave them", () => {}),
+      new Choice("Leave them", updateConditionFunc({ stamina: -5 })),
     ];
   }
 }
