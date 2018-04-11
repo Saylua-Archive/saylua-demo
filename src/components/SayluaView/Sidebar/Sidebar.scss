@@ -22,16 +22,16 @@
 
 .bar-back {
   position: relative;
-  height: 2.5rem;
+  height: 1.5em;
   background-color: var(--contentBgColor);
-  margin-top: .5rem;
+  margin-top: .25em;
 }
 
 .bar-back div {
   position: absolute;
   height: 100%;
-  padding-left: .4rem;
-  line-height: 2.5rem;
+  padding-left: .5rem;
+  line-height: 1.5em;
   color: var(--mainTextColor);
 }
 
