@@ -30,24 +30,26 @@ class Sidebar extends Component {
                     src={companion.imageUrl()}
                   />
                 </Link>
-                <StatBar
-                  label="Health"
-                  color="health-color"
-                  value={companion.health}
-                  max={companion.maxHealth}
-                />
-                <StatBar
-                  label="Stamina"
-                  color="stamina-color"
-                  value={companion.stamina}
-                  max={companion.maxStamina}
-                />
-                <StatBar
-                  label="Focus"
-                  color="focus-color"
-                  value={companion.focus}
-                  max={companion.maxFocus}
-                />
+                <div>
+                  <StatBar
+                    label="Health"
+                    color="health-color"
+                    value={companion.health}
+                    max={companion.maxHealth}
+                  />
+                  <StatBar
+                    label="Stamina"
+                    color="stamina-color"
+                    value={companion.stamina}
+                    max={companion.maxStamina}
+                  />
+                  <StatBar
+                    label="Focus"
+                    color="focus-color"
+                    value={companion.focus}
+                    max={companion.maxFocus}
+                  />
+                </div>
               </div>
             }
             <p>You are <Link to="/user/tiff/">Tiff</Link></p>
@@ -81,7 +83,7 @@ function StatBar(args) {
           width,
         }}
       />
-      <div>{args.label}</div>
+      <div className="bar-label">{args.label}</div>
     </div>
   );
 }
