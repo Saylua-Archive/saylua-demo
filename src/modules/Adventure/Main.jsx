@@ -76,20 +76,19 @@ class Adventure extends Component {
         index={index}
       />);
     }
-    if (typeof encounter.img === 'string') {
-      encounterImgs.push(<div><img
-        src={encounter.img}
-        alt="Encounter"
-      /></div>);
-    } else if (Array.isArray(encounter.img)) {
-      for (let i = 0; i < encounter.img.length; i++) {
-        encounterImgs.push(<div>
-          <img
-            src={encounter.img[i]}
-            alt="Encounter"
-          />
-        </div>);
-      }
+    let imgKeys = encounter.img;
+    if (imgKeys && !Array.isArray(imgKeys)) {
+      imgKeys = [imgKeys];
+    }
+    imgKeys = imgKeys || [];
+    for (let i = 0; i < imgKeys.length; i++) {
+      encounterImgs.push(<div>
+        <img
+          src={imgKeys[i].url}
+          alt="Encounter"
+          className={imgKeys[i].tiny ? "tiny-encounter-image" : ""}
+        />
+      </div>);
     }
     const mainText = encounter.mainText;
     return (
