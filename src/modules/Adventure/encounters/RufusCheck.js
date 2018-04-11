@@ -9,7 +9,7 @@ export class RufusCheck extends Encounter {
     const experiment = seedChoice(this._seed + 1, ["hat", "treat", "toy"]);
     const text = `"Hello there! You're just the person I wanted to see!"
 
-"I've got a new ${experiment}, specially made for the discerning ${newComp.coat} ${newComp.species}.
+"I've got a new ${experiment}, specially made for the discerning ${newComp.coatName()}.
       Do you happen to know any sprites who'd like to give it a try? I'll make it worth your while..."`;
     return text;
   }

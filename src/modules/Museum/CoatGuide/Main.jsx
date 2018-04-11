@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import coatList from 'models/SpriteCoat/coatList';
+import { coatList } from 'models/SpriteCoat';
 import SayluaView from 'components/SayluaView';
 
 import './CoatGuide.css';

@@ -12,12 +12,9 @@ export default class Start extends Encounter {
 
   get choices() {
     return [
-      new Choice(`${this._starters[0].name} the ${
-        this._starters[0].species}`, adoptFunc(this._starters[0])),
-      new Choice(`${this._starters[1].name} the ${
-        this._starters[1].species}`, adoptFunc(this._starters[1])),
-      new Choice(`${this._starters[2].name} the ${
-        this._starters[2].species}`, adoptFunc(this._starters[2])),
+      new Choice(`${this._starters[0].fullName()}`, adoptFunc(this._starters[0])),
+      new Choice(`${this._starters[1].fullName()}`, adoptFunc(this._starters[1])),
+      new Choice(`${this._starters[2].fullName()}`, adoptFunc(this._starters[2])),
     ];
   }
 
