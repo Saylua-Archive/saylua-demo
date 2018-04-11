@@ -7,7 +7,7 @@ export default class Start extends Encounter {
   }
 
   get img() {
-    return this._starters.map(s => s.imageUrl());
+    return this._starters.map(s => ({ url: s.imageUrl(), tiny: true }));
   }
 
   get choices() {

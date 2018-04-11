@@ -13,7 +13,7 @@ export class VeraCheck extends Encounter {
     return text;
   }
   get img() {
-    return '/img/npcs/vera-everly.png';
+    return { url: '/img/npcs/vera-everly.png', tiny: false };
   }
   get choices() {
     const targetComp = seedChoice(this._seed, this._state.companions);
@@ -37,7 +37,10 @@ export class VeraCheckEnd extends Encounter {
   }
   get img() {
     const targetComp = new Companion(seedChoice(this._seed, this._state.companions));
-    return [targetComp.imageUrl(), '/img/npcs/vera-everly.png'];
+    return [
+      { url: targetComp.imageUrl(), tiny: true },
+      { url: '/img/npcs/vera-everly.png', tiny: false },
+    ];
   }
   get choices() {
     return [new Choice("Thank you!", new Outcome(addCoinsFunc(300)))];
