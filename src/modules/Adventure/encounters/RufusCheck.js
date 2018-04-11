@@ -14,7 +14,7 @@ export class RufusCheck extends Encounter {
     return text;
   }
   get img() {
-    return '/img/npcs/rufus-scippio.png';
+    return { url: '/img/npcs/rufus-scippio.png', tiny: false };
   }
   get choices() {
     const newComp = randomCompanion(this._seed);
@@ -47,7 +47,10 @@ export class RufusCheckEnd extends Encounter {
   }
   get img() {
     const newComp = randomCompanion(this._seed);
-    return [newComp.imageUrl(), '/img/npcs/rufus-scippio.png'];
+    return [
+      { url: newComp.imageUrl(), tiny: true },
+      { url: '/img/npcs/rufus-scippio.png', tiny: false },
+    ];
   }
   get choices() {
     return [new Choice("Thanks!", new Outcome(addCoinsFunc(1000)))];

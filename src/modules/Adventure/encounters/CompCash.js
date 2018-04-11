@@ -17,7 +17,7 @@ export default class CompCash extends Encounter {
   }
   get img() {
     const newComp = randomCompanion(this._seed);
-    return newComp.imageUrl();
+    return { url: newComp.imageUrl(), tiny: true };
   }
   get choices() {
     const newComp = randomCompanion(this._seed);
