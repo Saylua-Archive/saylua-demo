@@ -22,13 +22,33 @@ class Sidebar extends Component {
         <div id="sidebar" className="sidebar">
           <div id="user-info-section" className="sidebar-section">
             {companion &&
-              <Link to={companion.url()}>
-                <img
-                  className="petView"
-                  alt={companion.name}
-                  src={companion.imageUrl()}
+              <div>
+                <Link to={companion.url()}>
+                  <img
+                    className="petView"
+                    alt={companion.name}
+                    src={companion.imageUrl()}
+                  />
+                </Link>
+                <StatBar
+                  label="Health"
+                  color="health-color"
+                  value={companion.health}
+                  max={companion.maxHealth}
                 />
-              </Link>
+                <StatBar
+                  label="Stamina"
+                  color="stamina-color"
+                  value={companion.stamina}
+                  max={companion.maxStamina}
+                />
+                <StatBar
+                  label="Focus"
+                  color="focus-color"
+                  value={companion.focus}
+                  max={companion.maxFocus}
+                />
+              </div>
             }
             <p>You are <Link to="/user/tiff/">Tiff</Link></p>
             {companion &&
@@ -49,6 +69,21 @@ class Sidebar extends Component {
       </div>
     );
   }
+}
+
+function StatBar(args) {
+  const width = `${(args.value / args.max) * 100}%`;
+  return (
+    <div className="bar-back">
+      <div
+        className={`bar-main bar-${args.color}`}
+        style={{
+          width,
+        }}
+      />
+      <div>{args.label}</div>
+    </div>
+  );
 }
 
 export default connect(
