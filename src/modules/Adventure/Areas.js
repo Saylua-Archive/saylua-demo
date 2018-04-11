@@ -12,8 +12,8 @@ const Gardenia = new Area({
   background: "sayleus",
 });
 
-const Corvinwood = new Area({
-  title: "Corvinwood Grove",
+const Korvinwood = new Area({
+  title: "Korvinwood Grove",
   background: "luaria",
 });
 
@@ -24,7 +24,7 @@ const Wanderlin = new Area({
 
 const Areas = {
   Gardenia,
-  Corvinwood,
+  Korvinwood,
   Wanderlin,
 };
 
