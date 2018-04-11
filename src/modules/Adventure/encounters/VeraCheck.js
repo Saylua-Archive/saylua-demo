@@ -30,8 +30,8 @@ export class VeraCheck extends Encounter {
 
 export class VeraCheckEnd extends Encounter {
   get mainText() {
-    const targetComp = seedChoice(this._seed, this._state.companions);
-    return (`Vera slowly walks around ${targetComp.name}, inspecting the ${targetComp.species
+    const targetComp = new Companion(seedChoice(this._seed, this._state.companions));
+    return (`Vera slowly walks around ${targetComp.name}, inspecting the ${targetComp.coatName()
     } from every angle. "You've been taking really good care of ${targetComp.name
     }! Here, have this reward for all your hard work! I know you'll spend it wisely!"`);
   }

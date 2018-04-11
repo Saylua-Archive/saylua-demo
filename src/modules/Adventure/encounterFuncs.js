@@ -31,11 +31,11 @@ export function randomName(seed) {
 export function randomCompanion(seed, list) {
   const pickList = list || speciesList;
   const compSpecies = seedChoiceWeighted(seed, pickList);
-  const compCoat = seedChoiceWeighted(seed + 1, compSpecies.coats);
+  const compCoat = seedChoice(seed + 1, compSpecies.coats());
   return new Companion({
     name: randomName(seed + 2),
-    species: compSpecies.canonName,
-    coat: compCoat,
+    species: compSpecies,
+    coatId: compCoat.id,
     health: sRandomInt(seed + 3, 20),
     stamina: sRandomInt(seed + 4, 20),
     focus: sRandomInt(seed + 5, 20),
