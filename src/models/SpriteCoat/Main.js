@@ -1,6 +1,8 @@
 import SpriteSpecies from 'models/SpriteSpecies';
 import _coatList from './coatListRaw';
 
+export { coatVariantsList } from './coatListRaw';
+
 export default class SpriteCoat {
   constructor(args) {
     args = Object.assign({}, args);
@@ -29,7 +31,11 @@ export default class SpriteCoat {
     return `${this.variant.name} ${this.species.name}`;
   }
 
-  imageUrl(coat) {
+  url() {
+    return `/coats#${this.variant.canonName}`;
+  }
+
+  imageUrl() {
     return `/img/sprites/${this.species.canonName}/${this.variant.canonName}.png`;
   }
 }
@@ -43,4 +49,8 @@ SpriteCoat.fromId = (id) => {
 
 SpriteCoat.bySpecies = (canonName) => {
   return coatList.filter(coat => (canonName === coat.species));
+};
+
+SpriteCoat.byVariant = (canonName) => {
+  return coatList.filter(coat => (canonName === coat.variant.canonName));
 };

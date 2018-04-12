@@ -1,0 +1,32 @@
+.sprite-header {
+  align-items: flex-end;
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 6rem;
+  padding: 0 0.8rem;
+
+  align-items: flex-end;
+  justify-content: flex-start;
+
+  .sprite-header-icon {
+    overflow: hidden;
+    height: 3.5rem;
+    transition: height 1s;
+    transition-delay: 0.1s;
+    margin-right: 0.8rem;
+
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    &:hover {
+      height: 5rem;
+    }
+
+    img {
+      width: 6rem;
+      height: 6rem;
+    }
+  }
+}
