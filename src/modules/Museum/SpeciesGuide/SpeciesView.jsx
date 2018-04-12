@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 
 import SayluaView from 'components/SayluaView';
 import SpriteSpecies, { speciesList } from 'models/SpriteSpecies';
@@ -61,7 +61,7 @@ export default class SpeciesView extends Component {
           <h2>Discovered {species.name} Coats</h2>
           <div className="coat-grid">
             { species.coats().map(coat => (
-              <Link to={`/coats?coat=${coat.variant.canonName}`} className="coat-grid-item">
+              <Link to={`/coats#${coat.variant.canonName}`} className="coat-grid-item">
                 <img src={coat.imageUrl()} alt={coat.fullName()} />
                 { coat.fullName() }
               </Link>

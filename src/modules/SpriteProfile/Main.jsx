@@ -64,11 +64,11 @@ class SpriteProfile extends Component {
                 </tr>
                 <tr>
                   <td>Species</td>
-                  <td>{ companion.species.name }</td>
+                  <td><Link to={companion.species.url()}>{ companion.species.name }</Link></td>
                 </tr>
                 <tr>
                   <td>Coat</td>
-                  <td>{ companion.coat.name }</td>
+                  <td><Link to={companion.coat.url()}>{ companion.coat.name() }</Link></td>
                 </tr>
                 <tr>
                   <td>Bonding Day</td>
