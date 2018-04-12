@@ -30,40 +30,44 @@ class Sidebar extends Component {
                     src={companion.imageUrl()}
                   />
                 </Link>
-                <StatBar
-                  label="Health"
-                  color="health-color"
-                  value={companion.health}
-                  max={companion.maxHealth}
-                />
-                <StatBar
-                  label="Stamina"
-                  color="stamina-color"
-                  value={companion.stamina}
-                  max={companion.maxStamina}
-                />
-                <StatBar
-                  label="Focus"
-                  color="focus-color"
-                  value={companion.focus}
-                  max={companion.maxFocus}
-                />
+                <div>
+                  <StatBar
+                    label="Health"
+                    color="health-color"
+                    value={companion.health}
+                    max={companion.maxHealth}
+                  />
+                  <StatBar
+                    label="Stamina"
+                    color="stamina-color"
+                    value={companion.stamina}
+                    max={companion.maxStamina}
+                  />
+                  <StatBar
+                    label="Focus"
+                    color="focus-color"
+                    value={companion.focus}
+                    max={companion.maxFocus}
+                  />
+                </div>
               </div>
             }
-            <p>You are <Link to="/user/tiff/">Tiff</Link></p>
-            {companion &&
+            <div className="sidebar-aligner">
+              <p>You are <Link to="/user/tiff/">Tiff</Link></p>
+              {companion &&
+                <p>
+                  Your companion is <Link to={companion.url()}>{companion.name}</Link>
+                </p>
+              }
               <p>
-                Your companion is <Link to={companion.url()}>{companion.name}</Link>
+                <img src="/img/icons/weather_clouds.png" alt="coins" />
+                <Link to="/bank/"> { pluralize(this.props.coins, 'Coin') } </Link>
               </p>
-            }
-            <p>
-              <img src="/img/icons/weather_clouds.png" alt="coins" />
-              <Link to="/bank/"> { pluralize(this.props.coins, 'Coin') } </Link>
-            </p>
-            <p>
-              <img src="/img/icons/star_1.png" alt="premium coins" />
-              <Link to="/bank/"> { pluralize(1, 'Star Shard') } </Link>
-            </p>
+              <p>
+                <img src="/img/icons/star_1.png" alt="premium coins" />
+                <Link to="/bank/"> { pluralize(1, 'Star Shard') } </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -81,7 +85,7 @@ function StatBar(args) {
           width,
         }}
       />
-      <div>{args.label}</div>
+      <div className="bar-label">{args.label}</div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as Mousetrap from 'mousetrap';
 
 import BlockGrid from './BlockGrid';
 
@@ -9,15 +10,21 @@ export default class BlocksInterface extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.gameKeys = ['w', 'a', 's', 'd', 'p', 'left', 'right', 'up', 'down', 'space'];
   }
 
   componentWillMount() {
     // Make sure that when our model updates, we do too.
     this.props.model.bindComponent(this);
+  }
 
+  componentDidMount() {
     // Match keyboard presses to events.
-    this.eventListener = window.addEventListener('keydown', this.handleKeydown.bind(this));
-    this.eventListener = window.addEventListener('keyup', this.handleKeyup.bind(this));
+    Mousetrap.bind(this.gameKeys, event => this.handleKeydown(event), 'keydown');
+    Mousetrap.bind(this.gameKeys, event => this.handleKeyup(event), 'keyup');
+  }
+  componentWillUnmount() {
+    Mousetrap.unbind(this.gameKeys);
   }
 
   handleKeydown(event) {
