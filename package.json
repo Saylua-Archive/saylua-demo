@@ -2,6 +2,7 @@
   "name": "saytest",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://saylua.github.io/",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
@@ -58,7 +59,9 @@
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "node scripts/build.js",
     "build": "npm-run-all build-css build-js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -b master -r https://github.com/saylua/saylua.github.io.git"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -109,6 +112,7 @@
     "eslint-import-resolver-webpack": "^0.8.4",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0"
+    "eslint-plugin-react": "^7.7.0",
+    "gh-pages": "^1.1.0"
   }
 }
