@@ -6,7 +6,7 @@ $mainBodyWidthResponsive: 98%;
 
 %content-width {
   width: $mainBodyWidth;
-  max-width: 120rem; // keeps rems zooming out from looking weird.
+  max-width: 128rem; // keeps rems zooming out from looking weird.
   margin: auto;
 }
 
