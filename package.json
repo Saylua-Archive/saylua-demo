@@ -59,7 +59,9 @@
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "node scripts/build.js",
     "build": "npm-run-all build-css build-js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -b master -r https://github.com/saylua/saylua.github.io.git"
   },
   "jest": {
     "collectCoverageFrom": [
