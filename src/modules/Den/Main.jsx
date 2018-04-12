@@ -32,7 +32,9 @@ class Den extends Component {
     return (
       <SayluaView>
         <h2>Your Den</h2>
-        {denPets}
+        <div className="den-container">
+          {denPets}
+        </div>
       </SayluaView>
     );
   }

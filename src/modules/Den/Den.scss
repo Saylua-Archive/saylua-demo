@@ -1,7 +1,11 @@
 .den-pet {
   display: block;
   width: 20%;
-  float: left;
   padding: 1em 1.6rem;
   text-align: center;
+}
+
+.den-container {
+  display: flex;
+  flex-flow: row wrap;
 }
