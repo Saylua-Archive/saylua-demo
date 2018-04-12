@@ -216,12 +216,10 @@ const coatListRaw = [
     variant: coatVariants.saylian,
     speciesCanonName: 'gam',
   },
-  /*
   {
     variant: coatVariants.saylian,
     speciesCanonName: 'senrix',
   },
-  */
   {
     variant: coatVariants.saylian,
     speciesCanonName: 'fleuran',
@@ -256,7 +254,6 @@ const coatListRaw = [
     variant: coatVariants.earthen,
     speciesCanonName: 'senrix',
   },
-
   {
     variant: coatVariants.calico,
     speciesCanonName: 'fleuran',
