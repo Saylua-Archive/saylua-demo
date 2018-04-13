@@ -6,7 +6,7 @@ export default class Companion {
     args = Object.assign({
       epithet: 'Mighty',
       description: 'The bestest.',
-      bondingDay: (new Date()),
+      bondingDay: (new Date()).toDateString(),
       favoriteThings: [],
     }, args);
     this.name = args.name;
