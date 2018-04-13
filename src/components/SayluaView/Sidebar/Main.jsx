@@ -76,7 +76,7 @@ class Sidebar extends Component {
 }
 
 function StatBar(args) {
-  const width = `${(args.value / args.max) * 100}%`;
+  const width = `${Math.max((args.value / args.max) * 100, 0)}%`;
   return (
     <div className="bar-back">
       <div
