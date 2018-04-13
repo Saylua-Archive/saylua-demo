@@ -19,11 +19,16 @@ export class RufusCheck extends Encounter {
   get choices() {
     const newComp = randomCompanion(this._seed);
     const choices = [];
-    if (this._state.activeCompanion
-      && this._state.activeCompanion.species === newComp.species
-      && this._state.activeCompanion.coat === newComp.coat) {
+    let candidate = null;
+    for (let i = 0; i < this._state.companions.length && !candidate; i++) {
+      if (this._state.companions[i].species === newComp.species
+      && this._state.companions[i].coat === newComp.coat) {
+        candidate = this._state.companions[i];
+      }
+    }
+    if (candidate) {
       choices.push(new Choice(
-        `I'm sure ${this._state.activeCompanion.name} would love to give it a try!`,
+        `I'm sure ${candidate.name} would love to give it a try!`,
         new Outcome(() => {}, "rufusCheckEnd"),
       ));
     }
@@ -36,11 +41,11 @@ export class RufusCheckEnd extends Encounter {
   get mainText() {
     const newComp = randomCompanion(this._seed);
     const expResults = [
-      `It might not be the most stylish hat ever made, but it certainly is ${newComp.species
+      `It might not be the most stylish hat ever made, but it certainly is ${newComp.species.name
       }-tailored. You couldn't imagine it working on any other sprite. Rufus grins and gives you the money.`,
-      `The ${newComp.species} chomps down the treat in one bite. You're not sure how much data he got, but ` +
+      `The ${newComp.species.name} chomps down the treat in one bite. You're not sure how much data he got, but ` +
         `Rufus looks excited. He scribbles something down in his journal and hands you a bag of coins.`,
-      `Rufus watches carefully as the ${newComp.species
+      `Rufus watches carefully as the ${newComp.species.name
       } bats the toy around. He looks satisfied and hands over your payment.`,
     ];
     return seedChoice(this._seed + 1, expResults);
