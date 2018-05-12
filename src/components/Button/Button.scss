@@ -1,0 +1,30 @@
+button.saylua-button, a.button {
+  font-size: 1em;
+  line-height: 150%;
+  display: inline-block;
+  width: auto;
+  margin: 0.25em 0.4rem;
+  padding: 0.25em 1.6rem;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid var(--accentColor);
+  border-radius: 15px;
+  background-color: var(--accentColor);
+
+  &:hover {
+    text-decoration: none;
+    border: 1px solid var(--mainColor);
+    background-color: var(--mainColor);
+  }
+}
+
+a.subtle-button, button.subtle-button {
+  color: var(--accentColor);
+  background-color: var(--contentBgColor);
+
+  &:hover {
+    text-decoration: none;
+    border: 1px solid var(--accentColor);
+    background-color: var(--mainSofterColor);
+  }
+}
