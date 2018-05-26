@@ -6,6 +6,7 @@ import { setTheme } from '../../../store';
 
 import './Header.css';
 
+
 const mapStateToProps = ({ theme }) => ({ theme });
 
 const mapDispatchToProps = (dispatch) => {
@@ -35,21 +36,25 @@ class Header extends Component {
   }
 
   render() {
+    let nextIcon = 'far fa-fw fa-moon';
+    let nextTheme = 'luarian';
+
+    if (this.props.theme === 'luarian') {
+      nextIcon = 'fa fa-fw fa-adjust';
+      nextTheme = 'dawnish';
+    } else if (this.props.theme === 'dawnish') {
+      nextIcon = 'far fa-fw fa-sun';
+      nextTheme = 'saylian';
+    }
+
     return (
       <div id="header" className="header">
         <Link to="/" className="logo" title="Logo">
           <img id="logo-image" src="/img/logo.png" alt="Saylua" title="Saylua" />
         </Link>
-        {
-          this.props.theme === 'night' ?
-            <button className="theme-switcher" onClick={this.setTheme.bind(this, 'day')}>
-              <i className="far fa-fw fa-moon" aria-hidden="true" />
-            </button>
-          :
-            <button className="theme-switcher" onClick={this.setTheme.bind(this, 'night')}>
-              <i className="far fa-fw fa-sun" aria-hidden="true" />
-            </button>
-        }
+        <button className="theme-switcher" onClick={this.setTheme.bind(this, nextTheme)}>
+          <i className={nextIcon} aria-hidden="true" />
+        </button>
       </div>
     );
   }
