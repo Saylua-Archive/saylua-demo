@@ -34,7 +34,7 @@
   --focusColor: hsl(55, 72%, 62%);
 }
 
-.theme-luaria {
+[data-theme='luarian'] {
   --bgTextColor: hsl(218, 5%, 80%);
   --mainBgColor: hsl(220, 15%, 12%);
   --contentBgColor: hsl(220, 15%, 17%);
@@ -57,7 +57,26 @@
   --focusColor: hsl(55, 72%, 32%);
 }
 
-.theme-admin {
+[data-theme='dawnish'] {
+  --bgTextColor: hsl(260, 5%, 80%);
+  --mainBgColor: hsl(260, 5%, 15%);
+  --emphasisBgColor: hsl(280, 15%, 95%);
+
+  --contentBgColor: hsl(240, 5%, 80%);
+  --mainTextColor: hsl(0, 0%, 13%);
+  --softTextColor: hsl(200, 10%, 30%);
+
+  --mainColor: hsl(270, 50%, 25%);
+  --mainDarkColor: hsl(270, 40%, 20%);
+  --mainDarkerColor: hsl(270, 40%, 15%);
+  --mainSoftColor: hsl(270, 45%, 32%);
+  --mainSofterColor: hsl(270, 42%, 70%);
+  --mainSoftestColor: hsl(270, 40%, 90%);
+  --neutralColor: hsl(280, 20%, 77%);
+  --neutralDarkColor: hsl(280, 15%, 70%);
+}
+
+[data-theme='admin'] {
   --mainColor: hsl(180, 2%, 22%);
   --mainDarkColor: hsl(0, 0%, 13%);
   --mainDarkerColor: hsl(0, 0%, 0%);

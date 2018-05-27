@@ -1,0 +1,42 @@
+$wheelHeight: 300px;
+
+.slots {
+  width: 100%;
+  max-width: 600px;
+  height: $wheelHeight;
+  margin: auto;
+  display: flex;
+}
+
+.slots-input {
+  width: 100%;
+  padding: 1em 1.6rem;
+  text-align: center;
+}
+
+.wheel {
+  flex-grow: 1;
+  float: left;
+  height: 100%;
+  overflow: hidden;
+}
+
+.wheel .wheel-inner-wrapper {
+  transform: translateY(0);
+  width: 100%;
+  transition: 2s transform ease-in-out;
+}
+
+.wheel .slot {
+  font-size: 20rem;
+  text-align: center;
+  line-height: $wheelHeight;
+  width: 100%;
+  height: $wheelHeight;
+}
+
+@media (max-width: 480px) {
+  .wheel .slot {
+    font-size: 15rem;
+  }
+}

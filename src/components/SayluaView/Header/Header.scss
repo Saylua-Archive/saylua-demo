@@ -10,7 +10,7 @@
   color: hsl(0, 0%, 100%);
   background-color: var(--mainSofterColor);
   background-image: url('/img/backgrounds/sayleus.jpg');
-  background-position: 0 80%;
+  background-position: 0 75%;
   background-size: cover;
 
   flex-shrink: 0;
@@ -38,7 +38,7 @@
   padding: 0.8rem 1.2rem 0.6rem 0.8rem;
   color: hsl(0, 0%, 100%);
   border-radius: 0 0 0 16px;
-  background-color: hsla(255, 255, 255, 0.4);
+  background-color: hsla(255, 255, 255, 0.3);
   border: 0;
 }
 
@@ -56,7 +56,14 @@
   }
 }
 
-.theme-luaria {
+[data-theme='dawnish'] {
+  .header {
+    background-image: url('/img/backgrounds/dawnlands.jpg');
+    background-position: 0 55%;
+  }
+}
+
+[data-theme='luarian'] {
   .header {
     background-image: url('/img/backgrounds/luaria.jpg');
     background-position: 0 40%;

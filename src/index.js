@@ -18,12 +18,12 @@ store.subscribe(() => {
   const previousTheme = currentTheme;
   const currentStore = store.getState();
   if (currentStore.theme !== previousTheme) {
-    document.body.classList.toggle('theme-luaria', currentStore.theme === 'night');
+    document.body.setAttribute('data-theme', currentStore.theme);
   }
   localStorage.setItem('sayluaState', JSON.stringify(currentStore));
 });
 
-document.body.classList.toggle('theme-luaria', store.getState().theme === 'night');
+document.body.setAttribute('data-theme', store.getState().theme);
 
 ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 registerServiceWorker();
