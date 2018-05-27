@@ -1,8 +1,9 @@
 import moment from 'moment';
 
-// Return a random integer from 1 to max, inclusive
-export function randInt(max) {
-  return Math.floor((Math.random() * max) + 1);
+// Return a random integer from min (inclusive) to max (inclusive)
+export function randomInt(max, min) {
+  min = min || 0;
+  return Math.floor((Math.random() * ((max - min) + 1)) + min);
 }
 
 export function chooseWeighted(options) {
@@ -18,10 +19,6 @@ export function chooseWeighted(options) {
     target -= options[index].weight || 1;
   }
   return options[index].value || options[index];
-}
-
-export function check(dice, goal) {
-  return randInt(dice) >= goal;
 }
 
 export function canonize(name) {

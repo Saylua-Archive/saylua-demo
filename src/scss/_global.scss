@@ -11,7 +11,7 @@ html {
   word-wrap: break-word;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 840px) {
   html {
     font-size: 50%;
   }
@@ -58,7 +58,7 @@ h1 {
   color: var(--mainDarkColor);
 }
 
-.theme-luaria h1 {
+[data-theme='luarian'] h1 {
   color: var(--mainSofterColor);
 }
 

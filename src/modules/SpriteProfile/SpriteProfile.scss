@@ -12,6 +12,7 @@
     background-position: bottom;
     background-size: cover;
     box-shadow: 8rem 8rem 12rem var(--contentBgColor) inset, -8rem -8rem 12rem var(--contentBgColor) inset;
+    transition: box-shadow 0.5s ease-in-out;
   }
 
   .mini-small {
@@ -71,7 +72,7 @@
     width: 100%;
   }
 
-  @media(max-width: 500px) {
+  @media (max-width: 480px) {
     width: 100%;
   }
 }
