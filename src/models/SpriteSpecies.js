@@ -9,6 +9,19 @@ export const REGIONS = {
   DAWNISH: 'Dawnish',
 };
 
+export const RARITIES = {
+  COMMON: 'common',
+  UNCOMMON: 'uncommon',
+  RARE: 'rare',
+  LEGENDARY: 'legendary',
+};
+
+export const TAGS = {
+  FLY: 'fly',
+  SWIM: 'swim',
+  FUR: 'fur',
+};
+
 let _speciesList = [];
 
 export default class SpriteSpecies {
@@ -29,6 +42,9 @@ export default class SpriteSpecies {
     // Weight is stored in pounds.
     this.weightMean = 50;
     this.weightVariance = 5;
+
+    // Tags for targeting
+    this.tags = [];
   }
 
   get id() {
@@ -60,6 +76,10 @@ export default class SpriteSpecies {
   coats() {
     return coatList.filter(coat => coat.species.canonName === this.canonName);
   }
+
+  hasTag(tag) {
+    return this.tags.includes(tag);
+  }
 }
 
 export class Arko extends SpriteSpecies {
@@ -84,6 +104,9 @@ export class Arko extends SpriteSpecies {
     // Weight is stored in pounds.
     this.weightMean = 50;
     this.weightVariance = 5;
+
+    // Tags for targeting
+    this.tags = [TAGS.FUR];
   }
 }
 
@@ -109,6 +132,9 @@ export class Chirling extends SpriteSpecies {
     // Weight is stored in pounds.
     this.sizeMean = 20;
     this.sizeVariance = 5;
+
+    // Tags for targeting
+    this.tags = [TAGS.FLY];
   }
 }
 
@@ -134,6 +160,9 @@ export class Nibian extends SpriteSpecies {
     // Weight is stored in pounds.
     this.sizeMean = 40;
     this.sizeVariance = 5;
+
+    // Tags for targeting
+    this.tags = [TAGS.SWIM];
   }
 }
 
@@ -158,6 +187,9 @@ export class Gam extends SpriteSpecies {
     // Weight is stored in pounds.
     this.sizeMean = 100;
     this.sizeVariance = 20;
+
+    // Tags for targeting
+    this.tags = [TAGS.FUR];
   }
 }
 
@@ -182,6 +214,9 @@ export class Senrix extends SpriteSpecies {
     // Weight is stored in pounds.
     this.sizeMean = 50;
     this.sizeVariance = 10;
+
+    // Tags for targeting
+    this.tags = [TAGS.FUR];
   }
 }
 
@@ -207,6 +242,9 @@ export class Fleuran extends SpriteSpecies {
     // Weight is stored in pounds.
     this.sizeMean = 80;
     this.sizeVariance = 20;
+
+    // Tags for targeting
+    this.tags = [TAGS.SWIM];
   }
 }
 
@@ -232,6 +270,9 @@ export class Vela extends SpriteSpecies {
     // Weight is stored in pounds.
     this.sizeMean = 35;
     this.sizeVariance = 10;
+
+    // Tags for targeting
+    this.tags = [TAGS.FLY, TAGS.FUR];
   }
 }
 
@@ -258,6 +299,9 @@ export class Eydrun extends SpriteSpecies {
     // Weight is stored in pounds.
     this.sizeMean = 150;
     this.sizeVariance = 20;
+
+    // Tags for targeting
+    this.tags = [TAGS.FUR];
   }
 }
 
@@ -284,6 +328,9 @@ export class Gorbin extends SpriteSpecies {
     // Weight is stored in pounds.
     this.sizeMean = 200;
     this.sizeVariance = 50;
+
+    // Tags for targeting
+    this.tags = [TAGS.SWIM];
   }
 }
 
@@ -309,6 +356,9 @@ export class Loxi extends SpriteSpecies {
     // Weight is stored in pounds.
     this.sizeMean = 100;
     this.sizeVariance = 10;
+
+    // Tags for targeting
+    this.tags = [TAGS.FUR];
   }
 }
 
