@@ -34,6 +34,7 @@ export default function (props) {
           <Route path="/wilderness" component={Adventure} />
           <Route path="/den" component={Den} />
           <Route path="/sprites" component={SpriteRooms} />
+          <Route path="/items/:page" component={ItemShed} />
           <Route path="/items" component={ItemShed} />
           <Route path="/arcade/bloxi" component={Bloxi} />
           <Route path="/sprite/:soulName" component={SpriteProfile} />

@@ -17,7 +17,7 @@ export default class FindCoins extends Encounter {
       new Choice("Take them", () => {
         addCoinsFunc(sRandomInt(this._seed, 100))();
         updateConditionFunc({ stamina: -5 })();
-      }, this._seed),
+      }),
       new Choice("Leave them"),
     ];
   }
