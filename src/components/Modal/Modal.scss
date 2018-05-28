@@ -47,6 +47,8 @@
     cursor: pointer;
     color: hsl(0, 0%, 26%);
     text-decoration: none;
+    background: none;
+    border: none;
 
     &:hover {
       color: var(--accentColor);

@@ -1,7 +1,8 @@
 import { sRandomInt, seedChoice, seedChoiceWeighted } from 'utils';
-import { adopt, accompany, addCoins, updateCondition } from '../../store';
+import { adopt, accompany, addCoins, updateCondition, getItem } from '../../store';
 import { store } from '../../index';
 import Companion from 'models/Companion';
+import { ITEMS_LIST } from 'models/Item';
 
 
 import { speciesList } from 'models/SpriteSpecies';
@@ -19,6 +20,10 @@ export function resetAdventureFunc(companion) {
 
 export function addCoinsFunc(n) {
   return () => store.dispatch(addCoins(n));
+}
+
+export function getItemFunc(item, n) {
+  return () => store.dispatch(getItem(item, n));
 }
 
 export function accompanyFunc(companion) {
@@ -53,6 +58,11 @@ export function randomCompanion(seed, list) {
     focus: sRandomInt(seed + 5, 5, 25),
     level: 1,
   });
+}
+
+export function randomItem(seed, list) {
+  const pickList = list || ITEMS_LIST;
+  return seedChoiceWeighted(seed, pickList);
 }
 
 export function randomContinue(seed) {
