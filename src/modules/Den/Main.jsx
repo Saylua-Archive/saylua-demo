@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import SayluaView from 'components/SayluaView';
 
 export default class Den extends Component {

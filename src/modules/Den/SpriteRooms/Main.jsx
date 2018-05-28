@@ -2,17 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Companion from 'models/Companion';
-import { accompany } from 'store';
+import { accompany, setSteps } from 'store';
+import { resetAdventureFunc } from 'modules/Adventure/encounterFuncs';
 import SayluaView from 'components/SayluaView';
 
 import './SpriteRooms.css';
 
-const mapStateToProps = ({ companions }) => ({ companions });
+const mapStateToProps = ({ companions, steps }) => ({ companions, steps });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     accompany: (companion) => {
       dispatch(accompany(companion));
+    },
+    setSteps: (count) => {
+      dispatch(setSteps(count));
     },
   };
 };
@@ -24,7 +28,12 @@ class SpriteRooms extends Component {
       denPets.push(<DenPet
         companion={this.props.companions[i]}
         onClick={() => {
-          this.props.accompany(this.props.companions[i]);
+          if (this.props.steps !== 300 &&
+            window.confirm("Warning! Accompanying a new companion will end your current adventure. Continue?")
+          ) {
+            this.props.accompany(this.props.companions[i]);
+            resetAdventureFunc(this.props.companions[i])();
+          }
           }
         }
       />);
