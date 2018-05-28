@@ -28,7 +28,7 @@ export default function (props) {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Adventure} />
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/landing" component={LandingPage} />
           <Route path="/register" component={CharacterCreation} />
           <Route path="/intro" component={Introduction} />
           <Route path="/wilderness" component={Adventure} />
