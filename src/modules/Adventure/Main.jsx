@@ -5,15 +5,15 @@ import { encounters, randomEncounters } from './encounters/Main';
 import Areas from './Areas';
 import './Adventure.css';
 import SayluaView from 'components/SayluaView';
-import { setEncounter, setArea, setSteps } from '../../store';
+import { setEncounter, setArea, setSteps, updateCondition } from '../../store';
 import * as Mousetrap from 'mousetrap';
 import marked from 'marked';
 
 const mapStateToProps = ({
-  coins, activeCompanion, companions, encounterSeed, encounterId, area, steps,
+  coins, activeCompanion, companions, encounterSeed, encounterId, area, steps, encounterState,
 }) =>
   ({
-    coins, activeCompanion, companions, encounterSeed, encounterId, area, steps,
+    coins, activeCompanion, companions, encounterSeed, encounterId, area, steps, encounterState,
   });
 
 const mapDispatchToProps = (dispatch) => {
@@ -29,6 +29,9 @@ const mapDispatchToProps = (dispatch) => {
     setSteps: (steps) => {
       dispatch(setSteps(steps));
     },
+    updateCondition: (condition) => {
+      dispatch(updateCondition(condition));
+    },
   };
 };
 
@@ -41,20 +44,26 @@ class Adventure extends Component {
   render() {
     const choiceButtons = [];
     const encounterImgs = [];
-    const encounter = encounters[this.props.encounterId];
+    let encounter = this.props.steps <= 0 ? encounters.finish : encounters[this.props.encounterId];
+    if (this.props.activeCompanion && (
+      this.props.activeCompanion.health < 0 ||
+      this.props.activeCompanion.stamina < 0 ||
+      this.props.activeCompanion.focus < 0
+    )) {
+      encounter = encounters.defeat;
+    }
     const seed = this.props.encounterSeed;
     encounter.seed = seed;
     encounter.state = this.props;
     const area = this.props.area || Areas.Gardenia;
     if (!this.props.area) {
       this.props.setArea(area);
-    }
-    if (this.props.steps < 1 && this.props.area.title === Areas.Gardenia.title) {
+    } else if (this.props.steps > 200 && this.props.area.title !== Areas.Gardenia.title) {
+      this.props.setArea(Areas.Gardenia);
+    } else if (this.props.steps <= 200 && this.props.area.title === Areas.Gardenia.title) {
       this.props.setArea(Areas.Wanderlin);
-      this.props.setSteps(100);
-    } else if (this.props.steps < 1 && this.props.area.title === Areas.Wanderlin.title) {
+    } else if (this.props.steps <= 100 && this.props.area.title === Areas.Wanderlin.title) {
       this.props.setArea(Areas.Korvinwood);
-      this.props.setSteps(100);
     }
     const choices = encounter.choices;
     for (let i = 0; i < choices.length; i++) {
@@ -66,6 +75,7 @@ class Adventure extends Component {
           this.props.setEncounter(encounters[choices[i].outcome.nextID], seed);
         } else {
           this.props.setEncounter(chooseWeighted(randomEncounters));
+          this.props.updateCondition({ health: 1 }); // For passive changes
           this.props.setSteps(this.props.steps - 1);
         }
       };
@@ -87,6 +97,7 @@ class Adventure extends Component {
           src={imgKeys[i].url}
           alt="Encounter"
           className={imgKeys[i].tiny ? "tiny-encounter-image" : ""}
+          key={imgKeys[i].url}
         />
       </div>);
     }
@@ -94,7 +105,7 @@ class Adventure extends Component {
     return (
       <SayluaView>
         <div className="adventure">
-          <h2>{area.title} ({this.props.steps})</h2>
+          <h2>{area.title} ({((this.props.steps - 1) % 100) + 1})</h2>
           <div
             className="imageArea"
             style={{ backgroundImage: `url('/img/backgrounds/${area.background}.jpg')` }}
@@ -119,6 +130,7 @@ class ChoiceButton extends Component {
   render() {
     return (
       <div
+        key={this.props.desc}
         className="choice"
         role="button"
         tabIndex={0}

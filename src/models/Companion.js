@@ -26,6 +26,7 @@ export default class Companion {
     this.stamina = args.stamina;
     this.focus = args.focus;
     this.level = args.level;
+    this.tags = SpriteSpecies.fromId(this.speciesId).tags;
   }
 
   get species() {
@@ -62,8 +63,12 @@ export default class Companion {
       favoriteThings: this.favoriteThings,
       speciesId: this.speciesId,
       coatId: this.coatId,
-      hp: this.hp,
-      energy: this.energy,
+      health: this.health,
+      stamina: this.stamina,
+      focus: this.focus,
+      maxHealth: this.maxHealth,
+      maxStamina: this.maxStamina,
+      maxFocus: this.maxFocus,
       level: this.level,
     };
   }
