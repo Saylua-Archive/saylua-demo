@@ -5,6 +5,7 @@ export const ACCOMPANY = 'ACCOMPANY';
 export const ADD_COINS = 'ADD_COINS';
 export const ADOPT = 'ADOPT';
 export const SET_ENCOUNTER = 'SET_ENCOUNTER';
+export const SET_ENCOUNTER_STATE = 'SET_ENCOUNTER_STATE';
 export const CLEAR_STATE = 'CLEAR_STATE';
 export const SET_THEME = 'SET_THEME';
 export const SET_AREA = 'SET_AREA';
@@ -28,6 +29,10 @@ export function adopt(companion) {
 
 export function setEncounter(encounter) {
   return { type: SET_ENCOUNTER, encounter };
+}
+
+export function setEncounterState(encounterState) {
+  return { type: SET_ENCOUNTER_STATE, encounterState };
 }
 
 export function clearState() {
@@ -60,8 +65,9 @@ export const initialState = {
   coins: 0,
   encounterId: 'start',
   area: null,
-  steps: 100,
+  steps: 300,
   encounterSeed: Date.now(),
+  encounterState: null,
   theme: 'day',
 };
 
@@ -85,6 +91,10 @@ export function sayluaApp(state = initialState, action) {
         encounterSeed: action.encounter.seed,
         encounterId: action.encounter.id,
       });
+    case SET_ENCOUNTER_STATE:
+      return Object.assign({}, state, {
+        encounterState: action.encounterState,
+      });
     case CLEAR_STATE:
       return Object.assign({}, state, initialState);
     case SET_THEME:
@@ -102,10 +112,14 @@ export function sayluaApp(state = initialState, action) {
     case UPDATE_CONDITION: {
       const newComp = Object.assign({}, state.activeCompanion);
       newComp.health += (action.condition && action.condition.health) || 0;
+      newComp.health = Math.min(newComp.health, newComp.maxHealth);
       newComp.stamina += (action.condition && action.condition.stamina) || 0;
+      newComp.stamina = Math.min(newComp.stamina, newComp.maxStamina);
       newComp.focus += (action.condition && action.condition.focus) || 0;
+      newComp.focus = Math.min(newComp.focus, newComp.maxFocus);
       return Object.assign({}, state, {
         activeCompanion: newComp,
+        steps: action.condition.steps || state.steps,
       });
     }
     default:
