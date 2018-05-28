@@ -11,10 +11,10 @@
   --highlightDarkColor: hsl(45, 52%, 73%);
   --highlightSoftColor: hsl(45, 100%, 92%);
 
-  --mainBgColor: hsl(171, 14%, 85%);
+  --mainBgColor: hsl(171, 14%, 86%);
   --bgTextColor: hsl(0, 0%, 13%);
 
-  --contentBgColor: hsl(171, 14%, 90%);
+  --contentBgColor: hsl(171, 14%, 92%);
   --mainTextColor: hsl(0, 0%, 13%);
   --softTextColor: hsl(171, 10%, 40%);
 
@@ -58,22 +58,22 @@
 }
 
 [data-theme='dawnish'] {
-  --bgTextColor: hsl(260, 5%, 80%);
-  --mainBgColor: hsl(260, 5%, 15%);
+  --bgTextColor: hsl(320, 5%, 80%);
+  --mainBgColor: hsl(300, 10%, 15%);
   --emphasisBgColor: hsl(280, 15%, 95%);
 
-  --contentBgColor: hsl(240, 5%, 80%);
+  --contentBgColor: hsl(280, 5%, 80%);
   --mainTextColor: hsl(0, 0%, 13%);
   --softTextColor: hsl(200, 10%, 30%);
 
-  --mainColor: hsl(270, 50%, 25%);
-  --mainDarkColor: hsl(270, 40%, 20%);
-  --mainDarkerColor: hsl(270, 40%, 15%);
-  --mainSoftColor: hsl(270, 45%, 32%);
-  --mainSofterColor: hsl(270, 42%, 70%);
-  --mainSoftestColor: hsl(270, 40%, 90%);
-  --neutralColor: hsl(280, 20%, 77%);
-  --neutralDarkColor: hsl(280, 15%, 70%);
+  --mainColor: hsl(340, 60%, 28%);
+  --mainDarkColor: hsl(340, 50%, 23%);
+  --mainDarkerColor: hsl(340, 50%, 18%);
+  --mainSoftColor: hsl(340, 55%, 35%);
+  --mainSofterColor: hsl(340, 52%, 70%);
+  --mainSoftestColor: hsl(340, 40%, 90%);
+  --neutralColor: hsl(320, 15%, 77%);
+  --neutralDarkColor: hsl(320, 10%, 70%);
 }
 
 [data-theme='admin'] {

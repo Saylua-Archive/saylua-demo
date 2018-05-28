@@ -1,0 +1,24 @@
+.character-creation-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  .character-creation-inner {
+    width: 70%;
+    background: var(--contentBgColor);
+    padding: 1em 1.6rem;
+    margin: 1em 0.8rem;
+
+    label {
+      cursor: pointer;
+    }
+
+    label img {
+      max-width: 200px;
+    }
+  }
+}
