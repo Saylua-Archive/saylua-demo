@@ -16,7 +16,7 @@ export default class CharacterCreation extends Component {
           <p>
             What should we call you in this world?
             <small>
-              Valid characters: letters, numbers, and +~._-
+              Your name can include letters, numbers, and these symbols: +~._-
             </small>
           </p>
           <input placeholder="Username" />
