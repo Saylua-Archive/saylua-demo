@@ -2,7 +2,7 @@ import { updateConditionFunc, getItemFunc, randomItem } from '../encounterFuncs'
 import { Encounter, Choice } from './Models';
 import Item from 'models/Item';
 
-export default class FindCoins extends Encounter {
+export default class FindTreat extends Encounter {
   get mainText() {
     const item = randomItem(this._seed);
     if (this._state.activeCompanion) {
