@@ -3,7 +3,19 @@ import { adopt, accompany, addCoins, updateCondition } from '../../store';
 import { store } from '../../index';
 import Companion from 'models/Companion';
 
+
 import { speciesList } from 'models/SpriteSpecies';
+
+export function resetAdventureFunc(companion) {
+  return () => {
+    store.dispatch(updateCondition({
+      health: companion.maxHealth - companion.health,
+      stamina: companion.maxStamina - companion.stamina,
+      focus: companion.maxFocus - companion.focus,
+      steps: 300,
+    }));
+  };
+}
 
 export function addCoinsFunc(n) {
   return () => store.dispatch(addCoins(n));
@@ -36,9 +48,9 @@ export function randomCompanion(seed, list) {
     name: randomName(seed + 2),
     species: compSpecies,
     coatId: compCoat.id,
-    health: sRandomInt(seed + 3, 20),
-    stamina: sRandomInt(seed + 4, 20),
-    focus: sRandomInt(seed + 5, 20),
+    health: sRandomInt(seed + 3, 5, 25),
+    stamina: sRandomInt(seed + 4, 5, 25),
+    focus: sRandomInt(seed + 5, 5, 25),
     level: 1,
   });
 }
