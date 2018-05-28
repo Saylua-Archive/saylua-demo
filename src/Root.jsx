@@ -28,12 +28,13 @@ export default function (props) {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Adventure} />
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/landing" component={LandingPage} />
           <Route path="/register" component={CharacterCreation} />
           <Route path="/intro" component={Introduction} />
           <Route path="/wilderness" component={Adventure} />
           <Route path="/den" component={Den} />
           <Route path="/sprites" component={SpriteRooms} />
+          <Route path="/items/:page" component={ItemShed} />
           <Route path="/items" component={ItemShed} />
           <Route path="/arcade/bloxi" component={Bloxi} />
           <Route path="/sprite/:soulName" component={SpriteProfile} />
