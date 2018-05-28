@@ -3,32 +3,24 @@ import React, { Component } from 'react';
 import './Modal.css';
 
 export default class Modal extends Component {
-  close() {
-    this.props.closed = true;
-
-    const onClose = this.props.onClose;
-    if (onClose) {
-      onClose();
-    }
-  }
-
-  open() {
-    this.props.closed = false;
+  closeOnOutsideClick(evt) {
+    // Only accept clicks on the actual overlay and not its children.
+    if (evt.target !== evt.currentTarget) return;
+    this.props.onClose();
   }
 
   render() {
-    const closedClass = this.props.closed ? ' closed' : '';
-    const closeFunction = this.close.bind(this);
+    const closedClass = this.props.opened ? '' : ' closed';
 
     return (
-      <div className={`modal-overlay${closedClass}`}>
+      <button className={`modal-overlay${closedClass}`} onClick={this.closeOnOutsideClick.bind(this)}>
         <div className="modal">
-          <button className="modal-close" onClick={closeFunction}>
+          <button className="modal-close" onClick={this.props.onClose}>
             &times;
           </button>
           { this.props.children }
         </div>
-      </div>
+      </button>
     );
   }
 }

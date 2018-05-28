@@ -11,6 +11,8 @@ export const SET_THEME = 'SET_THEME';
 export const SET_AREA = 'SET_AREA';
 export const SET_STEPS = 'SET_STEPS';
 export const UPDATE_CONDITION = 'UPDATE_CONDITION';
+export const GET_ITEM = 'GET_ITEM';
+export const USE_ITEM = 'USE_ITEM';
 
 /*
  * action creators
@@ -53,6 +55,14 @@ export function setSteps(steps) {
 
 export function updateCondition(condition) {
   return { type: UPDATE_CONDITION, condition };
+}
+
+export function getItem(item, count) {
+  return { type: GET_ITEM, item, count };
+}
+
+export function useItem(item, count) {
+  return { type: USE_ITEM, item, count };
 }
 
 /*
@@ -120,6 +130,24 @@ export function sayluaApp(state = initialState, action) {
       return Object.assign({}, state, {
         activeCompanion: newComp,
         steps: action.condition.steps || state.steps,
+      });
+    }
+    case GET_ITEM: {
+      const newInventory = Object.assign({}, state.inventory);
+      newInventory[action.item.canonName] = (newInventory[action.item.canonName] || 0)
+        + (action.count || 1);
+      return Object.assign({}, state, {
+        inventory: newInventory,
+      });
+    }
+    case USE_ITEM: {
+      const newInventory = Object.assign({}, state.inventory);
+      newInventory[action.item.canonName] -= action.count || 1;
+      if (newInventory[action.item.canonName] <= 0) {
+        delete newInventory[action.item.canonName];
+      }
+      return Object.assign({}, state, {
+        inventory: newInventory,
       });
     }
     default:
