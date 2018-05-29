@@ -33,6 +33,11 @@ export default class Navbar extends Component {
               </Link>
             </div>
             <div className="navbar-block">
+              <Link to="/reserve" className="navbar-link" title="Everly Reserve">
+                Reserve
+              </Link>
+            </div>
+            <div className="navbar-block">
               <Link to="/museum" className="navbar-link" title="Museum of Saylua">
                 Museum
               </Link>

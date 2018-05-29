@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 
 import { createStore } from 'redux';
-import { sayluaApp, initialState } from './store';
+import { sayluaApp, initialState } from 'SayluaStore';
 
 import Root from './Root';
 

@@ -6,6 +6,10 @@ export function randomInt(max, min) {
   return Math.floor((Math.random() * ((max - min) + 1)) + min);
 }
 
+export function randomChoice(choices) {
+  return choices[randomInt(choices.length - 1)];
+}
+
 export function chooseWeighted(options) {
   let total = 0;
   for (let i = 0; i < options.length; i++) {
@@ -44,6 +48,17 @@ export function formatNumber(n) {
 // http://stackoverflow.com/questions/1026069/capitalize-the-first-letter-of-string-in-javascript
 export function capitalizeFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export function startsWithVowel(string) {
+  return ['a', 'e', 'i', 'o', 'u'].indexOf(string.toLowerCase()) === 0;
+}
+
+export function addArticle(singularNoun) {
+  if (startsWithVowel(singularNoun)) {
+    return `an ${singularNoun}`;
+  }
+  return `a ${singularNoun}`;
 }
 
 export function pluralize(count, singularNoun, pluralNoun) {
