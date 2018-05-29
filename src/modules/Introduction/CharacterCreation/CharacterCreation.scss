@@ -3,15 +3,107 @@
   width: 100%;
   height: 100%;
   min-height: 100%;
+  color: var(--contentTextColor);
 
   align-items: center;
   justify-content: center;
 
+  .character-creation-header {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    padding: 20px;
+    text-align: center;
+    background-image: var(--headerBackgroundImage);
+    background-position: 0 80%;
+    background-size: cover;
+
+    img {
+      height: 60px;
+      transition: 0.5s filter ease-in-out, 0.2s transform linear;
+      filter: drop-shadow(0px 2px 5px hsla(0, 0%, 0%, 0.2));
+    }
+
+    img:active {
+      transform: translateY(3px);
+    }
+
+    img:hover {
+      filter: drop-shadow(0px 0px 5px hsl(60, 76%, 69%));
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      pointer-events: none;
+      background-image: linear-gradient(to bottom, hsla(0,0%, 0%, 0), var(--bodyBgColor) 90%);
+    }
+  }
+
   .character-creation-inner {
+    z-index: 10;
     width: 70%;
-    background: var(--contentBgColor);
+    min-width: 300px;
+    max-width: 800px;
+    margin-top: 100px;
     padding: 1em 1.6rem;
-    margin: 1em 0.8rem;
+    background: var(--contentBgColor);
+
+    .side-choice-container {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .side-choice {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        outline: none;
+        font-size: inherit;
+        line-height: inherit;
+        width: 48%;
+        padding: 0.5em 0.8rem;
+        cursor: pointer;
+        transition: border 0.2s ease-in-out, filter 0.2s ease-in-out, background 0.2s ease-in-out;
+        color: inherit;
+        border: none;
+        border-bottom: 4px solid transparent;
+        background: var(--contentBgColor);
+
+        h3 {
+          border: 0;
+          text-align: center;
+        }
+
+        img {
+          width: 100%;
+        }
+
+        &:hover {
+          filter: drop-shadow(0px 2px 5px hsla(0, 0%, 0%, 0.2));
+        }
+
+        &:active {
+          transform: translateY(2px);
+        }
+
+        &[data-selected=true] {
+          background: var(--emphasisBgColor);
+          border-bottom: 4px solid var(--mainColor);
+        }
+      }
+    }
 
     label {
       cursor: pointer;

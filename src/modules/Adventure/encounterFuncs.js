@@ -1,5 +1,5 @@
 import { sRandomInt, seedChoice, seedChoiceWeighted } from 'utils';
-import { adopt, accompany, addCoins, updateCondition, getItem } from '../../store';
+import { adopt, accompany, addCoins, updateCondition, getItem } from 'SayluaStore';
 import { store } from '../../index';
 import Companion from 'models/Companion';
 import { ITEMS_LIST } from 'models/Item';

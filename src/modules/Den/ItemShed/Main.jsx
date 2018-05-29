@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useItem, addCoins } from 'store';
+import { useItem, addCoins } from 'SayluaStore';
 
 import SayluaView from 'components/SayluaView';
 

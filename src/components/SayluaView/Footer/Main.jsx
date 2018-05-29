@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { clearState } from '../../../store';
+import { clearState } from 'store';
 
 import Clock from './Clock';
 

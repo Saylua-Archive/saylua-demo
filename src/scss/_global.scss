@@ -29,8 +29,8 @@ body {
   margin: 0;
   padding: 0;
   transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
-  color: var(--bgTextColor);
-  background-color: var(--mainBgColor);
+  color: var(--bodyTextColor);
+  background-color: var(--bodyBgColor);
 
   align-items: center;
 }

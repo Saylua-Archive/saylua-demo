@@ -1,7 +1,7 @@
 import { randomCompanion, updateConditionFunc } from '../encounterFuncs';
 import { Encounter, Choice, Outcome } from './Models';
-import { setEncounterState } from '../../../store';
-import { store } from '../../../index';
+import { setEncounterState } from 'SayluaStore';
+import { store } from 'index';
 import { sRandomInt } from 'utils';
 import { speciesIndexRegion } from '../../../models/SpriteSpecies';
 

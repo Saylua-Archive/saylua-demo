@@ -1,5 +1,22 @@
 @import './assets/sizes';
 
+.hide-sidebar {
+  .sidebar,
+  .sidebar-container,
+  .sidebar-filler {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.hide-navbar {
+  .navbar-container,
+  .navbar {
+    display: none;
+    visibility: hidden;
+  }
+}
+
 .main-body {
   @extend %content-width;
   display: flex;
@@ -16,7 +33,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 0.5em;
-  color: var(--mainTextColor);
+  color: var(--contentTextColor);
 
   align-items: stretch;
   flex-grow: 1;

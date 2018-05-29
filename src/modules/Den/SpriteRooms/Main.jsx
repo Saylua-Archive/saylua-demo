@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Companion from 'models/Companion';
-import { accompany, setSteps } from 'store';
+import { accompany, setSteps } from 'SayluaStore';
 import { resetAdventureFunc } from 'modules/Adventure/encounterFuncs';
 import SayluaView from 'components/SayluaView';
 
