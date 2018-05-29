@@ -1,0 +1,30 @@
+input[type="radio"].saylua-radio {
+  position: relative;
+  visibility: hidden;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+
+  &::before {
+    content: '\2022';
+    line-height: 20px;
+    font-size: 30px;
+    display: flex;
+    visibility: visible;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    color: white;
+    border: 2px solid #ddd;
+    background-color: white;
+    border-radius: 50%;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:checked::before {
+    color: var(--mainColor);
+    border-color: var(--mainColor);
+  }
+}

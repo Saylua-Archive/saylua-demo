@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { addCoins } from 'store';
+import { addCoins } from 'SayluaStore';
 import { store } from 'index';
 
 import { randomInt, formatNumber } from 'utils';

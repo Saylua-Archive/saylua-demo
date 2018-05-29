@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { setTheme } from '../../../store';
+import { setTheme } from 'SayluaStore';
 
 import './Header.css';
 

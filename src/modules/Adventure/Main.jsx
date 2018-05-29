@@ -5,7 +5,7 @@ import { encounters, randomEncounters } from './encounters/Main';
 import Areas from './Areas';
 import './Adventure.css';
 import SayluaView from 'components/SayluaView';
-import { setEncounter, setArea, setSteps, updateCondition } from '../../store';
+import { setEncounter, setArea, setSteps, updateCondition } from 'SayluaStore';
 import * as Mousetrap from 'mousetrap';
 import marked from 'marked';
 

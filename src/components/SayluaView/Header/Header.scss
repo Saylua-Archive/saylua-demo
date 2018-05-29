@@ -1,6 +1,5 @@
 @import '../assets/sizes';
 
-
 .header {
   font-family: 'Lato', sans-serif;
   width: 100%;
@@ -9,7 +8,7 @@
   text-align: center;
   color: hsl(0, 0%, 100%);
   background-color: var(--mainSofterColor);
-  background-image: url('/img/backgrounds/sayleus.jpg');
+  background-image: var(--headerBackgroundImage);
   background-position: 0 75%;
   background-size: cover;
 
@@ -58,14 +57,12 @@
 
 [data-theme='dawnish'] {
   .header {
-    background-image: url('/img/backgrounds/dawnlands.jpg');
     background-position: 0 55%;
   }
 }
 
 [data-theme='luarian'] {
   .header {
-    background-image: url('/img/backgrounds/luaria.jpg');
     background-position: 0 40%;
   }
   .theme-switcher {
