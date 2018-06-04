@@ -70,18 +70,22 @@ export function useItem(item, count) {
  */
 
 export const initialState = {
-  companions: [],
-  activeCompanion: null,
-  coins: 0,
-  encounterId: 'start',
-  area: null,
-  steps: 300,
-  encounterSeed: Date.now(),
-  encounterState: null,
-  theme: 'day',
+  sayluaApp: {
+    companions: [],
+    activeCompanion: null,
+    coins: 0,
+    encounterId: 'start',
+    area: null,
+    steps: 300,
+    encounterSeed: Date.now(),
+    encounterState: null,
+    theme: 'sayleus',
+    inventory: {},
+  },
+  form: {},
 };
 
-export function sayluaApp(state = initialState, action) {
+export function sayluaReducer(state = initialState.sayluaApp, action) {
   switch (action.type) {
     case ADD_COINS:
       return Object.assign({}, state, {

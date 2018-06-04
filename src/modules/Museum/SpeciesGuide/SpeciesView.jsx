@@ -61,7 +61,7 @@ export default class SpeciesView extends Component {
           <h2>Discovered {species.name} Coats</h2>
           <div className="coat-grid">
             { species.coats().map(coat => (
-              <Link to={`/coats#${coat.variant.canonName}`} className="coat-grid-item">
+              <Link key={coat.variant.canonName} to={`/coats#${coat.variant.canonName}`} className="coat-grid-item">
                 <img src={coat.imageUrl()} alt={coat.fullName()} />
                 { coat.fullName() }
               </Link>

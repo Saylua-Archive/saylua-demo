@@ -7,7 +7,7 @@ import { setTheme } from 'SayluaStore';
 import './Header.css';
 
 
-const mapStateToProps = ({ theme }) => ({ theme });
+const mapStateToProps = ({ sayluaApp: { theme } }) => ({ theme });
 
 const mapDispatchToProps = (dispatch) => {
   return {

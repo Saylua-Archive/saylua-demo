@@ -9,13 +9,13 @@ import Modal from 'components/Modal';
 import Pagination from 'components/Pagination';
 
 import { formatNumber } from 'utils';
-import Item, { ITEMS_BY_CANON_NAME } from 'models/Item';
+import ItemHelper, { ITEMS_BY_CANON_NAME } from 'models/Item';
 
 import './ItemShed.css';
 
 const ITEMS_PER_PAGE = 25;
 
-const mapStateToProps = ({ inventory }) => ({ inventory });
+const mapStateToProps = ({ sayluaApp: { inventory } }) => ({ inventory });
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -83,7 +83,7 @@ class ItemShed extends Component {
           key={item.name}
         >
           <img
-            src={Item.imageUrl(item)}
+            src={ItemHelper.imageUrl(item)}
             alt={item.name}
             title={item.name}
             aria-label={item.name}
@@ -113,7 +113,7 @@ class ItemShed extends Component {
       itemModal = (
         <Modal onClose={onModalClose} opened>
           <img
-            src={Item.imageUrl(selectedItem)}
+            src={ItemHelper.imageUrl(selectedItem)}
             className="item"
             alt={selectedItem.name}
             title={selectedItem.name}

@@ -8,7 +8,7 @@ import SayluaView from 'components/SayluaView';
 
 import './SpriteRooms.css';
 
-const mapStateToProps = ({ companions, steps }) => ({ companions, steps });
+const mapStateToProps = ({ sayluaApp: { companions, steps } }) => ({ companions, steps });
 
 const mapDispatchToProps = (dispatch) => {
   return {

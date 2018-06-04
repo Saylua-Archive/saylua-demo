@@ -19,8 +19,8 @@ export default class LandingPage extends Component {
           </p>
           <p>
             The final release version of Saylua will be a persistent online
-            game with a community of players. This demo version presents our game
-            mechanics in a single player context.
+            game with a community of players. This demo version presents our main
+            game mechanics in a single player context.
           </p>
           <Link to="/register">
             <button>

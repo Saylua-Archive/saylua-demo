@@ -1,0 +1,34 @@
+input[type="radio"].saylua-radio {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  visibility: hidden;
+
+  &::before {
+    content: '';
+    box-sizing: border-box;
+    display: flex;
+    visibility: visible;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: hsl(0, 0%, 95%);
+    border-radius: 50%;
+    border: 2px solid hsl(0, 0%, 70%);
+    transition: 0.5s background ease-in-out, 0.5s color ease-in-out;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:checked::before,
+  &:checked:hover::before {
+    border-color: var(--mainColor);
+    background: radial-gradient(hsla(0, 0%, 100%, 0) 30%, var(--mainSofterColor)),
+      linear-gradient(to bottom right, var(--mainSofterColor), var(--mainColor), var(--neutralDarkColor));
+  }
+
+  &:hover::before {
+    background: hsl(0, 0%, 90%);
+  }
+}

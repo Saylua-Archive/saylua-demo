@@ -13,14 +13,14 @@ export default class Modal extends Component {
     const closedClass = this.props.opened ? '' : ' closed';
 
     return (
-      <button className={`modal-overlay${closedClass}`} onClick={this.closeOnOutsideClick.bind(this)}>
-        <div className="modal">
+      <div className={`modal-overlay${closedClass}`} role="presentation" onClick={this.closeOnOutsideClick.bind(this)}>
+        <div className="modal" role="dialog">
           <button className="modal-close" onClick={this.props.onClose}>
             &times;
           </button>
           { this.props.children }
         </div>
-      </button>
+      </div>
     );
   }
 }
