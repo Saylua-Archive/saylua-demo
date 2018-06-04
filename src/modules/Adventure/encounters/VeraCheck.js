@@ -2,7 +2,7 @@ import { addCoinsFunc } from '../encounterFuncs';
 import { Encounter, Choice, Outcome } from './Models';
 import { seedChoice } from 'utils';
 
-import Companion from 'models/Companion';
+import Sprite from 'models/Sprite';
 
 
 export class VeraCheck extends Encounter {
@@ -30,15 +30,15 @@ export class VeraCheck extends Encounter {
 
 export class VeraCheckEnd extends Encounter {
   get mainText() {
-    const targetComp = new Companion(seedChoice(this._seed, this._state.companions));
-    return (`Vera slowly walks around ${targetComp.name}, inspecting the ${targetComp.coatName()
+    const targetComp = seedChoice(this._seed, this._state.companions);
+    return (`Vera slowly walks around ${targetComp.name}, inspecting the ${Sprite.coatName(targetComp)
     } from every angle. "You've been taking really good care of ${targetComp.name
     }! Here, have this reward for all your hard work! I know you'll spend it wisely!"`);
   }
   get img() {
-    const targetComp = new Companion(seedChoice(this._seed, this._state.companions));
+    const targetComp = seedChoice(this._seed, this._state.companions);
     return [
-      { url: targetComp.imageUrl(), tiny: true },
+      { url: Sprite.imageUrl(targetComp), tiny: true },
       { url: '/img/npcs/vera-everly.png', tiny: false },
     ];
   }

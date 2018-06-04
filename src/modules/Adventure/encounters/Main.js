@@ -1,5 +1,5 @@
 import { Encounter } from './Models';
-import Companion from 'models/Companion';
+import Sprite from 'models/Sprite';
 
 import FindCoins from './FindCoins';
 import Start from './Start';
@@ -49,4 +49,4 @@ const randomEncounters = [
   encounters.battle,
   encounters.rest,
 ];
-export { encounters, randomEncounters, Companion };
+export { encounters, randomEncounters, Sprite };

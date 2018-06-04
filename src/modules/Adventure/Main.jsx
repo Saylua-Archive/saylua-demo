@@ -8,6 +8,7 @@ import SayluaView from 'components/SayluaView';
 import { setEncounter, setArea, setSteps, updateCondition } from '../../store';
 import * as Mousetrap from 'mousetrap';
 import marked from 'marked';
+import Sprite from 'models/Sprite';
 
 const mapStateToProps = ({
   coins, activeCompanion, companions, encounterSeed, encounterId, area, steps, encounterState,
@@ -104,20 +105,62 @@ class Adventure extends Component {
     const mainText = encounter.mainText;
     return (
       <SayluaView>
-        <div className="adventure">
-          <h2>{area.title} ({((this.props.steps - 1) % 100) + 1})</h2>
-          <div
-            className="imageArea"
-            style={{ backgroundImage: `url('/img/backgrounds/${area.background}.jpg')` }}
-          >
-            {encounterImgs}
-          </div>
-          <p className="adventureText" id="scene-desc" dangerouslySetInnerHTML={this.rawMarkup(mainText)} />
-          {choiceButtons}
-        </div>
+        <EventView
+          area={area}
+          encounterImgs={encounterImgs}
+          mainText={mainText}
+          choiceButtons={choiceButtons}
+          rawMarkup={this.rawMarkup}
+          activeCompanion={this.props.activeCompanion}
+          opponent={encounter.opponent}
+        />
       </SayluaView>
     );
   }
+}
+
+function EventView(props) {
+  const topRight = props.opponent ? <BattleStatBox sprite={props.opponent} /> :
+  <div className="objective">Reach the dawnlands!</div>;
+  return (<div className="adventure">
+    <h2>{props.area.title}</h2>
+    <div
+      style={{ backgroundImage: `url('/img/backgrounds/${props.area.background}.jpg')` }}
+      className="adventureWrapper"
+    >
+      <div className="hud-area">
+        <BattleStatBox sprite={props.activeCompanion} />
+        {topRight}
+      </div>
+      <div className="imageArea">{props.encounterImgs}</div>
+    </div>
+    <p className="adventureText" id="scene-desc" dangerouslySetInnerHTML={props.rawMarkup(props.mainText)} />
+    {props.choiceButtons}
+  </div>);
+}
+
+function BattleStatBox(props) {
+  const result = props.sprite ?
+    (<div className="battleStatBox">
+      <img className="battleIcon" src={Sprite.imageUrl(props.sprite)} alt={props.sprite.name} />
+      <div className="bar-box">
+        <StatBar
+          value={props.sprite.health}
+          max={Sprite.maxHealth(props.sprite)}
+          color="health-color"
+          icon="♥"
+          label={`${props.sprite.health}/${Sprite.maxHealth(props.sprite)}`}
+        />
+        <StatBar
+          value={props.sprite.stamina}
+          max={Sprite.maxStamina(props.sprite)}
+          color="stamina-color"
+          icon="*"
+          label={`${props.sprite.stamina}/${Sprite.maxStamina(props.sprite)}`}
+        />
+      </div>
+    </div>) : <div />;
+  return result;
 }
 
 class ChoiceButton extends Component {
@@ -145,6 +188,24 @@ class ChoiceButton extends Component {
       </div>
     );
   }
+}
+
+function StatBar(args) {
+  const width = `${Math.max((args.value / args.max) * 100, 0)}%`;
+  return (
+    <div className="stat-bar">
+      <div className="bar-icon">{args.icon}</div>
+      <div className="bar-back">
+        <div
+          className={`bar-main bar-${args.color}`}
+          style={{
+            width,
+          }}
+        />
+        <div className="bar-label">{args.label}</div>
+      </div>
+    </div>
+  );
 }
 
 export default connect(

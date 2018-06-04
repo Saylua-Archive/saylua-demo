@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Companion from 'models/Companion';
+import Sprite from 'models/Sprite';
 import { pluralize } from 'utils';
 
 import './Sidebar.css';
@@ -16,47 +16,27 @@ const mapDispatchToProps = {};
 
 class Sidebar extends Component {
   render() {
-    const companion = this.props.activeCompanion ? new Companion(this.props.activeCompanion) : null;
+    const companion = this.props.activeCompanion;
     return (
       <div id="sidebar-container" className="sidebar-container">
         <div id="sidebar" className="sidebar">
           <div id="user-info-section" className="sidebar-section">
             {companion &&
               <div>
-                <Link to={companion.url()}>
+                <Link to={Sprite.url(companion)}>
                   <img
                     className="petView"
                     alt={companion.name}
-                    src={companion.imageUrl()}
+                    src={Sprite.imageUrl(companion)}
                   />
                 </Link>
-                <div>
-                  <StatBar
-                    label="Health"
-                    color="health-color"
-                    value={companion.health}
-                    max={companion.maxHealth}
-                  />
-                  <StatBar
-                    label="Stamina"
-                    color="stamina-color"
-                    value={companion.stamina}
-                    max={companion.maxStamina}
-                  />
-                  <StatBar
-                    label="Focus"
-                    color="focus-color"
-                    value={companion.focus}
-                    max={companion.maxFocus}
-                  />
-                </div>
               </div>
             }
             <div className="sidebar-aligner">
               <p>You are <Link to="/user/tiff/">Tiff</Link></p>
               {companion &&
                 <p>
-                  Your companion is <Link to={companion.url()}>{companion.name}</Link>
+                  Your companion is <Link to={Sprite.url(companion)}>{companion.name}</Link>
                 </p>
               }
               <p>
@@ -73,21 +53,6 @@ class Sidebar extends Component {
       </div>
     );
   }
-}
-
-function StatBar(args) {
-  const width = `${Math.max((args.value / args.max) * 100, 0)}%`;
-  return (
-    <div className="bar-back">
-      <div
-        className={`bar-main bar-${args.color}`}
-        style={{
-          width,
-        }}
-      />
-      <div className="bar-label">{args.label}</div>
-    </div>
-  );
 }
 
 export default connect(

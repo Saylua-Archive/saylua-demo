@@ -47,8 +47,6 @@
     width: 100%;
     min-width: 100%;
     height: 350px;
-    background: url('../../backgrounds/sayleus.jpg') no-repeat center bottom;
-    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -71,4 +69,80 @@
     max-width: 75%;
     max-height: 75%;
   }
+
+  .hud-area {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    height: 4em;
+    min-height: 4em;
+    max-height: 4em;
+  }
+
+  .hud-area img {
+    width: 4em;
+    height: 4em;
+  }
+
+  .battleStatBox {
+    width: 40%;
+    display: flex;
+    padding: .5em .5rem;
+  }
+
+  .adventureWrapper {
+    width: 100%;
+    min-width: 100%;
+    background: url('../../backgrounds/sayleus.jpg') no-repeat center bottom;
+    background-size: cover;
+    overflow: hidden;
+  }
+
+  .stat-bar {
+    //width: 100%;
+    display: flex;
+  }
+
+  .bar-box {
+    width: 100%;
+  }
+
+  .bar-back {
+    position: relative;
+    height: 1.5em;
+    background-color: var(--contentBgColor);
+    margin-top: .25em;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .bar-back div {
+    position: absolute;
+    height: 100%;
+    line-height: 1.5em;
+    color: var(--mainTextColor);
+  }
+
+  .bar-label {
+    padding-left: .5rem;
+  }
+
+  .bar-icon {
+    width: 2rem;
+    line-height: 1.5em;
+  }
+
+  .bar-health-color {
+    background-color: var(--healthColor);
+  }
+
+  .bar-stamina-color {
+    background-color: var(--staminaColor);
+  }
+
+  .objective {
+    padding: 1em 2rem;
+  }
+
+
 }

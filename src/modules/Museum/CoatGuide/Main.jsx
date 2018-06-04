@@ -28,7 +28,7 @@ export default class CoatGuide extends Component {
             const randomCoat = coats[Math.floor(Math.random() * coats.length)];
             return (
               <div className="coat-guide-list" id={`${variant.canonName}`}>
-                <SpriteHeader sprite={randomCoat}>
+                <SpriteHeader coat={randomCoat}>
                   <Link to={`#${variant.canonName}`}>{ variant.name } Coats</Link>
                 </SpriteHeader>
                 {

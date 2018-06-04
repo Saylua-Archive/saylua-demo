@@ -1,26 +1,26 @@
-import { adoptFunc, randomCompanion } from '../encounterFuncs';
+import { adoptFunc } from '../encounterFuncs';
 import { Encounter, Choice, Outcome } from './Models';
 import { speciesIndexRegion } from '../../../models/SpriteSpecies';
-
+import Sprite from 'models/Sprite';
 
 export class SameSprite extends Encounter {
   get mainText() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const newComp = randomCompanion(this._seed, localSprites);
-    const text = `Up ahead, you see a lonely looking ${newComp.species.name}.
-      If only there was another ${newComp.species.name} around to play with them...`;
+    const newComp = Sprite.randomSprite(this._seed, localSprites);
+    const text = `Up ahead, you see a lonely looking ${Sprite.species(newComp).name}.
+      If only there was another ${Sprite.species(newComp).name} around to play with them...`;
     return text;
   }
 
   get img() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const newComp = randomCompanion(this._seed, localSprites);
-    return { url: newComp.imageUrl(), tiny: true };
+    const newComp = Sprite.randomSprite(this._seed, localSprites);
+    return { url: Sprite.imageUrl(newComp), tiny: true };
   }
 
   get choices() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const newComp = randomCompanion(this._seed, localSprites);
+    const newComp = Sprite.randomSprite(this._seed, localSprites);
     const choices = [];
     const active = this._state.activeCompanion;
     if (active && active.speciesId === newComp.speciesId) {
@@ -37,7 +37,7 @@ export class SameSprite extends Encounter {
 export class SameSpriteEnd extends Encounter {
   get mainText() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const newComp = randomCompanion(this._seed, localSprites);
+    const newComp = Sprite.randomSprite(this._seed, localSprites);
     const text = `${newComp.name} had so much fun playing that they want to come home with you.
       Of course you say yes! They move right into your den.`;
     return text;
@@ -45,13 +45,13 @@ export class SameSpriteEnd extends Encounter {
 
   get img() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const newComp = randomCompanion(this._seed, localSprites);
-    return { url: newComp.imageUrl(), tiny: true };
+    const newComp = Sprite.randomSprite(this._seed, localSprites);
+    return { url: Sprite.imageUrl(newComp), tiny: true };
   }
 
   get choices() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const newComp = randomCompanion(this._seed, localSprites);
+    const newComp = Sprite.randomSprite(this._seed, localSprites);
     const choices = [new Choice(`Welcome home, ${newComp.name}.`, () => {})];
     return choices;
   }

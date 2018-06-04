@@ -57,7 +57,8 @@ class Footer extends Component {
             className="Button"
             onClick={
             () => {
-              const clearSure = window.confirm("Are you sure you want to clear the state? This will reset Saylua and delete your progress!");
+              const clearSure = window.confirm("Are you sure you want to clear the state?" +
+              "This will reset Saylua and delete your progress!");
               if (clearSure) {
                 this.props.clearState();
               }

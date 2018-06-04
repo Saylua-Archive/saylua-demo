@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Companion from 'models/Companion';
+import Sprite from 'models/Sprite';
 import { accompany, setSteps } from '../../store';
 import { resetAdventureFunc } from '../Adventure/encounterFuncs';
 import SayluaView from 'components/SayluaView';
@@ -50,7 +50,7 @@ class Den extends Component {
 }
 
 function DenPet(props) {
-  const companion = new Companion(props.companion);
+  const companion = props.companion;
   return (
     <div
       onClick={props.onClick}
@@ -60,9 +60,9 @@ function DenPet(props) {
     >
       <img
         alt={companion.name}
-        src={companion.imageUrl()}
+        src={Sprite.imageUrl(companion)}
       />
-      <div>{companion.fullName()}</div>
+      <div>{Sprite.fullName(companion)}</div>
     </div>
   );
 }
