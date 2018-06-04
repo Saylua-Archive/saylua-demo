@@ -1,4 +1,4 @@
-export default class Item {
+export default class ItemHelper {
   static imageUrl(item) {
     return `/img/items/${item.category}/${item.canonName}.png`;
   }

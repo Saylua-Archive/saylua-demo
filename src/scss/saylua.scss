@@ -9,6 +9,8 @@
 
   --errorColor: hsl(348, 100%, 50%);
   --errorLightColor: hsl(0, 100%, 90%);
+  --warningColor: hsl(20, 80%, 50%);
+
   --highlightColor: hsl(45, 75%, 85%);
   --highlightDarkColor: hsl(45, 52%, 73%);
   --highlightSoftColor: hsl(45, 100%, 92%);
@@ -21,6 +23,7 @@
   --softTextColor: hsl(171, 10%, 40%);
 
   --emphasisBgColor: hsl(0, 0%, 100%);
+  --emphasisBgColorSoft: hsl(171, 7%, 96%);
 
   --mainColor: hsl(171, 82%, 42%);
   --mainDarkColor: hsl(172, 86%, 36%);
@@ -41,8 +44,10 @@
 
   --bodyTextColor: hsl(218, 5%, 80%);
   --bodyBgColor: hsl(220, 15%, 12%);
-  --contentBgColor: hsl(220, 15%, 17%);
+  --contentBgColor: hsl(220, 15%, 16%);
+
   --emphasisBgColor: hsl(220, 15%, 25%);
+  --emphasisBgColorSoft: hsl(220, 15%, 19%);
 
   --contentTextColor: hsl(218, 5%, 80%);
   --softTextColor: hsl(218, 5%, 50%);

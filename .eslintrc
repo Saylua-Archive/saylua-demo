@@ -38,5 +38,6 @@
     "react/no-multi-comp": 0,
     "react/no-danger": 0,
     "react/jsx-closing-tag-location": 0,
+    "react/require-default-props": 0,
   }
 }

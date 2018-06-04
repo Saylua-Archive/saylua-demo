@@ -10,7 +10,9 @@ import * as Mousetrap from 'mousetrap';
 import marked from 'marked';
 
 const mapStateToProps = ({
-  coins, activeCompanion, companions, encounterSeed, encounterId, area, steps, encounterState,
+  sayluaApp: {
+    coins, activeCompanion, companions, encounterSeed, encounterId, area, steps, encounterState,
+  },
 }) =>
   ({
     coins, activeCompanion, companions, encounterSeed, encounterId, area, steps, encounterState,

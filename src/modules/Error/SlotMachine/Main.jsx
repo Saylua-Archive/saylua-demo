@@ -24,6 +24,10 @@ export default class SlotMachine extends Component {
     };
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.spinTimeout);
+  }
+
   spin() {
     if (this.state.spinning) return;
 
@@ -44,7 +48,7 @@ export default class SlotMachine extends Component {
     });
     store.dispatch(addCoins(-SPIN_COST));
 
-    setTimeout(() => {
+    this.spinTimeout = setTimeout(() => {
       if (a === b && b === c) {
         prize = SPIN_COST * 10;
         prizeText = `Triple!!!`;

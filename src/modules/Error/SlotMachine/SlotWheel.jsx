@@ -12,7 +12,7 @@ export default class SlotWheel extends Component {
         <div className="wheel-inner-wrapper" style={{ transform: `translateY(${topOffset}px)` }}>
           {
             this.props.items.map(item => (
-              <div className="slot">
+              <div className="slot" key={item}>
                 { item }
               </div>
             ))

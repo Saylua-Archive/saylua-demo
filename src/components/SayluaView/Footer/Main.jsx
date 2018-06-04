@@ -9,8 +9,6 @@ import Clock from './Clock';
 
 import './Footer.css';
 
-const mapStateToProps = ({ theme }) => ({ theme });
-
 const mapDispatchToProps = (dispatch) => {
   return {
     clearState: () => {
@@ -73,6 +71,6 @@ class Footer extends Component {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Footer);

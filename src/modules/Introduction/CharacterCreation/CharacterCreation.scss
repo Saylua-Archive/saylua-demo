@@ -1,12 +1,20 @@
+@import 'scss/assets/keyframes';
+
 .character-creation-container {
   display: flex;
   width: 100%;
   height: 100%;
   min-height: 100%;
   color: var(--contentTextColor);
+  background-color: var(--bodyBgColor);
 
   align-items: center;
   justify-content: center;
+  transition: none;
+
+  h1, h2, h3 {
+    transition: none;
+  }
 
   .character-creation-header {
     position: absolute;
@@ -53,9 +61,15 @@
     width: 70%;
     min-width: 300px;
     max-width: 800px;
-    margin-top: 100px;
+    margin: 100px 0;
     padding: 1em 1.6rem;
     background: var(--contentBgColor);
+
+    .character-creation-section {
+      width: 100%;
+      padding: 0 0.8rem;
+      padding-bottom: 1em;
+    }
 
     .side-choice-container {
       display: flex;
@@ -64,53 +78,34 @@
 
       flex-wrap: wrap;
       justify-content: space-between;
+    }
 
-      .side-choice {
-        display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        outline: none;
-        font-size: inherit;
-        line-height: inherit;
-        width: 48%;
-        padding: 0.5em 0.8rem;
-        cursor: pointer;
-        transition: border 0.2s ease-in-out, filter 0.2s ease-in-out, background 0.2s ease-in-out;
-        color: inherit;
-        border: none;
-        border-bottom: 4px solid transparent;
-        background: var(--contentBgColor);
+    .companion-choice-container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
 
-        h3 {
-          border: 0;
-          text-align: center;
-        }
+      label {
+        padding: 1em 1.6rem;
+        max-width: 100%;
+        transition: transform 0.3s ease-in-out;
+        margin: 0.5em 0.8rem;
 
         img {
-          width: 100%;
+          max-width: 200px;
+          transition: transform 0.3s ease-in-out;
         }
 
-        &:hover {
-          filter: drop-shadow(0px 2px 5px hsla(0, 0%, 0%, 0.2));
+        &:hover img {
+          @include bounce-up;
         }
 
-        &:active {
-          transform: translateY(2px);
-        }
-
-        &[data-selected=true] {
-          background: var(--emphasisBgColor);
-          border-bottom: 4px solid var(--mainColor);
+        &[data-selected=true] img {
+          transform: scale(1.1);
         }
       }
-    }
-
-    label {
-      cursor: pointer;
-    }
-
-    label img {
-      max-width: 200px;
     }
   }
 }
