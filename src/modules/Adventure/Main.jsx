@@ -5,13 +5,15 @@ import { encounters, randomEncounters } from './encounters/Main';
 import Areas from './Areas';
 import './Adventure.css';
 import SayluaView from 'components/SayluaView';
-import { setEncounter, setArea, setSteps, updateCondition } from '../../store';
+import { setEncounter, setArea, setSteps, updateCondition } from 'SayluaStore';
 import * as Mousetrap from 'mousetrap';
 import marked from 'marked';
 import Sprite from 'models/Sprite';
 
 const mapStateToProps = ({
-  coins, activeCompanion, companions, encounterSeed, encounterId, area, steps, encounterState,
+  sayluaApp: {
+    coins, activeCompanion, companions, encounterSeed, encounterId, area, steps, encounterState,
+  },
 }) =>
   ({
     coins, activeCompanion, companions, encounterSeed, encounterId, area, steps, encounterState,
@@ -46,6 +48,7 @@ class Adventure extends Component {
     const choiceButtons = [];
     const encounterImgs = [];
     let encounter = this.props.steps <= 0 ? encounters.finish : encounters[this.props.encounterId];
+    encounter = encounter || chooseWeighted(randomEncounters);
     if (this.props.activeCompanion && (
       this.props.activeCompanion.health < 0 ||
       this.props.activeCompanion.stamina < 0 ||
@@ -120,7 +123,7 @@ class Adventure extends Component {
 }
 
 function EventView(props) {
-  const topRight = props.opponent ? <BattleStatBox sprite={props.opponent} /> :
+  const topRight = props.opponent ? <BattleStatBox sprite={props.opponent} right /> :
   <div className="objective">Reach the dawnlands!</div>;
   return (<div className="adventure">
     <h2>{props.area.title}</h2>
@@ -140,27 +143,67 @@ function EventView(props) {
 }
 
 function BattleStatBox(props) {
-  const result = props.sprite ?
+  let result = props.sprite ?
     (<div className="battleStatBox">
-      <img className="battleIcon" src={Sprite.imageUrl(props.sprite)} alt={props.sprite.name} />
+      <img className="battle-icon" src={Sprite.imageUrl(props.sprite)} alt={props.sprite.name} />
       <div className="bar-box">
-        <StatBar
-          value={props.sprite.health}
-          max={Sprite.maxHealth(props.sprite)}
-          color="health-color"
-          icon="♥"
-          label={`${props.sprite.health}/${Sprite.maxHealth(props.sprite)}`}
-        />
-        <StatBar
-          value={props.sprite.stamina}
-          max={Sprite.maxStamina(props.sprite)}
-          color="stamina-color"
-          icon="*"
-          label={`${props.sprite.stamina}/${Sprite.maxStamina(props.sprite)}`}
-        />
+        <div className="health-bar-back">
+          <div className="health-bar-shaper">
+            <StatBar
+              value={props.sprite.health}
+              max={Sprite.maxHealth(props.sprite)}
+              className="health-bar"
+            />
+          </div>
+        </div>
+        <div className="stamina-bar-back">
+          <StatBar
+            value={props.sprite.stamina}
+            max={Sprite.maxStamina(props.sprite)}
+            className="stamina-bar"
+          />
+        </div>
       </div>
-    </div>) : <div />;
+    </div>
+    ) : null;
+  if (props.right) {
+    result = (<div className="battleStatBox">
+      <div className="bar-box bar-box-right">
+        <div className="health-bar-back health-bar-back-right">
+          <div className="health-bar-shaper health-bar-shaper-right">
+            <StatBar
+              value={props.sprite.health}
+              max={Sprite.maxHealth(props.sprite)}
+              className="health-bar health-bar-right"
+            />
+          </div>
+        </div>
+        <div className="stamina-bar-back stamina-bar-back-right">
+          <StatBar
+            value={props.sprite.stamina}
+            max={Sprite.maxStamina(props.sprite)}
+            className="stamina-bar stamina-bar-right"
+          />
+        </div>
+      </div>
+      <img className="battle-icon battle-icon-right" src={Sprite.imageUrl(props.sprite)} alt={props.sprite.name} />
+    </div>
+    );
+  }
   return result;
+}
+
+
+function StatBar(args) {
+  const width = `${Math.max((args.value / args.max) * 100, 0)}%`;
+  return (
+    <div
+      className={args.className}
+      style={{
+        width,
+      }}
+    />
+  );
 }
 
 class ChoiceButton extends Component {
@@ -188,24 +231,6 @@ class ChoiceButton extends Component {
       </div>
     );
   }
-}
-
-function StatBar(args) {
-  const width = `${Math.max((args.value / args.max) * 100, 0)}%`;
-  return (
-    <div className="stat-bar">
-      <div className="bar-icon">{args.icon}</div>
-      <div className="bar-back">
-        <div
-          className={`bar-main bar-${args.color}`}
-          style={{
-            width,
-          }}
-        />
-        <div className="bar-label">{args.label}</div>
-      </div>
-    </div>
-  );
 }
 
 export default connect(

@@ -12,6 +12,8 @@ export const SET_THEME = 'SET_THEME';
 export const SET_AREA = 'SET_AREA';
 export const SET_STEPS = 'SET_STEPS';
 export const UPDATE_CONDITION = 'UPDATE_CONDITION';
+export const GET_ITEM = 'GET_ITEM';
+export const USE_ITEM = 'USE_ITEM';
 
 /*
  * action creators
@@ -56,23 +58,35 @@ export function updateCondition(condition) {
   return { type: UPDATE_CONDITION, condition };
 }
 
+export function getItem(item, count) {
+  return { type: GET_ITEM, item, count };
+}
+
+export function useItem(item, count) {
+  return { type: USE_ITEM, item, count };
+}
+
 /*
  * reducers
  */
 
 export const initialState = {
-  companions: [],
-  activeCompanion: null,
-  coins: 0,
-  encounterId: 'start',
-  area: null,
-  steps: 300,
-  encounterSeed: Date.now(),
-  encounterState: null,
-  theme: 'day',
+  sayluaApp: {
+    companions: [],
+    activeCompanion: null,
+    coins: 0,
+    encounterId: 'start',
+    area: null,
+    steps: 300,
+    encounterSeed: Date.now(),
+    encounterState: null,
+    theme: 'sayleus',
+    inventory: {},
+  },
+  form: {},
 };
 
-export function sayluaApp(state = initialState, action) {
+export function sayluaReducer(state = initialState.sayluaApp, action) {
   switch (action.type) {
     case ADD_COINS:
       return Object.assign({}, state, {
@@ -97,7 +111,7 @@ export function sayluaApp(state = initialState, action) {
         encounterState: action.encounterState,
       });
     case CLEAR_STATE:
-      return Object.assign({}, state, initialState);
+      return Object.assign({}, state, initialState.sayluaApp);
     case SET_THEME:
       return Object.assign({}, state, {
         theme: action.theme,
@@ -119,6 +133,24 @@ export function sayluaApp(state = initialState, action) {
       return Object.assign({}, state, {
         activeCompanion: newComp,
         steps: action.condition.steps || state.steps,
+      });
+    }
+    case GET_ITEM: {
+      const newInventory = Object.assign({}, state.inventory);
+      newInventory[action.item.canonName] = (newInventory[action.item.canonName] || 0)
+        + (action.count || 1);
+      return Object.assign({}, state, {
+        inventory: newInventory,
+      });
+    }
+    case USE_ITEM: {
+      const newInventory = Object.assign({}, state.inventory);
+      newInventory[action.item.canonName] -= action.count || 1;
+      if (newInventory[action.item.canonName] <= 0) {
+        delete newInventory[action.item.canonName];
+      }
+      return Object.assign({}, state, {
+        inventory: newInventory,
       });
     }
     default:

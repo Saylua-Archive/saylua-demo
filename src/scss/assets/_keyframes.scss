@@ -1,0 +1,28 @@
+@mixin bounce-up($height: 5%, $time: 1.5s) {
+  animation: bounce-up $time linear infinite;
+  @keyframes bounce-up {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-$height);
+    }
+  }
+}
+
+@keyframes fadeup {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}

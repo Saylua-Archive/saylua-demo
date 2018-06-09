@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Sprite from 'models/Sprite';
-import { accompany, setSteps } from '../../store';
+import { accompany, setSteps } from 'SayluaStore';
 import { resetAdventureFunc } from '../Adventure/encounterFuncs';
 import SayluaView from 'components/SayluaView';
 
 import './Den.css';
 
-const mapStateToProps = ({ companions, steps }) => ({ companions, steps });
+const mapStateToProps = ({ sayluaApp: { companions, steps } }) => ({ companions, steps });
 
 const mapDispatchToProps = (dispatch) => {
   return {

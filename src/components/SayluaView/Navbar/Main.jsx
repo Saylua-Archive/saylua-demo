@@ -12,18 +12,29 @@ export default class Navbar extends Component {
           <div id="navbar-inner-container" className="navbar-inner-container">
             <div className="sidebar-filler" />
             <div className="navbar-block">
-              <Link to="/" className="navbar-link" title="Home">
+              <Link to="/" className="navbar-link" title="My Den">
                 <i className="fas fa-fw fa-home" aria-hidden="true" />
+              </Link>
+              <Link to="/sprites" className="navbar-link" title="My Sprites">
+                <i className="fas fa-fw fa-paw" aria-hidden="true" />
+              </Link>
+              <Link to="/items" className="navbar-link" title="My Items">
+                <i className="fas fa-fw fa-suitcase" aria-hidden="true" />
               </Link>
             </div>
             <div className="navbar-block">
-              <Link to="/den" className="navbar-link" title="Your Den">
-                Your Den
+              <Link to="/wilderness" className="navbar-link" title="Item Shed">
+                Wilderness
               </Link>
             </div>
             <div className="navbar-block">
               <Link to="/arcade/bloxi" className="navbar-link" title="Arcade">
                 Arcade
+              </Link>
+            </div>
+            <div className="navbar-block">
+              <Link to="/reserve" className="navbar-link" title="Everly Reserve">
+                Reserve
               </Link>
             </div>
             <div className="navbar-block">

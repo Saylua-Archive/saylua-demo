@@ -8,7 +8,7 @@ import NotFound from 'modules/Error/NotFound';
 
 import './SpriteProfile.css';
 
-const mapStateToProps = ({ activeCompanion, companions }) =>
+const mapStateToProps = ({ sayluaApp: { activeCompanion, companions } }) =>
   ({
     activeCompanion,
     companions,

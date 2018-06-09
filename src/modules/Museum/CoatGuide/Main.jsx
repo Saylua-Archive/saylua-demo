@@ -33,7 +33,7 @@ export default class CoatGuide extends Component {
                 </SpriteHeader>
                 {
                   coats.map(coat => (
-                    <img src={coat.imageUrl()} alt={coat.fullName()} />
+                    <img key={coat.fullName()} src={coat.imageUrl()} alt={coat.fullName()} />
                   ))
                 }
               </div>

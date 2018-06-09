@@ -1,4 +1,4 @@
-button.saylua-button, a.button {
+button.saylua-button {
   font-size: 1em;
   line-height: 150%;
   display: inline-block;
@@ -16,9 +16,13 @@ button.saylua-button, a.button {
     border: 1px solid var(--mainColor);
     background-color: var(--mainColor);
   }
+
+  &:active {
+    transform: translateY(2px);
+  }
 }
 
-a.subtle-button, button.subtle-button {
+button.subtle-button {
   color: var(--accentColor);
   background-color: var(--contentBgColor);
 

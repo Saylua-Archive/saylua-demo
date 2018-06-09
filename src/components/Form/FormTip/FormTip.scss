@@ -1,0 +1,14 @@
+.form-tip {
+  display: block;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.2rem;
+
+  &[data-warning] {
+    color: var(--warningColor);
+  }
+
+  &[data-error] {
+    color: var(--errorColor);
+  }
+}

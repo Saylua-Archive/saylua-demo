@@ -2,23 +2,28 @@
 
 
 :root {
+  --headerBackgroundImage: url('/img/backgrounds/sayleus.jpg');
+
   --accentColor: hsl(4, 72%, 62%);
   --accentSoftColor: hsl(4, 65%, 88%);
 
   --errorColor: hsl(348, 100%, 50%);
   --errorLightColor: hsl(0, 100%, 90%);
+  --warningColor: hsl(20, 80%, 50%);
+
   --highlightColor: hsl(45, 75%, 85%);
   --highlightDarkColor: hsl(45, 52%, 73%);
   --highlightSoftColor: hsl(45, 100%, 92%);
 
-  --mainBgColor: hsl(171, 14%, 85%);
-  --bgTextColor: hsl(0, 0%, 13%);
+  --bodyBgColor: hsl(171, 14%, 86%);
+  --bodyTextColor: hsl(0, 0%, 13%);
 
-  --contentBgColor: hsl(171, 14%, 90%);
-  --mainTextColor: hsl(0, 0%, 13%);
+  --contentBgColor: hsl(171, 14%, 92%);
+  --contentTextColor: hsl(0, 0%, 13%);
   --softTextColor: hsl(171, 10%, 40%);
 
   --emphasisBgColor: hsl(0, 0%, 100%);
+  --emphasisBgColorSoft: hsl(171, 7%, 96%);
 
   --mainColor: hsl(171, 82%, 42%);
   --mainDarkColor: hsl(172, 86%, 36%);
@@ -35,12 +40,16 @@
 }
 
 [data-theme='luarian'] {
-  --bgTextColor: hsl(218, 5%, 80%);
-  --mainBgColor: hsl(220, 15%, 12%);
-  --contentBgColor: hsl(220, 15%, 17%);
-  --emphasisBgColor: hsl(220, 15%, 25%);
+  --headerBackgroundImage: url('/img/backgrounds/luaria.jpg');
 
-  --mainTextColor: hsl(218, 5%, 80%);
+  --bodyTextColor: hsl(218, 5%, 80%);
+  --bodyBgColor: hsl(220, 15%, 12%);
+  --contentBgColor: hsl(220, 15%, 16%);
+
+  --emphasisBgColor: hsl(220, 15%, 25%);
+  --emphasisBgColorSoft: hsl(220, 15%, 19%);
+
+  --contentTextColor: hsl(218, 5%, 80%);
   --softTextColor: hsl(218, 5%, 50%);
 
   --mainColor: hsl(228, 50%, 30%);
@@ -58,22 +67,24 @@
 }
 
 [data-theme='dawnish'] {
-  --bgTextColor: hsl(260, 5%, 80%);
-  --mainBgColor: hsl(260, 5%, 15%);
+  --headerBackgroundImage: url('/img/backgrounds/dawnlands.jpg');
+
+  --bodyTextColor: hsl(320, 5%, 80%);
+  --bodyBgColor: hsl(300, 10%, 15%);
   --emphasisBgColor: hsl(280, 15%, 95%);
 
-  --contentBgColor: hsl(240, 5%, 80%);
-  --mainTextColor: hsl(0, 0%, 13%);
+  --contentBgColor: hsl(280, 5%, 80%);
+  --contentTextColor: hsl(0, 0%, 13%);
   --softTextColor: hsl(200, 10%, 30%);
 
-  --mainColor: hsl(270, 50%, 25%);
-  --mainDarkColor: hsl(270, 40%, 20%);
-  --mainDarkerColor: hsl(270, 40%, 15%);
-  --mainSoftColor: hsl(270, 45%, 32%);
-  --mainSofterColor: hsl(270, 42%, 70%);
-  --mainSoftestColor: hsl(270, 40%, 90%);
-  --neutralColor: hsl(280, 20%, 77%);
-  --neutralDarkColor: hsl(280, 15%, 70%);
+  --mainColor: hsl(340, 60%, 28%);
+  --mainDarkColor: hsl(340, 50%, 23%);
+  --mainDarkerColor: hsl(340, 50%, 18%);
+  --mainSoftColor: hsl(340, 55%, 35%);
+  --mainSofterColor: hsl(340, 52%, 70%);
+  --mainSoftestColor: hsl(340, 40%, 90%);
+  --neutralColor: hsl(320, 15%, 77%);
+  --neutralDarkColor: hsl(320, 10%, 70%);
 }
 
 [data-theme='admin'] {

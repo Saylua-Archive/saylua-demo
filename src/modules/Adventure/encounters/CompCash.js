@@ -1,7 +1,7 @@
 import { addCoinsFunc, adoptFunc } from '../encounterFuncs';
 import { Encounter, Choice } from './Models';
 import { sRandomInt } from 'utils';
-import { speciesIndexRegion } from '../../../models/SpriteSpecies';
+import { speciesIndexRegion } from 'models/SpriteSpecies';
 import Sprite from 'models/Sprite';
 
 export default class CompCash extends Encounter {

@@ -2,11 +2,12 @@ import { Encounter } from './Models';
 import Sprite from 'models/Sprite';
 
 import FindCoins from './FindCoins';
-import Start from './Start';
+import FindTreat from './FindTreat';
 import Finish from './Finish';
 import Defeat from './Defeat';
 import CompCash from './CompCash';
 import Rest from './Rest';
+import Start from './Start';
 import { Battle, BattleContinue, BattleEnd } from './Battle';
 import { SameSprite, SameSpriteEnd } from './SameSprite';
 import { RufusCheck, RufusCheckEnd } from './RufusCheck';
@@ -20,6 +21,7 @@ const encountersArray = [
   new Rest("rest"),
   new Encounter("breeze", { mainText: "A peaceful breeze blows past." }),
   new FindCoins("findCoins"),
+  new FindTreat("findTreat"),
   new CompCash("compCash"),
   new Encounter("end"),
   new SameSprite("sameSprite"),
@@ -42,6 +44,7 @@ for (let i = 0; i < encountersArray.length; i++) {
 const randomEncounters = [
   encounters.breeze,
   encounters.findCoins,
+  encounters.findTreat,
   encounters.compCash,
   encounters.sameSprite,
   encounters.rufusCheck,

@@ -1,0 +1,111 @@
+@import 'scss/assets/keyframes';
+
+.character-creation-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  color: var(--contentTextColor);
+  background-color: var(--bodyBgColor);
+
+  align-items: center;
+  justify-content: center;
+  transition: none;
+
+  h1, h2, h3 {
+    transition: none;
+  }
+
+  .character-creation-header {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    padding: 20px;
+    text-align: center;
+    background-image: var(--headerBackgroundImage);
+    background-position: 0 80%;
+    background-size: cover;
+
+    img {
+      height: 60px;
+      transition: 0.5s filter ease-in-out, 0.2s transform linear;
+      filter: drop-shadow(0px 2px 5px hsla(0, 0%, 0%, 0.2));
+    }
+
+    img:active {
+      transform: translateY(3px);
+    }
+
+    img:hover {
+      filter: drop-shadow(0px 0px 5px hsl(60, 76%, 69%));
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      pointer-events: none;
+      background-image: linear-gradient(to bottom, hsla(0,0%, 0%, 0), var(--bodyBgColor) 90%);
+    }
+  }
+
+  .character-creation-inner {
+    z-index: 10;
+    width: 70%;
+    min-width: 300px;
+    max-width: 800px;
+    margin: 100px 0;
+    padding: 1em 1.6rem;
+    background: var(--contentBgColor);
+
+    .character-creation-section {
+      width: 100%;
+      padding: 0 0.8rem;
+      padding-bottom: 1em;
+    }
+
+    .side-choice-container {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .companion-choice-container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+
+      label {
+        padding: 1em 1.6rem;
+        max-width: 100%;
+        transition: transform 0.3s ease-in-out;
+        margin: 0.5em 0.8rem;
+
+        img {
+          max-width: 200px;
+          transition: transform 0.3s ease-in-out;
+        }
+
+        &:hover img {
+          @include bounce-up;
+        }
+
+        &[data-selected=true] img {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}

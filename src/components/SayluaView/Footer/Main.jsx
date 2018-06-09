@@ -3,13 +3,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { clearState } from '../../../store';
+import { clearState } from 'SayluaStore';
 
 import Clock from './Clock';
 
 import './Footer.css';
-
-const mapStateToProps = ({ theme }) => ({ theme });
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -74,6 +72,6 @@ class Footer extends Component {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Footer);

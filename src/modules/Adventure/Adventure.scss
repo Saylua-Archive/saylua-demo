@@ -79,13 +79,9 @@
     max-height: 4em;
   }
 
-  .hud-area img {
-    width: 4em;
-    height: 4em;
-  }
-
   .battleStatBox {
     width: 40%;
+    height: 2em;
     display: flex;
     padding: .5em .5rem;
   }
@@ -98,46 +94,89 @@
     overflow: hidden;
   }
 
-  .stat-bar {
-    //width: 100%;
-    display: flex;
+  .battle-icon {
+    width: 4em;
+    height: 4em;
+    background-color: hsla(155, 100%, 98%, 0.73);
+    padding: .4em;
+    border-radius: 50% 0% 50% 50%;
+  }
+
+  .battle-icon-right {
+    transform: scaleX(-1);
   }
 
   .bar-box {
     width: 100%;
+    position: relative;
   }
 
-  .bar-back {
+  .health-bar-back {
     position: relative;
     height: 1.5em;
-    background-color: var(--contentBgColor);
-    margin-top: .25em;
+    background-color: hsla(155, 100%, 98%, 0.73);
     max-width: 100%;
     width: 100%;
+    border-radius: 0 1.5em 1.5em 0;
+    overflow: hidden;
+    right: 0;
   }
 
-  .bar-back div {
+  .health-bar-back-right {
+    border-radius: 1.5em 0 0 1.5em;
+  }
+
+  .health-bar {
+    background-color: hsla(352, 95%, 55%, 0.80);
     position: absolute;
+    width: 100%;
     height: 100%;
-    line-height: 1.5em;
-    color: var(--mainTextColor);
+    transition: width .4s;
   }
 
-  .bar-label {
-    padding-left: .5rem;
+  .health-bar-right {
+    right: 0;
   }
 
-  .bar-icon {
-    width: 2rem;
-    line-height: 1.5em;
+  .health-bar-shaper {
+    border-radius: 3em 0em 0em 0em;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
-  .bar-health-color {
-    background-color: var(--healthColor);
+  .health-bar-shaper-right {
+    border-radius: 0em 3em 0em 0em;
+    right: 0;
   }
 
-  .bar-stamina-color {
-    background-color: var(--staminaColor);
+  .stamina-bar-back {
+    position: relative;
+    height: .7em;
+    background-color: hsla(155, 100%, 98%, 0.73);
+    max-width: 100%;
+    width: 80%;
+    border-radius: 0 0 1.5em 0;
+    overflow: hidden;
+  }
+
+  .stamina-bar-back-right {
+    border-radius: 0 0 0 1.5em;
+    right: 0;
+    position: absolute;
+  }
+
+  .stamina-bar {
+    background-color: hsla(233, 100%, 71%, 0.75);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: width .4s;
+  }
+
+  .stamina-bar-right {
+    right: 0;
   }
 
   .objective {

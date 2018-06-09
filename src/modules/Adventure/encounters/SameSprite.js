@@ -1,6 +1,6 @@
 import { adoptFunc } from '../encounterFuncs';
 import { Encounter, Choice, Outcome } from './Models';
-import { speciesIndexRegion } from '../../../models/SpriteSpecies';
+import { speciesIndexRegion } from 'models/SpriteSpecies';
 import Sprite from 'models/Sprite';
 
 export class SameSprite extends Encounter {

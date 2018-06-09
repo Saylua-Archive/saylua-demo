@@ -1,0 +1,24 @@
+.inventory-grid {
+  display: grid;
+  width: 100%;
+
+  align-content: space-evenly;
+  align-items: center;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: auto;
+
+  button.inventory-item {
+    font-size: 100%;
+    line-height: 160%;
+    display: flex;
+    flex-direction: column;
+    max-width: 160px;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    background: none;
+    color: inherit;
+
+    align-items: center;
+  }
+}
