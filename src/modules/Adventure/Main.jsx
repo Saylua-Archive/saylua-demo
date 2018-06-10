@@ -123,28 +123,28 @@ class Adventure extends Component {
 }
 
 function EventView(props) {
-  const topRight = props.opponent ? <BattleStatBox sprite={props.opponent} right /> :
+  const topRight = props.opponent ? <BattleStatBox sprite={props.opponent} onRightSide /> :
   <div className="objective">Reach the dawnlands!</div>;
   return (<div className="adventure">
     <h2>{props.area.title}</h2>
     <div
       style={{ backgroundImage: `url('/img/backgrounds/${props.area.background}.jpg')` }}
-      className="adventureWrapper"
+      className="adventure-wrapper"
     >
       <div className="hud-area">
         <BattleStatBox sprite={props.activeCompanion} />
         {topRight}
       </div>
-      <div className="imageArea">{props.encounterImgs}</div>
+      <div className="image-area">{props.encounterImgs}</div>
     </div>
-    <p className="adventureText" id="scene-desc" dangerouslySetInnerHTML={props.rawMarkup(props.mainText)} />
+    <p className="adventure-text" id="scene-desc" dangerouslySetInnerHTML={props.rawMarkup(props.mainText)} />
     {props.choiceButtons}
   </div>);
 }
 
 function BattleStatBox(props) {
   let result = props.sprite ?
-    (<div className="battleStatBox">
+    (<div className="battle-stat-box">
       <img className="battle-icon" src={Sprite.imageUrl(props.sprite)} alt={props.sprite.name} />
       <div className="bar-box">
         <div className="health-bar-back">
@@ -166,8 +166,8 @@ function BattleStatBox(props) {
       </div>
     </div>
     ) : null;
-  if (props.right) {
-    result = (<div className="battleStatBox">
+  if (props.onRightSide) {
+    result = (<div className="battle-stat-box">
       <div className="bar-box bar-box-right">
         <div className="health-bar-back health-bar-back-right">
           <div className="health-bar-shaper health-bar-shaper-right">

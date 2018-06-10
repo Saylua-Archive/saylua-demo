@@ -8,8 +8,8 @@ import { ITEMS_LIST } from 'models/Item';
 export function resetAdventureFunc(companion) {
   return () => {
     store.dispatch(updateCondition({
-      health: Sprite.maxHealth(companion) - companion.health,
-      stamina: Sprite.maxStamina(companion) - companion.stamina,
+      health: Sprite.maxHealth(companion),
+      stamina: Sprite.maxStamina(companion),
       steps: 300,
     }));
   };
