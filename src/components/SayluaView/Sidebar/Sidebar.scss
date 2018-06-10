@@ -24,36 +24,6 @@
   padding-left: .5rem;
 }
 
-.bar-back {
-  position: relative;
-  height: 1.5em;
-  background-color: var(--contentBgColor);
-  margin-top: .25em;
-}
-
-.bar-back div {
-  position: absolute;
-  height: 100%;
-  line-height: 1.5em;
-  color: var(--contentTextColor);
-}
-
-.bar-label {
-  padding-left: .5rem;
-}
-
-.bar-health-color {
-  background-color: var(--healthColor);
-}
-
-.bar-stamina-color {
-  background-color: var(--staminaColor);
-}
-
-.bar-focus-color {
-  background-color: var(--focusColor);
-}
-
 @media (min-height: 600px) {
   .sidebar.sidebar-fixed {
     position: fixed;

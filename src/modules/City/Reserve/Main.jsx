@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import { adopt } from 'SayluaStore';
 import { randomChoice, addArticle, capitalizeFirst } from 'utils';
-import { randomCompanion } from 'modules/Adventure/encounterFuncs';
 import Button from 'components/Button';
+import Sprite from 'models/Sprite';
 
 import SayluaView from 'components/SayluaView';
 
@@ -24,13 +24,13 @@ class Reserve extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      adoptee: randomCompanion((new Date()).getTime()),
+      adoptee: Sprite.randomSprite((new Date()).getTime()),
     };
   }
 
   newAdoptee() {
     this.setState({
-      adoptee: randomCompanion((new Date()).getTime()),
+      adoptee: Sprite.randomSprite((new Date()).getTime()),
     });
   }
 

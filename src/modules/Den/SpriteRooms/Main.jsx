@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Companion from 'models/Companion';
 import { accompany, setSteps } from 'SayluaStore';
 import { resetAdventureFunc } from 'modules/Adventure/encounterFuncs';
 import SayluaView from 'components/SayluaView';
+import Sprite from 'models/Sprite';
 
 import './SpriteRooms.css';
 
@@ -50,7 +50,7 @@ class SpriteRooms extends Component {
 }
 
 function DenPet(props) {
-  const companion = new Companion(props.companion);
+  const companion = Sprite.create(props.companion);
   return (
     <div
       onClick={props.onClick}
@@ -60,9 +60,9 @@ function DenPet(props) {
     >
       <img
         alt={companion.name}
-        src={companion.imageUrl()}
+        src={Sprite.imageUrl(companion)}
       />
-      <div>{companion.fullName()}</div>
+      <div>{Sprite.fullName(companion)}</div>
     </div>
   );
 }

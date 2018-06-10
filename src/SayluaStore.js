@@ -1,3 +1,4 @@
+import Sprite from 'models/Sprite';
 /*
  * action types
  */
@@ -110,7 +111,7 @@ export function sayluaReducer(state = initialState.sayluaApp, action) {
         encounterState: action.encounterState,
       });
     case CLEAR_STATE:
-      return Object.assign({}, state, initialState);
+      return Object.assign({}, state, initialState.sayluaApp);
     case SET_THEME:
       return Object.assign({}, state, {
         theme: action.theme,
@@ -126,11 +127,9 @@ export function sayluaReducer(state = initialState.sayluaApp, action) {
     case UPDATE_CONDITION: {
       const newComp = Object.assign({}, state.activeCompanion);
       newComp.health += (action.condition && action.condition.health) || 0;
-      newComp.health = Math.min(newComp.health, newComp.maxHealth);
+      newComp.health = Math.min(newComp.health, Sprite.maxHealth(state.activeCompanion));
       newComp.stamina += (action.condition && action.condition.stamina) || 0;
-      newComp.stamina = Math.min(newComp.stamina, newComp.maxStamina);
-      newComp.focus += (action.condition && action.condition.focus) || 0;
-      newComp.focus = Math.min(newComp.focus, newComp.maxFocus);
+      newComp.stamina = Math.min(newComp.stamina, Sprite.maxStamina(state.activeCompanion));
       return Object.assign({}, state, {
         activeCompanion: newComp,
         steps: action.condition.steps || state.steps,

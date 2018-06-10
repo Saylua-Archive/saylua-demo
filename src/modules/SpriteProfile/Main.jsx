@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Companion from 'models/Companion';
+import Sprite from 'models/Sprite';
 import SayluaView from 'components/SayluaView';
 import NotFound from 'modules/Error/NotFound';
 
@@ -18,21 +18,19 @@ class SpriteProfile extends Component {
   render() {
     const soulName = this.props.match.params.soulName.toLowerCase();
 
-    let companion = this.props.companions.find(c => (c.soulName === soulName));
+    const companion = this.props.companions.find(c => (c.soulName === soulName));
 
     if (!companion) {
       return <NotFound />;
-    } else {
-      companion = new Companion(companion);
     }
 
     return (
       <SayluaView title={`${companion.name}'s Profile`}>
-        <h1>{companion.fullName()}</h1>
+        <h1>{Sprite.fullName(companion)}</h1>
         <div id="pet-room">
           <div className="pet-room-background" style={{ backgroundImage: 'url(/img/backgrounds/luaria.jpg)' }} />
           <div className="pet" id="pet-image-container">
-            <img src={companion.imageUrl()} alt={companion.name} />
+            <img src={Sprite.imageUrl(companion)} alt={companion.name} />
           </div>
         </div>
         <div className="pet-actions">
@@ -64,11 +62,11 @@ class SpriteProfile extends Component {
                 </tr>
                 <tr>
                   <td>Species</td>
-                  <td><Link to={companion.species.url()}>{ companion.species.name }</Link></td>
+                  <td><Link to={Sprite.species(companion).url()}>{ Sprite.species(companion).name }</Link></td>
                 </tr>
                 <tr>
                   <td>Coat</td>
-                  <td><Link to={companion.coat.url()}>{ companion.coat.name() }</Link></td>
+                  <td><Link to={Sprite.coat(companion).url()}>{ Sprite.coat(companion).name() }</Link></td>
                 </tr>
                 <tr>
                   <td>Bonding Day</td>

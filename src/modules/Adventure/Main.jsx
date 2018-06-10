@@ -8,6 +8,7 @@ import SayluaView from 'components/SayluaView';
 import { setEncounter, setArea, setSteps, updateCondition } from 'SayluaStore';
 import * as Mousetrap from 'mousetrap';
 import marked from 'marked';
+import Sprite from 'models/Sprite';
 
 const mapStateToProps = ({
   sayluaApp: {
@@ -47,6 +48,7 @@ class Adventure extends Component {
     const choiceButtons = [];
     const encounterImgs = [];
     let encounter = this.props.steps <= 0 ? encounters.finish : encounters[this.props.encounterId];
+    encounter = encounter || chooseWeighted(randomEncounters);
     if (this.props.activeCompanion && (
       this.props.activeCompanion.health < 0 ||
       this.props.activeCompanion.stamina < 0 ||
@@ -106,20 +108,102 @@ class Adventure extends Component {
     const mainText = encounter.mainText;
     return (
       <SayluaView>
-        <div className="adventure">
-          <h2>{area.title} ({((this.props.steps - 1) % 100) + 1})</h2>
-          <div
-            className="imageArea"
-            style={{ backgroundImage: `url('/img/backgrounds/${area.background}.jpg')` }}
-          >
-            {encounterImgs}
-          </div>
-          <p className="adventureText" id="scene-desc" dangerouslySetInnerHTML={this.rawMarkup(mainText)} />
-          {choiceButtons}
-        </div>
+        <EventView
+          area={area}
+          encounterImgs={encounterImgs}
+          mainText={mainText}
+          choiceButtons={choiceButtons}
+          rawMarkup={this.rawMarkup}
+          activeCompanion={this.props.activeCompanion}
+          opponent={encounter.opponent}
+        />
       </SayluaView>
     );
   }
+}
+
+function EventView(props) {
+  const topRight = props.opponent ? <BattleStatBox sprite={props.opponent} onRightSide /> :
+  <div className="objective">Reach the dawnlands!</div>;
+  return (<div className="adventure">
+    <h2>{props.area.title}</h2>
+    <div
+      style={{ backgroundImage: `url('/img/backgrounds/${props.area.background}.jpg')` }}
+      className="adventure-wrapper"
+    >
+      <div className="hud-area">
+        <BattleStatBox sprite={props.activeCompanion} />
+        {topRight}
+      </div>
+      <div className="image-area">{props.encounterImgs}</div>
+    </div>
+    <p className="adventure-text" id="scene-desc" dangerouslySetInnerHTML={props.rawMarkup(props.mainText)} />
+    {props.choiceButtons}
+  </div>);
+}
+
+function BattleStatBox(props) {
+  let result = props.sprite ?
+    (<div className="battle-stat-box">
+      <img className="battle-icon" src={Sprite.imageUrl(props.sprite)} alt={props.sprite.name} />
+      <div className="bar-box">
+        <div className="health-bar-back">
+          <div className="health-bar-shaper">
+            <StatBar
+              value={props.sprite.health}
+              max={Sprite.maxHealth(props.sprite)}
+              className="health-bar"
+            />
+          </div>
+        </div>
+        <div className="stamina-bar-back">
+          <StatBar
+            value={props.sprite.stamina}
+            max={Sprite.maxStamina(props.sprite)}
+            className="stamina-bar"
+          />
+        </div>
+      </div>
+    </div>
+    ) : null;
+  if (props.onRightSide) {
+    result = (<div className="battle-stat-box">
+      <div className="bar-box bar-box-right">
+        <div className="health-bar-back health-bar-back-right">
+          <div className="health-bar-shaper health-bar-shaper-right">
+            <StatBar
+              value={props.sprite.health}
+              max={Sprite.maxHealth(props.sprite)}
+              className="health-bar health-bar-right"
+            />
+          </div>
+        </div>
+        <div className="stamina-bar-back stamina-bar-back-right">
+          <StatBar
+            value={props.sprite.stamina}
+            max={Sprite.maxStamina(props.sprite)}
+            className="stamina-bar stamina-bar-right"
+          />
+        </div>
+      </div>
+      <img className="battle-icon battle-icon-right" src={Sprite.imageUrl(props.sprite)} alt={props.sprite.name} />
+    </div>
+    );
+  }
+  return result;
+}
+
+
+function StatBar(args) {
+  const width = `${Math.max((args.value / args.max) * 100, 0)}%`;
+  return (
+    <div
+      className={args.className}
+      style={{
+        width,
+      }}
+    />
+  );
 }
 
 class ChoiceButton extends Component {

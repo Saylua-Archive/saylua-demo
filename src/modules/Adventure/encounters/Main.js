@@ -1,13 +1,13 @@
 import { Encounter } from './Models';
-import Companion from 'models/Companion';
+import Sprite from 'models/Sprite';
 
 import FindCoins from './FindCoins';
 import FindTreat from './FindTreat';
-import Start from './Start';
 import Finish from './Finish';
 import Defeat from './Defeat';
 import CompCash from './CompCash';
 import Rest from './Rest';
+import Start from './Start';
 import { Battle, BattleContinue, BattleEnd } from './Battle';
 import { SameSprite, SameSpriteEnd } from './SameSprite';
 import { RufusCheck, RufusCheckEnd } from './RufusCheck';
@@ -52,4 +52,4 @@ const randomEncounters = [
   encounters.battle,
   encounters.rest,
 ];
-export { encounters, randomEncounters, Companion };
+export { encounters, randomEncounters, Sprite };

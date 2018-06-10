@@ -1,15 +1,16 @@
-import { randomCompanion, updateConditionFunc } from '../encounterFuncs';
+import { updateConditionFunc } from '../encounterFuncs';
 import { Encounter, Choice, Outcome } from './Models';
 import { setEncounterState } from 'SayluaStore';
 import { store } from 'index';
 import { sRandomInt } from 'utils';
-import { speciesIndexRegion } from '../../../models/SpriteSpecies';
+import { speciesIndexRegion } from 'models/SpriteSpecies';
+import Sprite from 'models/Sprite';
 
 
 export class Battle extends Encounter {
   get mainText() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const opponent = randomCompanion(this._seed, localSprites);
+    const opponent = Sprite.randomSprite(this._seed, localSprites);
     if (!this._state.encounterState ||
       !this._state.encounterState.opponent ||
       this._state.encounterState.opponent.soulName !== opponent.soulName) {
@@ -18,13 +19,13 @@ export class Battle extends Encounter {
     if (!this._state.activeCompanion) {
       return "Where did your companion go?!?!?";
     } else {
-      return `A wild ${opponent.species.name} wants to battle!`;
+      return `A wild ${Sprite.species(opponent).name} wants to battle!`;
     }
   }
   get img() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const opponent = randomCompanion(this._seed, localSprites);
-    return { url: opponent.imageUrl(), tiny: true };
+    const opponent = Sprite.randomSprite(this._seed, localSprites);
+    return { url: Sprite.imageUrl(opponent), tiny: true };
   }
   get choices() {
     return [
@@ -37,22 +38,25 @@ export class Battle extends Encounter {
 }
 
 export class BattleContinue extends Encounter {
+  get opponent() {
+    return this._state.encounterState.opponent;
+  }
   get mainText() {
     const opponent = this._state.encounterState.opponent;
     if (!this._state.activeCompanion) {
       return "Where did your companion go?!?!?";
     } else {
-      return `Health: ${opponent.health}, Stamina: ${opponent.stamina}, Focus: ${opponent.focus}`;
+      return `Health: ${opponent.health}, Stamina: ${opponent.stamina}`;
     }
   }
   get img() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const opponent = randomCompanion(this._seed, localSprites);
-    return { url: opponent.imageUrl(), tiny: true };
+    const opponent = Sprite.randomSprite(this._seed, localSprites);
+    return { url: Sprite.imageUrl(opponent), tiny: true };
   }
   get choices() {
     const opponent = this._state.encounterState.opponent;
-    if (opponent.health < 0 || opponent.stamina < 0 || opponent.focus < 0) {
+    if (opponent.health < 0 || opponent.stamina < 0) {
       return [new Choice(
         `${this._state.activeCompanion.name} wins!`,
         new Outcome(() => {}, "battleEnd"),
@@ -95,7 +99,6 @@ export class BattleContinue extends Encounter {
             updateConditionFunc({
               stamina: sRandomInt(this.seed + 3, -1, 0),
               health: sRandomInt(this.seed + 4, -2, 0),
-              focus: sRandomInt(this.seed + 5, -1, 0),
             })();
           }, "battleContinue"),
         ));
@@ -110,7 +113,6 @@ export class BattleContinue extends Encounter {
             updateConditionFunc({
               stamina: sRandomInt(this.seed + 3, -1, 0),
               health: sRandomInt(this.seed + 4, -2, 0),
-              focus: sRandomInt(this.seed + 5, -1, 0),
             })();
           }, "battleContinue"),
         ));
@@ -123,21 +125,21 @@ export class BattleContinue extends Encounter {
 export class BattleEnd extends Encounter {
   get mainText() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const opponent = randomCompanion(this._seed, localSprites);
+    const opponent = Sprite.randomSprite(this._seed, localSprites);
     if (!this._state.activeCompanion) {
       return "Where did your companion go?!?!?";
     } else {
-      return `The ${opponent.species.name} beams up at you. It was a great battle!`;
+      return `The ${Sprite.species(opponent).name} beams up at you. It was a great battle!`;
     }
   }
   get img() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const opponent = randomCompanion(this._seed, localSprites);
-    return { url: opponent.imageUrl(), tiny: true };
+    const opponent = Sprite.randomSprite(this._seed, localSprites);
+    return { url: Sprite.imageUrl(opponent), tiny: true };
   }
   get choices() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const opponent = randomCompanion(this._seed, localSprites);
+    const opponent = Sprite.randomSprite(this._seed, localSprites);
     return [
       new Choice(`Farewell, ${opponent.name}.`, () => {}),
     ];
