@@ -186,7 +186,7 @@ export default class GameState extends BaseModel {
     // Check if a line was made.
     if (this.clearLines(p.r, p.r + 4).length > 0) {
       this.score += 50;
-      this.timeout -= 3;
+      this.timeout -= this.timeout * 0.05;
     }
 
     return false;

@@ -1,5 +1,5 @@
-import { updateConditionFunc } from '../encounterFuncs';
-import { Encounter, Choice, Outcome } from './Models';
+import { updateConditionFunc } from 'modules/Adventure/encounterFuncs';
+import { Encounter, Choice, Outcome } from '../Models';
 import { setEncounterState } from 'SayluaStore';
 import { store } from 'index';
 import { sRandomInt } from 'utils';

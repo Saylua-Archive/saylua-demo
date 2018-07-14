@@ -3,10 +3,10 @@ import { chooseWeighted } from 'utils';
 import { connect } from 'react-redux';
 import { encounters, randomEncounters } from './encounters/Main';
 import Areas from './Areas';
+import ChoiceButton from './ChoiceButton';
 import './Adventure.css';
 import SayluaView from 'components/SayluaView';
 import { setEncounter, setArea, setSteps, updateCondition } from 'SayluaStore';
-import * as Mousetrap from 'mousetrap';
 import marked from 'marked';
 import Sprite from 'models/Sprite';
 
@@ -50,9 +50,7 @@ class Adventure extends Component {
     let encounter = this.props.steps <= 0 ? encounters.finish : encounters[this.props.encounterId];
     encounter = encounter || chooseWeighted(randomEncounters);
     if (this.props.activeCompanion && (
-      this.props.activeCompanion.health < 0 ||
-      this.props.activeCompanion.stamina < 0 ||
-      this.props.activeCompanion.focus < 0
+      this.props.activeCompanion.health < 0
     )) {
       encounter = encounters.defeat;
     }
@@ -148,13 +146,11 @@ function BattleStatBox(props) {
       <img className="battle-icon" src={Sprite.imageUrl(props.sprite)} alt={props.sprite.name} />
       <div className="bar-box">
         <div className="health-bar-back">
-          <div className="health-bar-shaper">
-            <StatBar
-              value={props.sprite.health}
-              max={Sprite.maxHealth(props.sprite)}
-              className="health-bar"
-            />
-          </div>
+          <StatBar
+            value={props.sprite.health}
+            max={Sprite.maxHealth(props.sprite)}
+            className="health-bar"
+          />
         </div>
         <div className="stamina-bar-back">
           <StatBar
@@ -170,13 +166,11 @@ function BattleStatBox(props) {
     result = (<div className="battle-stat-box">
       <div className="bar-box bar-box-right">
         <div className="health-bar-back health-bar-back-right">
-          <div className="health-bar-shaper health-bar-shaper-right">
-            <StatBar
-              value={props.sprite.health}
-              max={Sprite.maxHealth(props.sprite)}
-              className="health-bar health-bar-right"
-            />
-          </div>
+          <StatBar
+            value={props.sprite.health}
+            max={Sprite.maxHealth(props.sprite)}
+            className="health-bar health-bar-right"
+          />
         </div>
         <div className="stamina-bar-back stamina-bar-back-right">
           <StatBar
@@ -206,32 +200,6 @@ function StatBar(args) {
   );
 }
 
-class ChoiceButton extends Component {
-  componentDidMount() {
-    Mousetrap.bind(this.props.index, this.props.onClick);
-  }
-  componentWillUnmount() {
-    Mousetrap.unbind(this.props.index);
-  }
-  render() {
-    return (
-      <div
-        key={this.props.desc}
-        className="choice"
-        role="button"
-        tabIndex={0}
-        onClick={this.props.onClick}
-        onKeyPress={(event) => {
-          if (event.key === 'Enter') {
-            this.props.onClick();
-          }
-        }}
-      >
-        {this.props.desc}
-      </div>
-    );
-  }
-}
 
 export default connect(
   mapStateToProps,

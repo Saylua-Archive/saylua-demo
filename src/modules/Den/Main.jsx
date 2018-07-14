@@ -29,13 +29,15 @@ class Den extends Component {
         companion={this.props.companions[i]}
         onClick={() => {
           if (this.props.steps !== 300 &&
-            window.confirm("Warning! Accompanying a new companion will end your current adventure. Continue?")
+            window.confirm("Accompanying a new companion will end your current adventure. Continue?")
           ) {
             this.props.accompany(this.props.companions[i]);
             resetAdventureFunc(this.props.companions[i])();
+          } else if (this.props.steps === 300) {
+            this.props.accompany(this.props.companions[i]);
+            resetAdventureFunc(this.props.companions[i])();
           }
-          }
-        }
+        }}
       />);
     }
     return (
