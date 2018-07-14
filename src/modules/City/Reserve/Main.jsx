@@ -38,7 +38,7 @@ class Reserve extends Component {
     this.props.adopt(this.state.adoptee);
 
     // TODO: More flavor!
-    window.location.href = this.state.adoptee.url();
+    window.location.href = Sprite.url(this.state.adoptee);
   }
 
   render() {
@@ -59,8 +59,8 @@ class Reserve extends Component {
     const cuteTexts = [
       `${adoptee.name} seems fond of you.`,
       `This ${randomChoice(LITTLE_ONE)} really likes you!`,
-      `This ${capitalizeFirst(adoptee.species.name)} looks like it likes you!`,
-      `Have you ever considered adopting ${addArticle(capitalizeFirst(adoptee.species.name))}?`,
+      `This ${capitalizeFirst(Sprite.species(adoptee).name)} looks like it likes you!`,
+      `Have you ever considered adopting ${addArticle(capitalizeFirst(Sprite.species(adoptee).name))}?`,
     ];
 
     const cuteText = randomChoice(cuteTexts);
@@ -73,7 +73,7 @@ class Reserve extends Component {
           <div className="interaction-bust">
             <img src="/img/npcs/vera-everly.png" alt="Vera Everly" />
           </div>
-          <img className="adoptee" src={adoptee.imageUrl()} alt={adoptee.name} />
+          <img className="adoptee" src={Sprite.imageUrl(adoptee)} alt={adoptee.name} />
         </div>
         <div className="choices">
           <Button onClick={this.adopt.bind(this)} subtle>
