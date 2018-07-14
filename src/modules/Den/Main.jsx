@@ -33,9 +33,11 @@ class Den extends Component {
           ) {
             this.props.accompany(this.props.companions[i]);
             resetAdventureFunc(this.props.companions[i])();
+          } else if (this.props.steps === 300) {
+            this.props.accompany(this.props.companions[i]);
+            resetAdventureFunc(this.props.companions[i])();
           }
-          }
-        }
+        }}
       />);
     }
     return (
