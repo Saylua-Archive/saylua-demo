@@ -55,6 +55,7 @@ function DenPet(props) {
   const companion = props.companion;
   return (
     <div
+      key={`${Sprite.fullName(companion)}`}
       onClick={props.onClick}
       role="button"
       tabIndex={0}

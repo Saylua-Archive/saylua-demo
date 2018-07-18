@@ -48,30 +48,32 @@ class SpriteProfile extends Component {
             <div className="pet-profile-box">
               <h2>{ companion.name }&#39;s Stats</h2>
               <table>
-                <tr>
-                  <td>Guardian</td>
-                  <td><Link to="/user/tiff/">Tiff</Link></td>
-                </tr>
-                <tr>
-                  <td>Name</td>
-                  <td>{ companion.name }</td>
-                </tr>
-                <tr>
-                  <td>Soul Name</td>
-                  <td>{ companion.soulName }</td>
-                </tr>
-                <tr>
-                  <td>Species</td>
-                  <td><Link to={Sprite.species(companion).url()}>{ Sprite.species(companion).name }</Link></td>
-                </tr>
-                <tr>
-                  <td>Coat</td>
-                  <td><Link to={Sprite.coat(companion).url()}>{ Sprite.coat(companion).name() }</Link></td>
-                </tr>
-                <tr>
-                  <td>Bonding Day</td>
-                  <td>{ companion.bondingDay }</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>Guardian</td>
+                    <td><Link to="/user/tiff/">Tiff</Link></td>
+                  </tr>
+                  <tr>
+                    <td>Name</td>
+                    <td>{ companion.name }</td>
+                  </tr>
+                  <tr>
+                    <td>Soul Name</td>
+                    <td>{ companion.soulName }</td>
+                  </tr>
+                  <tr>
+                    <td>Species</td>
+                    <td><Link to={Sprite.species(companion).url()}>{ Sprite.species(companion).name }</Link></td>
+                  </tr>
+                  <tr>
+                    <td>Coat</td>
+                    <td><Link to={Sprite.coat(companion).url()}>{ Sprite.coat(companion).name() }</Link></td>
+                  </tr>
+                  <tr>
+                    <td>Bonding Day</td>
+                    <td>{ companion.bondingDay }</td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           </div>

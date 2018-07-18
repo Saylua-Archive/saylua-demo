@@ -212,11 +212,9 @@ export default class GameState extends BaseModel {
 
   // Check if a piece goes over the top and can't move
   overTop(piece, r, c) {
-    const matrix = this.placedPieces;
     for (let i = 0; i < piece.height; i++) {
       for (let j = 0; j < piece.width; j++) {
         const row = r + i;
-        const col = c + j;
 
         if (row < 0 && piece.get(i, j)) {
           // If the piece goes over the top.
