@@ -14,7 +14,7 @@ export class Battle extends Encounter {
     if (!this._state.encounterState ||
       !this._state.encounterState.opponent ||
       this._state.encounterState.opponent.soulName !== opponent.soulName) {
-      store.dispatch(setEncounterState({ opponent }));
+      store.dispatch(setEncounterState({ opponent })); // TODO: Move this outside the render.
     }
     if (!this._state.activeCompanion) {
       return "Where did your companion go?!?!?";

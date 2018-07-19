@@ -37,8 +37,8 @@ export default class Museum extends Component {
 
 // The routes for the Museum.
 export const MuseumRoot = [
-  <Route path="/species/:species" component={SpeciesView} />,
-  <Route path="/species" component={SpeciesGuide} />,
-  <Route path="/coats" component={CoatGuide} />,
-  <Route path="/museum" component={Museum} />,
+  <Route key="SpeciesView" path="/species/:species" component={SpeciesView} />,
+  <Route key="SpeciesGuide" path="/species" component={SpeciesGuide} />,
+  <Route key="CoatGuide" path="/coats" component={CoatGuide} />,
+  <Route key="Museum" path="/museum" component={Museum} />,
 ];

@@ -58,7 +58,7 @@ export default class Pagination extends Component {
 
     for (let i = startPageRange; i <= endPageRange; i++) {
       if (i === Math.floor(currentPage)) {
-        mainPages.push(<span className="active-page">{ i }</span>);
+        mainPages.push(<span key={i} className="active-page">{ i }</span>);
       } else {
         mainPages.push(<Link to={this.getPageRoute(i)}>{ i }</Link>);
       }

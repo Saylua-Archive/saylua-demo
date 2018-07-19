@@ -94,12 +94,13 @@ class Adventure extends Component {
     }
     imgKeys = imgKeys || [];
     for (let i = 0; i < imgKeys.length; i++) {
-      encounterImgs.push(<div>
+      encounterImgs.push(<div
+        key={imgKeys[i].url}
+      >
         <img
           src={imgKeys[i].url}
           alt="Encounter"
           className={imgKeys[i].tiny ? "tiny-encounter-image" : ""}
-          key={imgKeys[i].url}
         />
       </div>);
     }

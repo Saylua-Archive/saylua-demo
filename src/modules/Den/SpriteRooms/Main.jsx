@@ -26,6 +26,7 @@ class SpriteRooms extends Component {
     const denPets = [];
     for (let i = 0; i < this.props.companions.length; i++) {
       denPets.push(<DenPet
+        key={Sprite.fullName(this.props.companions[i])}
         companion={this.props.companions[i]}
         onClick={() => {
           if (this.props.steps !== 300 &&

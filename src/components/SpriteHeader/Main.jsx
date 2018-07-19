@@ -8,7 +8,7 @@ export default class SpriteHeader extends Component {
     return (
       <h2 className="sprite-header">
         <div className="sprite-header-icon">
-          <img src={coat.imageUrl()} alt={coat.name} title={coat.name} />
+          <img src={coat.imageUrl()} alt={coat.fullName()} title={coat.fullName()} />
         </div>
         { this.props.children }
       </h2>
