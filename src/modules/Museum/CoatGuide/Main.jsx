@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import { randomChoice } from 'utils';
 import SpriteCoat, { coatVariantsList } from 'models/SpriteCoat';
 import SayluaView from 'components/SayluaView';
 import SpriteHeader from 'components/SpriteHeader';
@@ -25,7 +26,7 @@ export default class CoatGuide extends Component {
         {
           coatVariantsList.map((variant) => {
             const coats = SpriteCoat.byVariant(variant.canonName);
-            const randomCoat = coats[Math.floor(Math.random() * coats.length)];
+            const randomCoat = randomChoice(coats);
             return (
               <div key={`${variant.canonName}`} className="coat-guide-list" id={`${variant.canonName}`}>
                 <SpriteHeader coat={randomCoat}>

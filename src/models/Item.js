@@ -7,7 +7,7 @@ export default class ItemHelper {
 export const ITEMS_LIST = [
   {
     name: 'Glow Fruit',
-    canonName: 'glow-fruit',
+    canonName: 'glow_fruit',
     category: 'treat',
     description: 'A tasty treat for your sprite.',
     buybackPrice: 100,
@@ -21,10 +21,10 @@ export const ITEMS_LIST = [
   },
   {
     name: 'Shine Pepper',
-    canonName: 'shine-pepper',
+    canonName: 'shine_pepper',
     category: 'treat',
     description: 'A tasty treat for your sprite.',
-    buybackPrice: 100,
+    buybackPrice: 1000,
   },
 ];
 

@@ -1,39 +1,34 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-import { setTheme } from 'SayluaStore';
-import SideHelper, { SIDES } from 'models/Side';
-
+import { adopt, setUsername, setSide } from 'SayluaStore';
+import { store } from 'index';
+import Sprite from 'models/Sprite';
+import SpriteSpecies from 'models/SpriteSpecies';
+import SpriteCoat from 'models/SpriteCoat';
+import SideHelper from 'models/Side';
 import CharacterCreationForm from './CharacterCreationForm';
 import './CharacterCreation.css';
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setTheme: (theme) => {
-      dispatch(setTheme(theme));
-    },
-  };
-};
 
-class CharacterCreation extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sideChoice: SIDES.SAYLEUS,
-    };
-  }
+export default class CharacterCreation extends Component {
+  handleSubmit(values) {
+    // TODO(tiff): Refactor sprite data to be cleaner and more consistent.
+    const starter = SpriteSpecies.fromId(values.starterSpecies);
+    const side = SideHelper.getById(values.side);
+    const coat = SpriteCoat.fromSpeciesAndVariant(starter.canonName, side.adjective);
 
-  handleSubmit(evt) {
-    evt.preventDefault();
-  }
+    // TODO(tiff): Figure out how we want to batch actions.
+    store.dispatch(adopt(Sprite.create({
+      name: values.companionName,
+      speciesId: values.starterSpecies,
+      coatId: coat.id,
+    })));
+    store.dispatch(setSide(values.side));
+    store.dispatch(setUsername(values.username));
 
-  pickSide(side) {
-    this.setState({
-      sideChoice: side,
-    });
-    const theme = SideHelper.getById(side).adjective;
-    this.props.setTheme(theme);
+    // TODO(tiff): Replace this with a nicer onboarding experience.
+    window.location = '/';
   }
 
   render() {
@@ -53,17 +48,10 @@ class CharacterCreation extends Component {
           </p>
 
           <CharacterCreationForm
-            sideChoice={this.state.sideChoice}
-            handleSideChoice={this.pickSide.bind(this)}
-            handleSubmit={this.handleSubmit.bind(this)}
+            onSubmit={this.handleSubmit.bind(this)}
           />
         </div>
       </div>
     );
   }
 }
-
-export default connect(
-  null,
-  mapDispatchToProps,
-)(CharacterCreation);

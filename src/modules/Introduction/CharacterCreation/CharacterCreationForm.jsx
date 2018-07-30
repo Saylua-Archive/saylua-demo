@@ -1,19 +1,22 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { formValueSelector, Field, reduxForm } from 'redux-form';
 
+import { setTheme } from 'SayluaStore';
 import InputWithTip from 'components/Form/Input/InputWithTip';
 import Button from 'components/Button';
 import { Required, NotBlank } from 'components/Form/Validators';
 import RadioCard from './RadioCard';
 
 import SideHelper, { SIDES } from 'models/Side';
+import { SPECIES } from 'models/SpriteSpecies';
 
 const CharacterCreationForm = (props) => {
   const {
-    handleSubmit, pristine, submitting, sideChoice, handleSideChoice,
+    handleSubmit, pristine, submitting, sideChoice,
   } = props;
 
-  const side = SideHelper.getById(sideChoice);
+  const side = SideHelper.getById(sideChoice || SIDES.SAYLEUS);
   const companionColor = side.adjective;
 
   return (
@@ -51,10 +54,10 @@ const CharacterCreationForm = (props) => {
         <div className="side-choice-container">
           <Field
             component={RadioCard}
+            parse={value => Number(value)}
             type="radio"
             imgUrl="/img/backgrounds/sayleus.jpg"
             title="The Light Side: Sayleus"
-            handleClick={handleSideChoice.bind(this, SIDES.SAYLEUS)}
             name="side"
             value={SIDES.SAYLEUS}
           >
@@ -65,10 +68,10 @@ const CharacterCreationForm = (props) => {
           </Field>
           <Field
             component={RadioCard}
+            parse={value => Number(value)}
             type="radio"
             imgUrl="/img/backgrounds/luaria.jpg"
             title="The Dark Side: Luaria"
-            handleClick={handleSideChoice.bind(this, SIDES.LUARIA)}
             name="side"
             value={SIDES.LUARIA}
           >
@@ -90,33 +93,36 @@ const CharacterCreationForm = (props) => {
         <div className="companion-choice-container">
           <Field
             component={RadioCard}
+            parse={value => Number(value)}
             type="radio"
             imgUrl={`/img/sprites/chirling/${companionColor}.png`}
             title="A Chirling!"
-            name="starter"
-            value="chirling"
+            name="starterSpecies"
+            value={SPECIES.CHIRLING}
           >
             A little bird for you.
           </Field>
 
           <Field
             component={RadioCard}
+            parse={value => Number(value)}
             type="radio"
             imgUrl={`/img/sprites/arko/${companionColor}.png`}
             title="An Arko!"
-            name="starter"
-            value="arko"
+            name="starterSpecies"
+            value={SPECIES.ARKO}
           >
             Ark, ark!
           </Field>
 
           <Field
             component={RadioCard}
+            parse={value => Number(value)}
             type="radio"
             imgUrl={`/img/sprites/nibian/${companionColor}.png`}
             title="A Nibian!"
-            name="starter"
-            value="nibian"
+            name="starterSpecies"
+            value={SPECIES.NIBIAN}
           >
             Splash!
           </Field>
@@ -126,7 +132,7 @@ const CharacterCreationForm = (props) => {
       <h2>And finally, what will you call your companion?</h2>
       <div className="character-creation-section">
         <Field
-          name="companion_name"
+          name="companionName"
           component={InputWithTip}
           placeholder="Companion name"
           validate={[Required('Companion name'), NotBlank('Companion name')]}
@@ -139,6 +145,19 @@ const CharacterCreationForm = (props) => {
   );
 };
 
-export default reduxForm({
+const characterCreationForm = reduxForm({
   form: 'characterCreationForm',
+  onChange: (values, dispatch) => {
+    const side = values.side;
+    if (side) {
+      const theme = SideHelper.getById(side).adjective;
+      dispatch(setTheme(theme));
+    }
+  },
 })(CharacterCreationForm);
+
+const selector = formValueSelector('characterCreationForm');
+
+export default connect(state => ({
+  sideChoice: selector(state, 'side'),
+}))(characterCreationForm);
