@@ -1,6 +1,6 @@
 import { seedChoice, seedChoiceWeighted } from 'utils';
 import { adopt, accompany, addCoins, updateCondition, getItem } from 'SayluaStore';
-import { store } from '../../index';
+import { store } from 'index';
 import Sprite from 'models/Sprite';
 import { ITEMS_LIST } from 'models/Item';
 

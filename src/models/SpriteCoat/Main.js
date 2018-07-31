@@ -47,8 +47,14 @@ SpriteCoat.fromId = (id) => {
   return coatList[zeroIndexed];
 };
 
+SpriteCoat.fromSpeciesAndVariant = (speciesCanonName, variantCanonName) => {
+  return coatList.find((coat) => {
+    return speciesCanonName === coat.speciesCanonName && variantCanonName === coat.variant.canonName;
+  });
+};
+
 SpriteCoat.bySpecies = (canonName) => {
-  return coatList.filter(coat => (canonName === coat.species));
+  return coatList.filter(coat => (canonName === coat.speciesCanonName));
 };
 
 SpriteCoat.byVariant = (canonName) => {
