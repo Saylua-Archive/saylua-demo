@@ -1,62 +1,86 @@
 import SpriteSpecies from 'models/SpriteSpecies';
-import _coatList from './coatListRaw';
+import SpriteVariant from './SpriteVariant';
 
-export { coatVariantsList } from './coatListRaw';
+import { COATS } from './constants';
 
-export default class SpriteCoat {
-  constructor(args) {
-    args = Object.assign({}, args);
-
-    this.variant = args.variant;
-    this.speciesCanonName = args.speciesCanonName;
-  }
-
-  get id() {
-    return _coatList.findIndex(coat => this.equals(coat)) + 1;
-  }
-
-  get species() {
-    return SpriteSpecies.fromCanonName(this.speciesCanonName);
-  }
-
-  equals(other) {
-    return this.species.canonName === other.speciesCanonName && this.variant.canonName === other.variant.canonName;
-  }
-
-  name() {
-    return this.variant.name;
-  }
-
-  fullName() {
-    return `${this.variant.name} ${this.species.name}`;
-  }
-
-  url() {
-    return `/coats#${this.variant.canonName}`;
-  }
-
-  imageUrl() {
-    return `/img/sprites/${this.species.canonName}/${this.variant.canonName}.png`;
-  }
+function _speciesId(coatKey) {
+  return coatKey[0];
 }
 
-export const coatList = _coatList.map(coat => (new SpriteCoat(coat)));
+function _variantId(coatKey) {
+  return coatKey[1];
+}
 
-SpriteCoat.fromId = (id) => {
-  const zeroIndexed = id - 1;
-  return coatList[zeroIndexed];
-};
+export const coatsList = Object.values(COATS);
 
-SpriteCoat.fromSpeciesAndVariant = (speciesCanonName, variantCanonName) => {
-  return coatList.find((coat) => {
-    return speciesCanonName === coat.speciesCanonName && variantCanonName === coat.variant.canonName;
-  });
-};
+export const coatsIndexSpeciesId = coatsList.reduce((acc, v) => {
+  let coats = acc[_speciesId(v)] || [];
+  coats = coats.concat([v]);
 
-SpriteCoat.bySpecies = (canonName) => {
-  return coatList.filter(coat => (canonName === coat.speciesCanonName));
-};
+  return Object.assign(acc, { [_speciesId(v)]: coats });
+}, {});
 
-SpriteCoat.byVariant = (canonName) => {
-  return coatList.filter(coat => (canonName === coat.variant.canonName));
-};
+export const coatsIndexVariantId = coatsList.reduce((acc, v) => {
+  let coats = acc[_variantId(v)] || [];
+  coats = coats.concat([v]);
+
+  return Object.assign(acc, { [_variantId(v)]: coats });
+}, {});
+
+export default class SpriteCoat {
+  // Check if a coat combination is valid.
+  static coatExists(speciesId, variantId) {
+    return SpriteCoat.bySpecies(speciesId).find(coat => SpriteCoat.equals(
+      coat,
+      SpriteCoat.makeKey(speciesId, variantId),
+    ));
+  }
+
+  // Create a key "tuple" given a speciesId, and a variantId.
+  static makeKey(speciesId, variantId) {
+    return [speciesId, variantId];
+  }
+
+  // Lookup functions.
+
+  static bySpecies(speciesId) {
+    if (!(speciesId in coatsIndexSpeciesId)) return null;
+    return coatsIndexSpeciesId[speciesId];
+  }
+
+  static byVariant(variantId) {
+    if (!(variantId in coatsIndexVariantId)) return null;
+    return coatsIndexVariantId[variantId];
+  }
+
+  // Object helpers.
+
+  static speciesId(coatKey) {
+    return _speciesId(coatKey);
+  }
+
+  static variantId(coatKey) {
+    return _variantId(coatKey);
+  }
+
+  static species(coatKey) {
+    return SpriteSpecies.fromId(_speciesId(coatKey));
+  }
+
+  static variant(coatKey) {
+    return SpriteVariant.fromId(_variantId(coatKey));
+  }
+
+  static equals(a, b) {
+    return _speciesId(a) === _speciesId(b) && _variantId(a) === _variantId(b);
+  }
+
+  static name(coatKey) {
+    return `${SpriteCoat.variant(coatKey).name} ${SpriteCoat.species(coatKey).name}`;
+  }
+
+  static imageUrl(coatKey) {
+    return `/img/sprites/${SpriteCoat.species(coatKey).canonName}/${
+      SpriteCoat.variant(coatKey).canonName}.png`;
+  }
+}

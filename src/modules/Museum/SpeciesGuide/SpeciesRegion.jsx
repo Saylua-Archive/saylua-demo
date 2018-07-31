@@ -13,9 +13,9 @@ export default function (props) {
       </h2>
       {
         SpriteSpecies.byRegion(props.region).map(species => (
-          <Link key={species.canonName} to={species.url()} className="sprite-species">
+          <Link key={species.canonName} to={SpriteSpecies.url(species)} className="sprite-species">
             <div className="species-image-wrapper">
-              <img src={species.imageUrl()} alt={species.name} />
+              <img src={SpriteSpecies.imageUrl(species)} alt={species.name} />
             </div>
             { species.name }
           </Link>

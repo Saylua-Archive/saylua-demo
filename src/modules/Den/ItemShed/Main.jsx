@@ -9,7 +9,7 @@ import Modal from 'components/Modal';
 import Pagination from 'components/Pagination';
 
 import { formatNumber } from 'utils';
-import ItemHelper, { ITEMS_BY_CANON_NAME } from 'models/Item';
+import Item from 'models/Item';
 
 import './ItemShed.css';
 
@@ -48,7 +48,7 @@ class ItemShed extends Component {
 
   render() {
     let items = Object.keys(this.props.inventory).map((canonName) => {
-      const entry = ITEMS_BY_CANON_NAME[canonName];
+      const entry = Item.fromCanonName(canonName);
       entry.count = this.props.inventory[canonName];
       return entry;
     });
@@ -83,7 +83,7 @@ class ItemShed extends Component {
           key={item.name}
         >
           <img
-            src={ItemHelper.imageUrl(item)}
+            src={Item.imageUrl(item)}
             alt={item.name}
             title={item.name}
             aria-label={item.name}
@@ -113,7 +113,7 @@ class ItemShed extends Component {
       itemModal = (
         <Modal onClose={onModalClose} opened>
           <img
-            src={ItemHelper.imageUrl(selectedItem)}
+            src={Item.imageUrl(selectedItem)}
             className="item"
             alt={selectedItem.name}
             title={selectedItem.name}

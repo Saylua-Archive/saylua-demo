@@ -8,15 +8,15 @@ import Button from 'components/Button';
 import { Required, NotBlank } from 'components/Form/Validators';
 import RadioCard from './RadioCard';
 
-import SideHelper, { SIDES } from 'models/Side';
-import { SPECIES } from 'models/SpriteSpecies';
+import Side, { SIDES } from 'models/Side';
+import { SPECIES } from 'models/SpriteSpecies/constants';
 
 const CharacterCreationForm = (props) => {
   const {
     handleSubmit, pristine, submitting, sideChoice,
   } = props;
 
-  const side = SideHelper.getById(sideChoice || SIDES.SAYLEUS);
+  const side = Side.fromId(sideChoice || SIDES.SAYLEUS);
   const companionColor = side.adjective;
 
   return (
@@ -150,7 +150,7 @@ const characterCreationForm = reduxForm({
   onChange: (values, dispatch) => {
     const side = values.side;
     if (side) {
-      const theme = SideHelper.getById(side).adjective;
+      const theme = Side.fromId(side).adjective;
       dispatch(setTheme(theme));
     }
   },

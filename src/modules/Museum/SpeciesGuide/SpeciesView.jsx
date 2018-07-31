@@ -3,6 +3,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 
 import SayluaView from 'components/SayluaView';
 import SpriteSpecies, { speciesList } from 'models/SpriteSpecies';
+import SpriteCoat from 'models/SpriteCoat';
 
 import NotFound from 'modules/Error/NotFound';
 
@@ -22,11 +23,11 @@ export default class SpeciesView extends Component {
 
     return (
       <SayluaView title={`The ${species.name}`}>
-        <Link to={prev.url()} className="species-prev-link">
-          &larr; Prev <img src={prev.imageUrl()} alt={prev.name} />
+        <Link to={SpriteSpecies.url(prev)} className="species-prev-link">
+          &larr; Prev <img src={SpriteSpecies.imageUrl(prev)} alt={prev.name} />
         </Link>
-        <Link to={next.url()} className="species-next-link">
-          <img src={next.imageUrl()} alt={prev.name} /> Next &rarr;
+        <Link to={SpriteSpecies.url(next)} className="species-next-link">
+          <img src={SpriteSpecies.imageUrl(next)} alt={prev.name} /> Next &rarr;
         </Link>
 
         <h1>Species Guide: The {species.name}</h1>
@@ -39,11 +40,11 @@ export default class SpeciesView extends Component {
           <span className="separator">
             &raquo;
           </span>
-          <Link to={species.url()} className="breadcrumbs-link">The {species.name}</Link>
+          <Link to={SpriteSpecies.url(species)} className="breadcrumbs-link">The {species.name}</Link>
         </div>
         <div className="species-view-info">
           <div className="species-view-image">
-            <img src={species.imageUrl()} alt={species.name} />
+            <img src={SpriteSpecies.imageUrl(species)} alt={species.name} />
           </div>
           <div>
             <br />Name: {species.name}
@@ -60,10 +61,14 @@ export default class SpeciesView extends Component {
         <div style={{ width: '100%', float: 'left' }}>
           <h2>Discovered {species.name} Coats</h2>
           <div className="coat-grid">
-            { species.coats().map(coat => (
-              <Link key={coat.variant.canonName} to={`/coats#${coat.variant.canonName}`} className="coat-grid-item">
-                <img src={coat.imageUrl()} alt={coat.fullName()} />
-                { coat.fullName() }
+            { SpriteSpecies.coats(species).map(coat => (
+              <Link
+                key={SpriteCoat.variant(coat).canonName}
+                to={`/coats#${SpriteCoat.variant(coat).canonName}`}
+                className="coat-grid-item"
+              >
+                <img src={SpriteCoat.imageUrl(coat)} alt={SpriteCoat.name(coat)} />
+                { SpriteCoat.name(coat) }
               </Link>
             ))}
           </div>

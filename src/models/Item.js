@@ -1,11 +1,12 @@
-export default class ItemHelper {
-  static imageUrl(item) {
-    return `/img/items/${item.category}/${item.canonName}.png`;
-  }
-}
+export const ITEMS = Object.freeze({
+  GLOW_FRUIT: 1,
+  MUSHROOM: 2,
+  SHINE_PEPPER: 3,
+});
 
-export const ITEMS_LIST = [
+export const itemsList = [
   {
+    id: ITEMS.GLOW_FRUIT,
     name: 'Glow Fruit',
     canonName: 'glow_fruit',
     category: 'treat',
@@ -13,6 +14,7 @@ export const ITEMS_LIST = [
     buybackPrice: 100,
   },
   {
+    id: ITEMS.MUSHROOM,
     name: 'Mushroom',
     canonName: 'mushroom',
     category: 'treat',
@@ -20,6 +22,7 @@ export const ITEMS_LIST = [
     buybackPrice: 100,
   },
   {
+    id: ITEMS.SHINE_PEPPER,
     name: 'Shine Pepper',
     canonName: 'shine_pepper',
     category: 'treat',
@@ -28,7 +31,21 @@ export const ITEMS_LIST = [
   },
 ];
 
-export const ITEMS_BY_CANON_NAME = ITEMS_LIST.reduce((acc, val) => {
-  acc[val.canonName] = val;
-  return acc;
+export const itemsIndexId = itemsList.reduce((acc, v) => {
+  return Object.assign(acc, { [v.id]: v });
 }, {});
+
+export const itemsIndexCanonName = itemsList.reduce((acc, v) => {
+  return Object.assign(acc, { [v.canonName]: v });
+}, {});
+
+export default class Item {
+  static fromCanonName(canonName) {
+    if (!(canonName in itemsIndexCanonName)) return null;
+    return itemsIndexCanonName[canonName];
+  }
+
+  static imageUrl(item) {
+    return `/img/items/${item.category}/${item.canonName}.png`;
+  }
+}

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Sprite from 'models/Sprite';
+import SpriteSpecies from 'models/SpriteSpecies';
+import SpriteVariant from 'models/SpriteCoat/SpriteVariant';
 import SayluaView from 'components/SayluaView';
 import NotFound from 'modules/Error/NotFound';
 
@@ -63,11 +65,19 @@ class SpriteProfile extends Component {
                   </tr>
                   <tr>
                     <td>Species</td>
-                    <td><Link to={Sprite.species(companion).url()}>{ Sprite.species(companion).name }</Link></td>
+                    <td>
+                      <Link to={SpriteSpecies.url(Sprite.species(companion))}>
+                        { Sprite.species(companion).name }
+                      </Link>
+                    </td>
                   </tr>
                   <tr>
                     <td>Coat</td>
-                    <td><Link to={Sprite.coat(companion).url()}>{ Sprite.coat(companion).name() }</Link></td>
+                    <td>
+                      <Link to={SpriteVariant.url(Sprite.variant(companion))}>
+                        { Sprite.variant(companion).name }
+                      </Link>
+                    </td>
                   </tr>
                   <tr>
                     <td>Bonding Day</td>

@@ -2,7 +2,7 @@ import { seedChoice, seedChoiceWeighted } from 'utils';
 import { adopt, accompany, addCoins, updateCondition, getItem } from 'SayluaStore';
 import { store } from 'index';
 import Sprite from 'models/Sprite';
-import { ITEMS_LIST } from 'models/Item';
+import { itemsList } from 'models/Item';
 
 
 export function resetAdventureFunc(companion) {
@@ -36,7 +36,7 @@ export function updateConditionFunc(condition) {
 }
 
 export function randomItem(seed, list) {
-  const pickList = list || ITEMS_LIST;
+  const pickList = list || itemsList;
   return seedChoiceWeighted(seed, pickList);
 }
 
