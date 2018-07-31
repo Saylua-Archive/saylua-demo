@@ -23,13 +23,9 @@ function AdventureSceneItem(props) {
   const x = Math.random() * 100;
   const y = Math.random() * HORIZON;
   const z = Math.random() * 0;
-  const blur = (y / HORIZON) / 2;
-  const des = (y / HORIZON);
-  const SCALEs = `${SCALE * ((HORIZON * HORIZON * (HORIZON - y))/(HORIZON * HORIZON * HORIZON))}%`;
+  const SCALEs = `${SCALE * (100 + (-0.0462 * y) + (0.0000102 * y * y))}%`;
   const xs = `${x}%`;
   const ys = `${y}%`;
-  const blurs = `blur(${blur}px)`;
-  const dess = `blur(${blur}px)`;
   return (
     <img
       alt=""
