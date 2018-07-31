@@ -8,6 +8,8 @@ export const ADOPT = 'ADOPT';
 export const SET_ENCOUNTER = 'SET_ENCOUNTER';
 export const SET_ENCOUNTER_STATE = 'SET_ENCOUNTER_STATE';
 export const CLEAR_STATE = 'CLEAR_STATE';
+export const SET_USERNAME = 'SET_USERNAME';
+export const SET_SIDE = 'SET_SIDE';
 export const SET_THEME = 'SET_THEME';
 export const SET_AREA = 'SET_AREA';
 export const SET_STEPS = 'SET_STEPS';
@@ -42,6 +44,14 @@ export function clearState() {
   return { type: CLEAR_STATE };
 }
 
+export function setUsername(username) {
+  return { type: SET_USERNAME, username };
+}
+
+export function setSide(sideId) {
+  return { type: SET_THEME, sideId };
+}
+
 export function setTheme(theme) {
   return { type: SET_THEME, theme };
 }
@@ -72,6 +82,7 @@ export function useItem(item, count) {
 
 export const initialState = {
   sayluaApp: {
+    username: null,
     companions: [],
     activeCompanion: null,
     coins: 0,
@@ -80,6 +91,7 @@ export const initialState = {
     steps: 300,
     encounterSeed: Date.now(),
     encounterState: null,
+    sideId: 0,
     theme: 'sayleus',
     inventory: {},
   },
@@ -112,9 +124,17 @@ export function sayluaReducer(state = initialState.sayluaApp, action) {
       });
     case CLEAR_STATE:
       return Object.assign({}, state, initialState.sayluaApp);
+    case SET_SIDE:
+      return Object.assign({}, state, {
+        sideId: action.sideId,
+      });
     case SET_THEME:
       return Object.assign({}, state, {
         theme: action.theme,
+      });
+    case SET_USERNAME:
+      return Object.assign({}, state, {
+        area: action.username,
       });
     case SET_AREA:
       return Object.assign({}, state, {
