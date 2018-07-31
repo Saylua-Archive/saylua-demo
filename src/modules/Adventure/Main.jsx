@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { encounters, randomEncounters } from './encounters/Main';
 import Areas from './Areas';
 import ChoiceButton from './ChoiceButton';
+import EventView from './EventView';
 import './Adventure.css';
 import SayluaView from 'components/SayluaView';
 import { setEncounter, setArea, setSteps, updateCondition } from 'SayluaStore';
 import marked from 'marked';
-import Sprite from 'models/Sprite';
 
 const mapStateToProps = ({
   sayluaApp: {
@@ -93,23 +93,14 @@ class Adventure extends Component {
       imgKeys = [imgKeys];
     }
     imgKeys = imgKeys || [];
-    for (let i = 0; i < imgKeys.length; i++) {
-      encounterImgs.push(<div
-        key={imgKeys[i].url}
-      >
-        <img
-          src={imgKeys[i].url}
-          alt="Encounter"
-          className={imgKeys[i].tiny ? "tiny-encounter-image" : ""}
-        />
-      </div>);
-    }
+    const imgURLs = imgKeys.map(x => x.url);
     const mainText = encounter.mainText;
+
     return (
       <SayluaView>
         <EventView
           area={area}
-          encounterImgs={encounterImgs}
+          encounterImgs={imgURLs}
           mainText={mainText}
           choiceButtons={choiceButtons}
           rawMarkup={this.rawMarkup}
@@ -119,86 +110,6 @@ class Adventure extends Component {
       </SayluaView>
     );
   }
-}
-
-function EventView(props) {
-  const topRight = props.opponent ? <BattleStatBox sprite={props.opponent} onRightSide /> :
-  <div className="objective">Reach the dawnlands!</div>;
-  return (<div className="adventure">
-    <h2>{props.area.title}</h2>
-    <div
-      style={{ backgroundImage: `url('/img/backgrounds/${props.area.background}.jpg')` }}
-      className="adventure-wrapper"
-    >
-      <div className="hud-area">
-        <BattleStatBox sprite={props.activeCompanion} />
-        {topRight}
-      </div>
-      <div className="image-area">{props.encounterImgs}</div>
-    </div>
-    <p className="adventure-text" id="scene-desc" dangerouslySetInnerHTML={props.rawMarkup(props.mainText)} />
-    {props.choiceButtons}
-  </div>);
-}
-
-function BattleStatBox(props) {
-  let result = props.sprite ?
-    (<div className="battle-stat-box">
-      <img className="battle-icon" src={Sprite.imageUrl(props.sprite)} alt={props.sprite.name} />
-      <div className="bar-box">
-        <div className="health-bar-back">
-          <StatBar
-            value={props.sprite.health}
-            max={Sprite.maxHealth(props.sprite)}
-            className="health-bar"
-          />
-        </div>
-        <div className="stamina-bar-back">
-          <StatBar
-            value={props.sprite.stamina}
-            max={Sprite.maxStamina(props.sprite)}
-            className="stamina-bar"
-          />
-        </div>
-      </div>
-    </div>
-    ) : null;
-  if (props.onRightSide) {
-    result = (<div className="battle-stat-box">
-      <div className="bar-box bar-box-right">
-        <div className="health-bar-back health-bar-back-right">
-          <StatBar
-            value={props.sprite.health}
-            max={Sprite.maxHealth(props.sprite)}
-            className="health-bar health-bar-right"
-          />
-        </div>
-        <div className="stamina-bar-back stamina-bar-back-right">
-          <StatBar
-            value={props.sprite.stamina}
-            max={Sprite.maxStamina(props.sprite)}
-            className="stamina-bar stamina-bar-right"
-          />
-        </div>
-      </div>
-      <img className="battle-icon battle-icon-right" src={Sprite.imageUrl(props.sprite)} alt={props.sprite.name} />
-    </div>
-    );
-  }
-  return result;
-}
-
-
-function StatBar(args) {
-  const width = `${Math.max((args.value / args.max) * 100, 0)}%`;
-  return (
-    <div
-      className={args.className}
-      style={{
-        width,
-      }}
-    />
-  );
 }
 
 
