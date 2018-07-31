@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { randomChoice } from 'utils';
-import SpriteCoat, { coatVariantsList } from 'models/SpriteCoat';
+import SpriteCoat from 'models/SpriteCoat';
+import { variantsList } from 'models/SpriteCoat/SpriteVariant';
 import SayluaView from 'components/SayluaView';
 import SpriteHeader from 'components/SpriteHeader';
 
@@ -24,17 +25,17 @@ export default class CoatGuide extends Component {
         Each species of sprite on Saylua can be found in a variety of different
         coats. See them all here!
         {
-          coatVariantsList.map((variant) => {
-            const coats = SpriteCoat.byVariant(variant.canonName);
+          variantsList.map((variant) => {
+            const coats = SpriteCoat.byVariant(variant.id);
             const randomCoat = randomChoice(coats);
             return (
               <div key={`${variant.canonName}`} className="coat-guide-list" id={`${variant.canonName}`}>
-                <SpriteHeader coat={randomCoat}>
+                <SpriteHeader imageUrl={SpriteCoat.imageUrl(randomCoat)} title={SpriteCoat.name(randomCoat)}>
                   <Link to={`#${variant.canonName}`}>{ variant.name } Coats</Link>
                 </SpriteHeader>
                 {
                   coats.map(coat => (
-                    <img key={coat.fullName()} src={coat.imageUrl()} alt={coat.fullName()} />
+                    <img key={SpriteCoat.name(coat)} src={SpriteCoat.imageUrl(coat)} alt={SpriteCoat.name(coat)} />
                   ))
                 }
               </div>

@@ -49,7 +49,7 @@ export function setUsername(username) {
 }
 
 export function setSide(sideId) {
-  return { type: SET_THEME, sideId };
+  return { type: SET_SIDE, sideId };
 }
 
 export function setTheme(theme) {

@@ -10,13 +10,12 @@ import CharacterCreation from 'modules/Introduction/CharacterCreation';
 
 import Adventure from 'modules/Adventure';
 import Den from 'modules/Den';
-import SpriteRooms from 'modules/Den/SpriteRooms';
+import SpriteProfile from 'modules/Den/SpriteProfile';
 import ItemShed from 'modules/Den/ItemShed';
 
 import Reserve from 'modules/City/Reserve';
 
 import Bloxi from 'modules/Arcade/Bloxi';
-import SpriteProfile from 'modules/SpriteProfile';
 
 import StaticPage from 'modules/StaticPage';
 
@@ -34,8 +33,7 @@ export default function (props) {
           <Route path="/register" component={CharacterCreation} />
           <Route path="/intro" component={Introduction} />
           <Route path="/wilderness" component={Adventure} />
-          <Route path="/den" component={Den} />
-          <Route path="/sprites" component={SpriteRooms} />
+          <Route path="/sprites" component={Den} />
           <Route path="/items/:page" component={ItemShed} />
           <Route path="/items" component={ItemShed} />
           <Route path="/arcade/bloxi" component={Bloxi} />

@@ -4,25 +4,19 @@ import { Link } from 'react-router-dom';
 import { adopt, setUsername, setSide } from 'SayluaStore';
 import { store } from 'index';
 import Sprite from 'models/Sprite';
-import SpriteSpecies from 'models/SpriteSpecies';
-import SpriteCoat from 'models/SpriteCoat';
-import SideHelper from 'models/Side';
+import { COAT_VARIANTS } from 'models/SpriteCoat/constants';
+import { SIDES } from 'models/Side';
 import CharacterCreationForm from './CharacterCreationForm';
 import './CharacterCreation.css';
 
 
 export default class CharacterCreation extends Component {
   handleSubmit(values) {
-    // TODO(tiff): Refactor sprite data to be cleaner and more consistent.
-    const starter = SpriteSpecies.fromId(values.starterSpecies);
-    const side = SideHelper.getById(values.side);
-    const coat = SpriteCoat.fromSpeciesAndVariant(starter.canonName, side.adjective);
-
     // TODO(tiff): Figure out how we want to batch actions.
     store.dispatch(adopt(Sprite.create({
       name: values.companionName,
       speciesId: values.starterSpecies,
-      coatId: coat.id,
+      variantId: values.side === SIDES.SAYLEUS ? COAT_VARIANTS.SAYLIAN : COAT_VARIANTS.LUARIAN,
     })));
     store.dispatch(setSide(values.side));
     store.dispatch(setUsername(values.username));
