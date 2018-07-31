@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import SayluaView from 'components/SayluaView';
+import { REGIONS } from 'models/SpriteSpecies/constants';
 
 import SpeciesRegion from './SpeciesRegion';
 import './SpeciesGuide.css';
@@ -25,10 +26,10 @@ export default class SpeciesGuide extends Component {
           Sprites are intelligent and have many mysterious abilities that humans
           don&#39;t fully understand.
         </p>
-        <SpeciesRegion icon="fa-globe" region="Universal" description="Found across the planet" />
-        <SpeciesRegion icon="fa-sun" region="Saylian" description="Found on the light side" />
-        <SpeciesRegion icon="fa-moon" region="Luarian" description="Found on the dark side" />
-        <SpeciesRegion icon="fa-adjust" region="Dawnish" description="Found between the sides" />
+        <SpeciesRegion icon="fa-globe" region={REGIONS.UNIVERSAL} description="Found across the planet" />
+        <SpeciesRegion icon="fa-sun" region={REGIONS.SAYLIAN} description="Found on the light side" />
+        <SpeciesRegion icon="fa-moon" region={REGIONS.LUARIAN} description="Found on the dark side" />
+        <SpeciesRegion icon="fa-adjust" region={REGIONS.DAWNISH} description="Found between the sides" />
       </SayluaView>
     );
   }

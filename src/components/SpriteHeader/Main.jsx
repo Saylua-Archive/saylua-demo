@@ -4,11 +4,12 @@ import './SpriteHeader.css';
 
 export default class SpriteHeader extends Component {
   render() {
-    const coat = this.props.coat;
+    const imageUrl = this.props.imageUrl;
+    const title = this.props.title;
     return (
       <h2 className="sprite-header">
         <div className="sprite-header-icon">
-          <img src={coat.imageUrl()} alt={coat.fullName()} title={coat.fullName()} />
+          <img src={imageUrl} alt={title} title={title} />
         </div>
         { this.props.children }
       </h2>

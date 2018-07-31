@@ -1,40 +1,41 @@
-export const DAWNLANDS = 0;
-export const SAYLEUS = 1;
-export const LUARIA = 2;
+export const SIDES = Object.freeze({
+  SAYLEUS: 1,
+  LUARIA: 2,
+  DAWNLANDS: 3,
+});
 
-export const SIDES = {
-  DAWNLANDS,
-  SAYLEUS,
-  LUARIA,
-};
-
-export const SIDES_LIST = [
+export const sidesList = [
   {
-    id: 0,
-    canonName: 'dawnlands',
-    name: 'Dawnlands',
-    adjective: 'dawnish',
-  },
-  {
-    id: 1,
+    id: SIDES.SAYLEUS,
     canonName: 'sayleus',
     name: 'Sayleus',
     adjective: 'saylian',
   },
   {
-    id: 2,
+    id: SIDES.LUARIA,
     canonName: 'luaria',
     name: 'Luaria',
     adjective: 'luarian',
   },
+  {
+    id: SIDES.DAWNLANDS,
+    canonName: 'dawnlands',
+    name: 'Dawnlands',
+    adjective: 'dawnish',
+  },
 ];
 
-export default class SideHelper {
+export const sideIndexId = sidesList.reduce((acc, v) => {
+  return Object.assign(acc, { [v.id]: v });
+}, {});
+
+export default class Side {
   static backgroundUrl(side) {
     return `/img/backgrounds/${side.canonName}.jpg`;
   }
 
-  static getById(id) {
-    return SIDES_LIST[id];
+  static fromId(id) {
+    if (!(id in sideIndexId)) return null;
+    return sideIndexId[id];
   }
 }
