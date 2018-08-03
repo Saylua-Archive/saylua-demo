@@ -45,7 +45,7 @@ function AdventureSceneItem(props) {
         width: SCALEs,
         left: xs,
         bottom: ys,
-        filter: `saturate(${100 - ((y / 100) * 40)}%)`,
+        filter: "drop-shadow(5px 5px 5px #222)",
       }}
     />
   );
