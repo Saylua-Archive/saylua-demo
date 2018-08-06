@@ -96,7 +96,7 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
         activeCompanionId: action.spriteId,
       });
     case CREATE_SPRITE: {
-      const id = (maxSpriteIdFunc(state.sprites) || 0) + 1;
+      const id = maxSpriteIdFunc(state.sprites) + 1;
       const newSprites = Object.assign({}, state.sprites);
       const sprite = Object.assign({}, action.sprite, { id });
       newSprites[id] = sprite;
