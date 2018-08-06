@@ -8,7 +8,7 @@ import SayluaView from 'components/SayluaView';
 
 import './Den.css';
 
-const mapStateToProps = ({ sayluaApp: { companions, steps } }) => ({ companions, steps });
+const mapStateToProps = ({ sayluaState: { companions, steps } }) => ({ companions, steps });
 
 const mapDispatchToProps = (dispatch) => {
   return {

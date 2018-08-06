@@ -15,7 +15,7 @@ const persistedState = localStorage.getItem('sayluaState') ?
   JSON.parse(localStorage.getItem('sayluaState')) : initialState;
 
 const reducer = combineReducers({
-  sayluaApp: sayluaReducer,
+  sayluaState: sayluaReducer,
   form: formReducer,
 });
 
@@ -28,10 +28,10 @@ let currentTheme;
 store.subscribe(() => {
   const previousTheme = currentTheme;
   const currentStore = store.getState();
-  if (currentStore.sayluaApp.theme !== previousTheme) {
-    document.body.setAttribute('data-theme', currentStore.sayluaApp.theme);
+  if (currentStore.sayluaState.theme !== previousTheme) {
+    document.body.setAttribute('data-theme', currentStore.sayluaState.theme);
   }
-  currentTheme = currentStore.sayluaApp.theme;
+  currentTheme = currentStore.sayluaState.theme;
   localStorage.setItem('sayluaState', JSON.stringify(currentStore));
 });
 
