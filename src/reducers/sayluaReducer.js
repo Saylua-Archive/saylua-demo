@@ -1,10 +1,15 @@
 import Sprite from 'models/Sprite';
+import initialState from './initialState';
+
+import { maxSpriteIdFunc } from './selectors';
+
 /*
  * action types
  */
 export const ACCOMPANY = 'ACCOMPANY';
 export const ADD_COINS = 'ADD_COINS';
 export const ADOPT = 'ADOPT';
+export const CREATE_SPRITE = 'CREATE_SPRITE';
 export const SET_ENCOUNTER = 'SET_ENCOUNTER';
 export const SET_ENCOUNTER_STATE = 'SET_ENCOUNTER_STATE';
 export const CLEAR_STATE = 'CLEAR_STATE';
@@ -24,12 +29,16 @@ export function addCoins(count) {
   return { type: ADD_COINS, count };
 }
 
-export function accompany(companion) {
-  return { type: ACCOMPANY, companion };
+export function accompany(spriteId) {
+  return { type: ACCOMPANY, spriteId };
 }
 
-export function adopt(companion) {
-  return { type: ADOPT, companion };
+export function createSprite(sprite, willAdopt=false) {
+  return { type: CREATE_SPRITE, sprite, willAdopt };
+}
+
+export function adopt(spriteId) {
+  return { type: ADOPT, spriteId };
 }
 
 export function setEncounter(encounter) {
@@ -68,43 +77,15 @@ export function updateCondition(condition) {
   return { type: UPDATE_CONDITION, condition };
 }
 
-export function getItem(item, count) {
-  return { type: GET_ITEM, item, count };
+export function getItem(itemId, count) {
+  return { type: GET_ITEM, itemId, count };
 }
 
-export function useItem(item, count) {
-  return { type: USE_ITEM, item, count };
+export function useItem(itemId, count) {
+  return { type: USE_ITEM, itemId, count };
 }
 
-/*
- * reducers
- */
-
-export const initialState = {
-  // State for the currently logged in user.
-  sayluaState: {
-    username: null,
-    companions: [],
-    activeCompanion: null,
-    coins: 0,
-    encounterId: 'start',
-    area: null,
-    steps: 300,
-    encounterSeed: Date.now(),
-    encounterState: null,
-    sideId: 0,
-    theme: 'sayleus',
-    inventory: {},
-
-    // Normalized data.
-    sprites: {},
-  },
-
-  // For redux-form.
-  form: {},
-};
-
-export function sayluaReducer(state = initialState.sayluaState, action) {
+export default function sayluaReducer(state = initialState.sayluaState, action) {
   switch (action.type) {
     case ADD_COINS:
       return Object.assign({}, state, {
@@ -112,12 +93,24 @@ export function sayluaReducer(state = initialState.sayluaState, action) {
       });
     case ACCOMPANY:
       return Object.assign({}, state, {
-        activeCompanion: action.companion,
+        activeCompanionId: action.spriteId,
       });
+    case CREATE_SPRITE: {
+      const id = maxSpriteIdFunc(state.sprites) + 1;
+      const newSprites = Object.assign({}, state.sprites);
+      const sprite = Object.assign({}, action.sprite, { id });
+      newSprites[id] = sprite;
+      const stateChanges = { sprites: newSprites };
+      if (action.willAdopt) {
+        stateChanges.companionIds = state.companionIds.concat(id);
+        stateChanges.activeCompanionId = state.activeCompanionId || id;
+      }
+      return Object.assign({}, state, stateChanges);
+    }
     case ADOPT:
       return Object.assign({}, state, {
-        companions: state.companions.concat(action.companion),
-        activeCompanion: state.activeCompanion || action.companion,
+        companionIds: state.companionIds.concat(action.spriteId),
+        activeCompanionId: state.activeCompanionId || action.spriteId,
       });
     case SET_ENCOUNTER:
       return Object.assign({}, state, {
@@ -151,29 +144,29 @@ export function sayluaReducer(state = initialState.sayluaState, action) {
         steps: action.steps,
       });
     case UPDATE_CONDITION: {
-      const newComp = Object.assign({}, state.activeCompanion);
+      const activeCompanion = state.sprites[state.activeCompanionId];
+      const newComp = Object.assign({}, activeCompanion);
       newComp.health += (action.condition && action.condition.health) || 0;
-      newComp.health = Math.min(newComp.health, Sprite.maxHealth(state.activeCompanion));
+      newComp.health = Math.min(newComp.health, Sprite.maxHealth(activeCompanion));
       newComp.stamina += (action.condition && action.condition.stamina) || 0;
-      newComp.stamina = Math.min(newComp.stamina, Sprite.maxStamina(state.activeCompanion));
+      newComp.stamina = Math.min(newComp.stamina, Sprite.maxStamina(activeCompanion));
       return Object.assign({}, state, {
-        activeCompanion: newComp,
+        sprites: Object.assign({}, state.sprites, { [activeCompanion.id]: activeCompanion }),
         steps: action.condition.steps || state.steps,
       });
     }
     case GET_ITEM: {
       const newInventory = Object.assign({}, state.inventory);
-      newInventory[action.item.canonName] = (newInventory[action.item.canonName] || 0)
-        + (action.count || 1);
+      newInventory[action.itemId] = (newInventory[action.itemId] || 0) + (action.count || 1);
       return Object.assign({}, state, {
         inventory: newInventory,
       });
     }
     case USE_ITEM: {
       const newInventory = Object.assign({}, state.inventory);
-      newInventory[action.item.canonName] -= action.count || 1;
-      if (newInventory[action.item.canonName] <= 0) {
-        delete newInventory[action.item.canonName];
+      newInventory[action.itemId] -= action.count || 1;
+      if (newInventory[action.itemId] <= 0) {
+        delete newInventory[action.itemId];
       }
       return Object.assign({}, state, {
         inventory: newInventory,

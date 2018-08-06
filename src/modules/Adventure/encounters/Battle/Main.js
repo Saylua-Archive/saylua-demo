@@ -1,6 +1,6 @@
 import { updateConditionFunc } from 'modules/Adventure/encounterFuncs';
 import { Encounter, Choice, Outcome } from '../Models';
-import { setEncounterState } from 'SayluaStore';
+import { setEncounterState } from 'reducers/sayluaReducer';
 import { store } from 'index';
 import { sRandomInt } from 'utils';
 import { speciesIndexRegion } from 'models/SpriteSpecies';
