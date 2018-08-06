@@ -40,7 +40,6 @@ function AdventureSceneItem(props) {
         width: scaleStyle,
         left: xStyle,
         bottom: yStyle,
-        filter: "drop-shadow(5px 5px 5px #222)",
       }}
     />
   );
