@@ -4,7 +4,7 @@ import cloneDeep from 'lodash.clonedeep';
 import BaseModel from './BaseModel';
 import Matrix from './Matrix';
 
-import { addCoins } from 'SayluaStore';
+import { addCoins } from 'reducers/sayluaReducer';
 import { store } from 'index';
 
 const LB_FPS = 60;

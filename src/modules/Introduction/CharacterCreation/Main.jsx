@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { adopt, setUsername, setSide } from 'SayluaStore';
+import { createSprite, setUsername, setSide } from 'reducers/sayluaReducer';
 import { store } from 'index';
 import Sprite from 'models/Sprite';
 import { COAT_VARIANTS } from 'models/SpriteCoat/constants';
@@ -13,11 +13,11 @@ import './CharacterCreation.css';
 export default class CharacterCreation extends Component {
   handleSubmit(values) {
     // TODO(tiff): Figure out how we want to batch actions.
-    store.dispatch(adopt(Sprite.create({
+    store.dispatch(createSprite(Sprite.create({
       name: values.companionName,
       speciesId: values.starterSpecies,
       variantId: values.side === SIDES.SAYLEUS ? COAT_VARIANTS.SAYLIAN : COAT_VARIANTS.LUARIAN,
-    })));
+    }), true));
     store.dispatch(setSide(values.side));
     store.dispatch(setUsername(values.username));
 

@@ -40,6 +40,11 @@ export const itemsIndexCanonName = itemsList.reduce((acc, v) => {
 }, {});
 
 export default class Item {
+  static fromId(id) {
+    if (!(id in itemsIndexId)) return null;
+    return itemsIndexId[id];
+  }
+
   static fromCanonName(canonName) {
     if (!(canonName in itemsIndexCanonName)) return null;
     return itemsIndexCanonName[canonName];

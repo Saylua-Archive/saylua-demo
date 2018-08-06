@@ -22,7 +22,7 @@ export default class FindTreat extends Encounter {
     const item = randomItem(this._seed);
     return [
       new Choice("Take the treat", () => {
-        getItemFunc(item)();
+        getItemFunc(item.id)();
       }, this._seed),
       new Choice(`Give the treat to ${this._state.activeCompanion.name}`, () => {
         updateConditionFunc({ stamina: 20 })();

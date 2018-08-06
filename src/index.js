@@ -5,7 +5,8 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-import { sayluaReducer, initialState } from 'SayluaStore';
+import initialState from 'reducers/initialState';
+import sayluaReducer from 'reducers/sayluaReducer';
 
 import Root from './Root';
 

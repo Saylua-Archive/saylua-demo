@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
 import { chooseWeighted } from 'utils';
 import { connect } from 'react-redux';
-import { encounters, randomEncounters } from './encounters/Main';
+
+import SayluaView from 'components/SayluaView';
+import { setEncounter, setArea, setSteps, updateCondition } from 'reducers/sayluaReducer';
+import { companionsSelector, activeCompanionSelector } from 'reducers/selectors';
+import marked from 'marked';
+
+import { encounters, randomEncounters } from './encounters';
 import Areas from './Areas';
 import ChoiceButton from './ChoiceButton';
 import EventView from './EventView';
 import './Adventure.css';
-import SayluaView from 'components/SayluaView';
-import { setEncounter, setArea, setSteps, updateCondition } from 'SayluaStore';
-import marked from 'marked';
 
-const mapStateToProps = ({
-  sayluaState: {
-    coins, activeCompanion, companions, encounterSeed, encounterId, area, steps, encounterState,
-  },
-}) =>
-  ({
-    coins, activeCompanion, companions, encounterSeed, encounterId, area, steps, encounterState,
-  });
+const mapStateToProps = state => ({
+  coins: state.sayluaState.coins,
+  activeCompanion: activeCompanionSelector(state),
+  companions: companionsSelector(state),
+  encounterSeed: state.sayluaState.encounterSeed,
+  encounterId: state.sayluaState.encounterId,
+  area: state.sayluaState.area,
+  steps: state.sayluaState.steps,
+  encounterState: state.sayluaState.encounterState,
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {

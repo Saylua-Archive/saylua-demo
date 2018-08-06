@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { adopt } from 'SayluaStore';
+import { createSprite } from 'reducers/sayluaReducer';
 import { randomChoice, addArticle, capitalizeFirst } from 'utils';
 import Button from 'components/Button';
 import Sprite from 'models/Sprite';
@@ -15,7 +15,7 @@ const LITTLE_ONE = ['little one', 'cutie pie', 'cutie', 'little friend', 'little
 const mapDispatchToProps = (dispatch) => {
   return {
     adopt: (companion) => {
-      dispatch(adopt(companion));
+      dispatch(createSprite(companion, true));
     },
   };
 };

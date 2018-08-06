@@ -2,18 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Sprite from 'models/Sprite';
-import { accompany, setSteps } from 'SayluaStore';
+import { accompany, setSteps } from 'reducers/sayluaReducer';
 import { resetAdventureFunc } from '../Adventure/encounterFuncs';
 import SayluaView from 'components/SayluaView';
+import { companionsSelector } from 'reducers/selectors';
 
 import './Den.css';
 
-const mapStateToProps = ({ sayluaState: { companions, steps } }) => ({ companions, steps });
+const mapStateToProps = state => ({
+  companions: companionsSelector(state),
+  steps: state.sayluaState.steps,
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    accompany: (companion) => {
-      dispatch(accompany(companion));
+    accompany: (companionId) => {
+      dispatch(accompany(companionId));
     },
     setSteps: (count) => {
       dispatch(setSteps(count));
@@ -31,10 +35,10 @@ class Den extends Component {
           if (this.props.steps !== 300 &&
             window.confirm("Accompanying a new companion will end your current adventure. Continue?")
           ) {
-            this.props.accompany(this.props.companions[i]);
+            this.props.accompany(this.props.companions[i].id);
             resetAdventureFunc(this.props.companions[i])();
           } else if (this.props.steps === 300) {
-            this.props.accompany(this.props.companions[i]);
+            this.props.accompany(this.props.companions[i].id);
             resetAdventureFunc(this.props.companions[i])();
           }
         }}

@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { activeCompanionSelector } from 'reducers/selectors';
 import Sprite from 'models/Sprite';
 import { pluralize } from 'utils';
 
 import './Sidebar.css';
 
-const mapStateToProps = ({ sayluaState: { coins, activeCompanion } }) =>
-  ({
-    coins,
-    activeCompanion,
-  });
+const mapStateToProps = state => ({
+  coins: state.sayluaState.coins,
+  activeCompanion: activeCompanionSelector(state),
+});
 const mapDispatchToProps = {};
 
 class Sidebar extends Component {
