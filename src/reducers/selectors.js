@@ -22,10 +22,10 @@ export const companionsSelector = createSelector(
 export const activeCompanionSelector = createSelector(
   spritesSelector,
   activeCompanionIdSelector,
-  (sprites, activeCompanionId) => sprites[activeCompanionId],
+  (sprites, activeCompanionId) => (activeCompanionId ? sprites[activeCompanionId] : null),
 );
 
-export const maxSpriteIdFunc = sprites => Math.max(Object.keys(sprites));
+export const maxSpriteIdFunc = sprites => Math.max(...Object.keys(sprites).map(num => Number.parseInt(num)));
 
 export const maxSpriteIdSelector = createSelector(
   spritesSelector,
