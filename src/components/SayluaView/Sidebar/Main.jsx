@@ -7,7 +7,7 @@ import { pluralize } from 'utils';
 
 import './Sidebar.css';
 
-const mapStateToProps = ({ sayluaApp: { coins, activeCompanion } }) =>
+const mapStateToProps = ({ sayluaState: { coins, activeCompanion } }) =>
   ({
     coins,
     activeCompanion,

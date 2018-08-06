@@ -11,7 +11,7 @@ import { setEncounter, setArea, setSteps, updateCondition } from 'SayluaStore';
 import marked from 'marked';
 
 const mapStateToProps = ({
-  sayluaApp: {
+  sayluaState: {
     coins, activeCompanion, companions, encounterSeed, encounterId, area, steps, encounterState,
   },
 }) =>

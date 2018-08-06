@@ -15,7 +15,7 @@ import './ItemShed.css';
 
 const ITEMS_PER_PAGE = 25;
 
-const mapStateToProps = ({ sayluaApp: { inventory } }) => ({ inventory });
+const mapStateToProps = ({ sayluaState: { inventory } }) => ({ inventory });
 
 const mapDispatchToProps = (dispatch) => {
   return {

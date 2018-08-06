@@ -81,7 +81,8 @@ export function useItem(item, count) {
  */
 
 export const initialState = {
-  sayluaApp: {
+  // State for the currently logged in user.
+  sayluaState: {
     username: null,
     companions: [],
     activeCompanion: null,
@@ -94,11 +95,16 @@ export const initialState = {
     sideId: 0,
     theme: 'sayleus',
     inventory: {},
+
+    // Normalized data.
+    sprites: {},
   },
+
+  // For redux-form.
   form: {},
 };
 
-export function sayluaReducer(state = initialState.sayluaApp, action) {
+export function sayluaReducer(state = initialState.sayluaState, action) {
   switch (action.type) {
     case ADD_COINS:
       return Object.assign({}, state, {
@@ -123,7 +129,7 @@ export function sayluaReducer(state = initialState.sayluaApp, action) {
         encounterState: action.encounterState,
       });
     case CLEAR_STATE:
-      return Object.assign({}, state, initialState.sayluaApp);
+      return Object.assign({}, state, initialState.sayluaState);
     case SET_SIDE:
       return Object.assign({}, state, {
         sideId: action.sideId,
