@@ -45,10 +45,6 @@ class Adventure extends Component {
   }
 
   render() {
-    const choiceButtons = [];
-    const encounterImgs = [];
-    let encounter = this.props.steps <= 0 ? encounters.finish : encounters[this.props.encounterId];
-    encounter = encounter || chooseWeighted(randomEncounters);
     if (this.props.activeCompanion && (
       this.props.activeCompanion.health < 0
     )) {
@@ -69,18 +65,6 @@ class Adventure extends Component {
     }
     const choices = encounter.choices;
     for (let i = 0; i < choices.length; i++) {
-      const outcomeFunc = typeof (choices[i].outcome.func) === "function" ? choices[i].outcome.func : () => {};
-      const index = String(i + 1);
-      const interact = () => {
-        outcomeFunc();
-        if (choices[i].outcome.nextID) {
-          this.props.setEncounter(encounters[choices[i].outcome.nextID], seed);
-        } else {
-          this.props.setEncounter(chooseWeighted(randomEncounters));
-          this.props.updateCondition({ health: 1 }); // For passive changes
-          this.props.setSteps(this.props.steps - 1);
-        }
-      };
       choiceButtons.push(<ChoiceButton
         key={`${index}. ${choices[i].text}`}
         desc={`${index}. ${choices[i].text}`}
