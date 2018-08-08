@@ -17,6 +17,7 @@ export function randomName(seed) {
 export default class Sprite {
   static create(args) {
     const newSprite = {};
+
     newSprite.name = args.name || randomName();
     newSprite.soulName = args.soulName || newSprite.name.toLowerCase();
 

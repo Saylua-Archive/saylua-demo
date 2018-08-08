@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import {
+  spritesBySoulNameSelector,
+  activeCompanionSelector,
+} from 'reducers/selectors';
 import Sprite from 'models/Sprite';
 import SpriteSpecies from 'models/SpriteSpecies';
 import SpriteVariant from 'models/SpriteCoat/SpriteVariant';
@@ -10,17 +14,16 @@ import NotFound from 'modules/Error/NotFound';
 
 import './SpriteProfile.css';
 
-const mapStateToProps = ({ sayluaApp: { activeCompanion, companions } }) =>
+const mapStateToProps = state =>
   ({
-    activeCompanion,
-    companions,
+    activeCompanion: activeCompanionSelector(state),
+    spritesBySoulName: spritesBySoulNameSelector(state),
   });
 
 class SpriteProfile extends Component {
   render() {
     const soulName = this.props.match.params.soulName.toLowerCase();
-
-    const companion = this.props.companions.find(c => (c.soulName === soulName));
+    const companion = this.props.spritesBySoulName[soulName];
 
     if (!companion) {
       return <NotFound />;

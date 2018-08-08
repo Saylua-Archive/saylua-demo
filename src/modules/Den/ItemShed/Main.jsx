@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useItem, addCoins } from 'SayluaStore';
+import { useItem, addCoins } from 'reducers/sayluaReducer';
 
 import SayluaView from 'components/SayluaView';
 
@@ -15,12 +15,12 @@ import './ItemShed.css';
 
 const ITEMS_PER_PAGE = 25;
 
-const mapStateToProps = ({ sayluaApp: { inventory } }) => ({ inventory });
+const mapStateToProps = ({ sayluaState: { inventory } }) => ({ inventory });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    useItem: (item, count) => {
-      dispatch(useItem(item, count));
+    useItem: (itemId, count) => {
+      dispatch(useItem(itemId, count));
     },
     addCoins: (count) => {
       dispatch(addCoins(count));
@@ -42,14 +42,14 @@ class ItemShed extends Component {
   }
 
   sellItems(item, count) {
-    this.props.useItem(item, count);
+    this.props.useItem(item.id, count);
     this.props.addCoins(item.buybackPrice * count);
   }
 
   render() {
-    let items = Object.keys(this.props.inventory).map((canonName) => {
-      const entry = Item.fromCanonName(canonName);
-      entry.count = this.props.inventory[canonName];
+    let items = Object.keys(this.props.inventory).map((id) => {
+      const entry = Item.fromId(id);
+      entry.count = this.props.inventory[id];
       return entry;
     });
     const totalItems = items.length;

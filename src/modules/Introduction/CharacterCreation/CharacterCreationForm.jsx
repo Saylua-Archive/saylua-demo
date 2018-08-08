@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { formValueSelector, Field, reduxForm } from 'redux-form';
 
-import { setTheme } from 'SayluaStore';
+import { setTheme } from 'reducers/sayluaReducer';
 import InputWithTip from 'components/Form/Input/InputWithTip';
 import Button from 'components/Button';
 import { Required, NotBlank } from 'components/Form/Validators';

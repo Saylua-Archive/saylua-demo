@@ -1,5 +1,5 @@
 import { seedChoice, seedChoiceWeighted } from 'utils';
-import { adopt, accompany, addCoins, updateCondition, getItem } from 'SayluaStore';
+import { createSprite, accompany, addCoins, updateCondition, getItem } from 'reducers/sayluaReducer';
 import { store } from 'index';
 import Sprite from 'models/Sprite';
 import { itemsList } from 'models/Item';
@@ -19,8 +19,8 @@ export function addCoinsFunc(n) {
   return () => store.dispatch(addCoins(n));
 }
 
-export function getItemFunc(item, n) {
-  return () => store.dispatch(getItem(item, n));
+export function getItemFunc(itemId, n) {
+  return () => store.dispatch(getItem(itemId, n));
 }
 
 export function accompanyFunc(companion) {
@@ -28,7 +28,7 @@ export function accompanyFunc(companion) {
 }
 
 export function adoptFunc(companion) {
-  return () => store.dispatch(adopt(companion));
+  return () => store.dispatch(createSprite(companion, true));
 }
 
 export function updateConditionFunc(condition) {
