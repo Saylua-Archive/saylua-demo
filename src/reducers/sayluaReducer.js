@@ -93,7 +93,7 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
       });
     case ACCOMPANY:
       return Object.assign({}, state, {
-        activeCompanionId: action.spriteId,
+        activeCompanionId: action.spriteId || 0,
       });
     case CREATE_SPRITE: {
       const id = maxSpriteIdFunc(state.sprites) + 1;
@@ -133,7 +133,7 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
       });
     case SET_USERNAME:
       return Object.assign({}, state, {
-        area: action.username,
+        username: action.username,
       });
     case SET_AREA:
       return Object.assign({}, state, {

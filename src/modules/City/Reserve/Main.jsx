@@ -77,7 +77,7 @@ class Reserve extends Component {
         </div>
         <div className="choices">
           <Button onClick={this.adopt.bind(this)} subtle>
-            Adopt { adoptee.name }
+            <img src="/img/icons/heart.png" alt="Adopt" /> Adopt { adoptee.name }
           </Button>
           <Button onClick={this.newAdoptee.bind(this)} subtle>
             Another one, Vera?

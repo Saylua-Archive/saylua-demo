@@ -83,6 +83,21 @@ export function sRandomInt(seed, max, min) {
   return min + Math.floor(sRandom(seed) * (max - min));
 }
 
+export function seedShuffle(seed, arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = sRandomInt(seed + i, i + 1);
+    const temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+  return arr;
+}
+
+export function seedChoiceMany(seed, choices, num) {
+  choices = seedShuffle(seed, Object.assign([], choices));
+  return choices.splice(0, num);
+}
+
 export function seedChoice(seed, choices) {
   return choices[sRandomInt(seed, choices.length)];
 }

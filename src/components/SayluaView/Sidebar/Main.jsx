@@ -9,6 +9,7 @@ import { pluralize } from 'utils';
 import './Sidebar.css';
 
 const mapStateToProps = state => ({
+  username: state.sayluaState.username,
   coins: state.sayluaState.coins,
   activeCompanion: activeCompanionSelector(state),
 });
@@ -17,36 +18,43 @@ const mapDispatchToProps = {};
 class Sidebar extends Component {
   render() {
     const companion = this.props.activeCompanion;
+    const username = this.props.username;
     return (
       <div id="sidebar-container" className="sidebar-container">
         <div id="sidebar" className="sidebar">
+          <div id="sidebar-navigation" className="sidebar-navigation">
+            <button>
+              <i className="fa fa-fw fa-user" title="You" />
+            </button>
+            <button>
+              <i className="fa fa-fw fa-hourglass-half" title="Jobs" />
+            </button>
+          </div>
           <div id="user-info-section" className="sidebar-section">
             {companion &&
-              <div>
-                <Link to={Sprite.url(companion)}>
-                  <img
-                    className="petView"
-                    alt={companion.name}
-                    src={Sprite.imageUrl(companion)}
-                  />
-                </Link>
-              </div>
+              <Link to={Sprite.url(companion)}>
+                <img
+                  className="petView"
+                  alt={companion.name}
+                  src={Sprite.imageUrl(companion)}
+                />
+              </Link>
             }
             <div className="sidebar-aligner">
-              <p>You are <Link to="/user/tiff/">Tiff</Link></p>
+              <p>You are <Link to="/user/">{username}</Link></p>
               {companion &&
                 <p>
                   Your companion is <Link to={Sprite.url(companion)}>{companion.name}</Link>
                 </p>
               }
-              <p>
+              <div className="currency-container">
                 <img src="/img/icons/weather_clouds.png" alt="coins" />
-                <Link to="/bank/"> { pluralize(this.props.coins, 'Coin') } </Link>
-              </p>
-              <p>
+                <Link to="/bank/"> { pluralize(this.props.coins, 'Cloud Coin') } </Link>
+              </div>
+              <div className="currency-container">
                 <img src="/img/icons/star_1.png" alt="premium coins" />
                 <Link to="/bank/"> { pluralize(1, 'Star Shard') } </Link>
-              </p>
+              </div>
             </div>
           </div>
         </div>
