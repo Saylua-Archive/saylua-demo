@@ -7,7 +7,7 @@ import { setEncounter, setArea, setSteps, updateCondition } from 'reducers/saylu
 import { companionsSelector, activeCompanionSelector } from 'reducers/selectors';
 import marked from 'marked';
 
-import { randomEncounterIDs } from './encounters/encounters';
+import { randomEncounters } from './encounters/encounters';
 import { Encounter, Choice } from './encounters/Models';
 import Areas from './Areas';
 import ChoiceButton from './ChoiceButton';
@@ -60,7 +60,7 @@ class Adventure extends Component {
       key={choice.text}
       onClick={() => {
         Choice.choose(choice, encounter, this.props.encounterSeed);
-        this.props.setEncounter(chooseWeighted(randomEncounterIDs));
+        this.props.setEncounter(chooseWeighted(randomEncounters));
       }}
     />));
     return (

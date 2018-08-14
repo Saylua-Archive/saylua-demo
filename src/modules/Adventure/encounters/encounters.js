@@ -1,13 +1,13 @@
-export const ENCOUNTERIDS = {
-  START: "START",
-  FINDCOINS: "FINDCOINS",
-  REST: "REST",
-  PLAY: "PLAY",
-};
+export const ENCOUNTERS = Object.freeze({
+  START: 1,
+  FINDCOINS: 2,
+  REST: 3,
+  PLAY: 4,
+});
 
-export const encounters = [
+export const encountersList = Object.freeze([
   {
-    id: ENCOUNTERIDS.START,
+    id: ENCOUNTERS.START,
     text: "Adventure awaits!",
     choices: [
       {
@@ -16,7 +16,7 @@ export const encounters = [
     ],
   },
   {
-    id: ENCOUNTERIDS.FINDCOINS,
+    id: ENCOUNTERS.FINDCOINS,
     text: "You found some coins!",
     coins: 5,
     choices: [
@@ -31,7 +31,7 @@ export const encounters = [
     ],
   },
   {
-    id: ENCOUNTERIDS.REST,
+    id: ENCOUNTERS.REST,
     text: "You find a nice spot to rest.",
     choices: [
       {
@@ -42,7 +42,7 @@ export const encounters = [
     ],
   },
   {
-    id: ENCOUNTERIDS.PLAY,
+    id: ENCOUNTERS.PLAY,
     text: "A gorbin wants to play!",
     images: ["/img/sprites/gorbin/albino.png"],
     choices: [
@@ -53,10 +53,10 @@ export const encounters = [
       },
     ],
   },
-];
+]);
 
-export const randomEncounterIDs = [
-  ENCOUNTERIDS.FINDCOINS,
-  ENCOUNTERIDS.REST,
-  ENCOUNTERIDS.PLAY,
-];
+export const randomEncounters = Object.freeze([
+  ENCOUNTERS.FINDCOINS,
+  ENCOUNTERS.REST,
+  ENCOUNTERS.PLAY,
+]);

@@ -1,6 +1,6 @@
 import { chooseWeighted } from 'utils';
 import { store } from 'index';
-import { encounters } from './encounters';
+import { encountersList } from './encounters';
 import { adopt, accompany, addCoins, updateCondition, getItem } from 'reducers/sayluaReducer';
 
 export class Choice {
@@ -46,7 +46,7 @@ export class Encounter {
   }
 
   static byId(id) {
-    return encounters.filter(e => e.id === id)[0];
+    return encountersList.filter(e => e.id === id)[0];
   }
 }
 
