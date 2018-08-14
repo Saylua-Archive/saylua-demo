@@ -1,7 +1,8 @@
-import { sRandomInt, randomChoice, seedChoice, seedChoiceWeighted } from 'utils';
+import { sRandomInt, randomChoice, seedChoice, seedChoiceMany, seedChoiceWeighted } from 'utils';
 import SpriteCoat from 'models/SpriteCoat';
 import SpriteVariant from 'models/SpriteCoat/SpriteVariant';
 import SpriteSpecies, { speciesList } from 'models/SpriteSpecies';
+import { itemsList } from 'models/Item';
 import { nameList } from './nameList';
 
 export const epithets = ['Mighty', 'Speedy', 'Crafty', 'Charming', 'Amazing',
@@ -89,8 +90,10 @@ export default class Sprite {
     const compCoat = seedChoice(seed + 1, SpriteSpecies.coats(compSpecies));
     const health = sRandomInt(seed + 3, 5, 50);
     const stamina = sRandomInt(seed + 3, 5, 50);
+    const favoriteThings = seedChoiceMany(seed + 10, itemsList, 3).map(item => item.id);
     return Sprite.create({
       name: randomName(seed + 2),
+      favoriteThings,
       speciesId: compSpecies.id,
       variantId: SpriteCoat.variantId(compCoat),
       health,
