@@ -41,8 +41,8 @@ export function adopt(spriteId) {
   return { type: ADOPT, spriteId };
 }
 
-export function setEncounter(encounter) {
-  return { type: SET_ENCOUNTER, encounter };
+export function setEncounter(encounterId, seed) {
+  return { type: SET_ENCOUNTER, encounterId, seed };
 }
 
 export function setEncounterState(encounterState) {
@@ -114,8 +114,8 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
       });
     case SET_ENCOUNTER:
       return Object.assign({}, state, {
-        encounterSeed: action.encounter.seed,
-        encounterId: action.encounter.id,
+        encounterId: action.encounterId,
+        encounterSeed: action.seed,
       });
     case SET_ENCOUNTER_STATE:
       return Object.assign({}, state, {

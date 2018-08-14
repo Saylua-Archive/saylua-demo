@@ -7,7 +7,8 @@ import { setEncounter, setArea, setSteps, updateCondition } from 'reducers/saylu
 import { companionsSelector, activeCompanionSelector } from 'reducers/selectors';
 import marked from 'marked';
 
-import { encounters, randomEncounters } from './encounters';
+import { randomEncounterIDs } from './encounters/encounters';
+import { Encounter, Choice } from './encounters/Models';
 import Areas from './Areas';
 import ChoiceButton from './ChoiceButton';
 import EventView from './EventView';
@@ -26,9 +27,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setEncounter: (encounter, seed) => {
-      encounter.seed = seed || Math.floor(Math.random() * 10000000000);
-      dispatch(setEncounter(encounter));
+    setEncounter: (newEncounter, seed) => {
+      const newSeed = seed || Math.floor(Math.random() * 10000000000);
+      dispatch(setEncounter(newEncounter, newSeed));
     },
     setArea: (area) => {
       area = area || Areas.Gardenia;
@@ -50,45 +51,22 @@ class Adventure extends Component {
   }
 
   render() {
-    if (this.props.activeCompanion && (
-      this.props.activeCompanion.health < 0
-    )) {
-      encounter = encounters.defeat;
-    }
-    const seed = this.props.encounterSeed;
-    encounter.seed = seed;
-    encounter.state = this.props;
-    const area = this.props.area || Areas.Gardenia;
-    if (!this.props.area) {
-      this.props.setArea(area);
-    } else if (this.props.steps > 200 && this.props.area.title !== Areas.Gardenia.title) {
-      this.props.setArea(Areas.Gardenia);
-    } else if (this.props.steps <= 200 && this.props.area.title === Areas.Gardenia.title) {
-      this.props.setArea(Areas.Wanderlin);
-    } else if (this.props.steps <= 100 && this.props.area.title === Areas.Wanderlin.title) {
-      this.props.setArea(Areas.Korvinwood);
-    }
-    const choices = encounter.choices;
-    for (let i = 0; i < choices.length; i++) {
-      choiceButtons.push(<ChoiceButton
-        key={`${index}. ${choices[i].text}`}
-        desc={`${index}. ${choices[i].text}`}
-        onClick={interact}
-        index={index}
-      />);
-    }
-    let imgKeys = encounter.img;
-    if (imgKeys && !Array.isArray(imgKeys)) {
-      imgKeys = [imgKeys];
-    }
-    imgKeys = imgKeys || [];
-    const imgURLs = imgKeys.map(x => x.url);
-    const mainText = encounter.mainText;
-
+    const encounter = Encounter.byId(this.props.encounterId);
+    const mainText = encounter.text;
+    const imgURLs = encounter.images || [];
+    const choiceButtons = encounter.choices.map((choice, i) => (<ChoiceButton
+      index={i + 1}
+      desc={choice.text}
+      key={choice.text}
+      onClick={() => {
+        Choice.choose(choice, encounter, this.props.encounterSeed);
+        this.props.setEncounter(chooseWeighted(randomEncounterIDs));
+      }}
+    />));
     return (
       <SayluaView>
         <EventView
-          area={area}
+          area={Areas.Gardenia}
           encounterImgs={imgURLs}
           mainText={mainText}
           choiceButtons={choiceButtons}

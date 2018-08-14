@@ -5,7 +5,7 @@ const initialState = {
     companionIds: [],
     activeCompanionId: null,
     coins: 0,
-    encounterId: 'start',
+    encounterId: 'START',
     area: null,
     steps: 300,
     encounterSeed: Date.now(),

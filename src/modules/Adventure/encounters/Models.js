@@ -1,7 +1,7 @@
 import { chooseWeighted } from 'utils';
-import { randomContinue } from '../encounterFuncs';
 import { store } from 'index';
-import { adopt, accompany, addCoins, updateCondition, getItem } from 'SayluaStore';
+import { encounters } from './encounters';
+import { adopt, accompany, addCoins, updateCondition, getItem } from 'reducers/sayluaReducer';
 
 export class Choice {
   static create(args) {
@@ -10,21 +10,29 @@ export class Choice {
     newChoice.text = args.text;
     // Requirements
     // Results
-    newChoice.result = args.result;
     newChoice.health = args.health;
     newChoice.stamina = args.stamina;
     newChoice.coins = args.coins;
-    newChoice.giveItem = args.giveItem;
+    newChoice.getItem = args.getItem;
+    newChoice.getItemCount = args.getItemCount;
     newChoice.takeItem = args.takeItem;
+    newChoice.takeItemCount = args.takeItemCount;
     return newChoice;
   }
 
-  static choose(choice, seed) {
+  static choose(choice, encounter, seed) {
     if (choice.health || choice.stamina) {
-      store.dispatch(updateCondition({ health: choice.health, stamina: choice.stamina }));
+      const health = typeof choice.health === "function" ? choice.health(encounter, seed) : choice.health;
+      const stamina = typeof choice.stamina === "function" ? choice.stamina(encounter, seed) : choice.stamina;
+      store.dispatch(updateCondition({ health, stamina }));
     }
     if (choice.coins) {
-      store.dispatch(addCoins(choice.coins));
+      const coins = typeof choice.coins === "function" ? choice.coins(encounter, seed) : choice.coins;
+      store.dispatch(addCoins(coins));
+    }
+    if (choice.getItem) {
+      const item = typeof choice.getItem === "function" ? choice.getItem(encounter, seed) : choice.getItem;
+      store.dispatch(getItem(item));
     }
   }
 }
@@ -35,6 +43,10 @@ export class Encounter {
     newEncounter.text = args.text;
     newEncounter.choices = args.choices;
     return newEncounter;
+  }
+
+  static byId(id) {
+    return encounters.filter(e => e.id === id)[0];
   }
 }
 

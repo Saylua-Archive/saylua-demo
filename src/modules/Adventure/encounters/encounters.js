@@ -1,16 +1,28 @@
 export const ENCOUNTERIDS = {
+  START: "START",
   FINDCOINS: "FINDCOINS",
   REST: "REST",
+  PLAY: "PLAY",
 };
 
 export const encounters = [
   {
+    id: ENCOUNTERIDS.START,
+    text: "Adventure awaits!",
+    choices: [
+      {
+        text: "Let's go!",
+      },
+    ],
+  },
+  {
     id: ENCOUNTERIDS.FINDCOINS,
     text: "You found some coins!",
+    coins: 5,
     choices: [
       {
         text: "Take them.",
-        coins: 5,
+        coins: e => e.coins,
       },
       {
         text: "Leave them.",
@@ -29,4 +41,22 @@ export const encounters = [
       },
     ],
   },
+  {
+    id: ENCOUNTERIDS.PLAY,
+    text: "A gorbin wants to play!",
+    images: ["/img/sprites/gorbin/albino.png"],
+    choices: [
+      {
+        text: "Have fun!",
+        stamina: 15,
+        health: 5,
+      },
+    ],
+  },
+];
+
+export const randomEncounterIDs = [
+  ENCOUNTERIDS.FINDCOINS,
+  ENCOUNTERIDS.REST,
+  ENCOUNTERIDS.PLAY,
 ];
