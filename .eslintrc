@@ -38,5 +38,6 @@
     "react/no-danger": 0,
     "react/jsx-closing-tag-location": 0,
     "react/require-default-props": 0,
+    "jsx-a11y/label-has-for": 0,
   }
 }

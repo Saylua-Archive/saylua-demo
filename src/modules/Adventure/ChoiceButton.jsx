@@ -3,10 +3,10 @@ import * as Mousetrap from 'mousetrap';
 
 export default class ChoiceButton extends Component {
   componentDidMount() {
-    Mousetrap.bind(this.props.index, this.props.onClick);
+    Mousetrap.bind(this.props.index.toString(), this.props.onClick);
   }
   componentWillUnmount() {
-    Mousetrap.unbind(this.props.index);
+    Mousetrap.unbind(this.props.index.toString());
   }
   render() {
     return (
@@ -22,7 +22,7 @@ export default class ChoiceButton extends Component {
           }
         }}
       >
-        {this.props.desc}
+        {`${this.props.index}. ${this.props.desc}`}
       </div>
     );
   }

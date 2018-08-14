@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import Sprite from 'models/Sprite';
 import { accompany, setSteps } from 'reducers/sayluaReducer';
-import { resetAdventureFunc } from '../Adventure/encounterFuncs';
 import SayluaView from 'components/SayluaView';
 import { companionsSelector } from 'reducers/selectors';
 
@@ -32,15 +31,7 @@ class Den extends Component {
       denPets.push(<DenPet
         companion={this.props.companions[i]}
         onClick={() => {
-          if (this.props.steps !== 300 &&
-            window.confirm("Accompanying a new companion will end your current adventure. Continue?")
-          ) {
-            this.props.accompany(this.props.companions[i].id);
-            resetAdventureFunc(this.props.companions[i])();
-          } else if (this.props.steps === 300) {
-            this.props.accompany(this.props.companions[i].id);
-            resetAdventureFunc(this.props.companions[i])();
-          }
+          this.props.accompany(this.props.companions[i].id);
         }}
       />);
     }
