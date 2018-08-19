@@ -25,6 +25,11 @@ button.saylua-button {
   &:active {
     transform: translateY(2px);
   }
+
+  &[disabled] {
+    cursor: default;
+    opacity: 0.5;
+  }
 }
 
 button.subtle-button {
