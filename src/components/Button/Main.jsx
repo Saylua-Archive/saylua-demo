@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './Button.css';
 
+const Button = (props) => {
+  const { subtle, ...buttonProps } = props;
+  return (
+    <button
+      {...buttonProps}
+      className={`saylua-button ${subtle ? 'subtle-button' : ''} ${props.className}`}
+    >
+      { props.children }
+    </button>
+  );
+};
 
-export default class Button extends Component {
-  render() {
-    return (
-      <button className={`saylua-button ${this.props.subtle ? 'subtle-button' : ''}`} onClick={this.props.onClick}>
-        { this.props.children }
-      </button>
-    );
-  }
-}
+export default Button;

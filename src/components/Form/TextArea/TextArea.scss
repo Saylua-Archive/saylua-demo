@@ -1,0 +1,11 @@
+textarea.saylua-textarea {
+  font-size: 1.6rem;
+  line-height: 150%;
+  padding: 0.25em 0.8rem;
+  border: 1px solid hsl(0, 0%, 87%);
+  width: 70%;
+
+  &[data-error] {
+    border-color: var(--errorColor);
+  }
+}

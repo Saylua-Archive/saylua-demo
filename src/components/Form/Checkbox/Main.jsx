@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './Checkbox.css';
 
+const Checkbox = (props) => {
+  return (
+    <input
+      {...props}
+      className={`saylua-checkbox ${props.className}`}
+      type="checkbox"
+    />
+  );
+};
 
-export default class Checkbox extends Component {
-  render() {
-    return (
-      <input
-        className="saylua-checkbox"
-        type="checkbox"
-        checked={this.props.checked}
-        value={this.props.value}
-        onClick={this.props.onClick}
-      />
-    );
-  }
-}
+export default Checkbox;

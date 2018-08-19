@@ -10,6 +10,7 @@ export const ACCOMPANY = 'ACCOMPANY';
 export const ADD_COINS = 'ADD_COINS';
 export const ADOPT = 'ADOPT';
 export const CREATE_SPRITE = 'CREATE_SPRITE';
+export const EDIT_SPRITE = 'EDIT_SPRITE';
 export const SET_ENCOUNTER = 'SET_ENCOUNTER';
 export const SET_ENCOUNTER_STATE = 'SET_ENCOUNTER_STATE';
 export const CLEAR_STATE = 'CLEAR_STATE';
@@ -35,6 +36,10 @@ export function accompany(spriteId) {
 
 export function createSprite(sprite, willAdopt=false) {
   return { type: CREATE_SPRITE, sprite, willAdopt };
+}
+
+export function editSprite(spriteId, spriteDelta) {
+  return { type: EDIT_SPRITE, spriteId, spriteDelta };
 }
 
 export function adopt(spriteId) {
@@ -106,6 +111,19 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
         stateChanges.activeCompanionId = state.activeCompanionId || id;
       }
       return Object.assign({}, state, stateChanges);
+    }
+    case EDIT_SPRITE: {
+      if (!(action.spriteId in state.sprites)) return state;
+      const newSprite = Object.assign(
+        {},
+        state.sprites[action.spriteId],
+        action.spriteDelta,
+      );
+      return Object.assign({}, state, {
+        sprites: {
+          [action.spriteId]: newSprite,
+        },
+      });
     }
     case ADOPT:
       return Object.assign({}, state, {

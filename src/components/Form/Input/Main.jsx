@@ -1,19 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './Input.css';
 
-export default class Input extends Component {
-  render() {
-    return (
-      <input
-        className="saylua-input"
-        style={this.props.style}
-        data-error={this.props.error}
-        placeholder={this.props.placeholder}
-        value={this.props.value}
-        onClick={this.props.onClick}
-        onChange={this.props.onChange}
-      />
-    );
-  }
-}
+const Input = (props) => {
+  return (
+    <input
+      {...props}
+      className={`saylua-input ${props.className}`}
+      data-error={props.error}
+    />
+  );
+};
+
+export default Input;
