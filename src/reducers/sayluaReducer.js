@@ -20,8 +20,7 @@ export const SET_THEME = 'SET_THEME';
 export const SET_AREA = 'SET_AREA';
 export const SET_STEPS = 'SET_STEPS';
 export const UPDATE_CONDITION = 'UPDATE_CONDITION';
-export const GET_ITEM = 'GET_ITEM';
-export const USE_ITEM = 'USE_ITEM';
+export const ADD_ITEM = 'ADD_ITEM';
 
 /*
  * action creators
@@ -82,12 +81,8 @@ export function updateCondition(condition) {
   return { type: UPDATE_CONDITION, condition };
 }
 
-export function getItem(itemId, count) {
-  return { type: GET_ITEM, itemId, count };
-}
-
-export function useItem(itemId, count) {
-  return { type: USE_ITEM, itemId, count };
+export function addItem(itemId, count) {
+  return { type: ADD_ITEM, itemId, count };
 }
 
 export default function sayluaReducer(state = initialState.sayluaState, action) {
@@ -173,16 +168,9 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
         steps: action.condition.steps || state.steps,
       });
     }
-    case GET_ITEM: {
+    case ADD_ITEM: {
       const newInventory = Object.assign({}, state.inventory);
       newInventory[action.itemId] = (newInventory[action.itemId] || 0) + (action.count || 1);
-      return Object.assign({}, state, {
-        inventory: newInventory,
-      });
-    }
-    case USE_ITEM: {
-      const newInventory = Object.assign({}, state.inventory);
-      newInventory[action.itemId] -= action.count || 1;
       if (newInventory[action.itemId] <= 0) {
         delete newInventory[action.itemId];
       }

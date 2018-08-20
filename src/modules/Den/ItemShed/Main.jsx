@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useItem, addCoins } from 'reducers/sayluaReducer';
+import { addItem, addCoins } from 'reducers/sayluaReducer';
 
 import SayluaView from 'components/SayluaView';
 
@@ -19,8 +19,8 @@ const mapStateToProps = ({ sayluaState: { inventory } }) => ({ inventory });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    useItem: (itemId, count) => {
-      dispatch(useItem(itemId, count));
+    addItem: (itemId, count) => {
+      dispatch(addItem(itemId, count));
     },
     addCoins: (count) => {
       dispatch(addCoins(count));
@@ -42,7 +42,7 @@ class ItemShed extends Component {
   }
 
   sellItems(item, count) {
-    this.props.useItem(item.id, count);
+    this.props.addItem(item.id, -count);
     this.props.addCoins(item.buybackPrice * count);
   }
 

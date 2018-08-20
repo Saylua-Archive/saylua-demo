@@ -28,6 +28,6 @@ export default class SpriteVariant {
   }
 
   static url(variant) {
-    return `/coats#${variant.canonName}`;
+    return `/guide/coats#${variant.canonName}`;
   }
 }
