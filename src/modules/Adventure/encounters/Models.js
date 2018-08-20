@@ -1,7 +1,7 @@
 import { chooseWeighted } from 'utils';
 import { store } from 'index';
 import { encountersList } from './encounters';
-import { adopt, accompany, addCoins, updateCondition, getItem } from 'reducers/sayluaReducer';
+import { adopt, accompany, addCoins, updateCondition, addItem } from 'reducers/sayluaReducer';
 
 export class Choice {
   static create(args) {
@@ -32,7 +32,7 @@ export class Choice {
     }
     if (choice.getItem) {
       const item = typeof choice.getItem === "function" ? choice.getItem(encounter, seed) : choice.getItem;
-      store.dispatch(getItem(item));
+      store.dispatch(addItem(item));
     }
   }
 }

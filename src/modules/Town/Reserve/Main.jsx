@@ -51,7 +51,7 @@ class Reserve extends Component {
           <p>
           The reserve is currently empty! Looks like everyone found a new home.
           </p>
-          <img className="reserve-npc" src="/img/npcs/vera-everly.png" alt="Vera Everly" />
+          <img className="reserve-npc" src="/img/characters/vera.png" alt="Vera Everly" />
         </SayluaView>
       );
     }
@@ -71,7 +71,7 @@ class Reserve extends Component {
         <div className="npc-display">
           <div className="speech-bubble">{cuteText}</div>
           <div className="interaction-bust">
-            <img src="/img/npcs/vera-everly.png" alt="Vera Everly" />
+            <img src="/img/characters/vera.png" alt="Vera Everly" />
           </div>
           <img className="adoptee" src={Sprite.imageUrl(adoptee)} alt={adoptee.name} />
         </div>

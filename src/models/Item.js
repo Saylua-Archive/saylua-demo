@@ -2,6 +2,8 @@ export const ITEMS = Object.freeze({
   GLOW_FRUIT: 1,
   MUSHROOM: 2,
   SHINE_PEPPER: 3,
+  ROCK: 4,
+  NAME_TAG: 5,
 });
 
 export const itemsList = [
@@ -10,7 +12,9 @@ export const itemsList = [
     name: 'Glow Fruit',
     canonName: 'glow_fruit',
     category: 'treat',
-    description: 'A tasty treat for your sprite.',
+    description: `A delicious fruit found growing on wild Luarian starvines.`,
+    rufusDescription: `Make sure the spit the seeds out when you eat a glowing
+      fruit.`,
     buybackPrice: 100,
   },
   {
@@ -18,7 +22,9 @@ export const itemsList = [
     name: 'Mushroom',
     canonName: 'mushroom',
     category: 'treat',
-    description: 'A tasty treat for your sprite.',
+    description: `These mushrooms can be seen glowing in woods across Luaria.`,
+    rufusDescription: `Whenever I go to Luaria, I make sure to bring home a
+      backpack full of glowing mushrooms.`,
     buybackPrice: 100,
   },
   {
@@ -26,7 +32,31 @@ export const itemsList = [
     name: 'Shine Pepper',
     canonName: 'shine_pepper',
     category: 'treat',
-    description: 'A tasty treat for your sprite.',
+    description: `The light on this pepper is only slightly hot. But the pepper
+      itself is really hot.`,
+    rufusDescription: `These little peppers pack a lot more spice than you'd
+      think at first. Keep some sugar water nearby if you're tyring one for the
+      first time. `,
+    buybackPrice: 200,
+  },
+  {
+    id: ITEMS.ROCK,
+    name: 'Rock',
+    canonName: 'rock',
+    category: 'material',
+    description: `If you name it, it can become a pet rock!`,
+    rufusDescription: `Honestly, I really don't know why people keep selling me
+      rocks, but I'll buy 'em.`,
+    buybackPrice: 10,
+  },
+  {
+    id: ITEMS.NAME_TAG,
+    name: 'Name Tag',
+    canonName: 'name_tag',
+    category: 'specialty',
+    description: `Give your companion a brand new name with this name tag.`,
+    rufusDescription: `Name changes, huh? I like my name, but I think changing
+      names every now and then could be exciting.`,
     buybackPrice: 1000,
   },
 ];

@@ -33,8 +33,8 @@ export default class Navbar extends Component {
               </Link>
             </div>
             <div className="navbar-block">
-              <Link to="/reserve" className="navbar-link" title="Everly Reserve">
-                Reserve
+              <Link to="/town" className="navbar-link" title="Everly Reserve">
+                Town
               </Link>
             </div>
             <div className="navbar-block">

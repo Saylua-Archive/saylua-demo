@@ -58,7 +58,7 @@ export default class SpriteSpecies {
   }
 
   static url(species) {
-    return `/species/${species.canonName}/`;
+    return `/guide/species/${species.canonName}/`;
   }
 
   static coats(species) {
