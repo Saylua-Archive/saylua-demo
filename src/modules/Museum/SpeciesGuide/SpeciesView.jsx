@@ -59,7 +59,7 @@ export default function SpeciesView(props) {
           </p>
           {species.quotes.map(quote => (
             <p>
-              {`"${quote.text}" - ${quote.byline}`}
+              {`"${quote.text}" - ${quote.attribution}`}
             </p>
           ))}
         </div>

@@ -57,10 +57,6 @@ export const speciesList = [
       themselves overwhelmed with attention when caring for a Chirling.`,
     quotes: [
       {
-        text: `When I die I want to go wherever the Chirlings go.`,
-        byline: 'Anonymous, 560 ATA',
-      },
-      {
         text: `The Chiirlings would chirp so loudly I couldn't sleep. But after
           the day they disappeared, I felt that some part of me had disappeared
           as well.`,
