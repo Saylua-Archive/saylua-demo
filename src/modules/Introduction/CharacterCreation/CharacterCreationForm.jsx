@@ -33,7 +33,7 @@ const CharacterCreationForm = (props) => {
           component={InputWithTip}
           placeholder="Username"
           type="text"
-          validate={[Required('Username'), NotBlank('Username')]}
+          // validate={[Required('Username'), NotBlank('Username')]} // TODO: Fix transient bug
           tip="Your username can include letters, numbers, and these symbols: +~._-"
         />
       </div>
@@ -135,7 +135,7 @@ const CharacterCreationForm = (props) => {
           name="companionName"
           component={InputWithTip}
           placeholder="Companion name"
-          validate={[Required('Companion name'), NotBlank('Companion name')]}
+          // validate={[Required('Companion name'), NotBlank('Companion name')]}
         />
       </div>
       <div style={{ textAlign: 'center' }}>

@@ -7,7 +7,7 @@ import { setEncounter, setArea, setSteps, updateCondition } from 'reducers/saylu
 import { companionsSelector, activeCompanionSelector } from 'reducers/selectors';
 import marked from 'marked';
 
-import { randomEncounters } from './encounters/encounters';
+import { ENCOUNTERS, randomEncounters } from './encounters/encounters';
 import { Encounter, Choice } from './encounters/Models';
 import Areas from './Areas';
 import ChoiceButton from './ChoiceButton';
@@ -15,6 +15,7 @@ import EventView from './EventView';
 import './Adventure.css';
 
 const mapStateToProps = state => ({
+  username: state.sayluaState.username,
   coins: state.sayluaState.coins,
   activeCompanion: activeCompanionSelector(state),
   companions: companionsSelector(state),
@@ -52,22 +53,30 @@ class Adventure extends Component {
 
   render() {
     const encounter = Encounter.byId(this.props.encounterId);
-    const mainText = encounter.text;
-    const imgURLs = encounter.images || [];
-    const choiceButtons = encounter.choices.map((choice, i) => (<ChoiceButton
+    const player = {
+      username: this.props.username,
+      activeCompanion: this.props.activeCompanion,
+    };
+    const mainText = Encounter.getText(encounter, this.props.encounterSeed, player);
+    const images = encounter.images || [];
+    const choiceButtons = encounter.choices ? encounter.choices.map((choice, i) => (<ChoiceButton
       index={i + 1}
-      desc={choice.text}
-      key={choice.text}
+      desc={Choice.getText(choice, this.props.encounterSeed, player)}
+      key={Choice.getText(choice, this.props.encounterSeed, player)}
       onClick={() => {
-        Choice.choose(choice, encounter, this.props.encounterSeed);
+        Choice.choose(choice, encounter, this.props.encounterSeed, player);
         this.props.setEncounter(chooseWeighted(randomEncounters));
+        this.props.updateCondition({ stamina: -2, health: 2 });
+        if (this.props.activeCompanion.health < 0 || this.props.activeCompanion.stamnia < 0) {
+          this.props.setEncounter(ENCOUNTERS.END);
+        }
       }}
-    />));
+    />)) : [];
     return (
       <SayluaView>
         <EventView
           area={Areas.Gardenia}
-          encounterImgs={imgURLs}
+          encounterImgs={images}
           mainText={mainText}
           choiceButtons={choiceButtons}
           rawMarkup={this.rawMarkup}

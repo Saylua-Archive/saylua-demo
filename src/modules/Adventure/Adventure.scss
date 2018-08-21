@@ -83,8 +83,10 @@
   .battle-stat-box {
     width: 40%;
     height: 2em;
+    position: absolute;
     display: flex;
-    padding: .5em .5rem;
+    top: 0.5em;
+    left: 0.5em;
   }
 
   .adventure-wrapper {
@@ -169,6 +171,9 @@
   .objective {
     padding: 1em 2rem;
     text-align: left;
+    position: absolute;
+    top: 0px;
+    right: 0px;
   }
 
 }
