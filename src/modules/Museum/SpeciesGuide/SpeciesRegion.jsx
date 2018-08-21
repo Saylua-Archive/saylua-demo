@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import SpriteSpecies from 'models/SpriteSpecies';
 
-export default function (props) {
+export default function SpeciesRegion(props) {
   return (
     <div className="region-section">
       <h2>

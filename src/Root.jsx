@@ -13,13 +13,12 @@ import Den from 'modules/Den';
 import SpriteProfile from 'modules/Den/SpriteProfile';
 import ItemShed from 'modules/Den/ItemShed';
 
-import Reserve from 'modules/City/Reserve';
-
 import Bloxi from 'modules/Arcade/Bloxi';
 
 import StaticPage from 'modules/StaticPage';
 
 import { MuseumRoot } from 'modules/Museum';
+import { TownRoot } from 'modules/Town';
 
 import NotFound from 'modules/Error/NotFound';
 
@@ -38,8 +37,8 @@ export default function (props) {
             <Route path="/items/:page" component={ItemShed} />
             <Route path="/items" component={ItemShed} />
             <Route path="/arcade/bloxi" component={Bloxi} />
-            <Route path="/reserve" component={Reserve} />
             <Route path="/sprite/:soulName" component={SpriteProfile} />
+            { TownRoot }
             { MuseumRoot }
             <Route path="/page/:pageName" component={StaticPage} />
             <Route path="*" status={404} component={NotFound} />

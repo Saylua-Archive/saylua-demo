@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import NotFound from 'modules/Error/NotFound';
 
 import * as pages from './Pages';
 
-export default class StaticPage extends Component {
-  render() {
-    const pageName = this.props.match.params.pageName.toLowerCase();
+export default function StaticPage(props) {
+  const pageName = props.match.params.pageName.toLowerCase();
 
-    if (pageName in pages) {
-      return pages[pageName]();
-    }
-    return <NotFound />;
+  if (pageName in pages) {
+    return pages[pageName]();
   }
+  return <NotFound />;
 }

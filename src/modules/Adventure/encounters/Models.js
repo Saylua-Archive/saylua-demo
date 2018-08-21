@@ -1,7 +1,7 @@
 import { chooseWeighted } from 'utils';
 import { store } from 'index';
 import { encountersList } from './encounters';
-import { adopt, accompany, addCoins, updateCondition, getItem } from 'reducers/sayluaReducer';
+import { adopt, accompany, addCoins, updateCondition, addItem } from 'reducers/sayluaReducer';
 
 export class Choice {
   static create(args) {
@@ -34,9 +34,9 @@ export class Choice {
       const coins = typeof choice.coins === "function" ? choice.coins(encounter, seed, player) : choice.coins;
       store.dispatch(addCoins(coins));
     }
-    if (choice.getItem) {
-      const item = typeof choice.getItem === "function" ? choice.getItem(encounter, seed, player) : choice.getItem;
-      store.dispatch(getItem(item));
+    if (choice.addItem) {
+      const item = typeof choice.addItem === "function" ? choice.addItem(encounter, seed, player) : choice.addItem;
+      store.dispatch(addItem(item));
     }
   }
 }

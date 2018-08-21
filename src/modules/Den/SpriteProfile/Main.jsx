@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { accompany } from 'reducers/sayluaReducer';
+import { accompany, editSprite } from 'reducers/sayluaReducer';
 import {
   spritesBySoulNameSelector,
   activeCompanionSelector,
@@ -17,6 +17,8 @@ import SpriteVariant from 'models/SpriteCoat/SpriteVariant';
 import SayluaView from 'components/SayluaView';
 import NotFound from 'modules/Error/NotFound';
 
+import SpriteEditForm from './SpriteEditForm';
+
 import './SpriteProfile.css';
 
 const mapStateToProps = state =>
@@ -29,6 +31,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     accompany: (spriteId) => {
       dispatch(accompany(spriteId));
+    },
+    editSprite: (spriteId, spriteDelta) => {
+      dispatch(editSprite(spriteId, spriteDelta));
     },
   };
 };
@@ -148,6 +153,12 @@ class SpriteProfile extends Component {
           opened={this.state.editingProfile}
         >
           <h2>Editing { sprite.name }&#39;s Profile</h2>
+          <SpriteEditForm
+            handleSubmit={(values) => {
+              this.props.editSprite(sprite.id, values);
+            }}
+            {...sprite}
+          />
         </Modal>
       </SayluaView>
     );
