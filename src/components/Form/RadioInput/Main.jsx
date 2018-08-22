@@ -5,7 +5,7 @@ import './RadioInput.css';
 const RadioInput = (props) => {
   return (
     <input
-      {...this.props}
+      {...props}
       className="saylua-radio"
       type="radio"
     />

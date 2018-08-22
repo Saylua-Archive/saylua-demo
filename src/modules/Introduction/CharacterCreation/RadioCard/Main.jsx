@@ -3,13 +3,11 @@ import RadioInput from 'components/Form/RadioInput';
 
 import './RadioCard.css';
 
+
 const RadioCard = (props) => {
   const {
-    style, title, children, imgUrl, input,
+    style, title, children, imgUrl, name, value, checked, onChange, onBlur,
   } = props;
-  const {
-    name, checked, value,
-  } = input;
   const id = `radio-card-${name}-${value}`;
 
   return (
@@ -27,7 +25,11 @@ const RadioCard = (props) => {
       <RadioInput
         style={{ marginTop: '1em' }}
         id={id}
-        {...input}
+        name={name}
+        value={value}
+        checked={checked}
+        onChange={onChange}
+        onBlur={onBlur}
       />
     </label>
   );

@@ -13,25 +13,27 @@ export class Choice {
     newChoice.health = args.health;
     newChoice.stamina = args.stamina;
     newChoice.coins = args.coins;
-    newChoice.getItem = args.getItem;
-    newChoice.getItemCount = args.getItemCount;
-    newChoice.takeItem = args.takeItem;
-    newChoice.takeItemCount = args.takeItemCount;
+    newChoice.addItem = args.addItem;
+    newChoice.addItemCount = args.addItemCount;
     return newChoice;
   }
 
-  static choose(choice, encounter, seed) {
+  static getText(choice, seed, player) {
+    return typeof choice.text === "function" ? choice.text(choice, seed, player) : choice.text;
+  }
+
+  static choose(choice, encounter, seed, player) {
     if (choice.health || choice.stamina) {
-      const health = typeof choice.health === "function" ? choice.health(encounter, seed) : choice.health;
-      const stamina = typeof choice.stamina === "function" ? choice.stamina(encounter, seed) : choice.stamina;
+      const health = typeof choice.health === "function" ? choice.health(encounter, seed, player) : choice.health;
+      const stamina = typeof choice.stamina === "function" ? choice.stamina(encounter, seed, player) : choice.stamina;
       store.dispatch(updateCondition({ health, stamina }));
     }
     if (choice.coins) {
-      const coins = typeof choice.coins === "function" ? choice.coins(encounter, seed) : choice.coins;
+      const coins = typeof choice.coins === "function" ? choice.coins(encounter, seed, player) : choice.coins;
       store.dispatch(addCoins(coins));
     }
-    if (choice.getItem) {
-      const item = typeof choice.getItem === "function" ? choice.getItem(encounter, seed) : choice.getItem;
+    if (choice.addItem) {
+      const item = typeof choice.addItem === "function" ? choice.addItem(encounter, seed, player) : choice.addItem;
       store.dispatch(addItem(item));
     }
   }
@@ -43,6 +45,10 @@ export class Encounter {
     newEncounter.text = args.text;
     newEncounter.choices = args.choices;
     return newEncounter;
+  }
+
+  static getText(encounter, seed, player) {
+    return typeof encounter.text === "function" ? encounter.text(encounter, seed, player) : encounter.text;
   }
 
   static byId(id) {

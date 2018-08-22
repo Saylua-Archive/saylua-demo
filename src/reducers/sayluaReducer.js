@@ -164,7 +164,7 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
       newComp.stamina += (action.condition && action.condition.stamina) || 0;
       newComp.stamina = Math.min(newComp.stamina, Sprite.maxStamina(activeCompanion));
       return Object.assign({}, state, {
-        sprites: Object.assign({}, state.sprites, { [activeCompanion.id]: activeCompanion }),
+        sprites: Object.assign({}, state.sprites, { [activeCompanion.id]: newComp }),
         steps: action.condition.steps || state.steps,
       });
     }
