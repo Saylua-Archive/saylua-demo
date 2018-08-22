@@ -26,8 +26,8 @@ export default function (props) {
   return (
     <Provider store={props.store}>
       <BrowserRouter>
-        { props.store.getState().sayluaState.username
-          ? <Switch>
+        { props.store.getState().sayluaState.username ?
+          <Switch>
             <Route exact path="/" component={Adventure} />
             <Route exact path="/landing" component={LandingPage} />
             <Route path="/register" component={Adventure} />
@@ -43,7 +43,8 @@ export default function (props) {
             <Route path="/page/:pageName" component={StaticPage} />
             <Route path="*" status={404} component={NotFound} />
           </Switch>
-          : <Switch>
+          :
+          <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/landing" component={LandingPage} />
             <Route path="/register" component={CharacterCreation} />
