@@ -8,6 +8,7 @@ const Input = (props) => {
       {...props}
       className={`saylua-input ${props.className}`}
       data-error={props.error}
+      value={props.value || ""}
     />
   );
 };

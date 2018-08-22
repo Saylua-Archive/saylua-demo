@@ -13,10 +13,8 @@ export class Choice {
     newChoice.health = args.health;
     newChoice.stamina = args.stamina;
     newChoice.coins = args.coins;
-    newChoice.getItem = args.getItem;
-    newChoice.getItemCount = args.getItemCount;
-    newChoice.takeItem = args.takeItem;
-    newChoice.takeItemCount = args.takeItemCount;
+    newChoice.addItem = args.addItem;
+    newChoice.addItemCount = args.addItemCount;
     return newChoice;
   }
 

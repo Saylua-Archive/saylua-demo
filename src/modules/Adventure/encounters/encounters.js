@@ -87,7 +87,7 @@ export const encountersList = Object.freeze([
     choices: [
       {
         text: "Take it!",
-        getItem: ITEMS.SHINE_PEPPER,
+        addItem: ITEMS.SHINE_PEPPER,
       },
       {
         text: (e, s, p) => `Feed it to ${p.activeCompanion.name}.`,
