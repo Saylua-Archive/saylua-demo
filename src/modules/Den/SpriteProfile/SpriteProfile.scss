@@ -83,7 +83,8 @@
   width: 100%;
   margin-bottom: 1em;
   padding: 0.5em 1.6rem;
-  background-color: var(--emphasisBgColor);
+  background: var(--emphasisBgColor);
+  border: 1px solid var(--mainShadowColor);
 }
 
 .pet-favorite-things {

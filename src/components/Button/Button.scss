@@ -8,9 +8,10 @@ button.saylua-button {
   padding: 0.25em 1.2rem;
   cursor: pointer;
   color: hsl(0, 0%, 100%);
+  border-radius: 20px;
   border: 1px solid var(--accentColor);
-  border-radius: 15px;
   background-color: var(--accentColor);
+  box-shadow: 0px 1px 2px var(--mainShadowColor);
 
   img {
     margin-right: 0.4rem;
@@ -18,7 +19,6 @@ button.saylua-button {
 
   &:hover {
     text-decoration: none;
-    border: 1px solid var(--mainColor);
     background-color: var(--mainColor);
   }
 
@@ -38,7 +38,6 @@ button.subtle-button {
 
   &:hover {
     text-decoration: none;
-    border: 1px solid var(--accentColor);
     background-color: var(--mainSofterColor);
   }
 }
