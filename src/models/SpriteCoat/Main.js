@@ -1,5 +1,5 @@
 import SpriteSpecies from 'models/SpriteSpecies';
-import SpriteVariant from './SpriteVariant';
+import CoatVariant from './CoatVariant';
 
 import { COATS } from './constants';
 
@@ -41,6 +41,10 @@ export default class SpriteCoat {
     return [speciesId, variantId];
   }
 
+  static stringKey(coatKey) {
+    return `${coatKey[0]} ${coatKey[1]}`;
+  }
+
   // Lookup functions.
 
   static bySpecies(speciesId) {
@@ -68,7 +72,7 @@ export default class SpriteCoat {
   }
 
   static variant(coatKey) {
-    return SpriteVariant.fromId(_variantId(coatKey));
+    return CoatVariant.fromId(_variantId(coatKey));
   }
 
   static equals(a, b) {
@@ -77,6 +81,10 @@ export default class SpriteCoat {
 
   static name(coatKey) {
     return `${SpriteCoat.variant(coatKey).name} ${SpriteCoat.species(coatKey).name}`;
+  }
+
+  static url(coatKey) {
+    return `/guide/coats#${SpriteCoat.variant(coatKey).canonName}`;
   }
 
   static imageUrl(coatKey) {

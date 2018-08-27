@@ -13,7 +13,7 @@ import Modal from 'components/Modal';
 import Item from 'models/Item';
 import Sprite from 'models/Sprite';
 import SpriteSpecies from 'models/SpriteSpecies';
-import SpriteVariant from 'models/SpriteCoat/SpriteVariant';
+import CoatVariant from 'models/SpriteCoat/CoatVariant';
 import SayluaView from 'components/SayluaView';
 import NotFound from 'modules/Error/NotFound';
 
@@ -122,7 +122,7 @@ class SpriteProfile extends Component {
                   <tr>
                     <td>Coat</td>
                     <td>
-                      <Link to={SpriteVariant.url(Sprite.variant(sprite))}>
+                      <Link to={CoatVariant.url(Sprite.variant(sprite))}>
                         { Sprite.variant(sprite).name }
                       </Link>
                     </td>
