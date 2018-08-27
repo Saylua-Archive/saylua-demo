@@ -1,6 +1,6 @@
 import { sRandomInt, randomChoice, seedChoice, seedChoiceMany, seedChoiceWeighted } from 'utils';
 import SpriteCoat from 'models/SpriteCoat';
-import SpriteVariant from 'models/SpriteCoat/SpriteVariant';
+import CoatVariant from 'models/SpriteCoat/CoatVariant';
 import SpriteSpecies, { speciesList } from 'models/SpriteSpecies';
 import { itemsList } from 'models/Item';
 import { nameList } from './nameList';
@@ -61,7 +61,7 @@ export default class Sprite {
   }
 
   static variant(sprite) {
-    return SpriteVariant.fromId(sprite.variantId);
+    return CoatVariant.fromId(sprite.variantId);
   }
 
   static coatKey(sprite) {

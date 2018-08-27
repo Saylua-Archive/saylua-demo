@@ -1,0 +1,62 @@
+.befriended-sprite {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 1.6rem;
+  text-align: center;
+
+  align-items: center;
+}
+
+.befriended-sprite-image-wrapper {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .befriended-sprite-image {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: 90%;
+    height: 90%;
+    transition: background 0.7s ease-in-out;
+    border-radius: 50%;
+    background: var(--bodyBgColor);
+  }
+
+  &[href] {
+    cursor: pointer;
+  }
+
+  &[href]:hover::before {
+    background: var(--emphasisBgColor);
+  }
+}
+
+.befriended-sprite-title {
+  font-size: 1.1em;
+  line-height: 200%;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: baseline;
+}
+
+.befriended-sprite-heart {
+  display: inline-block;
+  font-size: 2rem;
+  margin-right: 0.4rem;
+  text-shadow: 0px 2px 5px var(--mainShadowColor);
+  color: hsl(350, 73%, 60%);
+}

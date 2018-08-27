@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { randomChoice } from 'utils';
 import SpriteCoat from 'models/SpriteCoat';
-import { variantsList } from 'models/SpriteCoat/SpriteVariant';
+import { variantsList } from 'models/SpriteCoat/CoatVariant';
 import Character, { CHARACTERS } from 'models/Character';
 import DialogueBox from 'components/DialogueBox';
 import SayluaView from 'components/SayluaView';

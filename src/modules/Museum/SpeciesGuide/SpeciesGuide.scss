@@ -58,35 +58,9 @@ $speciesListImgSize: 22rem;
 
     align-items: center;
 
-    .species-image-wrapper {
-      display: flex;
+    img {
       width: $speciesListImgSize;
       height: $speciesListImgSize;
-
-      align-items: center;
-      justify-content: center;
-
-      img {
-        z-index: 2;
-      }
-    }
-
-    .species-image-wrapper::before {
-      content: '';
-      position: absolute;
-      z-index: 1;
-      display: block;
-      width: ($speciesListImgSize * 0.9);
-      height: ($speciesListImgSize * 0.9);
-      transition: background 0.7s ease-in-out;
-      border-radius: 50%;
-      background: var(--bodyBgColor);
-    }
-  }
-
-  .sprite-species:hover {
-    .species-image-wrapper::before {
-      background: var(--emphasisBgColor);
     }
   }
 }
