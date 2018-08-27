@@ -1,4 +1,7 @@
-import { sRandomInt, randomChoice, seedChoice, seedChoiceMany, seedChoiceWeighted } from 'utils';
+import {
+  sRandomInt, randomChoice, seedChoice, seedChoiceMany,
+  seedChoiceWeighted, capitalizeFirst,
+} from 'utils';
 import SpriteCoat from 'models/SpriteCoat';
 import CoatVariant from 'models/SpriteCoat/CoatVariant';
 import SpriteSpecies, { speciesList } from 'models/SpriteSpecies';
@@ -16,28 +19,36 @@ export function randomName(seed) {
 }
 
 export default class Sprite {
-  static create(args) {
+  static create(args, seed, pickList) {
+    args = args || {};
+    seed = seed || (new Date()).getTime();
+    pickList = pickList || speciesList;
+
     const newSprite = {};
 
-    newSprite.name = args.name || randomName();
-    newSprite.soulName = args.soulName || newSprite.name.toLowerCase();
+    newSprite.soulName = args.soulName || randomName(seed).toLowerCase();
+    newSprite.name = args.name || capitalizeFirst(newSprite.soulName);
 
-    newSprite.epithet = args.epithet || randomChoice(epithets);
+    newSprite.epithet = args.epithet || seedChoice(seed, epithets);
     newSprite.description = args.description || 'The bestest.';
-    newSprite.bondingDay = args.bondingDay || (new Date()).toDateString();
-    newSprite.favoriteThings = args.favoriteThings || [];
-    newSprite.tags = SpriteSpecies.fromId(args.speciesId).tags || [];
+    newSprite.bondingDay = args.bondingDay || Math.round((new Date()).getTime() / 1000);
+    newSprite.favoriteThings = args.favoriteThings || seedChoiceMany(seed, itemsList, 3).map(item => item.id);
 
     if (args.coat) {
       newSprite.speciesId = SpriteCoat.speciesId(args.coat);
       newSprite.variantId = SpriteCoat.variantId(args.coat);
-    } else {
+    } else if (args.speciesId && args.variantId) {
       newSprite.speciesId = args.speciesId;
       newSprite.variantId = args.variantId;
+    } else {
+      const compSpecies = seedChoiceWeighted(seed, pickList);
+      const compCoat = seedChoice(seed + 1, SpriteSpecies.coats(compSpecies));
+      newSprite.speciesId = compSpecies.id;
+      newSprite.variantId = SpriteCoat.variantId(compCoat);
     }
 
-    newSprite.baseHealth = args.baseHealth || 30;
-    newSprite.baseStamina = args.baseStamina || 30;
+    newSprite.baseHealth = args.baseHealth || sRandomInt(seed + 3, 5, 50);
+    newSprite.baseStamina = args.baseStamina || sRandomInt(seed + 3, 5, 50);
     newSprite.health = args.health || newSprite.baseHealth;
     newSprite.stamina = args.stamina || newSprite.baseStamina;
     newSprite.exp = args.exp || 0;
@@ -82,24 +93,5 @@ export default class Sprite {
 
   static url(sprite) {
     return `/sprite/${sprite.soulName}/`;
-  }
-
-  static randomSprite(seed, list) {
-    const pickList = list || speciesList;
-    const compSpecies = seedChoiceWeighted(seed, pickList);
-    const compCoat = seedChoice(seed + 1, SpriteSpecies.coats(compSpecies));
-    const health = sRandomInt(seed + 3, 5, 50);
-    const stamina = sRandomInt(seed + 3, 5, 50);
-    const favoriteThings = seedChoiceMany(seed + 10, itemsList, 3).map(item => item.id);
-    return Sprite.create({
-      name: randomName(seed + 2),
-      favoriteThings,
-      speciesId: compSpecies.id,
-      variantId: SpriteCoat.variantId(compCoat),
-      health,
-      baseHealth: health,
-      stamina,
-      baseStamina: stamina,
-    });
   }
 }

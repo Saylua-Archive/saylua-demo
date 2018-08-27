@@ -30,6 +30,17 @@ export function canonize(name) {
   return name.toLowerCase();
 }
 
+export function isSameDay(date, otherDate) {
+  return date.getFullYear() === otherDate.getFullYear() &&
+    date.getMonth() === otherDate.getMonth() &&
+    date.getDate() === otherDate.getDate();
+}
+
+export function plainDate(time) {
+  time = moment(time);
+  return `${time.format('MMM DD, Y')} SMT`;
+}
+
 export function datetime(time) {
   time = moment(time);
   return `${time.format('MMM DD, Y hh:mm A')} SMT`;
