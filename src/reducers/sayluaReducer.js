@@ -109,16 +109,12 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
     }
     case EDIT_SPRITE: {
       if (!(action.spriteId in state.sprites)) return state;
-      const newSprite = Object.assign(
+      const newSprites = Object.assign(
         {},
-        state.sprites[action.spriteId],
-        action.spriteDelta,
+        state.sprites,
+        { [action.spriteId]: action.spriteDelta },
       );
-      return Object.assign({}, state, {
-        sprites: {
-          [action.spriteId]: newSprite,
-        },
-      });
+      return Object.assign({}, state, { sprites: newSprites });
     }
     case ADOPT:
       return Object.assign({}, state, {

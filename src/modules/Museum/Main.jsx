@@ -23,18 +23,38 @@ export default function Museum() {
       </DialogueBox>
       <ul className="museum-guides">
         <li>
-          <Link to="/guide/species">The Species Guide</Link> Vera and I have
+          <Link to="/guide/species">
+            <div className="museum-guide-image-container">
+              <img src="/img/sprites/eydrun/luarian.png" alt="Eydrun" />
+            </div>
+            The Species Guide
+          </Link>
+            Vera and I have
             worked on this guide for years! And yet we still feel like there
             are so many more sprite species for us to discover.
         </li>
         <li>
-          <Link to="/guide/coats">The Coat Guide</Link> {`Sprites are more than
+          <Link to="/guide/coats">
+            <div className="museum-guide-image-container">
+              <img src="/img/sprites/senrix/albino.png" alt="Albino Senrix" />
+              <img src="/img/sprites/senrix/melanistic.png" alt="Melanistic Senrix" />
+              <img src="/img/sprites/senrix/piebald.png" alt="Piebald Senrix" />
+            </div>
+            The Coat Guide
+          </Link>
+          {`Sprites are more than
             just their species! We've found many different unique coat
             variants for each sprite type, and you can learn about them
             here.`}
         </li>
         <li>
-          <Link to="/guide/items">The Item Archive</Link> {`Saylua is full of many
+          <Link to="/guide/items">
+            <div className="museum-guide-image-container">
+              <img src="/img/items/treat/glow_fruit.png" alt="Glowing fruit" />
+            </div>
+            The Item Archive
+          </Link>
+          {`Saylua is full of many
             unusual objects. We've worked closely with Rufus Scippio to try
             to document as many of these items as we can!`}
         </li>
