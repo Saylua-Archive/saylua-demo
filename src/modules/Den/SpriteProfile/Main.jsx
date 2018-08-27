@@ -69,12 +69,12 @@ class SpriteProfile extends Component {
           { companion && sprite.id === companion.id ?
             <Button subtle onClick={this.props.accompany.bind(this, 0)}>
               <img src="/img/icons/compass.png" alt="Stop accompanying" />
-              Stop accompanying {sprite.name}
+              Stop accompanying
             </Button>
             :
             <Button subtle onClick={this.props.accompany.bind(this, sprite.id)}>
               <img src="/img/icons/compass.png" alt="Accompany" />
-              Accompany {sprite.name}
+              Accompany
             </Button>
           }
           <Button subtle onClick={() => { this.setState({ editingProfile: true }); }}>
