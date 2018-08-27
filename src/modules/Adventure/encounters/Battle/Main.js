@@ -10,7 +10,7 @@ import Sprite from 'models/Sprite';
 export class Battle extends Encounter {
   get mainText() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const opponent = Sprite.randomSprite(this._seed, localSprites);
+    const opponent = Sprite.createSprite({}, this._seed, localSprites);
     if (!this._state.encounterState ||
       !this._state.encounterState.opponent ||
       this._state.encounterState.opponent.soulName !== opponent.soulName) {
@@ -24,7 +24,7 @@ export class Battle extends Encounter {
   }
   get img() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const opponent = Sprite.randomSprite(this._seed, localSprites);
+    const opponent = Sprite.createSprite({}, this._seed, localSprites);
     return { url: Sprite.imageUrl(opponent), tiny: true };
   }
   get choices() {
@@ -51,7 +51,7 @@ export class BattleContinue extends Encounter {
   }
   get img() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const opponent = Sprite.randomSprite(this._seed, localSprites);
+    const opponent = Sprite.createSprite({}, this._seed, localSprites);
     return { url: Sprite.imageUrl(opponent), tiny: true };
   }
   get choices() {
@@ -125,7 +125,7 @@ export class BattleContinue extends Encounter {
 export class BattleEnd extends Encounter {
   get mainText() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const opponent = Sprite.randomSprite(this._seed, localSprites);
+    const opponent = Sprite.createSprite({}, this._seed, localSprites);
     if (!this._state.activeCompanion) {
       return "Where did your companion go?!?!?";
     } else {
@@ -134,12 +134,12 @@ export class BattleEnd extends Encounter {
   }
   get img() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const opponent = Sprite.randomSprite(this._seed, localSprites);
+    const opponent = Sprite.createSprite({}, this._seed, localSprites);
     return { url: Sprite.imageUrl(opponent), tiny: true };
   }
   get choices() {
     const localSprites = speciesIndexRegion.Universal.concat(speciesIndexRegion[this._state.area.region]);
-    const opponent = Sprite.randomSprite(this._seed, localSprites);
+    const opponent = Sprite.createSprite({}, this._seed, localSprites);
     return [
       new Choice(`Farewell, ${opponent.name}.`, () => {}),
     ];

@@ -50,17 +50,8 @@ $speciesListImgSize: 22rem;
     }
   }
 
-  .sprite-species {
-    display: flex;
-    flex-direction: column;
-    padding: 1em 1.6rem;
-    text-align: center;
-
-    align-items: center;
-
-    img {
-      width: $speciesListImgSize;
-      height: $speciesListImgSize;
-    }
+  .sprite-species img {
+    width: $speciesListImgSize;
+    height: $speciesListImgSize;
   }
 }

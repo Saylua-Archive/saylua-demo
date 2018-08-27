@@ -7,6 +7,7 @@ import {
   spritesBySoulNameSelector,
   activeCompanionSelector,
 } from 'reducers/selectors';
+import { plainDate, isSameDay } from 'utils';
 
 import Button from 'components/Button';
 import Modal from 'components/Modal';
@@ -51,6 +52,7 @@ class SpriteProfile extends Component {
     const soulName = this.props.match.params.soulName.toLowerCase();
     const sprite = this.props.spritesBySoulName[soulName];
     const companion = this.props.activeCompanion;
+    const bondingDate = new Date(sprite.bondingDay * 1000);
 
     if (!sprite) {
       return <NotFound />;
@@ -129,7 +131,10 @@ class SpriteProfile extends Component {
                   </tr>
                   <tr>
                     <td>Bonding Day</td>
-                    <td>{ sprite.bondingDay }</td>
+                    <td>{ isSameDay(bondingDate, new Date()) ?
+                      <img src="/img/icons/cake.png" alt="Cake" title={`It's ${sprite.name}'s Bonding Day!`} />
+                        : '' }{ plainDate(bondingDate) }
+                    </td>
                   </tr>
                 </tbody>
               </table>
