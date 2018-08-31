@@ -67,7 +67,7 @@ export class Choice {
       const attack = typeof choice.attack === "function" ? choice.attack(encounter, seed, player) : choice.attack;
       const staminaAttack = typeof choice.staminaAttack === "function" ?
         choice.staminaAttack(encounter, seed, player) : choice.staminaAttack;
-      player.opponent = player.opponent || Sprite.randomSprite(seed);
+      player.opponent = player.opponent || Sprite.create({}, seed);
       player.opponent.health -= attack;
       player.opponent.stamina -= staminaAttack;
       store.dispatch(setEncounterState({ opponent: player.opponent }));

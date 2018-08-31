@@ -63,9 +63,9 @@ export const encountersList = Object.freeze([
   },
   {
     id: ENCOUNTERS.PLAY,
-    text: (e, s) => `The ${Sprite.species(Sprite.randomSprite(s)).name} wants to play!`,
+    text: (e, s) => `The ${Sprite.species(Sprite.create({}, s)).name} wants to play!`,
     images: (e, s) => [
-      { src: Sprite.imageUrl(Sprite.randomSprite(s)), size: SIZES.SPRITE },
+      { src: Sprite.imageUrl(Sprite.create({}, s)), size: SIZES.SPRITE },
     ],
     choices: [
       {
@@ -126,8 +126,8 @@ export const encountersList = Object.freeze([
     id: ENCOUNTERS.BATTLE,
     text: "Battle!",
     images: (e, s, p) => [{ src: Sprite.imageUrl(p.activeCompanion), size: SIZES.SPRITE },
-      { src: Sprite.imageUrl(Sprite.randomSprite(s)), size: SIZES.SPRITE }],
-    opponent: (e, s, p) => p.opponent || Sprite.randomSprite(s),
+      { src: Sprite.imageUrl(Sprite.create({}, s)), size: SIZES.SPRITE }],
+    opponent: (e, s, p) => p.opponent || Sprite.create({}, s),
     opponentAttack: (e, s, p) => sRandomInt(s, 10),
     choices: (e, s, p) => {
       const choices = [
@@ -157,11 +157,11 @@ export const encountersList = Object.freeze([
   },
   {
     id: ENCOUNTERS.PEPPERADOPT,
-    text: (e, s) => (`"This little ${Sprite.species(Sprite.randomSprite(s)).name} is looking for a new home.
-    But, ${Sprite.randomSprite(s).name} needs 10 shine peppers first!"`),
+    text: (e, s) => (`"This little ${Sprite.species(Sprite.create({}, s)).name} is looking for a new home.
+    But, ${Sprite.create({}, s).name} needs 10 shine peppers first!"`),
     images: (e, s) => [
       { src: "/img/characters/vera.png", size: SIZES.NPC },
-      { src: Sprite.imageUrl(Sprite.randomSprite(s)), size: SIZES.SPRITE },
+      { src: Sprite.imageUrl(Sprite.create({}, s)), size: SIZES.SPRITE },
     ],
     choices: [
       {
@@ -170,10 +170,10 @@ export const encountersList = Object.freeze([
         addItemCount: -10,
         needItem: ITEMS.SHINE_PEPPER,
         needItemCount: 10,
-        adoptee: (e, s) => Sprite.randomSprite(s),
+        adoptee: (e, s) => Sprite.create({}, s),
       },
       {
-        text: (e, s) => `Sorry, ${Sprite.randomSprite(s).name}...`,
+        text: (e, s) => `Sorry, ${Sprite.create({}, s).name}...`,
       },
     ],
   },
