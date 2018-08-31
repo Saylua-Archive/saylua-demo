@@ -76,7 +76,7 @@ function BattleStatBox(props) {
     </div>
     ) : null;
   if (props.onRightSide) {
-    result = (<div className="battle-stat-box">
+    result = (<div className="battle-stat-box battle-stat-box-right">
       <div className="bar-box bar-box-right">
         <div className="health-bar-back health-bar-back-right">
           <StatBar

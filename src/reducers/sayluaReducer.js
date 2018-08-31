@@ -21,6 +21,7 @@ export const SET_AREA = 'SET_AREA';
 export const SET_STEPS = 'SET_STEPS';
 export const UPDATE_CONDITION = 'UPDATE_CONDITION';
 export const ADD_ITEM = 'ADD_ITEM';
+export const SET_DECK = 'SET_DECK';
 
 /*
  * action creators
@@ -51,6 +52,10 @@ export function setEncounter(encounterId, seed) {
 
 export function setEncounterState(encounterState) {
   return { type: SET_ENCOUNTER_STATE, encounterState };
+}
+
+export function setDeck(deck) {
+  return { type: SET_DECK, deck };
 }
 
 export function clearState() {
@@ -156,6 +161,10 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
       return Object.assign({}, state, {
         steps: action.steps,
       });
+    case SET_DECK:
+      return Object.assign({}, state, {
+        deck: action.deck,
+      });
     case UPDATE_CONDITION: {
       const activeCompanion = state.sprites[state.activeCompanionId];
       const newComp = Object.assign({}, activeCompanion);
@@ -163,9 +172,11 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
       newComp.health = Math.min(newComp.health, Sprite.maxHealth(activeCompanion));
       newComp.stamina += (action.condition && action.condition.stamina) || 0;
       newComp.stamina = Math.min(newComp.stamina, Sprite.maxStamina(activeCompanion));
+      newComp.stamina = Math.max(newComp.stamina, 0);
       return Object.assign({}, state, {
         sprites: Object.assign({}, state.sprites, { [activeCompanion.id]: newComp }),
         steps: action.condition.steps || state.steps,
+        encounterId: action.condition.encounterId || state.encounterId,
       });
     }
     case ADD_ITEM: {

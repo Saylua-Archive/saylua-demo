@@ -9,6 +9,7 @@ export default function EventView(props) {
         background={`url('/img/backgrounds/${props.area.background}.jpg')`}
         items={props.encounterImgs}
         activeCompanion={props.activeCompanion}
+        opponent={props.opponent}
       />
       <div className="adventure-side">
         <p className="adventure-text" id="scene-desc" dangerouslySetInnerHTML={props.rawMarkup(props.mainText)} />

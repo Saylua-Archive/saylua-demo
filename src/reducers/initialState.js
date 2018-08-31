@@ -10,6 +10,7 @@ const initialState = {
     encounterId: ENCOUNTERS.START,
     area: null,
     steps: 300,
+    deck: [],
     encounterSeed: Date.now(),
     encounterState: null,
     sideId: 0,

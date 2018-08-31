@@ -3,6 +3,7 @@ import { createSprite, accompany, addCoins, updateCondition, addItem } from 'red
 import { store } from 'index';
 import Sprite from 'models/Sprite';
 import { itemsList } from 'models/Item';
+import { ENCOUNTERS } from './encounters';
 
 
 export function resetAdventureFunc(companion) {
@@ -11,6 +12,7 @@ export function resetAdventureFunc(companion) {
       health: Sprite.maxHealth(companion),
       stamina: Sprite.maxStamina(companion),
       steps: 300,
+      encounterId: ENCOUNTERS.START,
     }));
   };
 }

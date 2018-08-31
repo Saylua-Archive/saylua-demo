@@ -59,6 +59,7 @@ class Footer extends Component {
               "This will reset Saylua and delete your progress!");
               if (clearSure) {
                 this.props.clearState();
+                window.location.reload();
               }
             }
             }
