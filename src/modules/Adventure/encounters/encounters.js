@@ -1,4 +1,6 @@
 import { ITEMS } from 'models/Item';
+import Sprite from 'models/Sprite';
+import { sRandomInt } from 'utils';
 
 export const ENCOUNTERS = Object.freeze({
   START: 1,
@@ -8,11 +10,15 @@ export const ENCOUNTERS = Object.freeze({
   PLAY: 5,
   BREEZE: 6,
   FINDPEPPER: 7,
+  WANTPEPPER: 8,
+  BATTLE: 9,
+  PEPPERADOPT: 10,
 });
 
 export const SIZES = Object.freeze({
   SPRITE: { width: 33, height: 33 },
   ITEM: { width: 10, height: 10 },
+  NPC: { width: 50, height: 100 },
 });
 
 export const encountersList = Object.freeze([
@@ -31,12 +37,12 @@ export const encountersList = Object.freeze([
   },
   {
     id: ENCOUNTERS.FINDCOINS,
-    text: e => `You found ${e.coins} coins`,
-    coins: 5,
+    text: (e, s) => `You found ${sRandomInt(s, 200)} coins.`,
     choices: [
       {
         text: "Take them.",
-        coins: e => e.coins,
+        coins: (e, s) => sRandomInt(s, 200),
+        stamina: -2,
       },
       {
         text: "Leave them.",
@@ -57,13 +63,13 @@ export const encountersList = Object.freeze([
   },
   {
     id: ENCOUNTERS.PLAY,
-    text: "A gorbin wants to play!",
-    images: [
-      { src: "/img/sprites/gorbin/albino.png", size: SIZES.SPRITE },
+    text: (e, s) => `The ${Sprite.species(Sprite.create({}, s)).name} wants to play!`,
+    images: (e, s) => [
+      { src: Sprite.imageUrl(Sprite.create({}, s)), size: SIZES.SPRITE },
     ],
     choices: [
       {
-        text: "Have fun!",
+        text: (e, s, p) => `Have fun, ${p.activeCompanion.name}!`,
         stamina: 15,
         health: 5,
       },
@@ -96,6 +102,81 @@ export const encountersList = Object.freeze([
       },
     ],
   },
+  {
+    id: ENCOUNTERS.WANTPEPPER,
+    text: `"Do you happen to have a shine pepper to sell? It's for a special sprite."`,
+    images: [
+      { src: "/img/characters/vera.png", size: SIZES.NPC },
+    ],
+    choices: [
+      {
+        text: "Here you are!",
+        addItem: ITEMS.SHINE_PEPPER,
+        addItemCount: -1,
+        coins: 300,
+        needItem: ITEMS.SHINE_PEPPER,
+        needItemCount: 1,
+      },
+      {
+        text: "Sorry, Vera...",
+      },
+    ],
+  },
+  {
+    id: ENCOUNTERS.BATTLE,
+    text: "Battle!",
+    images: (e, s, p) => [{ src: Sprite.imageUrl(p.activeCompanion), size: SIZES.SPRITE },
+      { src: Sprite.imageUrl(Sprite.create({}, s)), size: SIZES.SPRITE }],
+    opponent: (e, s, p) => p.opponent || Sprite.create({}, s),
+    opponentAttack: (e, s, p) => sRandomInt(s, 10),
+    choices: (e, s, p) => {
+      const choices = [
+        {
+          text: "Flail!",
+          needOpponent: true,
+          health: () => e.opponentAttack(e, s, p) * -1,
+          attack: 5,
+          repeat: true,
+        },
+        {
+          text: "Victory!",
+          noOpponent: true,
+        },
+      ];
+      return choices.concat(p.deck.map(card => ({
+        text: card.text,
+        needOpponent: true,
+        repeat: true,
+        health: () => ((card.health || 0) - e.opponentAttack(e, s, p)),
+        attack: card.attack,
+        staminaAttack: card.staminaAttack,
+        stamina: card.stamina,
+        cardID: card.id,
+      })));
+    },
+  },
+  {
+    id: ENCOUNTERS.PEPPERADOPT,
+    text: (e, s) => (`"This little ${Sprite.species(Sprite.create({}, s)).name} is looking for a new home.
+    But, ${Sprite.create({}, s).name} needs 10 shine peppers first!"`),
+    images: (e, s) => [
+      { src: "/img/characters/vera.png", size: SIZES.NPC },
+      { src: Sprite.imageUrl(Sprite.create({}, s)), size: SIZES.SPRITE },
+    ],
+    choices: [
+      {
+        text: "Welcome home!",
+        addItem: ITEMS.SHINE_PEPPER,
+        addItemCount: -10,
+        needItem: ITEMS.SHINE_PEPPER,
+        needItemCount: 10,
+        adoptee: (e, s) => Sprite.create({}, s),
+      },
+      {
+        text: (e, s) => `Sorry, ${Sprite.create({}, s).name}...`,
+      },
+    ],
+  },
 ]);
 
 export const randomEncounters = Object.freeze([
@@ -104,4 +185,7 @@ export const randomEncounters = Object.freeze([
   ENCOUNTERS.PLAY,
   ENCOUNTERS.BREEZE,
   ENCOUNTERS.FINDPEPPER,
+  ENCOUNTERS.WANTPEPPER,
+  ENCOUNTERS.BATTLE,
+  ENCOUNTERS.PEPPERADOPT,
 ]);
