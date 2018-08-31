@@ -104,7 +104,7 @@ export const encountersList = Object.freeze([
   },
   {
     id: ENCOUNTERS.WANTPEPPER,
-    text: "\"Do you happen to have a shine pepper to sell? It's for a special sprite.\"",
+    text: `"Do you happen to have a shine pepper to sell? It's for a special sprite."`,
     images: [
       { src: "/img/characters/vera.png", size: SIZES.NPC },
     ],

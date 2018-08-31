@@ -73,7 +73,6 @@ export class Choice {
       store.dispatch(setEncounterState({ opponent: player.opponent }));
     }
     if (choice.cardID) {
-      // let newDeck = player.deck.filter(card => card.id !== choice.cardID);
       const newDeck = player.deck;
       let index = -1;
       for (let i = 0; i < newDeck.length; i++) {
