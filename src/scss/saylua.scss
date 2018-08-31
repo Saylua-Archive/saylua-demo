@@ -21,6 +21,7 @@
   --contentBgColor: hsl(171, 14%, 92%);
   --contentTextColor: hsl(0, 0%, 13%);
   --softTextColor: hsl(171, 10%, 40%);
+  --mainShadowColor: hsla(0, 0%, 0%, 0.15);
 
   --emphasisBgColor: hsl(0, 0%, 100%);
   --emphasisBgColorSoft: hsl(171, 7%, 96%);
@@ -31,8 +32,10 @@
   --mainSoftColor: hsl(171, 81%, 44%);
   --mainSofterColor: hsl(171, 60%, 88%);
   --mainSoftestColor: hsl(171, 55%, 94%);
-  --neutralColor: hsl(177, 41%, 84%);
+  --neutralColor: hsl(177, 38%, 82%);
   --neutralDarkColor: hsl(174, 36%, 69%);
+
+  --softEmphasisColor: var(--mainSofterColor);
 }
 
 [data-theme='luarian'] {
@@ -56,6 +59,8 @@
   --mainSoftestColor: hsl(228, 40%, 90%);
   --neutralColor: hsl(218, 40%, 24%);
   --neutralDarkColor: hsl(218, 40%, 45%);
+
+  --softEmphasisColor: var(--mainSoftColor);
 
   --healthColor: hsl(4, 72%, 32%);
   --staminaColor: hsl(228, 72%, 32%);
@@ -81,6 +86,8 @@
   --mainSoftestColor: hsl(340, 40%, 90%);
   --neutralColor: hsl(320, 15%, 77%);
   --neutralDarkColor: hsl(320, 10%, 70%);
+
+  --softEmphasisColor: var(--mainSoftestColor);
 }
 
 [data-theme='admin'] {

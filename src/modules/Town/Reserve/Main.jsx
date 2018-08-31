@@ -24,13 +24,13 @@ class Reserve extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      adoptee: Sprite.randomSprite((new Date()).getTime()),
+      adoptee: Sprite.create(),
     };
   }
 
   newAdoptee() {
     this.setState({
-      adoptee: Sprite.randomSprite((new Date()).getTime()),
+      adoptee: Sprite.create(),
     });
   }
 

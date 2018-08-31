@@ -7,13 +7,14 @@ import {
   spritesBySoulNameSelector,
   activeCompanionSelector,
 } from 'reducers/selectors';
+import { plainDate, isSameDay } from 'utils';
 
 import Button from 'components/Button';
 import Modal from 'components/Modal';
 import Item from 'models/Item';
 import Sprite from 'models/Sprite';
 import SpriteSpecies from 'models/SpriteSpecies';
-import SpriteVariant from 'models/SpriteCoat/SpriteVariant';
+import CoatVariant from 'models/SpriteCoat/CoatVariant';
 import SayluaView from 'components/SayluaView';
 import NotFound from 'modules/Error/NotFound';
 
@@ -51,6 +52,7 @@ class SpriteProfile extends Component {
     const soulName = this.props.match.params.soulName.toLowerCase();
     const sprite = this.props.spritesBySoulName[soulName];
     const companion = this.props.activeCompanion;
+    const bondingDate = new Date(sprite.bondingDay * 1000);
 
     if (!sprite) {
       return <NotFound />;
@@ -69,12 +71,12 @@ class SpriteProfile extends Component {
           { companion && sprite.id === companion.id ?
             <Button subtle onClick={this.props.accompany.bind(this, 0)}>
               <img src="/img/icons/compass.png" alt="Stop accompanying" />
-              Stop accompanying {sprite.name}
+              Stop accompanying
             </Button>
             :
             <Button subtle onClick={this.props.accompany.bind(this, sprite.id)}>
               <img src="/img/icons/compass.png" alt="Accompany" />
-              Accompany {sprite.name}
+              Accompany
             </Button>
           }
           <Button subtle onClick={() => { this.setState({ editingProfile: true }); }}>
@@ -122,14 +124,17 @@ class SpriteProfile extends Component {
                   <tr>
                     <td>Coat</td>
                     <td>
-                      <Link to={SpriteVariant.url(Sprite.variant(sprite))}>
+                      <Link to={CoatVariant.url(Sprite.variant(sprite))}>
                         { Sprite.variant(sprite).name }
                       </Link>
                     </td>
                   </tr>
                   <tr>
                     <td>Bonding Day</td>
-                    <td>{ sprite.bondingDay }</td>
+                    <td>{ isSameDay(bondingDate, new Date()) ?
+                      <img src="/img/icons/cake.png" alt="Cake" title={`It's ${sprite.name}'s Bonding Day!`} />
+                        : '' }{ plainDate(bondingDate) }
+                    </td>
                   </tr>
                 </tbody>
               </table>

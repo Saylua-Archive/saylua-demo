@@ -22,7 +22,7 @@ export const speciesList = [
       {
         text: `They're mostly quiet. But you can hear their loyalty in their
           gentle pawsteps. And you should always listen when an Arko barks.`,
-        byline: 'Vera Everly',
+        attribution: 'Vera Everly',
       },
     ],
 
@@ -60,7 +60,7 @@ export const speciesList = [
         text: `The Chiirlings would chirp so loudly I couldn't sleep. But after
           the day they disappeared, I felt that some part of me had disappeared
           as well.`,
-        byline: 'Anonymous',
+        attribution: 'Anonymous',
       },
     ],
 
@@ -97,7 +97,7 @@ export const speciesList = [
     quotes: [
       {
         text: `I can never swim faster than my Nibian. I'm not sure why I try.`,
-        byline: 'Rufus Scippio',
+        attribution: 'Rufus Scippio',
       },
     ],
 
@@ -134,7 +134,7 @@ export const speciesList = [
       {
         text: `My Gam has coarse fur, sharp horns, and hard hooves. Her voice
           is rough as sand. And still, she's the gentlest beast I know.`,
-        byline: 'Anonymous',
+        attribution: 'Anonymous',
       },
     ],
 
@@ -172,7 +172,7 @@ export const speciesList = [
         text: `One day I found my marshmallows became blueberries. And my
           blueberry bush grew marshmallows. I'm telling you -- it was my Senrix
           again!`,
-        byline: 'Anonymous',
+        attribution: 'Anonymous',
       },
     ],
 
@@ -210,7 +210,7 @@ export const speciesList = [
       {
         text: `Afternoon tea. A stroll in the park. The breeze was delightful.
           I saw a Fleuran today.`,
-        byline: 'Florian Dewfall, 57 ATA',
+        attribution: 'Florian Dewfall, 57 ATA',
       },
     ],
 
@@ -249,7 +249,7 @@ export const speciesList = [
         text: `We were in the heart of the Noon Desert without a drop of water
           in sight, sure we'd die. Then there was rain. And then the Vela
           appeared.`,
-        byline: 'Explorers, 272 ATA',
+        attribution: 'Explorers, 272 ATA',
       },
     ],
 
@@ -288,7 +288,7 @@ export const speciesList = [
       {
         text: `The woods of Luaria are deep, dark and beautiful. And so eerily
           silent. But the Eydruns are always watching. You are never alone.`,
-        byline: 'Anonymous',
+        attribution: 'Anonymous',
       },
     ],
 
@@ -327,7 +327,7 @@ export const speciesList = [
       {
         text: `Plant a weeping lamp by the shore. Most days you'll just see
           your flower grow. But if you're lucky, you might see a Gorbin.`,
-        byline: 'Anonymous',
+        attribution: 'Anonymous',
       },
     ],
 
@@ -364,7 +364,7 @@ export const speciesList = [
       {
         text: `Just trust me on this. It was never your den. You are a guest in
           that Loxi's house`,
-        byline: 'Anonymous',
+        attribution: 'Anonymous',
       },
     ],
 

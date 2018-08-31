@@ -2,26 +2,43 @@ ul.museum-guides {
   width: 100%;
   padding: 1em 1.6rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
 
   li {
     display: flex;
-    width: 100%;
-    flex-direction: row;
+    width: 32%;
+    flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    background: var(--emphasisBgColorSoft);
+    padding: 1em 1.6rem;
+    border: 1px solid var(--mainShadowColor);
 
     a {
       flex-grow: 0;
       flex-shrink: 0;
       display: flex;
-      height: 10rem;
-      width: 30rem;
-      font-size: 3rem;
+      flex-direction: column;
+      width: 100%;
+      font-size: 2.4rem;
+      line-height: 4rem;
       align-items: center;
       justify-content: center;
-      background: var(--neutralColor);
-      margin: 0.5em 1.6rem;
+      padding: 0.5em 0.8rem;
+      margin-bottom: 0.25em;
+
+      .museum-guide-image-container {
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+
+        img {
+          width: 80px;
+          height: 80px;
+        }
+      }
     }
 
     a:hover {
