@@ -179,7 +179,7 @@ class SpriteProfile extends Component {
           <h2>What will { sprite.name } do?</h2>
           {
             jobsList.map(job => (
-              <Button onClick={this.props.assignJob(sprite.id, job.id)}>
+              <Button key={job.canonName} onClick={this.props.assignJob(sprite.id, job.id)}>
                 { job.name }
               </Button>
             ))

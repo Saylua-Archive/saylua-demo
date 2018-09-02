@@ -12,7 +12,7 @@ function SpriteJobsView(props) {
     <div id="user-info-section" className="sidebar-section">
       {
         props.activeJobsWithSprites.map(jobEntry => (
-          <div>
+          <div key={jobEntry.sprite.id}>
             { jobEntry.sprite.name }
           </div>
         ))
