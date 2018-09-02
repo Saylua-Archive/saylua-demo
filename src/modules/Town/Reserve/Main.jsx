@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { createSprite } from 'reducers/sayluaReducer';
+import { companionsSelector } from 'reducers/selectors';
 import { randomChoice, addArticle, capitalizeFirst } from 'utils';
 import Button from 'components/Button';
 import Sprite from 'models/Sprite';
@@ -11,6 +12,7 @@ import SayluaView from 'components/SayluaView';
 import './Reserve.css';
 
 const LITTLE_ONE = ['little one', 'cutie pie', 'cutie', 'little friend', 'little darling'];
+const SECONDS_IN_A_DAY = 86400;
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -19,6 +21,10 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
+
+const mapStateToProps = state => ({
+  companions: companionsSelector(state),
+});
 
 class Reserve extends Component {
   constructor(props) {
@@ -43,6 +49,23 @@ class Reserve extends Component {
 
   render() {
     const adoptee = this.state.adoptee;
+    const nowish = Math.round((new Date()).getTime() / 1000);
+    const newArrivals = this.props.companions.filter(c => nowish - c.bondingDay < SECONDS_IN_A_DAY);
+
+    if (newArrivals.length > 0) {
+      return (
+        <SayluaView title="The Everly Sprite Reserve">
+          <h1>The Everly Sprite Reserve</h1>
+          <div className="npc-display">
+            <div className="speech-bubble">{`It looks like ${newArrivals[0].name} is still getting used
+              to their new home. You can adopt another sprite tomorrow though!`}</div>
+            <div className="interaction-bust">
+              <img src="/img/characters/vera.png" alt="Vera Everly" />
+            </div>
+          </div>
+        </SayluaView>
+      );
+    }
 
     if (!adoptee) {
       return (
@@ -89,4 +112,4 @@ class Reserve extends Component {
 }
 
 
-export default connect(null, mapDispatchToProps)(Reserve);
+export default connect(mapStateToProps, mapDispatchToProps)(Reserve);

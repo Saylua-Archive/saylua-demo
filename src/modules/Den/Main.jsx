@@ -28,6 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 class Den extends Component {
   render() {
     const denPets = this.props.companions.map(companion => (<DenPet
+      key={`${Sprite.fullName(companion)}`}
       companion={companion}
       onClick={() => {
         if (this.props.steps !== 300 &&
