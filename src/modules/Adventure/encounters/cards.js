@@ -1,7 +1,7 @@
 export const CARDS = Object.freeze({
   BAP: 1,
   SLAM: 2,
-  MANUVER: 3,
+  MANEUVER: 3,
   CRUNCH: 4,
   TAUNT: 5,
   PUNCH: 6,
@@ -23,11 +23,10 @@ export const cardsList = Object.freeze([
     text: "Slam!",
   },
   {
-    id: CARDS.MANUVER,
-    attack: 0,
+    id: CARDS.MANEUVER,
     staminaAttack: 15,
     stamina: -5,
-    text: "Manuver!",
+    text: "Maneuver!",
   },
   {
     id: CARDS.CRUNCH,

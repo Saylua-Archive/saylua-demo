@@ -1,4 +1,3 @@
-import { chooseWeighted } from 'utils';
 import Sprite from 'models/Sprite';
 import { store } from 'index';
 import { encountersList } from './encounters';
@@ -68,8 +67,8 @@ export class Choice {
       const staminaAttack = typeof choice.staminaAttack === "function" ?
         choice.staminaAttack(encounter, seed, player) : choice.staminaAttack;
       player.opponent = player.opponent || Sprite.create({}, seed);
-      player.opponent.health -= attack;
-      player.opponent.stamina -= staminaAttack;
+      player.opponent.health -= attack || 0;
+      player.opponent.stamina -= staminaAttack || 0;
       store.dispatch(setEncounterState({ opponent: player.opponent }));
     }
     if (choice.cardID) {
