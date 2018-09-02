@@ -12,6 +12,7 @@ import SayluaView from 'components/SayluaView';
 import './Reserve.css';
 
 const LITTLE_ONE = ['little one', 'cutie pie', 'cutie', 'little friend', 'little darling'];
+const SECONDS_IN_A_DAY = 86400;
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -49,7 +50,7 @@ class Reserve extends Component {
   render() {
     const adoptee = this.state.adoptee;
     const nowish = Math.round((new Date()).getTime() / 1000);
-    const newArrivals = this.props.companions.filter(c => nowish - c.bondingDay < 86400);
+    const newArrivals = this.props.companions.filter(c => nowish - c.bondingDay < SECONDS_IN_A_DAY);
 
     if (newArrivals.length > 0) {
       return (
