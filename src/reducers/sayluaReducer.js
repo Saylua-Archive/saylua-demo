@@ -1,4 +1,6 @@
 import Sprite from 'models/Sprite';
+import { getUnixTime } from 'utils';
+
 import initialState from './initialState';
 
 import { maxSpriteIdFunc } from './selectors';
@@ -7,6 +9,7 @@ import { maxSpriteIdFunc } from './selectors';
  * action types
  */
 export const ACCOMPANY = 'ACCOMPANY';
+export const ASSIGN_JOB = 'ASSIGN_JOB';
 export const ADD_COINS = 'ADD_COINS';
 export const ADOPT = 'ADOPT';
 export const CREATE_SPRITE = 'CREATE_SPRITE';
@@ -32,6 +35,10 @@ export function addCoins(count) {
 
 export function accompany(spriteId) {
   return { type: ACCOMPANY, spriteId };
+}
+
+export function assignJob(spriteId, jobId) {
+  return { type: ASSIGN_JOB, spriteId, jobId };
 }
 
 export function createSprite(sprite, willAdopt=false) {
@@ -99,6 +106,15 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
     case ACCOMPANY:
       return Object.assign({}, state, {
         activeCompanionId: action.spriteId || 0,
+      });
+    case ASSIGN_JOB:
+      return Object.assign({}, state, {
+        activeJobs: [{
+          spriteId: action.spriteId,
+          jobId: action.jobId,
+          startTime: getUnixTime(),
+          rewardQuantity: 0,
+        }],
       });
     case CREATE_SPRITE: {
       const id = maxSpriteIdFunc(state.sprites) + 1;

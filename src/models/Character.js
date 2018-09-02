@@ -36,7 +36,10 @@ export const charactersList = [
       name: `The Emporium of Everything`,
       greeting: `Hey there, welcome to my shop. If you need it, I might have
         it.`,
-      stock: [{ id: ITEMS.NAME_TAG, price: 10000 }],
+      stock: [
+        { id: ITEMS.NAME_TAG, price: 10000 },
+        { id: ITEMS.SHINE_PEPPER, price: 1000 },
+      ],
     },
     giftPreferences: {
       loves: [],
