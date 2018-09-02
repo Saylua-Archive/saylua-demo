@@ -8,7 +8,7 @@ import { companionsSelector, activeCompanionSelector } from 'reducers/selectors'
 import marked from 'marked';
 
 import { ENCOUNTERS, randomEncounters } from './encounters/encounters';
-import { CARDS, cardsList } from './encounters/cards';
+import { cardsList } from './encounters/cards';
 import { Encounter, Choice } from './encounters/Models';
 import Areas from './Areas';
 import ChoiceButton from './ChoiceButton';
@@ -69,6 +69,18 @@ class Adventure extends Component {
       opponent: this.props.encounterState && this.props.encounterState.opponent,
       deck: this.props.deck,
     };
+    if (!player.activeCompanion) {
+      return (
+        <SayluaView>
+          <EventView
+            area={Areas.Gardenia}
+            rawMarkup={this.rawMarkup}
+            mainText="You need a companion to adventure!"
+            encounterImgs={[]}
+          />
+        </SayluaView>
+      );
+    }
     const mainText = Encounter.getText(encounter, this.props.encounterSeed, player);
     const images = Encounter.getImages(encounter, this.props.encounterSeed, player) || [];
     const choices = Encounter.getChoices(encounter, this.props.encounterSeed, player);
