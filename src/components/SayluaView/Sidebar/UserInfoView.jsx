@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { activeCompanionSelector } from 'reducers/selectors';
 import Sprite from 'models/Sprite';
+import PetAvatarView from 'components/PetAvatarView';
 
 const mapStateToProps = state => ({
   username: state.sayluaState.username,
@@ -15,15 +16,7 @@ function UserInfoView(props) {
   const username = props.username;
   return (
     <div id="user-info-section" className="sidebar-section">
-      {companion &&
-        <Link to={Sprite.url(companion)}>
-          <img
-            className="petView"
-            alt={companion.name}
-            src={Sprite.imageUrl(companion)}
-          />
-        </Link>
-      }
+      <PetAvatarView companion={companion} username={username} />
       <div className="sidebar-aligner">
         <p>You are <Link to="/user/">{username}</Link></p>
         {companion &&

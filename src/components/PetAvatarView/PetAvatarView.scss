@@ -1,0 +1,39 @@
+.pet-avatar-view {
+  position: relative;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  width: 100%;
+
+  .avatar-view {
+    text-align: center;
+    display: block;
+    img {
+      max-width: 20rem;
+      max-height: 25rem;
+    }
+  }
+
+  .active-pet-view {
+    position: absolute;
+    z-index: 50;
+    bottom: 0;
+    left: 0;
+    width: 70%;
+    img.flipped {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.active-pet-view:hover {
+  animation: bounce-up 1.5s linear infinite;
+  @keyframes bounce-up {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-5%);
+    }
+  }
+}
