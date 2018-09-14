@@ -1,5 +1,6 @@
 import React from 'react';
 import Sprite from 'models/Sprite';
+import SpritePortrait from 'components/SpritePortrait';
 
 export default function AdventureScene(props) {
   const sceneTuples = props.items.map(item => [item, Math.random() * 100]);
@@ -56,7 +57,13 @@ function AdventureSceneItem(props) {
 function BattleStatBox(props) {
   let result = props.sprite ?
     (<div className="battle-stat-box">
-      <img className="battle-icon" src={Sprite.imageUrl(props.sprite)} alt={props.sprite.name} />
+      <div className="battle-icon">
+        <SpritePortrait
+          imageUrl={Sprite.imageUrl(props.sprite)}
+          portraitCoordinates={Sprite.species(props.sprite).portraitCoordinates}
+          name={props.sprite.name}
+        />
+      </div>
       <div className="bar-box">
         <div className="health-bar-back">
           <StatBar
@@ -93,7 +100,13 @@ function BattleStatBox(props) {
           />
         </div>
       </div>
-      <img className="battle-icon battle-icon-right" src={Sprite.imageUrl(props.sprite)} alt={props.sprite.name} />
+      <div className="battle-icon battle-icon-right">
+        <SpritePortrait
+          imageUrl={Sprite.imageUrl(props.sprite)}
+          portraitCoordinates={Sprite.species(props.sprite).portraitCoordinates}
+          name={props.sprite.name}
+        />
+      </div>
     </div>
     );
   }
