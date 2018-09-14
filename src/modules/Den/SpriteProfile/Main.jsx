@@ -56,13 +56,14 @@ class SpriteProfile extends Component {
 
   render() {
     const soulName = this.props.match.params.soulName.toLowerCase();
+
+    if (!(soulName in this.props.spritesBySoulName)) {
+      return <NotFound />;
+    }
+
     const sprite = this.props.spritesBySoulName[soulName];
     const companion = this.props.activeCompanion;
     const bondingDate = new Date(sprite.bondingDay * 1000);
-
-    if (!sprite) {
-      return <NotFound />;
-    }
 
     return (
       <SayluaView title={`${sprite.name}'s Profile`}>
