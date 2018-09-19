@@ -153,7 +153,7 @@ class SpriteProfile extends Component {
               {
                 sprite.favoriteThings.map((thing) => {
                   const item = Item.fromId(thing);
-                  return <img src={Item.imageUrl(item)} alt={item.name} />;
+                  return <img key={item.canonName} src={Item.imageUrl(item)} alt={item.name} />;
                 })
               }
             </div>
@@ -180,7 +180,7 @@ class SpriteProfile extends Component {
           <h2>What will { sprite.name } do?</h2>
           {
             jobsList.map(job => (
-              <Button key={job.canonName} onClick={this.props.assignJob(sprite.id, job.id)}>
+              <Button key={job.canonName} onClick={() => this.props.assignJob(sprite.id, job.id)}>
                 { job.name }
               </Button>
             ))
