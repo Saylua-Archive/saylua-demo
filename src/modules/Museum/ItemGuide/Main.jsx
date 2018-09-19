@@ -42,6 +42,10 @@ export default function ItemGuide() {
                     <th>Rufus&#39; Note:</th>
                     <td>{ item.rufusDescription }</td>
                   </tr>
+                  <tr>
+                    <th>Rufus&#39; Buyback Price:</th>
+                    <td>{ item.buybackPrice } CC</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

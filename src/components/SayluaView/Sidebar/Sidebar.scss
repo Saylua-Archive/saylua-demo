@@ -2,9 +2,7 @@
 
 .sidebar-section {
   max-width: 40rem;
-
-  flex-grow: 1;
-  flex-shrink: 1;
+  width: 100%;
 }
 
 .sidebar-container, .sidebar {
@@ -52,6 +50,22 @@
 
   img {
     margin-right: 0.4rem;
+  }
+}
+
+.sprite-job-entry {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: var(--neutralColor) 1px solid;
+  padding: 0.5em 0;
+
+  .sprite-job-portrait {
+    width: 8rem;
+    height: 8rem;
+    margin-right: 0.8rem;
   }
 }
 

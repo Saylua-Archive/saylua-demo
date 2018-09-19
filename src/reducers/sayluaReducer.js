@@ -10,6 +10,8 @@ import { maxSpriteIdFunc } from './selectors';
  */
 export const ACCOMPANY = 'ACCOMPANY';
 export const ASSIGN_JOB = 'ASSIGN_JOB';
+export const UPDATE_JOBS = 'UPDATE_JOBS';
+export const COLLECT_JOB_REWARDS = 'COLLECT_JOB_REWARDS';
 export const ADD_COINS = 'ADD_COINS';
 export const ADOPT = 'ADOPT';
 export const CREATE_SPRITE = 'CREATE_SPRITE';
@@ -20,6 +22,7 @@ export const CLEAR_STATE = 'CLEAR_STATE';
 export const SET_USERNAME = 'SET_USERNAME';
 export const SET_SIDE = 'SET_SIDE';
 export const SET_THEME = 'SET_THEME';
+export const SET_SIDEBAR_TAB = 'SET_SIDEBAR_TAB';
 export const SET_AREA = 'SET_AREA';
 export const SET_STEPS = 'SET_STEPS';
 export const UPDATE_CONDITION = 'UPDATE_CONDITION';
@@ -39,6 +42,14 @@ export function accompany(spriteId) {
 
 export function assignJob(spriteId, jobId) {
   return { type: ASSIGN_JOB, spriteId, jobId };
+}
+
+export function updateJobs(activeJobs) {
+  return { type: UPDATE_JOBS, activeJobs };
+}
+
+export function collectJobRewards(jobIndex) {
+  return { type: COLLECT_JOB_REWARDS, jobIndex };
 }
 
 export function createSprite(sprite, willAdopt=false) {
@@ -77,6 +88,10 @@ export function setSide(sideId) {
   return { type: SET_SIDE, sideId };
 }
 
+export function setSidebarTab(sidebarTabIndex) {
+  return { type: SET_SIDEBAR_TAB, sidebarTabIndex };
+}
+
 export function setTheme(theme) {
   return { type: SET_THEME, theme };
 }
@@ -113,9 +128,23 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
           spriteId: action.spriteId,
           jobId: action.jobId,
           startTime: getUnixTime(),
+          lastTick: getUnixTime(),
           rewardQuantity: 0,
         }],
       });
+    case UPDATE_JOBS:
+      return Object.assign({}, state, {
+        activeJobs: action.activeJobs,
+      });
+    case COLLECT_JOB_REWARDS: {
+      const i = action.jobIndex;
+      const activeJobs = state.activeJobs;
+      const job = activeJobs[i];
+      const newJob = Object.assign({}, job, { rewardQuantity: 0 });
+      return Object.assign({}, state, {
+        activeJobs: Object.assign([...activeJobs], { [i]: newJob }),
+      });
+    }
     case CREATE_SPRITE: {
       const id = maxSpriteIdFunc(state.sprites) + 1;
       const newSprites = Object.assign({}, state.sprites);
@@ -156,6 +185,10 @@ export default function sayluaReducer(state = initialState.sayluaState, action) 
     case SET_SIDE:
       return Object.assign({}, state, {
         sideId: action.sideId,
+      });
+    case SET_SIDEBAR_TAB:
+      return Object.assign({}, state, {
+        sidebarTabIndex: action.sidebarTabIndex,
       });
     case SET_THEME:
       return Object.assign({}, state, {

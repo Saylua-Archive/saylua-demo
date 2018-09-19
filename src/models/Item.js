@@ -3,7 +3,8 @@ export const ITEMS = Object.freeze({
   MUSHROOM: 2,
   SHINE_PEPPER: 3,
   ROCK: 4,
-  NAME_TAG: 5,
+  WOOD: 5,
+  NAME_TAG: 6,
 });
 
 export const itemsList = [
@@ -47,6 +48,15 @@ export const itemsList = [
     description: `If you name it, it can become a pet rock!`,
     rufusDescription: `Honestly, I really don't know why people keep selling me
       rocks, but I'll buy 'em.`,
+    buybackPrice: 10,
+  },
+  {
+    id: ITEMS.WOOD,
+    name: 'Wood',
+    canonName: 'wood',
+    category: 'material',
+    description: `Wood you like to be my friend?`,
+    rufusDescription: `Wood's pretty useful. A lot of my furniture is wood.`,
     buybackPrice: 10,
   },
   {

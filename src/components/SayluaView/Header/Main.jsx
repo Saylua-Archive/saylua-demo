@@ -11,9 +11,7 @@ const mapStateToProps = ({ sayluaState: { theme } }) => ({ theme });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setTheme: (theme) => {
-      dispatch(setTheme(theme));
-    },
+    setTheme: theme => dispatch(setTheme(theme)),
   };
 };
 
