@@ -2,19 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { accompany, editSprite } from 'reducers/sayluaReducer';
+import { accompany, editSprite, assignJob } from 'reducers/sayluaReducer';
 import {
   spritesBySoulNameSelector,
   activeCompanionSelector,
 } from 'reducers/selectors';
 import { plainDate, isSameDay } from 'utils';
 
-import Button from 'components/Button';
-import Modal from 'components/Modal';
 import Item from 'models/Item';
 import Sprite from 'models/Sprite';
 import SpriteSpecies from 'models/SpriteSpecies';
 import CoatVariant from 'models/SpriteCoat/CoatVariant';
+import { jobsList } from 'models/Job';
+
+import Button from 'components/Button';
+import Modal from 'components/Modal';
 import SayluaView from 'components/SayluaView';
 import NotFound from 'modules/Error/NotFound';
 
@@ -30,6 +32,9 @@ const mapStateToProps = state =>
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    assignJob: (spriteId, jobId) => {
+      dispatch(assignJob(spriteId, jobId));
+    },
     accompany: (spriteId) => {
       dispatch(accompany(spriteId));
     },
@@ -45,18 +50,20 @@ class SpriteProfile extends Component {
 
     this.state = {
       editingProfile: false,
+      editingJob: false,
     };
   }
 
   render() {
     const soulName = this.props.match.params.soulName.toLowerCase();
+
+    if (!(soulName in this.props.spritesBySoulName)) {
+      return <NotFound />;
+    }
+
     const sprite = this.props.spritesBySoulName[soulName];
     const companion = this.props.activeCompanion;
     const bondingDate = new Date(sprite.bondingDay * 1000);
-
-    if (!sprite) {
-      return <NotFound />;
-    }
 
     return (
       <SayluaView title={`${sprite.name}'s Profile`}>
@@ -83,7 +90,7 @@ class SpriteProfile extends Component {
             <img src="/img/icons/pencil.png" alt="Edit" />
             Edit Profile
           </Button>
-          <Button subtle>
+          <Button subtle onClick={() => { this.setState({ editingJob: true }); }}>
             <img src="/img/icons/briefcase.png" alt="Job" />
             Assign Job
           </Button>
@@ -146,7 +153,7 @@ class SpriteProfile extends Component {
               {
                 sprite.favoriteThings.map((thing) => {
                   const item = Item.fromId(thing);
-                  return <img src={Item.imageUrl(item)} alt={item.name} />;
+                  return <img key={item.canonName} src={Item.imageUrl(item)} alt={item.name} />;
                 })
               }
             </div>
@@ -164,6 +171,20 @@ class SpriteProfile extends Component {
             }}
             {...sprite}
           />
+        </Modal>
+
+        <Modal
+          onClose={() => { this.setState({ editingJob: false }); }}
+          opened={this.state.editingJob}
+        >
+          <h2>What will { sprite.name } do?</h2>
+          {
+            jobsList.map(job => (
+              <Button key={job.canonName} onClick={() => this.props.assignJob(sprite.id, job.id)}>
+                { job.name }
+              </Button>
+            ))
+          }
         </Modal>
       </SayluaView>
     );

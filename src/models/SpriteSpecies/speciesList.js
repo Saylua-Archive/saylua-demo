@@ -9,9 +9,11 @@ export const speciesList = [
     canonName: 'arko',
     plural: 'Arkos',
     facesRight: true,
-    portraitCoordinateX: 200,
-    portraitCoordinateY: 80,
-    portraitSize: 100,
+    portraitCoordinates: {
+      x: 220,
+      y: 100,
+      size: 130,
+    },
 
     region: REGIONS.UNIVERSAL,
     canonicalVariant: COAT_VARIANTS.LUARIAN,
@@ -46,9 +48,11 @@ export const speciesList = [
     canonName: 'chirling',
     plural: 'Chirlings',
     facesRight: true,
-    portraitCoordinateX: 70,
-    portraitCoordinateY: 60,
-    portraitSize: 100,
+    portraitCoordinates: {
+      x: 110,
+      y: 60,
+      size: 120,
+    },
 
     region: REGIONS.UNIVERSAL,
     canonicalVariant: COAT_VARIANTS.SAYLIAN,
@@ -85,9 +89,11 @@ export const speciesList = [
     canonName: 'nibian',
     plural: 'Nibians',
     facesRight: false,
-    portraitCoordinateX: 5,
-    portraitCoordinateY: 170,
-    portraitSize: 100,
+    portraitCoordinates: {
+      x: 5,
+      y: 170,
+      size: 120,
+    },
 
     region: REGIONS.UNIVERSAL,
     canonicalVariant: COAT_VARIANTS.SAYLIAN,
@@ -122,9 +128,11 @@ export const speciesList = [
     canonName: 'gam',
     plural: 'Gams',
     facesRight: true,
-    portraitCoordinateX: 180,
-    portraitCoordinateY: 10,
-    portraitSize: 100,
+    portraitCoordinates: {
+      x: 210,
+      y: 10,
+      size: 120,
+    },
 
     region: REGIONS.UNIVERSAL,
     canonicalVariant: COAT_VARIANTS.SAYLIAN,
@@ -159,9 +167,11 @@ export const speciesList = [
     canonName: 'senrix',
     plural: 'Senrices',
     facesRight: false,
-    portraitCoordinateX: 5,
-    portraitCoordinateY: 180,
-    portraitSize: 100,
+    portraitCoordinates: {
+      x: 5,
+      y: 100,
+      size: 120,
+    },
 
     region: REGIONS.UNIVERSAL,
     canonicalVariant: COAT_VARIANTS.PIEBALD,
@@ -197,9 +207,11 @@ export const speciesList = [
     canonName: 'fleuran',
     plural: 'Fleurans',
     facesRight: true,
-    portraitCoordinateX: 190,
-    portraitCoordinateY: 220,
-    portraitSize: 100,
+    portraitCoordinates: {
+      x: 195,
+      y: 225,
+      size: 120,
+    },
 
     region: REGIONS.SAYLIAN,
     canonicalVariant: COAT_VARIANTS.CALICO,
@@ -235,9 +247,11 @@ export const speciesList = [
     canonName: 'vela',
     plural: 'Vela',
     facesRight: true,
-    portraitCoordinateX: 190,
-    portraitCoordinateY: 90,
-    portraitSize: 100,
+    portraitCoordinates: {
+      x: 200,
+      y: 100,
+      size: 100,
+    },
 
     region: REGIONS.SAYLIAN,
     canonicalVariant: COAT_VARIANTS.SAYLIAN,
@@ -274,9 +288,11 @@ export const speciesList = [
     canonName: 'eydrun',
     plural: 'Eydruns',
     facesRight: false,
-    portraitCoordinateX: 30,
-    portraitCoordinateY: 40,
-    portraitSize: 100,
+    portraitCoordinates: {
+      x: 30,
+      y: 35,
+      size: 130,
+    },
 
     region: REGIONS.LUARIAN,
     canonicalVariant: COAT_VARIANTS.LUARIAN,
@@ -313,9 +329,11 @@ export const speciesList = [
     canonName: 'gorbin',
     plural: 'Gorbins',
     facesRight: true,
-    portraitCoordinateX: 130,
-    portraitCoordinateY: 160,
-    portraitSize: 200,
+    portraitCoordinates: {
+      x: 150,
+      y: 160,
+      size: 150,
+    },
 
     region: REGIONS.LUARIAN,
     canonicalVariant: COAT_VARIANTS.LUARIAN,
@@ -351,9 +369,11 @@ export const speciesList = [
     canonName: 'loxi',
     plural: 'Loxis',
     facesRight: false,
-    portraitCoordinateX: 70,
-    portraitCoordinateY: 80,
-    portraitSize: 100,
+    portraitCoordinates: {
+      x: 70,
+      y: 100,
+      size: 120,
+    },
 
     region: REGIONS.DAWNISH,
     canonicalVariant: COAT_VARIANTS.ALBINO,

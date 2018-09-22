@@ -10,4 +10,13 @@
     height: 80px;
     margin-right: 1.6rem;
   }
+
+  table {
+    flex-grow: 1;
+  }
+
+  th {
+    text-align: left;
+    width: 20%;
+  }
 }

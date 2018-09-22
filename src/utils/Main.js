@@ -36,6 +36,12 @@ export function isSameDay(date, otherDate) {
     date.getDate() === otherDate.getDate();
 }
 
+// Get unix time in seconds rather than milliseconds.
+export function getUnixTime(date) {
+  date = date || new Date();
+  return Math.floor(date.getTime() / 1000);
+}
+
 export function plainDate(time) {
   time = moment(time);
   return `${time.format('MMM DD, Y')} SMT`;

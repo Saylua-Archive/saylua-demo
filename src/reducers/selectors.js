@@ -5,6 +5,7 @@ import SpriteCoat from 'models/SpriteCoat';
 const spritesSelector = state => state.sayluaState.sprites;
 const companionIdsSelector = state => state.sayluaState.companionIds;
 const activeCompanionIdSelector = state => state.sayluaState.activeCompanionId;
+const activeJobsSelector = state => state.sayluaState.activeJobs;
 
 // Returns a map of all sprite data with the soul names as the keys.
 export const spritesBySoulNameSelector = createSelector(
@@ -13,6 +14,14 @@ export const spritesBySoulNameSelector = createSelector(
     const s = sprites[sId];
     return Object.assign(acc, { [s.soulName]: s });
   }, {}),
+);
+
+export const activeJobsWithSpritesSelector = createSelector(
+  activeJobsSelector,
+  spritesSelector,
+  (activeJobs, sprites) => activeJobs.map(job => Object.assign({}, job, {
+    sprite: sprites[job.spriteId],
+  })),
 );
 
 export const companionsSelector = createSelector(
