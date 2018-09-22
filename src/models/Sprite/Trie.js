@@ -75,7 +75,6 @@ export class Trie {
   }
 
   static randomWord(node, seed) {
-    alert(seed);
     const newSeed = seed || Math.floor(Math.random() * 10000000000);
     const next = Trie.draw(node, newSeed);
     if (next !== "") {
