@@ -1,12 +1,13 @@
 import {
   sRandomInt, randomChoice, seedChoice, seedChoiceMany,
-  seedChoiceWeighted, capitalizeFirst,
+  seedChoiceWeighted, capitalizeFirst, randomSeed,
 } from 'utils';
 import SpriteCoat from 'models/SpriteCoat';
 import CoatVariant from 'models/SpriteCoat/CoatVariant';
 import SpriteSpecies, { speciesList } from 'models/SpriteSpecies';
 import { itemsList } from 'models/Item';
 import { nameList } from './nameList';
+import soulName from './soulName';
 
 export const epithets = ['Mighty', 'Speedy', 'Crafty', 'Charming', 'Amazing',
   'Wonderful', 'Besty Bestest', 'Most Wonderful', '1337'];
@@ -21,12 +22,12 @@ export function randomName(seed) {
 export default class Sprite {
   static create(args, seed, pickList) {
     args = args || {};
-    seed = seed || (new Date()).getTime();
+    seed = seed || randomSeed();
     pickList = pickList || speciesList;
 
     const newSprite = {};
 
-    newSprite.soulName = args.soulName || randomName(seed).toLowerCase();
+    newSprite.soulName = args.soulName || soulName(seed);
     newSprite.name = args.name || capitalizeFirst(newSprite.soulName);
 
     newSprite.epithet = args.epithet || seedChoice(seed, epithets);

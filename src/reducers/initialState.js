@@ -1,4 +1,5 @@
 import { ENCOUNTERS } from "modules/Adventure/encounters/encounters";
+import { randomSeed } from 'utils';
 
 const initialState = {
   // State for the currently logged in user.
@@ -18,7 +19,7 @@ const initialState = {
     area: null,
     steps: 300,
     deck: [],
-    encounterSeed: Date.now(),
+    encounterSeed: randomSeed(),
     encounterState: null,
     sideId: 0,
     denLimit: 20,
