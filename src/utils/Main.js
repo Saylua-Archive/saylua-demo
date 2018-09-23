@@ -6,6 +6,10 @@ export function randomInt(max, min) {
   return Math.floor((Math.random() * ((max - min) + 1)) + min);
 }
 
+export function randomSeed() {
+  return Math.floor(Math.random() * 10000000000);
+}
+
 export function randomChoice(choices) {
   return choices[randomInt(choices.length - 1)];
 }
@@ -95,7 +99,7 @@ export function sRandom(seed) {
 
 // max exclusive, optional min inclusive
 export function sRandomInt(seed, max, min) {
-  seed = seed || 0;
+  seed = seed || randomSeed();
   min = min || 0;
   return min + Math.floor(sRandom(seed) * (max - min));
 }

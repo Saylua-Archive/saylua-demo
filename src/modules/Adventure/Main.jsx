@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { chooseWeighted } from 'utils';
+import { chooseWeighted, randomSeed } from 'utils';
 import { connect } from 'react-redux';
 
 import SayluaView from 'components/SayluaView';
@@ -32,7 +32,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     setEncounter: (newEncounter, seed) => {
-      const newSeed = seed || Math.floor(Math.random() * 10000000000);
+      const newSeed = seed || randomSeed();
       dispatch(setEncounter(newEncounter, newSeed));
     },
     setEncounterState: (encounterState) => {

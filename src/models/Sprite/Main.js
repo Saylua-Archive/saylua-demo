@@ -1,6 +1,6 @@
 import {
   sRandomInt, randomChoice, seedChoice, seedChoiceMany,
-  seedChoiceWeighted, capitalizeFirst,
+  seedChoiceWeighted, capitalizeFirst, randomSeed,
 } from 'utils';
 import SpriteCoat from 'models/SpriteCoat';
 import CoatVariant from 'models/SpriteCoat/CoatVariant';
@@ -22,7 +22,7 @@ export function randomName(seed) {
 export default class Sprite {
   static create(args, seed, pickList) {
     args = args || {};
-    seed = seed || (new Date()).getTime();
+    seed = seed || randomSeed();
     pickList = pickList || speciesList;
 
     const newSprite = {};

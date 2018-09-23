@@ -1,4 +1,4 @@
-import { sRandomInt } from 'utils';
+import { sRandomInt, randomSeed } from 'utils';
 
 export class Trie {
   static insertNode(node, item) {
@@ -13,6 +13,9 @@ export class Trie {
   static removeNode(node, item) {
     if (node[item]) {
       node[item].count -= 1;
+      if (node[item].count <= 0) {
+        delete node[item];
+      }
     }
     return node;
   }
@@ -58,7 +61,7 @@ export class Trie {
   }
 
   static draw(node, seed) {
-    const newSeed = seed || Math.floor(Math.random() * 10000000000);
+    const newSeed = seed || randomSeed();
     let total = 0;
     const keys = Object.keys(node).filter(key => key !== "count");
     for (let i = 0; i < keys.length; i++) {
@@ -75,7 +78,7 @@ export class Trie {
   }
 
   static randomWord(node, seed) {
-    const newSeed = seed || Math.floor(Math.random() * 10000000000);
+    const newSeed = seed || randomSeed();
     const next = Trie.draw(node, newSeed);
     if (next !== "") {
       return next + Trie.randomWord(node[next], newSeed + 1);
