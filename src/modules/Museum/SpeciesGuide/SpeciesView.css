@@ -1,0 +1,32 @@
+.species-view-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+  .species-view-info .species-view-image {
+    width: 350px;
+    height: 350px;
+    max-width: 100%;
+    padding: 1em 1.6rem;
+    text-align: center;
+    flex-grow: 0;
+    flex-shrink: 0; }
+
+.coat-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap; }
+  .coat-grid .coat-grid-item {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0.5em 1.6rem;
+    flex-grow: 0;
+    flex-shrink: 0; }
+
+@media (max-width: 840px) {
+  .species-view-info {
+    flex-direction: column; } }

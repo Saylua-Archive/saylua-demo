@@ -1,0 +1,41 @@
+.species-next-link,
+.species-prev-link {
+  display: flex;
+  align-items: center;
+  width: 15rem;
+  justify-content: center;
+  font-size: 2rem; }
+  .species-next-link img,
+  .species-prev-link img {
+    width: 5rem;
+    height: 5rem;
+    margin: 0.25em 0.8rem; }
+  .species-next-link:hover,
+  .species-prev-link:hover {
+    background-color: var(--neutralColor); }
+
+.species-prev-link {
+  float: left; }
+
+.species-next-link {
+  float: right; }
+
+.region-section {
+  display: flex;
+  float: left;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around; }
+  .region-section h2 i {
+    padding-right: 0.4rem;
+    color: var(--neutralDarkColor); }
+  .region-section h2 small {
+    font-size: 1.4rem;
+    float: right;
+    padding-left: 0.4rem;
+    color: var(--softTextColor); }
+  .region-section .sprite-species img {
+    width: 22rem;
+    height: 22rem; }

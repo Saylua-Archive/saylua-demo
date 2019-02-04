@@ -1,0 +1,30 @@
+.radio-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  outline: none;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0.5em 0.8rem;
+  max-width: 48%;
+  padding-bottom: 1em;
+  cursor: pointer;
+  transition: border 0.2s ease-in-out, filter 0.2s ease-in-out;
+  color: inherit;
+  border: none;
+  border-bottom: 4px solid transparent;
+  background: var(--emphasisBgColorSoft);
+  text-align: center; }
+  .radio-card h3 {
+    border: 0;
+    text-align: center; }
+  .radio-card img {
+    width: 100%; }
+  .radio-card:hover {
+    filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.2)); }
+  .radio-card:active {
+    transform: translateY(2px); }
+  .radio-card[data-selected=true] {
+    background: var(--emphasisBgColor);
+    border-color: var(--mainSoftColor); }

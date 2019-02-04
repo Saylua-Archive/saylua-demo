@@ -1,0 +1,24 @@
+input[type="radio"].saylua-radio {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  visibility: hidden; }
+  input[type="radio"].saylua-radio::before {
+    content: '';
+    box-sizing: border-box;
+    display: flex;
+    visibility: visible;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: #f2f2f2;
+    border-radius: 50%;
+    border: 2px solid #b3b3b3;
+    transition: 0.5s background ease-in-out, 0.5s color ease-in-out;
+    align-items: center;
+    justify-content: center; }
+  input[type="radio"].saylua-radio:checked::before, input[type="radio"].saylua-radio:checked:hover::before {
+    border-color: var(--mainColor);
+    background: radial-gradient(rgba(255, 255, 255, 0) 30%, var(--mainSofterColor)), linear-gradient(to bottom right, var(--mainSofterColor), var(--mainColor), var(--neutralDarkColor)); }
+  input[type="radio"].saylua-radio:hover::before {
+    background: #e6e6e6; }

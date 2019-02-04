@@ -1,0 +1,10 @@
+.shop-item {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  background: var(--emphasisBgColorSoft);
+  padding: 0.5em 1.6rem;
+  margin: 0.5em 0.8rem; }
+  .shop-item img {
+    width: 80px;
+    height: 80px; }

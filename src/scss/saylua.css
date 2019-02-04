@@ -1,0 +1,185 @@
+* {
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  word-wrap: break-word; }
+
+@media (max-width: 840px) {
+  html {
+    font-size: 50%; } }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+  line-height: 150%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
+  color: var(--bodyTextColor);
+  background-color: var(--bodyBgColor);
+  align-items: center; }
+
+img {
+  max-width: 100%;
+  border: 0; }
+
+ul, ul li {
+  margin: 0; }
+
+h1 {
+  font-family: 'Lato', sans-serif;
+  font-size: 2.6rem;
+  font-weight: bold;
+  line-height: 100%;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 0.5em;
+  padding: 0.5em 0 0.25em 0;
+  text-align: center;
+  letter-spacing: 1px;
+  color: var(--mainDarkColor); }
+
+[data-theme='luarian'] h1 {
+  color: var(--mainSofterColor); }
+
+h2, h3, h4, th.h3, .h3, th.h2, .h2 {
+  font-family: 'Lato', sans-serif;
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 130%;
+  width: 100%;
+  padding: 0.25em 0.8rem;
+  text-align: left;
+  border-color: var(--neutralDarkColor);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  background: none; }
+
+h3, h3, th.h3, .h3 {
+  font-size: 1.8rem; }
+
+h4 {
+  font-size: 1.5rem;
+  line-height: 120%; }
+
+p, pre {
+  display: block;
+  margin: 1em 0;
+  padding: 0; }
+
+table td, table th {
+  padding: 0.25em 0.8rem; }
+
+a, a:visited,
+.link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--accentColor);
+  border: none;
+  background: none; }
+
+a:hover, button.link-button:hover, .link:hover {
+  text-decoration: underline; }
+
+a, i, button, [role="button"], #navbar-container *, h1, h2 {
+  transition: color 0.5s ease-in-out, background 0.5s ease-in-out, box-shadow 0.5s ease-in-out; }
+
+.main-body-content {
+  transition: background 0.5s ease-in-out; }
+
+#root {
+  width: 100%;
+  min-height: 100%; }
+
+:root {
+  --headerBackgroundImage: url('/img/backgrounds/sayleus.jpg');
+  --accentColor: hsl(4, 72%, 62%);
+  --accentSoftColor: hsl(4, 65%, 88%);
+  --errorColor: hsl(348, 100%, 50%);
+  --errorLightColor: hsl(0, 100%, 90%);
+  --warningColor: hsl(20, 80%, 50%);
+  --highlightColor: hsl(45, 75%, 85%);
+  --highlightDarkColor: hsl(45, 52%, 73%);
+  --highlightSoftColor: hsl(45, 100%, 92%);
+  --bodyBgColor: hsl(171, 14%, 86%);
+  --bodyTextColor: hsl(0, 0%, 13%);
+  --contentBgColor: hsl(171, 14%, 92%);
+  --contentTextColor: hsl(0, 0%, 13%);
+  --softTextColor: hsl(171, 10%, 40%);
+  --mainShadowColor: hsla(0, 0%, 0%, 0.15);
+  --emphasisBgColor: hsl(0, 0%, 100%);
+  --emphasisBgColorSoft: hsl(171, 7%, 96%);
+  --mainColor: hsl(171, 82%, 42%);
+  --mainDarkColor: hsl(172, 86%, 36%);
+  --mainDarkerColor: hsl(172, 87%, 31%);
+  --mainSoftColor: hsl(171, 81%, 44%);
+  --mainSofterColor: hsl(171, 60%, 88%);
+  --mainSoftestColor: hsl(171, 55%, 94%);
+  --neutralColor: hsl(177, 38%, 82%);
+  --neutralDarkColor: hsl(174, 36%, 69%);
+  --softEmphasisColor: var(--mainSofterColor); }
+
+[data-theme='luarian'] {
+  --headerBackgroundImage: url('/img/backgrounds/luaria.jpg');
+  --bodyTextColor: hsl(218, 5%, 80%);
+  --bodyBgColor: hsl(220, 15%, 12%);
+  --contentBgColor: hsl(220, 15%, 16%);
+  --emphasisBgColor: hsl(220, 15%, 25%);
+  --emphasisBgColorSoft: hsl(220, 15%, 19%);
+  --contentTextColor: hsl(218, 5%, 80%);
+  --softTextColor: hsl(218, 5%, 50%);
+  --mainColor: hsl(228, 50%, 30%);
+  --mainDarkColor: hsl(228, 50%, 25%);
+  --mainDarkerColor: hsl(228, 50%, 20%);
+  --mainSoftColor: hsl(228, 50%, 35%);
+  --mainSofterColor: hsl(228, 42%, 70%);
+  --mainSoftestColor: hsl(228, 40%, 90%);
+  --neutralColor: hsl(218, 40%, 24%);
+  --neutralDarkColor: hsl(218, 40%, 45%);
+  --softEmphasisColor: var(--mainSoftColor);
+  --healthColor: hsl(4, 72%, 32%);
+  --staminaColor: hsl(228, 72%, 32%);
+  --focusColor: hsl(55, 72%, 32%); }
+
+[data-theme='dawnish'] {
+  --headerBackgroundImage: url('/img/backgrounds/dawnlands.jpg');
+  --bodyTextColor: hsl(320, 5%, 80%);
+  --bodyBgColor: hsl(300, 10%, 15%);
+  --emphasisBgColor: hsl(280, 15%, 95%);
+  --contentBgColor: hsl(280, 5%, 80%);
+  --contentTextColor: hsl(0, 0%, 13%);
+  --softTextColor: hsl(200, 10%, 30%);
+  --mainColor: hsl(340, 60%, 28%);
+  --mainDarkColor: hsl(340, 50%, 23%);
+  --mainDarkerColor: hsl(340, 50%, 18%);
+  --mainSoftColor: hsl(340, 55%, 35%);
+  --mainSofterColor: hsl(340, 52%, 70%);
+  --mainSoftestColor: hsl(340, 40%, 90%);
+  --neutralColor: hsl(320, 15%, 77%);
+  --neutralDarkColor: hsl(320, 10%, 70%);
+  --softEmphasisColor: var(--mainSoftestColor); }
+
+[data-theme='admin'] {
+  --mainColor: hsl(180, 2%, 22%);
+  --mainDarkColor: hsl(0, 0%, 13%);
+  --mainDarkerColor: hsl(0, 0%, 0%);
+  --mainSoftColor: hsl(185, 3%, 25%);
+  --mainSofterColor: hsl(189, 7%, 81%);
+  --mainSoftestColor: hsl(195, 10%, 90%);
+  --neutralColor: hsl(0, 0%, 87%);
+  --neutralDarkColor: hsl(0, 0%, 77%); }
+  [data-theme='admin'] .header {
+    filter: grayscale(50%); }

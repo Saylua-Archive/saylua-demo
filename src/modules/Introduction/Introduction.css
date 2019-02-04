@@ -1,0 +1,33 @@
+.introduction-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url("/img/backgrounds/dawnlands.jpg");
+  background-size: cover; }
+
+.introduction-container {
+  overflow: auto;
+  font-size: 2.5rem;
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 1em 1.6rem;
+  text-align: center;
+  color: white;
+  background: linear-gradient(#26184e, rgba(230, 101, 101, 0.3));
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  align-items: center;
+  justify-content: center; }
+  .introduction-container button {
+    cursor: pointer;
+    font-size: 100%;
+    border: white 1px solid;
+    padding: 0.25em 1.6rem;
+    margin: 1em 0;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }

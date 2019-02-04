@@ -1,0 +1,128 @@
+.npc-display {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  flex-flow: row wrap;
+  justify-content: center; }
+
+.adoptee {
+  width: 30rem;
+  max-width: 100%;
+  height: 30rem;
+  max-height: 30rem;
+  align-self: flex-end; }
+  @media (max-width: 500px) {
+    .adoptee {
+      height: auto; } }
+
+.interaction-bust {
+  width: 40rem;
+  max-width: 100%;
+  height: 40rem;
+  max-height: 40rem;
+  text-align: center;
+  overflow-y: hidden;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center; }
+  @media (max-width: 500px) {
+    .interaction-bust {
+      height: auto; } }
+
+.speech-bubble {
+  position: relative;
+  width: 70%;
+  margin-right: 15%;
+  margin-left: 15%;
+  padding: 1rem;
+  color: #333;
+  border: 5px solid var(--mainSofterColor);
+  /* css3 */
+  border-radius: 10px;
+  background: var(--mainSoftestColor); }
+
+.speech-bubble:before {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  /* value = - border-top-width - border-bottom-width */
+  left: 20%;
+  /* controls horizontal position */
+  /* reduce the damage in FF3.0 */
+  display: block;
+  width: 0;
+  border-width: 20px 20px 0;
+  border-style: solid;
+  border-color: var(--mainSofterColor) transparent; }
+
+/* creates the smaller  triangle */
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  bottom: -13px;
+  /* value = - border-top-width - border-bottom-width */
+  left: 20%;
+  /* value = (:before left) */
+  margin-left: 7px;
+  /* reduce the damage in FF3.0 */
+  display: block;
+  width: 0;
+  border-width: 13px 13px 0;
+  border-style: solid;
+  border-color: var(--mainSoftestColor) transparent; }
+
+.solo-bubble:before {
+  left: 50%;
+  /* controls horizontal position */
+  margin-left: -27px; }
+
+.solo-bubble:after {
+  left: 50%;
+  /* value = (:before left) + (:before border-left) - (:after border-left) */
+  margin-left: -20px; }
+
+.choices {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 1rem; }
+  .choices button {
+    margin: 1rem; }
+
+@media (max-width: 1000px) {
+  .npc-display {
+    flex-direction: column;
+    align-items: center; }
+  .adoptee {
+    align-self: center; }
+  .speech-bubble {
+    width: 40rem; }
+  .speech-bubble:before {
+    left: 50%;
+    /* controls horizontal position */
+    margin-left: -27px; }
+  .speech-bubble:after {
+    left: 50%;
+    /* value = (:before left) + (:before border-left) - (:after border-left) */
+    margin-left: -20px; }
+  .choices {
+    flex-direction: column; }
+  .choices a, .choices button {
+    width: 40rem; } }
+
+.npc-overlay {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  background: rgba(26, 26, 26, 0.5);
+  height: 10rem; }
+  .npc-overlay img {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 20rem; }

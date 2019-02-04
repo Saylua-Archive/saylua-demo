@@ -1,0 +1,187 @@
+.blocks-container {
+  font-family: 'Bitter', sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 280px;
+  height: 650px;
+  color: white;
+  background-image: url("/img/backgrounds/luaria.jpg");
+  background-size: cover;
+  text-shadow: 2px 2px #457792;
+  align-items: center;
+  justify-content: center; }
+  .blocks-container .blocks-overlay {
+    font-size: 4rem;
+    line-height: 150%;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: rgba(33, 33, 33, 0.7);
+    text-shadow: 0.2rem 0.2rem #2b4254;
+    align-items: center;
+    justify-content: center; }
+    .blocks-container .blocks-overlay .blocks-big-text {
+      font-size: 8rem;
+      line-height: 150%;
+      text-shadow: 0.4rem 0.4rem #2b4254; }
+    .blocks-container .blocks-overlay .blocks-big-text {
+      font-size: 8rem;
+      line-height: 150%; }
+    .blocks-container .blocks-overlay .blocks-small-text {
+      font-size: 2rem;
+      line-height: 150%; }
+    .blocks-container .blocks-overlay .blocks-click-text {
+      cursor: pointer;
+      transition: color 0.5s ease;
+      color: #ffe785; }
+    .blocks-container .blocks-overlay .blocks-click-text:hover {
+      color: #ff8f57; }
+  .blocks-container .blocks-start-screen {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center; }
+    .blocks-container .blocks-start-screen .blocks-start-game {
+      font-size: 8rem;
+      line-height: 150%;
+      margin-top: -10rem;
+      cursor: pointer;
+      transition: color 0.5s ease;
+      color: #ffe785; }
+    .blocks-container .blocks-start-screen .blocks-start-game:hover {
+      color: #ff8f57; }
+
+.game-view {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 3rem;
+  align-items: flex-start;
+  justify-content: center; }
+  .game-view .blocks-info {
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 200%;
+    padding: 0 1.5rem; }
+    .game-view .blocks-info .blocks-controls {
+      font-family: sans-serif; }
+    .game-view .blocks-info .blocks-score {
+      font-size: 2.4rem;
+      line-height: 120%;
+      height: 4em;
+      padding-top: 2.4rem;
+      width: 5em; }
+  .game-view .blocks-grid {
+    margin-top: 1px;
+    padding: 0 1.5rem; }
+
+.grid-table {
+  padding: 0.2rem;
+  border-spacing: 0;
+  background: rgba(255, 255, 255, 0.7); }
+  .grid-table td {
+    width: 26px;
+    height: 26px;
+    border-radius: 3px;
+    transition: none; }
+
+.grid-square-1 {
+  border: #a200c7 1px solid;
+  background: #d400fa; }
+
+.grid-square-2 {
+  border: #ba0d47 1px solid;
+  background: #ec417a; }
+
+.grid-square-3 {
+  border: #0a27cd 1px solid;
+  background: #3e5bfe; }
+
+.grid-square-4 {
+  border: #0081c2 1px solid;
+  background: #28b5f6; }
+
+.grid-square-5 {
+  border: #bf0f03 1px solid;
+  background: #f44034; }
+
+.grid-square-6 {
+  border: #009420 1px solid;
+  background: #00c753; }
+
+.grid-square-7 {
+  border: #cc7400 1px solid;
+  background: #ffa724; }
+
+/* For ghost pieces */
+.grid-square-11 {
+  border: rgba(162, 0, 199, 0.2) 1px solid;
+  background: rgba(212, 0, 250, 0.2); }
+
+.grid-square-12 {
+  border: rgba(186, 13, 71, 0.2) 1px solid;
+  background: rgba(236, 65, 122, 0.2); }
+
+.grid-square-13 {
+  border: rgba(10, 39, 205, 0.2) 1px solid;
+  background: rgba(62, 91, 254, 0.2); }
+
+.grid-square-14 {
+  border: rgba(0, 129, 194, 0.2) 1px solid;
+  background: rgba(40, 181, 246, 0.2); }
+
+.grid-square-15 {
+  border: rgba(191, 15, 3, 0.2) 1px solid;
+  background: rgba(244, 64, 52, 0.2); }
+
+.grid-square-16 {
+  border: rgba(0, 148, 32, 0.2) 1px solid;
+  background: rgba(0, 199, 83, 0.2); }
+
+.grid-square-17 {
+  border: rgba(204, 116, 0, 0.2) 1px solid;
+  background: rgba(255, 167, 36, 0.2); }
+
+.game-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+  .game-buttons button {
+    font-size: 2rem;
+    line-height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 5.5rem;
+    height: 5.5rem;
+    margin: 1.5rem 0.3rem;
+    text-align: center;
+    color: #222;
+    border: 0;
+    background: rgba(255, 255, 255, 0.7);
+    align-items: center;
+    justify-content: center; }
+    .game-buttons button small {
+      font-size: 1rem;
+      line-height: 100%; }
+
+@media (max-width: 480px) {
+  .blocks-container {
+    height: 500px; }
+  .grid-table td {
+    width: 22px;
+    height: 22px; } }
+
+@media (max-width: 400px) {
+  .grid-table td {
+    width: 15px;
+    height: 15px; } }

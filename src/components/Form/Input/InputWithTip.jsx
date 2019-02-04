@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Input from './Main';
+import Input from './index';
 import FormTip from '../FormTip';
 
 const InputWithTip = (props) => {

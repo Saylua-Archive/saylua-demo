@@ -1,0 +1,151 @@
+.adventure {
+  font-family: sans-serif;
+  line-height: 150%;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  margin: auto;
+  padding: 0;
+  text-align: center; }
+  .adventure h2 {
+    font-size: 2rem;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center; }
+  .adventure .adventure-boxes {
+    display: flex;
+    flex-direction: row; }
+  .adventure .choice {
+    margin-top: 0.7rem;
+    margin-left: 0.8rem;
+    padding: .5rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-align: center;
+    background-color: white;
+    color: #222;
+    text-align: left; }
+  .adventure .adventure-text {
+    text-align: left;
+    margin-left: 0.8rem;
+    padding: 0 0.5rem;
+    min-height: 5rem; }
+  .adventure .choice:hover {
+    background-color: silver; }
+  .adventure .image-area {
+    width: 100%;
+    min-width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden; }
+  .adventure .image-area div {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 100%; }
+  .adventure .image-area div img {
+    min-height: 100%;
+    max-height: 500px; }
+  .adventure .tiny-encounter-image {
+    max-width: 75%;
+    max-height: 75%; }
+  .adventure .hud-area {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    height: 4em;
+    min-height: 4em;
+    max-height: 4em; }
+  .adventure .battle-stat-box {
+    width: 40%;
+    height: 2em;
+    position: absolute;
+    display: flex;
+    top: 0.5em;
+    left: 0.5em; }
+  .adventure .battle-stat-box-right {
+    left: auto;
+    right: 0.5em; }
+  .adventure .adventure-wrapper {
+    width: 70%;
+    min-width: 70%;
+    background-size: cover;
+    overflow: hidden; }
+  .adventure .battle-icon {
+    width: 4em;
+    height: 4em;
+    background-color: rgba(245, 255, 251, 0.73);
+    padding: .2em;
+    border-radius: 50%; }
+  .adventure .battle-icon-right {
+    transform: scaleX(-1); }
+  .adventure .bar-box {
+    width: 100%;
+    position: relative; }
+  .adventure .bar-box-right {
+    width: 100%;
+    position: relative; }
+  .adventure .health-bar-back {
+    margin: .2em;
+    position: relative;
+    height: 1.5em;
+    background-color: rgba(245, 255, 251, 0.73);
+    max-width: 100%;
+    width: 100%;
+    border-radius: 1.5em;
+    overflow: hidden; }
+  .adventure .health-bar-back-right {
+    right: .2em; }
+  .adventure .health-bar {
+    background-color: rgba(249, 31, 60, 0.8);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: width .4s; }
+  .adventure .health-bar-right {
+    right: 0; }
+  .adventure .stamina-bar-back {
+    margin: .2em;
+    position: relative;
+    height: .7em;
+    background-color: rgba(245, 255, 251, 0.73);
+    max-width: 100%;
+    width: 80%;
+    border-radius: .75em;
+    overflow: hidden; }
+  .adventure .stamina-bar-back-right {
+    right: 0;
+    position: absolute; }
+  .adventure .stamina-bar {
+    background-color: rgba(107, 124, 255, 0.75);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: width .4s; }
+  .adventure .stamina-bar-right {
+    right: 0; }
+  .adventure .objective {
+    padding: 1em 2rem;
+    text-align: left;
+    position: absolute;
+    top: 0px;
+    right: 0px; }
+
+.adventure-scene {
+  width: 75%;
+  padding: 28.935%;
+  box-sizing: border-box;
+  position: relative;
+  background-size: cover;
+  overflow: hidden; }
+
+.adventure-side {
+  width: 25%;
+  text-align: left; }
+
+.adventure-scene-item {
+  position: absolute;
+  bottom: 0%; }

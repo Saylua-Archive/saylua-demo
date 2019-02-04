@@ -1,0 +1,75 @@
+.sidebar-section {
+  max-width: 40rem;
+  width: 100%; }
+
+.sidebar-container, .sidebar {
+  min-height: 500px; }
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-right: 1.6rem;
+  align-items: center; }
+
+.sidebar-navigation {
+  display: flex;
+  flex-direction: row; }
+  .sidebar-navigation button {
+    font-size: 1.4rem;
+    border: none;
+    margin: 0.5em 0.4rem;
+    border-radius: 0.8rem;
+    padding: 0.5em 0.8rem;
+    display: block;
+    color: var(--contentTextColor);
+    background-color: var(--contentBgColor);
+    cursor: pointer; }
+
+.sidebar-aligner {
+  padding-left: .5rem; }
+
+.currency-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--contentBgColor);
+  margin: 0.25em 0.4rem;
+  border-radius: 1.6rem;
+  padding: 0.1em 0.8rem;
+  font-size: 90%; }
+  .currency-container img {
+    margin-right: 0.4rem; }
+
+.sprite-job-entry {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: var(--neutralColor) 1px solid;
+  padding: 0.5em 0; }
+  .sprite-job-entry .sprite-job-portrait {
+    width: 8rem;
+    height: 8rem;
+    margin-right: 0.8rem; }
+
+@media (min-height: 600px) {
+  .sidebar.sidebar-fixed {
+    position: fixed;
+    overflow-y: auto;
+    width: inherit;
+    max-height: 100%;
+    margin-top: -7.6rem; } }
+
+@media (max-width: 840px) {
+  .sidebar {
+    flex-direction: row;
+    width: 100%;
+    padding: 1rem 1%;
+    align-items: center;
+    justify-content: center; }
+    .sidebar .sidebar-section {
+      max-width: 70%; }
+  .sidebar {
+    display: none; } }

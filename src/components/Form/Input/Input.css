@@ -1,0 +1,8 @@
+input.saylua-input {
+  font-size: 1.6rem;
+  line-height: 150%;
+  padding: 0.25em 0.8rem;
+  border: 1px solid #dedede;
+  width: 70%; }
+  input.saylua-input[data-error] {
+    border-color: var(--errorColor); }

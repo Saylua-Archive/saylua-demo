@@ -1,0 +1,20 @@
+.pagination {
+  display: block;
+  width: 90%;
+  margin: 1em auto;
+  text-align: center; }
+  .pagination .previous-link {
+    float: left; }
+  .pagination .next-link {
+    float: right; }
+  .pagination .active-page {
+    background-color: var(--mainSofterColor); }
+  .pagination a, .pagination span {
+    line-height: 3rem;
+    display: inline-block;
+    height: 3rem;
+    padding: 0 0.8rem;
+    transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
+    text-align: center; }
+  .pagination a:hover {
+    background-color: var(--accentSoftColor); }

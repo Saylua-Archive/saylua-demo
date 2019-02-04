@@ -1,0 +1,31 @@
+footer {
+  width: 94%;
+  max-width: 128rem;
+  margin: auto; }
+
+@media (max-width: 1024px) {
+  footer {
+    width: 98%; } }
+
+@media (max-width: 840px) {
+  footer {
+    width: 100%; } }
+
+footer {
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  flex-grow: 1;
+  flex-shrink: 0; }
+  footer .footer-content {
+    padding: 0;
+    word-wrap: break-word;
+    flex-grow: 1;
+    flex-shrink: 1; }
+    footer .footer-content i {
+      font-size: 2rem;
+      transition: none; }
+  footer a i:hover {
+    text-decoration: none;
+    color: var(--mainColor); }

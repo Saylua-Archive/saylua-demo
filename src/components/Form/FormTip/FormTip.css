@@ -1,0 +1,9 @@
+.form-tip {
+  display: block;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.2rem; }
+  .form-tip[data-warning] {
+    color: var(--warningColor); }
+  .form-tip[data-error] {
+    color: var(--errorColor); }

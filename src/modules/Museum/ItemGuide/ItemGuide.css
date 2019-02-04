@@ -1,0 +1,15 @@
+.item-guide-entry {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5em 0.8rem;
+  border-bottom: var(--neutralColor) 1px solid; }
+  .item-guide-entry img {
+    width: 80px;
+    height: 80px;
+    margin-right: 1.6rem; }
+  .item-guide-entry table {
+    flex-grow: 1; }
+  .item-guide-entry th {
+    text-align: left;
+    width: 20%; }
