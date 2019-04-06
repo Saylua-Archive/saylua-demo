@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 
@@ -25,7 +25,7 @@ import NotFound from 'modules/Error/NotFound';
 export default function (props) {
   return (
     <Provider store={props.store}>
-      <HashRouter>
+      <BrowserRouter>
         { props.store.getState().sayluaState.username ?
           <Switch>
             <Route exact path="/" component={Adventure} />
@@ -51,6 +51,6 @@ export default function (props) {
             <Route path="*" component={LandingPage} />
           </Switch>
         }
-      </HashRouter>
+      </BrowserRouter>
     </Provider>);
 }
